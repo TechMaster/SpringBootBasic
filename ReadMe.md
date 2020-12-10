@@ -1,8 +1,9 @@
 # Mã nguồn khoá học SringBoot căn bản tại Techmaster
 Khoá học trong 18 buổi học x 3 tiếng.
-Tác giả Trịnh Minh Cường
-Giảng viên hướng dẫn thực hành: Đoàn Quang Hoà
-Giảng viên thỉnh giảng: Nam Loda.me
+
+- Tác giả Trịnh Minh Cường, cuong@techmaster.vn
+- Giảng viên hướng dẫn thực hành: Đoàn Quang Hoà, Trịnh Minh Cường
+- Giảng viên thỉnh giảng: Trịnh Minh Thuý, Nam Loda.me, Trần Hữu Cương
 
 # Nội dung học
 1. Basic: căn bản, cấu trúc ứng dụng SpringBoot
