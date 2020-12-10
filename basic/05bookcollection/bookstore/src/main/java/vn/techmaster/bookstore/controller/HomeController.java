@@ -13,6 +13,7 @@ public class HomeController {
   // Đọc giá trị từ application.properties
   @Value("${spring.application.name}")
   private String appName;
+  
   static final String APP_NAME = "appName";
   static final String BOOKS = "books";
 

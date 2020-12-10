@@ -2,12 +2,12 @@
 
 Hãy tham khảo code ở thư mục [06bookwithcss](../06bookwithcss/bookstore) hãy làm các bước sau đây
 
-1. Định nghĩa class Car có 3 thuộc tính:
+1. Định nghĩa class Car có thuộc tính sau:
    - int id (unique id, tuần tự tăng 1, 2, 3, 4, 5,...)
    - String name
    - String manufacturer
    - int price (triệu VND)
-   - photo
+   - String photo
 2. Hiển thị giao diện danh sách 10 loại xe đang bán chạy tại thị trường Việt nam 11/2020
    
 ![](cardealer.jpg)
