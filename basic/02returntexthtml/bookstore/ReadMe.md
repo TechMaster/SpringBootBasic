@@ -28,6 +28,22 @@ public class HomeController {
 }
 ```
 
+Cấu trúc dự án giờ đây sẽ như sau
+```
+.
+├── main
+│   ├── java
+│   │   └── vn
+│   │       └── techmaster
+│   │           └── bookstore
+│   │               ├── controller
+│   │               │   └── HomeController.java
+│   │               └── BookstoreApplication.java
+│   └── resources
+│       ├── static
+│       ├── templates
+│       └── application.properties
+```
 ## Thí nghiệm 1: thử Live Reload
 Hãy trải nghiệm chức năng LiveReload bằng cách thay đổi đoạn text trả về ```"This is Amazon Book Store"``` đổi thành ```"This is my Book Store"```
 
