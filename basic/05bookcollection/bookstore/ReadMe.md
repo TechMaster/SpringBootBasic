@@ -223,8 +223,19 @@ Nếu view source ở địa chỉ http://localhost:8080/book3 ta sẽ thấy
   </ul>
 ```
 
-## Thí nghiệm 6: Bài tập hãy bổ xung thuộc tính alt cho từng ảnh đại diện của sách
+## Thí nghiệm 6: Bổ xung thuộc tính alt cho từng ảnh đại diện của sách
 
 Tham khảo [thymeleaf iterate over String to create img tags](https://stackoverflow.com/questions/36595190/thymeleaf-iterate-over-string-to-create-img-tags)
+
+Chú ý ```<img th:src``` đã đổi thành ```<img th:attr```
+th:attr cho phép ghép nhiều thuộc tính src, alt trong một expression
+
+```html
+  <ul>
+    <li th:each="book: ${books}">
+      <img th:attr="src=@{'/images/' + ${book.id} + '.jpg'}, alt=${book.title}"/>
+      <span th:text="${book.title + ' : ' + book.author}"></span></li>
+  </ul>
+```
 
 ## Thí nghiệm 7: Bổ xung CSS cho /book3 nhìn đẹp hơn
