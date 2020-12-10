@@ -86,7 +86,9 @@ Phần này các bạn tự làm nhé
 
 ## Thí nghiệm 3: Trả về danh sách mảng các String là tiêu đề sách ở đường dẫn /book
 
-Tạo phương thức ```public String getBook(Model model)```
+1. Tạo phương thức ```public String getBook(Model model)```
+2. Bổ xung attribute "books" cho model, trỏ đến mảng bookCollection
+3. Bạn có thể thêm bao nhiêu attribute cho model cũng được 
 
 ```java
   // Trả về books là mảng của String
@@ -98,6 +100,7 @@ Tạo phương thức ```public String getBook(Model model)```
     return "book";
   }
 ```
+4. Trong [book.hml](/src/main/resources/templates/book.html) tạo một vòng lặp để liệt kê tất cả các phần tử trong biến ```books``` rồi gán vào biến ```book```
 
 ```html
 <body>
@@ -108,6 +111,48 @@ Tạo phương thức ```public String getBook(Model model)```
 </body>
 ```
 
+Kết quả xem được ở đường dẫn http://localhost:8080/book
+![book](images/Books.jpg)
 
+## Thí nghiệm 4: Trả về mảng các đối tượng kiểu Book. Kiểu Book sẽ có vài thuộc tính
+
+1. Định nghĩa [class Book](/src/main/java/vn/techmaster/bookstore/model/Book.java) trong thư mục model như sau
+
+```java
+public class Book {
+  private int id;
+  private String title;
+  private String author;
+```
+
+Toàn bộ phần còn lại hãy sử dụng SourceAction trong VSCode hoặc tính năng hỗ trợ trong IntelliJ để tự sinh.
+
+2. Bổ xung phương thức ```getBooks2()```
+```java
+  // Trả về books là mảng của đối tượng kiểu Book
+  @GetMapping(value = "/book2")
+  public String getBook2(Model model) {
+    Book[] bookCollection = { 
+      new Book(1, "Cafe cùng Tony", "Tony"),
+      new Book(2, "Dế Mèn Phiêu Lưu Ký", "Tô Hoài")
+    };
+
+    model.addAttribute("books", bookCollection);
+    model.addAttribute(APP_NAME, appName);
+    return "book2";
+  }
+```
+
+3. Tạo mới view template [book2.html](/src/main/resources/templates/book2.html)
+
+Hãy chú ý cú pháp cộng chuỗi trong th:text
+```html
+<ul>
+<li th:each="book: ${books}" th:text="${book.title + ' : ' + book.author}"></li>
+</ul>
+```
+
+Kết quả thu được ở đường dẫn http://localhost:8080/books2
+![book2](images/Books2.jpg)
 
 
