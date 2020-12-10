@@ -182,4 +182,49 @@ Code ở file [about.html](src/main/resources/templates/about.html) như sau
 
 ## Thí nghiệm 6: Bổ xung ảnh cho từng đầu sách
 
+Mỗi đầu sách được thể hiện bằng một đối tượng kiểu [Book.java](src/main/java/vn/techmaster/bookstore/model/Book.java). Kiểu này có một trường id unique để phân biệt các đối tượng sách với nhau. Chúng ta sẽ dùng id để đặt tên cho file ảnh cover của sách.
 
+Trong thực tế đây không phải cách tối ưu vì:
+- Sách sử dụng mã ISBN để định danh
+- Một đầu sách khi đưa lên mạng có thể ứng với 1-nhiều ảnh chứ không phải.
+
+Tuy nhiên bài đầu, hãy chọn phương án đơn nhất đã.
+
+Ảnh cover của sách sẽ lưu ở thư mục [resource/static/images](src/main/resources/static/images)
+```
+├── main
+│   └── resources
+│       ├── static
+│       │   └── images
+│       │       ├── 1.jpg
+│       │       ├── 2.jpg
+│       │       └── bookstore.jpg
+```
+
+Mã thymelead để hiển thị ảnh đại diện của sách
+```html
+  <ul>
+    <li th:each="book: ${books}">
+      <img th:src="@{${'/images/' + book.id + '.jpg'}}"/>
+      <span th:text="${book.title + ' : ' + book.author}"></span></li>
+  </ul>
+```
+
+Nếu view source ở địa chỉ http://localhost:8080/book3 ta sẽ thấy
+
+```html
+  <ul>
+    <li>
+      <img src="/images/1.jpg"/>
+      <span>Cafe cùng Tony : Tony</span></li>
+    <li>
+      <img src="/images/2.jpg"/>
+      <span>Dế Mèn Phiêu Lưu Ký : Tô Hoài</span></li>
+  </ul>
+```
+
+## Thí nghiệm 6: Bài tập hãy bổ xung thuộc tính alt cho từng ảnh đại diện của sách
+
+Tham khảo [thymeleaf iterate over String to create img tags](https://stackoverflow.com/questions/36595190/thymeleaf-iterate-over-string-to-create-img-tags)
+
+## Thí nghiệm 7: Bổ xung CSS cho /book3 nhìn đẹp hơn
