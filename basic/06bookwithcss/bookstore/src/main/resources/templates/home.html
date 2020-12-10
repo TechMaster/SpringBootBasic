@@ -4,12 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Home</title>
+  <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-  <h1 th:text="${appName}">Amazon Book Store</h1>
-  <a th:href="@{/book}">Book list sử dụng mảng kiểu String</a><br/>
-  <a th:href="@{/book2}">Book list sử dụng mảng kiểu Book</a><br/>
-  <a th:href="@{/book3}">Book list có ảnh</a><br/>
-  <a th:href="@{/book4}">Book list có ảnh và CSS đẹp</a><br/>
+  <div class="container">
+    <div class="jumbotron">
+      <h1 th:text="${appName}">Amazon Book Store</h1>
+    </div>
+    <ul class="li"><a th:href="@{/book}">Book list sử dụng mảng kiểu String</a></ul>
+    <ul class="li"><a th:href="@{/book2}">Book list sử dụng mảng kiểu Book</a></ul>
+    <ul class="li"><a th:href="@{/book3}">Book list có ảnh</a></ul>
+    <ul class="li"><a th:href="@{/book4}">Book list có ảnh và CSS đẹp</a></ul>
+  </div>
 </body>
 </html>
