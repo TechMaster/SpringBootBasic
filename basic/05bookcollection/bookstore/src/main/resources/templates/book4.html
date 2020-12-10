@@ -4,19 +4,12 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Document</title>
-        <link rel="stylesheet" href="/css/style.css" />
+        
     </head>
     <body>
-        <div class="container">
-            <div class="jumbotron">
-                <h1 th:text="${appName}"></h1>
-            </div>
-
-            <ul class="d-flex">
-                <li
-                    th:each="book: ${books}"
-                    class="d-flex flex-column align-items-center"
-                >
+            <h1 th:text="${appName}"></h1>
+            <ul>
+                <li th:each="book: ${books}">
                     <img
                         th:attr="src=@{'/images/' + ${book.id} + '.jpg'}, alt=${book.title}"
                     />
