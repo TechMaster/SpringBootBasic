@@ -16,8 +16,27 @@ Khoá học trong 18 buổi học x 3 tiếng.
 8. WebFlux: tuỳ chọn vì đây là kỹ thuật nâng cao, chỉ dạy khi còn thời gian
 9. Đồ án tốt nghiệp
 
+## Sử dụng gitrepo này như thế nào?
+Do các giảng viên liên tục cập nhật code, fix bug do đó các bạn nên clone repo này về máy tính cá nhân như sau:
+
+1. Lần đầu tiên lấy code
+
+```bash
+git clone https://github.com/TechMaster/SpringBootBasic.git
+```
+
+2. Lâu lâu lại git pull để lấy về những cập nhật mới
+```bash
+git pull
+```
+
+Nếu bạn sửa trực tiếp vào ví dụ thì khi git pull có thể xảy ra xung đột, do đó nếu muốn sửa, hãy copy ra một thư mục riêng.
+
 ## Hướng dẫn cách biên dịch mã nguồn
 Do thư mục git repo này phân cầp thành nhiều thư mục, cuối cùng mới đến các thư mục dự án Spring Boot ví dụ do đó các bạn cần vào sâu đến thư mục chứa file pom.xml mở ra bằng VSCode hoặc Intellij rồi hãy code hay biên dịch.
+
+Nếu phát hiện bug hãy email cho cuong@techmaster.vn
+Tôi sẽ sửa và vá lỗi.
 
 ## Quy định điều kiện tốt nghiệp lớp này
 1. Hoàn thành đồ án là một web site viết bằng SpringBoot, kết nối CSDL MySQL hoặc Postgresql, có giao diện web hoặc trả về API thì phải sử dụng End 2 End Testing để kiểm thử tự động hoặc sử dụng WebFlux
