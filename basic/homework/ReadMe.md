@@ -12,6 +12,32 @@ Hãy tham khảo code ở thư mục [06bookwithcss](../06bookwithcss/bookstore)
    
 ![](cardealer.jpg)
 
+2. Cho một file CSV ở thư mục cố định, có nội dung như sau:
+```csv
+1,Triton 4x4 Premium,Mitsubishi,865
+2,Suzuki Ertiga,Suzuki,570
+3,Honda CRV,Honda,1300
+4,Fadil,Vinfast,450
+```
+Hãy viết một ứng dụng Spring Boot đọc file CSV này và trả về danh sách ở đường dẫn http://localhost:8080
+
+- Triton 4x4 Premium
+Manufacturer: Mitsubishi
+Price: 865 triệu
+- Suzuki Ertiga
+Manufacturer: Suzuki
+Price: 570 triệu
+- Honda CRV
+Manufacturer: Honda
+Price: 1300 triệu
+- Fadil
+Manufacturer: Vinfast
+Price: 450 triệu
+
+
+Gợi ý: tham khảo hướng dẫn này [Reading a CSV File into an Array](https://www.baeldung.com/java-csv-file-array)
+
+
 # Câu hỏi ôn tập kiến thức
 1. Spring Boot khác gì với Spring Framework?
 2. Những cải tiến Spring Boot so với Servlet JSP trước đây
@@ -57,5 +83,9 @@ public class Book {
 ```
 18. Trong thư mục dự án Spring Boot, chúng ta thường thấy các thư mực controller, model, service, repository. Hỏi liệu có thể để các file class XXXController.java ở thư mục cùng cấp với Application.java?
 Việc bố trí thư mục này có ý nghĩa gì?
-
-19. Trong tiến trình khởi động ứng dụng Spring Boot, 
+19. Trong tiến trình khởi động ứng dụng Spring Boot, web server TomCat khởi động trước hay là đối tượng Application khởi động trước?
+20. Tính năng NIO trong web server TomCat là gì? Câu này cứ Google thôi.
+21. Ta có một mảng các đối tượng kiểu Book cần trả về kiểu application/json vậy phải dùng thư viện gì để convert mảng này sang JSON string?
+22. Sau khi bạn tạo xong Spring Boot project, bạn phát hiện ra bạn quên không chọn dependency Thymeleaf, vậy bạn phải làm gì để bổ xung dependency này?
+23. Hãy mô tả cú pháp Thymeleaf để gán giá trị động vào 2 thuộc tính ```src``` và ```alt``` của thẻ ```<img>```
+24. Ta có một mảng 20 phần tử nhưng khách hàng chỉ muốn hiển thị ra tất cả các phần tử ở vị trí lẻ: 1, 3, 5, 7, 9,.. vậy phải làm thế nào? Gợi ý xử lý trong Controller hoặc sử dụng cú pháp Thymeleaf
