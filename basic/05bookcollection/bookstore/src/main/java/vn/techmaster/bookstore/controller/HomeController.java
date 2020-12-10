@@ -14,7 +14,7 @@ public class HomeController {
   @Value("${spring.application.name}")
   private String appName;
   static final String APP_NAME = "appName";
-
+  static final String BOOKS = "books";
 
   @GetMapping(value = "/")
   public String getHome(Model model) {
@@ -33,7 +33,7 @@ public class HomeController {
   @GetMapping(value = "/book")
   public String getBook(Model model) {
     String[] bookCollection ={"Deep Work","Nhà Giả Kim ","Cafe cùng Tony","Tôi đi code dạo"};
-    model.addAttribute("books", bookCollection);
+    model.addAttribute(BOOKS, bookCollection);
     model.addAttribute(APP_NAME, appName);
     return "book";
   }
@@ -46,7 +46,7 @@ public class HomeController {
       new Book(2, "Dế Mèn Phiêu Lưu Ký", "Tô Hoài")
     };
 
-    model.addAttribute("books", bookCollection);
+    model.addAttribute(BOOKS, bookCollection);
     model.addAttribute(APP_NAME, appName);
     return "book2";
   }
@@ -59,7 +59,7 @@ public class HomeController {
       new Book(2, "Dế Mèn Phiêu Lưu Ký", "Tô Hoài")
     };
 
-    model.addAttribute("books", bookCollection);
+    model.addAttribute(BOOKS, bookCollection);
     model.addAttribute(APP_NAME, appName);
     return "book3";
   }
@@ -72,7 +72,7 @@ public class HomeController {
       new Book(2, "Dế Mèn Phiêu Lưu Ký", "Tô Hoài")
     };
 
-    model.addAttribute("books", bookCollection);
+    model.addAttribute(BOOKS, bookCollection);
     model.addAttribute(APP_NAME, appName);
     return "book4";
   }
