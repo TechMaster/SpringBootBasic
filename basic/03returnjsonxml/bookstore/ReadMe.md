@@ -49,8 +49,7 @@
    ![trả về xml](images/xml.jpg)
 
 ## Thí nghiệm 3: convert một mảng String sang JSON sử dụng jackson.databind.ObjectMapper 
-
-Trong phương thức này, không trả về JSON string ngay, mà chúng ta sẽ phải convert một mảng các String sang JSON string, để làm việc này cần một thư viện jackson-databind
+Phương thức trả về chỉ nhận kiểu String, nếu muốn trả về một mảng, một đối tượng chúng ta cần chuyển đổi (convert) chúng sang JSON string. Thư viện [thư viện jackson-databind](https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind) sẽ làm nhiệm vụ chuyển đổi.
 
 1. Vào pom.xml bổ xung vào giữa thẻ ```<dependencies></dependencies>``` thư viên jackson-databind
 ```xml

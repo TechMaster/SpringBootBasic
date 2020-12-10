@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: Amazon Book Store
+server:
+  port: 9500
+
+magic:
+  key: mnw#q5412$09()
