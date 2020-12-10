@@ -69,9 +69,10 @@ public class HomeController {
 }
 ```
 Truy cập vào http://localhost:9000/ sẽ thấy
+```
 Welcome Amazon Book Store
 Serves at port: 9000
-
+```
 ## Thí nghiệm 3: Chuyển sang sử dụng application.yml thay vì application.properties
 
 Chuyển application.properties sang application.yml
