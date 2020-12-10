@@ -22,6 +22,12 @@ public class HomeController {
     return "home";
   }
 
+  @GetMapping(value = "/about")
+  public String getAbout(Model model) {
+    model.addAttribute(APP_NAME, appName);
+    return "about";
+  }
+
 
   // Trả về books là mảng của String
   @GetMapping(value = "/book")

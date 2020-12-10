@@ -33,6 +33,7 @@ Các file view templates sẽ nằm ở thư mục main/resources/templates
 File định nghĩa kiểu Book sẽ năm ở main/java/vn/techmaster/bookstore/model
 
 ```
+.
 ├── main
 │   ├── java
 │   │   └── vn
@@ -47,6 +48,7 @@ File định nghĩa kiểu Book sẽ năm ở main/java/vn/techmaster/bookstore/
 │       ├── static
 │       ├── templates
 │       │   ├── book.html
+│       │   ├── book2.html
 │       │   └── home.html
 │       └── application.properties
 ```
@@ -77,6 +79,7 @@ lấy giá trị từ đối tượng ```model``` đó là ```th:text="${appName
 ```
 
 Kết quả xem được ở đường dẫn http://localhost:8080
+
 ![Home page](images/Home.jpg)
 
 ```<a th:href="@{/book}">Book list</a>``` cho kết quả tương tự như ```<a href="/book">Book list</a>``` nhưng sử dụng ```th:href``` có thể động hoá giá trị href trong link
@@ -112,6 +115,7 @@ Phần này các bạn tự làm nhé
 ```
 
 Kết quả xem được ở đường dẫn http://localhost:8080/book
+
 ![book](images/Books.jpg)
 
 ## Thí nghiệm 4: Trả về mảng các đối tượng kiểu Book. Kiểu Book sẽ có vài thuộc tính
@@ -153,6 +157,29 @@ Hãy chú ý cú pháp cộng chuỗi trong th:text
 ```
 
 Kết quả thu được ở đường dẫn http://localhost:8080/books2
+
 ![book2](images/Books2.jpg)
+
+## Thí nghiệm 5: Bổ xung ảnh ở trang about.html tại đường dẫn /about
+
+Bổ xung ảnh ![bookstore.jpg](/src/main/resources/static/images/bookstore.jpg) vào thư mục resources/static/images
+
+```
+├── main
+│   └── resources
+│       ├── static
+│       │   └── images
+│       │       └── bookstore.jpg
+```
+
+Code ở file [about.html](/src/main/resources/templates/about.html) như sau
+```html
+<body>
+  <h1 th:text="${appName}"></h1>
+  <img th:src="@{/images/bookstore.jpg}" alt="Book Store"/>
+</body>
+```
+
+## Thí nghiệm 6: Bổ xung ảnh cho từng đầu sách
 
 
