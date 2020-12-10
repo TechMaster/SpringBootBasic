@@ -54,7 +54,7 @@ File định nghĩa kiểu Book sẽ năm ở main/java/vn/techmaster/bookstore/
 ```
 
 ## Thí nghiệm 1: bổ xung Home.html view cho đường dẫn "/"
-Mong muốn, không những render sử dụng [home.html](/src/main/resources/templates/home.html) mà chúng
+Mong muốn, không những render sử dụng [home.html](src/main/resources/templates/home.html) mà chúng
 ta còn trả về dữ liệu trong biến appName. Biến appName lại nhận giá trị từ file cấu hình application.properties. Hãy xem lại bài trước [04readproperty](https://github.com/TechMaster/SpringBootBasic/tree/main/basic/04readproperty/bookstore)
 
 ```java
@@ -68,7 +68,7 @@ Giờ phía trên phương thức getHome không còn ```@ResponseBody``` nữa.
 
 Trong ```@GetMapping``` cũng không còn tham số ```produces``` nữa.
 
-File [home.html](/src/main/resources/templates/home.html) giờ có đoạn mã đặc trưng cú pháp Thymeleaf để
+File [home.html](src/main/resources/templates/home.html) giờ có đoạn mã đặc trưng cú pháp Thymeleaf để
 lấy giá trị từ đối tượng ```model``` đó là ```th:text="${appName}"```
 
 ```html
@@ -103,7 +103,7 @@ Phần này các bạn tự làm nhé
     return "book";
   }
 ```
-4. Trong [book.hml](/src/main/resources/templates/book.html) tạo một vòng lặp để liệt kê tất cả các phần tử trong biến ```books``` rồi gán vào biến ```book```
+4. Trong [book.hml](src/main/resources/templates/book.html) tạo một vòng lặp để liệt kê tất cả các phần tử trong biến ```books``` rồi gán vào biến ```book```
 
 ```html
 <body>
@@ -120,7 +120,7 @@ Kết quả xem được ở đường dẫn http://localhost:8080/book
 
 ## Thí nghiệm 4: Trả về mảng các đối tượng kiểu Book. Kiểu Book sẽ có vài thuộc tính
 
-1. Định nghĩa [class Book](/src/main/java/vn/techmaster/bookstore/model/Book.java) trong thư mục model như sau
+1. Định nghĩa [class Book](src/main/java/vn/techmaster/bookstore/model/Book.java) trong thư mục model như sau
 
 ```java
 public class Book {
@@ -147,7 +147,7 @@ Toàn bộ phần còn lại hãy sử dụng SourceAction trong VSCode hoặc t
   }
 ```
 
-3. Tạo mới view template [book2.html](/src/main/resources/templates/book2.html)
+3. Tạo mới view template [book2.html](src/main/resources/templates/book2.html)
 
 Hãy chú ý cú pháp cộng chuỗi trong th:text
 ```html
@@ -162,7 +162,7 @@ Kết quả thu được ở đường dẫn http://localhost:8080/books2
 
 ## Thí nghiệm 5: Bổ xung ảnh ở trang about.html tại đường dẫn /about
 
-Bổ xung ảnh ![bookstore.jpg](/src/main/resources/static/images/bookstore.jpg) vào thư mục resources/static/images
+Bổ xung ảnh ![bookstore.jpg](src/main/resources/static/images/bookstore.jpg) vào thư mục resources/static/images
 
 ```
 ├── main
@@ -172,7 +172,7 @@ Bổ xung ảnh ![bookstore.jpg](/src/main/resources/static/images/bookstore.jpg
 │       │       └── bookstore.jpg
 ```
 
-Code ở file [about.html](/src/main/resources/templates/about.html) như sau
+Code ở file [about.html](src/main/resources/templates/about.html) như sau
 ```html
 <body>
   <h1 th:text="${appName}"></h1>
