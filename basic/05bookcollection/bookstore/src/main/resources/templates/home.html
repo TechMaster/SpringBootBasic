@@ -1,15 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Home</title>
-</head>
-<body>
-  <h1 th:text="${appName}">Amazon Book Store</h1>
-  <a th:href="@{/book}">Book list sử dụng mảng kiểu String</a><br/>
-  <a th:href="@{/book2}">Book list sử dụng mảng kiểu Book</a><br/>
-  <a th:href="@{/book3}">Book list có ảnh</a><br/>
-  <a th:href="@{/book4}">Book list có ảnh và CSS đẹp</a><br/>
-</body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Home</title>
+        <link rel="stylesheet" href="/css/style.css" />
+    </head>
+    <body>
+        <div class="container">
+            <div class="jumbotron">
+                <h1 th:text="${appName}">Amazon Book Store</h1>
+            </div>
+
+            <ul>
+                <li>
+                    <a th:href="@{/book}">Book list sử dụng mảng kiểu String</a>
+                </li>
+                <li>
+                    <a th:href="@{/book2}">Book list sử dụng mảng kiểu Book</a>
+                </li>
+                <li><a th:href="@{/book3}">Book list có ảnh</a></li>
+                <li><a th:href="@{/book4}">Book list có ảnh và CSS đẹp</a></li>
+            </ul>
+        </div>
+    </body>
 </html>
