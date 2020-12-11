@@ -74,20 +74,20 @@ Các hai đều khởi tạo đối tượng và nạp vào Application Context 
 7. Biên dịch sẽ có kết quả như sau
    
   ```
-  Creating shared instance of singleton bean 'demobeanApplication'
-  Creating shared instance of singleton bean 'car'
-  Creating shared instance of singleton bean 'appConfig'
-  Creating shared instance of singleton bean 'son'
-  Creating shared instance of singleton bean 'myEngine'
-  ------------------------------------
-  org.springframework.context.annotation.internalConfigurationAnnotationProcessor
-  org.springframework.context.annotation.internalAutowiredAnnotationProcessor
-  org.springframework.context.annotation.internalCommonAnnotationProcessor
-  org.springframework.context.event.internalEventListenerProcessor
-  org.springframework.context.event.internalEventListenerFactory
-  demobeanApplication
-  car
-  appConfig
-  son
-  myEngine
+    Creating shared instance of singleton bean 'demobeanApplication'
+    Creating shared instance of singleton bean 'car'
+    Creating shared instance of singleton bean 'appConfig'
+    Creating shared instance of singleton bean 'son'
+    Creating shared instance of singleton bean 'myEngine'
+    ------------------------------------
+    org.springframework.context.annotation.internalConfigurationAnnotationProcessor
+    org.springframework.context.annotation.internalAutowiredAnnotationProcessor
+    org.springframework.context.annotation.internalCommonAnnotationProcessor
+    org.springframework.context.event.internalEventListenerProcessor
+    org.springframework.context.event.internalEventListenerFactory
+    demobeanApplication
+    car
+    appConfig
+    son
+    myEngine
   ```
