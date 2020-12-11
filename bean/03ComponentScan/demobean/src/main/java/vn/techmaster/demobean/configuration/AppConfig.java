@@ -9,6 +9,11 @@ import vn.techmaster.demobean.bean.Engine;
 public class AppConfig {
   @Bean
   public Engine myEngine() {
-    return new Engine();
+    return new Engine("Ford Engine");
+  }
+
+  @Bean
+  public Engine teslaEngine() {
+    return new Engine("Electric Tesla Engine");
   }
 }

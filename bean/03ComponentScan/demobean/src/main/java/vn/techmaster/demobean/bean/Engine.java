@@ -1,7 +1,11 @@
 package vn.techmaster.demobean.bean;
 
 public class Engine {
+  private String model;
   public String getModel() {
-    return "Ford Engine";
-  }  
+    return model;
+  }
+  public Engine(String model) {
+    this.model = model;
+  }
 }

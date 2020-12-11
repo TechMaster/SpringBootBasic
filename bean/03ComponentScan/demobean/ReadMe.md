@@ -1,4 +1,4 @@
-# Component Scan
+# Component, Bean, Component Scan
 Trong bài này chúng ta làm quen cơ chế quét tất cả các ```@Component``` và ```@Bean``` ở bất kể cấp độ thư mục nào để nạp vào ApplicationContext
 
 ## Cấu trúc thư mục
@@ -24,7 +24,7 @@ Trong bài này chúng ta làm quen cơ chế quét tất cả các ```@Componen
 │   │   │   │   │   └── DemobeanApplication.java
 ```
 
-## Thực hành
+## Thí nghiệm 1: Tạo Bean, Component và Component Scan
 Class [DemobeanApplication](src/main/java/vn/techmaster/demobean/DemobeanApplication.java) chứa hàm main chỉ được annotate bằng ```@ComponentScan``` chứ không phải ```@SpringbootApplication```, có nghĩa nó chưa phải là một ứng dụng SpringBoot hoàn chỉnh.
 
 ![](images/SpringBootAppAnnotate.jpg)
@@ -49,13 +49,6 @@ Class [DemobeanApplication](src/main/java/vn/techmaster/demobean/DemobeanApplica
      }
    }
    ```
-
-**```@Component``` khác ```@Bean``` như thế nào?**
-Các hai đều khởi tạo đối tượng và nạp vào Application Context quản lý. Thường là Singleton object.
-- Chức năng của ``@Component``` và ```@Bean``` giống nhau, cách khởi tạo khác nhau thôi.
-- ```@Component``` đánh dấu ở cấp độ class
-- ```@Bean``` đánh dấu cho phương thức public trả về đối tượng cần nạp vào ApplicationContext. Tên phương thức sẽ là tên của Bean. Phương thức này phải thuộc một class được đánh đấu là ```@Configuration```
-- Tại sao cần có ```@Bean```? Bởi vì chúng ta không thể tuỳ biến quá trình khởi tạo Component, nhưng tuỳ biến được (truyền tham số) khi tạo Bean. Bài sau sẽ nói kỹ hơn nhé. Nói nhiều quá loạn mất!
 
 6. Giờ chúng ta bàn đến phương thức static main trong [DemobeanApplication.java](src/main/java/vn/techmaster/demobean/entity/Book.java)
   ```java
@@ -91,4 +84,64 @@ Các hai đều khởi tạo đối tượng và nạp vào Application Context 
     myEngine
   ```
 
+  Nhìn vào log, bạn sẽ thấy các bean này được tạo ra duy nhất singleton.
+  Bean ```myEngine``` là kết quả của phương thức này đây
+  ```java
+  @Bean
+  public Engine myEngine() {
+    return new Engine();
+  }
+  ```
 
+
+## Thí nghiệm 2: Tuỳ biến hàm tạo ra Bean
+
+1. Bổ xung thuộc tính model cho class [Engine](src/main/java/vn/techmaster/demobean/bean/Engine.java)
+   ```java
+    public class Engine {
+     private String model;
+     public String getModel() {
+       return model;
+     }
+     public Engine(String model) {
+       this.model = model;
+     }
+    }
+   ```
+2. Thêm phương thức mới ```public Engine teslaEngine()``` vào [AppConfig.java](src/main/java/vn/techmaster/demobean/configuration/AppConfig.java)
+   ```java
+   @Configuration
+   public class AppConfig {
+     @Bean
+     public Engine myEngine() {
+       return new Engine("Ford Engine");
+     }
+   
+     @Bean
+     public Engine teslaEngine() {
+       return new Engine("Electric Tesla Engine");
+     }
+   }
+   ```
+   Vậy là có 2 phương thức cùng trả về kiểu Engine, cùng được đánh dấu là @Bean
+3. Chạy lại xem log ở Terminal bạn sẽ thấy 2 bean: myEngine và testlaEngine
+   ```
+   demobeanApplication
+   car
+   appConfig
+   son
+   myEngine
+   teslaEngine
+   ```
+
+
+## Tổng kết
+**```@Component``` khác ```@Bean``` như thế nào?**
+Các hai đều khởi tạo đối tượng và nạp vào Application Context quản lý. Thường là Singleton object.
+- Chức năng của ``@Component``` và ```@Bean``` giống nhau, cách khởi tạo khác nhau thôi.
+- ```@Component``` đánh dấu ở cấp độ class
+- ```@Bean``` đánh dấu cho phương thức public trả về đối tượng cần nạp vào ApplicationContext. Tên phương thức sẽ là tên của Bean. Phương thức này phải thuộc một class được đánh đấu là ```@Configuration```
+- Tại sao cần có ```@Bean```? Bởi vì chúng ta không thể tuỳ biến quá trình khởi tạo Component, nhưng tuỳ biến được (truyền tham số) khi tạo Bean. Bài sau sẽ nói kỹ hơn nhé. Nói nhiều quá loạn mất!
+- Bean đăng ký vào Application không phải bằng kiểu mà với tên phương thức trả về nó
+- Có thể có nhiều phương thức đánh dấu @Bean cùng trả về một kiểu
+- Khi đã nạp vào Application Context, mọi đối tượng đều được gọi chung là Bean
