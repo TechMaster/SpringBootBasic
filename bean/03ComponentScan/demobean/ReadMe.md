@@ -58,7 +58,7 @@ Các hai đều khởi tạo đối tượng và nạp vào Application Context 
 - Tại sao cần có ```@Bean```? Bởi vì chúng ta không thể tuỳ biến quá trình khởi tạo Component, nhưng tuỳ biến được (truyền tham số) khi tạo Bean. Bài sau sẽ nói kỹ hơn nhé. Nói nhiều quá loạn mất!
 
 6. Giờ chúng ta bàn đến phương thức static main trong [DemobeanApplication.java](src/main/java/vn/techmaster/demobean/entity/Book.java)
-   ```java
+  ```java
    public static void main(String[] args) {
 	  context = new AnnotationConfigApplicationContext(DemobeanApplication.class);
 	  System.out.println("------------------------------------");
@@ -71,8 +71,7 @@ Các hai đều khởi tạo đối tượng và nạp vào Application Context 
   Hàm này tạo một ApplicationContext với tham số là kiểu ```DemobeanApplication.class```
   Sau đó có một vòng lặp for để in ra tất cả các Bean trong Application Context. Khi đã nạp vào Application Context, Spring Boot không còn phân biệt đâu là Component và đâu là Bean. Chúng được gọi chung là Bean !
 
-7. Biên dịch sẽ có kết quả như sau
-   
+7. Biên dịch sẽ có kết quả như sau:   
   ```
     Creating shared instance of singleton bean 'demobeanApplication'
     Creating shared instance of singleton bean 'car'
@@ -91,3 +90,5 @@ Các hai đều khởi tạo đối tượng và nạp vào Application Context 
     son
     myEngine
   ```
+
+
