@@ -96,7 +96,7 @@ Trả lời: khi kiến trúc ứng dụng phức tạp, có nhiều đối tư�
 Spring Boot vẫn cho cho developer cơ hội tuỳ chỉnh trong trường hợp đặc biệt vẫn có thể tạo mới ```@Component``` hay ```@Bean``` tại lúc cần, lúc này phải sử dụng annotation ```@Lazy``` sẽ nói đến ở bài thí nghiệm khác.
 
 **Vài đặc điểm của Autowired bạn cần nhớ**
-1. Nó phải được đặt trên khai báo instant variable của class, hoặc ở constructor của class chứ không ở local variable của method
+1. Nó phải được đặt trên khai báo instant variable của class chứ không ở local variable của method
 2. Tại thời điểm đối tượng của class X, trong ví dụ này là ```HomeController```, khởi tạo (construct), thì instant variable có ```@Autowired``` trong X sẽ được gán hay trỏ đến đối tượng singleton được khởi tạo trước đó và quản lý trong Application Context
 
 Cách làm việc của Spring Boot giống với xây, quản lý căn hộ trong chung cứ. Cho mỗi chung cư bên trong, các đường điện, nước, cáp quang đã được đấu nối chờ sẵn, chỉ cần đấu thiết bị vào đúng ổ là dùng được.
