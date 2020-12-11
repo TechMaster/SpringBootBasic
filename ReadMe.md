@@ -42,7 +42,10 @@ Tôi sẽ sửa và vá lỗi.
 1. Hoàn thành đồ án là một web site viết bằng SpringBoot, kết nối CSDL MySQL hoặc Postgresql, có giao diện web hoặc trả về API thì phải sử dụng End 2 End Testing để kiểm thử tự động hoặc sử dụng WebFlux
 2. Đồ án phải đóng gói được trong Docker file hoặc Docker Compose nếu kèm CSDL
 3. Có slide thuyết trình thiết kế bằng PowerPoint hoặc PDF mô tả chức năng chính, cấu trúc chương trình
-4. Dịch 5 bài tutorials SpringBoot tuỳ chọn, không clone lại bài viết tiếng Việt có sẵn
+4. Đồ án bảo vệ trong hội đồng gồm 1 giảng viên Techmaster và 2 lập trình viên SpringBoot độc lập ở công ty ngoài
+
+Sinh viên được cộng điểm khi dịch 5 bài tutorials SpringBoot tuỳ chọn, không dùng lại bài viết tiếng Việt có sẵn.
+
 
 ## Sách tham khảo
 - [Spring in Action 5th: step by step](https://www.amazon.com/Spring-Action-Craig-Walls/dp/1617294942)

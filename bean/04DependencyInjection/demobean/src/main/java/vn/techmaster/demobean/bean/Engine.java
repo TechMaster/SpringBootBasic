@@ -10,4 +10,9 @@ public class Engine {
   public Engine(String model) {
     this.model = model;
   }
+
+  @Override
+  public String toString() {
+    return model;
+  }
 }
