@@ -12,7 +12,7 @@ import vn.techmaster.demobean.bean.Car;
 public class HomeController {
 
   @Autowired
-  Car car;
+  Car car; //Lấy bean có tên là car
 
   @ResponseBody
   @GetMapping(value = "/", produces=MediaType.TEXT_HTML_VALUE)

@@ -1,5 +1,11 @@
 # Dependency Injection
 
+## Nếu bạn rất vội
+Hãy biên dịch và mở trình duyệt tại địa chỉ http://localhost:8080, bạn sẽ thấy dòng chữ này
+```
+Car [engine=Tesla Electric Engine, steering=Manual steering]
+```
+Giờ hãy bình tĩnh đọc để hiểu Dependency Injection giúp ứng dụng xây dựng nên từ các thành phần. Trong quá trình xây dựng và cả lúc chạy, chúng ta có thể hoán đổi thành phần. Khi học hãy thử code lại từ đầu sang một project mới để nhớ các cú pháp.
 ## Mở đầu
 
 Dependency: Thành phần phụ thuộc
@@ -110,3 +116,98 @@ public class SteeringConfig {
   }
 }
 ```
+
+## Car.java
+Hãy chú đến hai annotation:
+- ```@Autowired```: tự động tìm đến Bean có tên phù hợp để gán vào biến mà nó đánh dấu.
+- ```@Qualifier```: nếu có nhiều Bean khác tên nhưng trả về đối tượng cùng kiểu, thì cần định rõ tên.
+
+**Khi đã dùng ```@Autowired``` cho một thuộc tính, thì bạn không khai báo tham số ở contructor để khởi tạo thuộc tính này nữa.**
+Có nghĩa là ```@Autowired``` đã giúp tự động inject (tiêm, cấu hình) cho thuộc tính ```steering``` khi đối tượng ```Car``` được khởi tạo (construct).
+
+Nếu bỏ khai báo
+```java
+@Autowired
+@Qualifier("manualsteering")
+```
+
+Ứng dụng vẫn biên dịch được, như khi bạn truy cập http://localhost:8080 sẽ thấy lỗi sau
+```Cannot invoke "vn.techmaster.demobean.interfaces.Steering.steer()" because "this.steering" is null```
+
+Một điểm chú ý nữa là thuộc tính ```private Steering steering``` lấy kiểu là interface tổng quát [Steering](src/main/java/vn/techmaster/demobean/interfaces/Steering.java). Làm như vậy để sau đó lúc compile time hoặc run time, có thể gán đối tượng có kiểu thực hiện Interface này là được. Trong trường hợp này, thuộc tính steering được gán đối tượng kiểu [ManualSteering](src/main/java/vn/techmaster/demobean/bean/ManualSteering.java)
+
+```java
+public class Car {
+  private Engine engine;
+
+  @Autowired
+  @Qualifier("manualsteering") //chủ động chọn Bean manualsteering
+  private Steering steering;
+
+  public Car(Engine engine) { 
+    this.engine = engine;
+  }
+
+  @Override
+  public String toString() {
+    return "Car [engine=" + engine + ", steering=" + steering.steer() + "]";
+  }
+}
+```
+
+## Đọc giá trị engineType từ application.properties
+Khách hàng muốn rằng phải được tuỳ biến loại động cơ (engine), mà không phải sửa code. Vậy chúng ta sẽ đọc giá trị từ key ```engineType``` trong application.properties nhờ cú pháp sau đây:
+```java
+@Value("${engineType}")
+private String engineType;
+```
+
+Trong [CarConfig.java](src/main/java/vn/techmaster/demobean/configuration/CarConfig.java)
+hãy xem phương thức tạo ra bean car. Dựa vào biến engineType được gán giá trị từ application.properties, bạn có thể lấy ra loại động cơ phù hợp từ Application Context thông quá lệnh ```context.getBean("nameOfBeanHere");```
+
+Chú ý: ```ApplicationContext.getBean("typeEngineHere")``` sẽ lấy một đối tượng Bean được đăng ký, quản lý trong ApplicationContext. Đối tượng này thường là duy nhất trong vòng đời ứng dụng SpringBoot. Nếu bạn sử dụng phương pháp thông thường
+```engine = new Engine("typeEngineHere")``` mỗi lần chạy, sẽ tạo ra một đối tượng động cơ mới.
+
+```java
+@Bean
+public Car car() {
+  Engine engine;
+  switch (engineType) {
+    case "gas":
+      engine = (Engine) context.getBean("gasEngine");
+      break;
+    case "electric":
+      engine = (Engine) context.getBean("electricEngine");
+      break;
+    case "hybrid":
+      engine = (Engine) context.getBean("hybridEngine");
+      break;
+    default:
+      engine = (Engine) context.getBean("gasEngine");
+  }
+    
+  return new Car(engine);
+}
+```
+
+## HomeController.java
+[HomeController.java](src/main/java/vn/techmaster/demobean/configuration/EngineConfig.java)
+
+HomeController.java hứng request đến đường dẫn "/" (đây là đường dẫn tương đối, trước đó sẽ là http://localhost:port hoặc https://yourdomain.com/)
+
+```java
+@Controller
+public class HomeController {
+
+  @Autowired
+  Car car; //Lấy bean có tên là car
+
+  @ResponseBody
+  @GetMapping(value = "/", produces=MediaType.TEXT_HTML_VALUE)
+  public String getHome() {
+    return car.toString();
+  }
+}
+```
+
+## Thí nghiệm 1

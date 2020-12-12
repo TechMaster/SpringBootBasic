@@ -17,7 +17,7 @@ public class CarConfig {
   private String engineType;
 
   @Bean
-  public Car betterCar() {
+  public Car car() {
     Engine engine;
     switch (engineType) {
       case "gas":
@@ -31,8 +31,14 @@ public class CarConfig {
         break;
       default:
         engine = (Engine) context.getBean("gasEngine");
-    }
-    
+    }      
     return new Car(engine);
   }
+
+  /* Hãy uncommend đoạn code này ở thí nghiệm thứ 2
+  @Bean
+  public Car funcar() {
+    return new Car((Engine) context.getBean("hybridEngine"));
+  }
+  */
 }

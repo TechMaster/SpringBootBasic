@@ -10,7 +10,7 @@ public class Car {
 
   @Autowired
   @Qualifier("manualsteering")
-  Steering steering;
+  private Steering steering;
 
   public Car(Engine engine) { 
     this.engine = engine;
