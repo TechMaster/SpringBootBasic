@@ -12,11 +12,11 @@ import vn.techmaster.demobean.bean.Car;
 public class HomeController {
 
   @Autowired
-  Car car; //Lấy bean có tên là car
+  Car mycar; //Lấy bean có tên là car
 
   @ResponseBody
   @GetMapping(value = "/", produces=MediaType.TEXT_HTML_VALUE)
   public String getHome() {
-    return car.toString();
+    return mycar.toString();
   }
 }

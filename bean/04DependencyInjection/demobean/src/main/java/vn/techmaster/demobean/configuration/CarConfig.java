@@ -35,10 +35,9 @@ public class CarConfig {
     return new Car(engine);
   }
 
-  /* Hãy uncommend đoạn code này ở thí nghiệm thứ 2
+  /* Hãy uncommend đoạn code này ở thí nghiệm thứ 2 */
   @Bean
   public Car funcar() {
     return new Car((Engine) context.getBean("hybridEngine"));
   }
-  */
 }

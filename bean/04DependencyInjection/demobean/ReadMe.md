@@ -210,4 +210,49 @@ public class HomeController {
 }
 ```
 
-## Thí nghiệm 1
+## Thí nghiệm 1: khi chỉ có duy nhất một phương thức @Bean trả về kiểu Car
+Trong [CarConfig.java](src/main/java/vn/techmaster/demobean/configuration/CarConfig.java) có duy nhất một phương thức @Bean trả về kiểu Car
+```java
+  @Bean
+  public Car car() {
+```
+
+Trong [HomeController.java](src/main/java/vn/techmaster/demobean/controller/HomeController.java) khi đặt tên thuộc tính kiểu Car bất kỳ tên gì, Spring Boot vẫn có thể kết nối (```@Autowired```)đúng
+```java
+@Controller
+public class HomeController {
+
+  @Autowired
+  Car mycar; //Mặc dù tên Bean là car, nhưng chạy vẫn được !
+
+  @ResponseBody
+  @GetMapping(value = "/", produces=MediaType.TEXT_HTML_VALUE)
+  public String getHome() {
+    return mycar.toString();
+  }
+}
+```
+
+## Thí nghiệm 2: khi có 2 phương thức @Bean trả về kiểu Car
+Trong [CarConfig.java](src/main/java/vn/techmaster/demobean/configuration/CarConfig.java) bổ xung thêm phương thức thứ 2 cũng trả về kiểu Car
+```java
+@Bean
+public Car funcar() {
+  return new Car((Engine) context.getBean("hybridEngine"));
+}
+```
+
+Khi biên dịch lỗi sẽ báo như sau:
+```
+Field mycar in vn.techmaster.demobean.controller.HomeController required a single bean, but 2 were found:
+        - car: defined by method 'car' in class path resource [vn/techmaster/demobean/configuration/CarConfig.class]
+        - funcar: defined by method 'funcar' in class path resource [vn/techmaster/demobean/configuration/CarConfig.class]
+
+
+Action:
+
+Consider marking one of the beans as @Primary, updating the consumer to accept multiple beans, or using @Qualifier to identify the bean that should be consumed
+```
+
+Bạn sẽ phải dùng đến ```@Primary``` để ưu tiên một Bean trong trường hợp có nhiều Bean trả về cùng kiểu.
+Hoặc dùng ```@Qualifier``` để chủ động chọn ra Bean theo tên khi dùng với ```@Autowired```
