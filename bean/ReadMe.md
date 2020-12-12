@@ -1,9 +1,9 @@
 # Application Context, Component, Bean, Component Scan
 
 - [Bài 1](01component/demobean/) : Component, @Autowire, tính chất Singleton
-- [Bài 2](02ApplicationContextAware): Truy xuất đến singleton ApplicationContext bằng cách nào?
-- [Bài 3](03ComponentScan): Cơ chế quét Class được đánh đấu  bởi ```@Component``` và các phương thức được đánh dấu ```@Bean```
-- [Bài 4](04DependencyInjection): Cơ chế cấu hình động thành phần.
+- [Bài 2](02ApplicationContextAware/demobean/): Truy xuất đến singleton ApplicationContext bằng cách nào?
+- [Bài 3](03ComponentScan/demobean/): Cơ chế quét Class được đánh đấu  bởi ```@Component``` và các phương thức được đánh dấu ```@Bean```
+- [Bài 4](04DependencyInjection/demobean/): Cơ chế cấu hình động thành phần.
 - Bài 5: Các phương pháp DI khác nhau
 - [Bài tập](homework)
 
