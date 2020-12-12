@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
+
 import vn.techmaster.demobean.bean.Car;
 import vn.techmaster.demobean.bean.Engine;
 
@@ -36,6 +38,7 @@ public class CarConfig {
   }
 
   /* Hãy uncommend đoạn code này ở thí nghiệm thứ 2 */
+  @Primary
   @Bean
   public Car funcar() {
     return new Car((Engine) context.getBean("hybridEngine"));

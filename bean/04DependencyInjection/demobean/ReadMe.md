@@ -256,3 +256,16 @@ Consider marking one of the beans as @Primary, updating the consumer to accept m
 
 Bạn sẽ phải dùng đến ```@Primary``` để ưu tiên một Bean trong trường hợp có nhiều Bean trả về cùng kiểu.
 Hoặc dùng ```@Qualifier``` để chủ động chọn ra Bean theo tên khi dùng với ```@Autowired```
+
+## Thí nghiệm 3: Bổ xung @Primary vào public Car funcar()
+```java
+@Primary
+@Bean
+public Car funcar() {
+    return new Car((Engine) context.getBean("hybridEngine"));
+}
+```
+Giờ thì ứng dụng đã biên dịch được, và kết quả trả về như sau
+```
+Car [engine=Hybrid Engine, steering=Manual steering]
+```
