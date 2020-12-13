@@ -50,24 +50,31 @@ Nổi bật nhất có 2 thư viện
   - [jackson-dataformat-csv](https://github.com/FasterXML/jackson-dataformats-text/tree/master/csv), check [maven repository](https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-csv) bản mới nhất tháng 11/2020
 
 1. Tôi chọn [jackson-dataformat-csv](https://github.com/FasterXML/jackson-dataformats-text/tree/master/csv) vì nó của team viết thư viện ánh xạ JSON <--> Object rất tốt. Ngoài ra jackson-dataformat-csv sẽ dùng chung cơ chế đánh dấu trường (field annotation) cho POJO tương tự như JSON.
+Bổ xung đoạn này vào file [pom.xml](pom.xml)
+   ```xml
+   <dependency>
+      <groupId>com.fasterxml.jackson.dataformat</groupId>
+      <artifactId>jackson-dataformat-csv</artifactId>
+   </dependency>
+   ```
 
 2. Google sẽ ra được bài viết này [How to read a CSV file with Header in Java using Jackson library - Example Tutorial](https://www.java67.
 com/2019/05/how-to-read-csv-file-in-java-using-jackson-library.html)
 
 Đoạn code hay nhất của Tutorial trên là đây
-```java
-CsvMapper csvMapper = new CsvMapper();
-CsvSchema schema = CsvSchema.emptySchema().withHeader();
-ObjectReader oReader = csvMapper.reader(OnlineCourse.class).with(schema);
-List<OnlineCourse> courses = new ArrayList<>();
-try (Reader reader = new FileReader("file.txt")) { 
-   MappingIterator<OnlineCourse> mi = oReader.readValues(reader);
-   while (mi.hasNext()) { 
-      OnlineCourse current = mi.next();
-      courses.add(current);System.out.println(current); 
+   ```java
+   CsvMapper csvMapper = new CsvMapper();
+   CsvSchema schema = CsvSchema.emptySchema().withHeader();
+   ObjectReader oReader = csvMapper.reader(OnlineCourse.class).with(schema);
+   List<OnlineCourse> courses = new ArrayList<>();
+   try (Reader reader = new FileReader("file.txt")) { 
+      MappingIterator<OnlineCourse> mi = oReader.readValues(reader);
+      while (mi.hasNext()) { 
+         OnlineCourse current = mi.next();
+         courses.add(current);System.out.println(current); 
+      }
    }
-}
-```
+   ```
 
 3. Kết hợp đọc thêm code snippet ở github của [jackson-dataformat-csv](https://github.com/FasterXML/jackson-dataformats-text/tree/master/csv)
 
