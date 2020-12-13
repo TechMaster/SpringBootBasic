@@ -90,3 +90,4 @@ Việc bố trí thư mục này có ý nghĩa gì?
 22. Sau khi bạn tạo xong Spring Boot project, bạn phát hiện ra bạn quên không chọn dependency Thymeleaf, vậy bạn phải làm gì để bổ xung dependency này?
 23. Hãy mô tả cú pháp Thymeleaf để gán giá trị động vào 2 thuộc tính ```src``` và ```alt``` của thẻ ```<img>```
 24. Ta có một mảng 20 phần tử nhưng khách hàng chỉ muốn hiển thị ra tất cả các phần tử ở vị trí lẻ: 1, 3, 5, 7, 9,.. vậy phải làm thế nào? Gợi ý xử lý trong Controller hoặc sử dụng cú pháp Thymeleaf
+25. Khái niệm POJO trong java là gì?

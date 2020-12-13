@@ -44,7 +44,7 @@ Tôi sẽ sửa và vá lỗi.
 3. Có slide thuyết trình thiết kế bằng PowerPoint hoặc PDF mô tả chức năng chính, cấu trúc chương trình
 4. Đồ án bảo vệ trong hội đồng gồm 1 giảng viên Techmaster và 2 lập trình viên SpringBoot độc lập ở công ty ngoài
 
-Sinh viên được cộng điểm khi dịch 5 bài tutorials SpringBoot tuỳ chọn, không dùng lại bài viết tiếng Việt có sẵn.
+Sinh viên được cộng điểm khi dịch 5 bài tutorials SpringBoot tuỳ chọn, không dùng lại bài viết tiếng Việt có sẵn. Bài viết 
 
 
 ## Sách tham khảo
