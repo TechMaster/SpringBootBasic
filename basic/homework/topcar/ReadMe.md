@@ -94,7 +94,7 @@ Grand-i10,Hyndai,350,2793,grand-i10.png
    public int sales;
    public String photo;
    ```
-   Có các trường trùng tên với cột trong [topcar.csv](target/classes/static/topcar.csv)
+   Có các trường trùng tên với cột trong [topcar.csv](src/main/resources/static/topcar.csv)
 
 6. Tiếp đến viết phương thức trong [CarController.java](src/main/java/vn/techmaster/topcar/controller/CarController.java)
 
