@@ -81,4 +81,10 @@ public class CarController {
     }
     return sb.toString();
   }
+
+  @ResponseBody
+  @GetMapping(value = "/excel", produces = MediaType.TEXT_HTML_VALUE)
+  public String readFromExcel() {
+   
+  }
 }

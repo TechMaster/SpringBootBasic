@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class TopcarApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(TopcarApplication.class, args);
+		SpringApplication.run(TopcarApplication.class, args);	
 	}
 
 }
