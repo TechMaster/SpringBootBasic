@@ -3,9 +3,9 @@
 Khi chạy Spring Boot sẽ hứng ở cổng 8080, trong ví dụ này cần in ra dòng chữ "This is Amazon Book Store" ở đường dẫn gốc "/"
 
 
-## Step by Step
-1. Tạo một thư mục controller trong src/main/java/vn/techmaster/bookstore
-2. Tạo một class HomeController.java
+## Thực hành từng bước
+1. Tạo một thư mục [controller](src/main/java/vn/techmaster/bookstore/controller)
+2. Tạo một class [HomeController.java](src/main/java/vn/techmaster/bookstore/controller/HomeController.java)
 3. Thêm @Controller đánh dấu loại class này để điều hướng các request
 4. Tạo phương thức ```public String getHome()```
 5. Thêm @ResponseBody để phương thức trả về dữ liệu ngay mà không qua View Template Engine
@@ -27,8 +27,14 @@ public class HomeController {
   }
 }
 ```
+**Giải thích một số annotation**
+- ```@Controller``` đánh dấu một class thành component, và chuyên xử lý các request gọi đến
+- ```@GetMapping``` đánh dấu một phương thức sẽ hứng (handle), xử lý (process) các yêu cầu (request) kiểu [GET](https://www.w3schools.com/tags/ref_httpmethods.asp). Các tham số cho annotation là ```value``` mô tả đường dẫn yêu cầu (request path), mà phương thức sẽ bắt, ```produces``` mô tả kiểu dữ liệu sẽ trả về (content type of response). ```MediaType``` thuộc package ```org.springframework.http.MediaType```
+  ![](RequestResponse.jpg)
+- ```@ResponseBody``` đánh dấu phương thức sẽ trả về dữ liệu luôn mà không qua View Engine xử lý thêm
+  ![](ResponseBody.jpg)
 
-Cấu trúc dự án giờ đây sẽ như sau
+## Cấu trúc thư mục dự án
 ```
 .
 ├── main
@@ -38,7 +44,7 @@ Cấu trúc dự án giờ đây sẽ như sau
 │   │           └── bookstore
 │   │               ├── controller
 │   │               │   └── HomeController.java
-│   │               └── BookstoreApplication.java
+│   │               └── BookstoreApplication.java  <-- Viết code chủ yếu ở đây
 │   └── resources
 │       ├── static
 │       ├── templates
@@ -60,5 +66,14 @@ Thêm phương thức getAbout()
   }
 ```
 
-không cần biên dịch lại hãy truy cập
+không cần biên dịch lại hãy truy cập để thấy tính năng Live Reload của spring-boot-devtools
 http://localhost:8080/about
+
+## Tổng kết
+Trong bài này chúng ta đã lập trình ứng dụng Spring Boot Helloworld đầu tiên. Một số keyword cần nhớ
+- ```@Controller```
+- ```@GetMapping```
+- Request
+- Response
+- MediaType
+- Live Reload

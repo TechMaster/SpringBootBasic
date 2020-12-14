@@ -4,7 +4,7 @@
 Trong phần này chúng ta đã làm quen với ```@Component```, ```@Bean```, ComponentScan, ApplicationContext, ```@Autowired```,```@Qualifier```, ```@Value```, ```@Primary```. Nếu không có những ứng dụng thực tế, bạn cảm giác chúng buồn tẻ, vô vị. 
 ![](diagram.jpg)
 
-Ở bài đầu tiên, chúng ta đã làm quen với annotation ```@Controller```. Khái niệm Controller phổ biến trong mọi web framework vì chúng đều chung một design patter là MVC (Model - View - Controller)
+[Ở bài đầu tiên](../../basic/02returntexthtml), chúng ta đã làm quen với annotation ```@Controller```. Khái niệm Controller phổ biến trong mọi web framework vì chúng đều chung một design patter là MVC (Model - View - Controller)
 
 - Controller làm nhiệm vụ hứng các lời gọi đến (request)
 - View làm nhiệm vụ tạo ra giao diện hiển thị. Chúng ta đã học Thymeleaf Template Engine

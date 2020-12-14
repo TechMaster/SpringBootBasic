@@ -28,9 +28,9 @@ Maven dependency tương ứng là [Apache FreeMarker](https://mvnrepository.com
 
 Trong ví dụ này chúng ta dùng Thymeleaf.
 ## Cấu trúc thư mục
-Các file Controller sẽ nằm ở main/java/vn/techmaster/bookstore/controller
-Các file view templates sẽ nằm ở thư mục main/resources/templates
-File định nghĩa kiểu Book sẽ năm ở main/java/vn/techmaster/bookstore/model
+Các file Controller sẽ nằm ở [main/java/vn/techmaster/bookstore/controller](src/main/java/vn/techmaster/bookstore/controller)
+Các file view templates sẽ nằm ở thư mục [main/resources/templates](src/main/resources/templates)
+File định nghĩa kiểu Book sẽ năm ở [main/java/vn/techmaster/bookstore/model](src/main/java/vn/techmaster/bookstore/model)
 
 ```
 .
@@ -46,7 +46,7 @@ File định nghĩa kiểu Book sẽ năm ở main/java/vn/techmaster/bookstore/
 │   │               └── BookstoreApplication.java
 │   └── resources
 │       ├── static
-│       ├── templates
+│       ├── templates <-- Viết mã HTML cho Thymeleaf View Template ở đây
 │       │   ├── book.html
 │       │   ├── book2.html
 │       │   └── home.html
