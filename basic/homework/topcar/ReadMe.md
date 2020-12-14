@@ -58,8 +58,7 @@ Bổ xung đoạn này vào file [pom.xml](pom.xml)
    </dependency>
    ```
 
-2. Google sẽ ra được bài viết này [How to read a CSV file with Header in Java using Jackson library - Example Tutorial](https://www.java67.
-com/2019/05/how-to-read-csv-file-in-java-using-jackson-library.html)
+2. Google sẽ ra được bài viết này [How to read a CSV file with Header in Java using Jackson library - Example Tutorial](https://www.java67.com/2019/05/how-to-read-csv-file-in-java-using-jackson-library.html)
 
 Đoạn code hay nhất của Tutorial trên là đây
    ```java

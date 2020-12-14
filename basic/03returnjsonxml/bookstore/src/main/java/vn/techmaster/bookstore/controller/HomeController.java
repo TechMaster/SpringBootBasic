@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import vn.techmaster.bookstore.model.Car;
+import vn.techmaster.bookstore.model.Person;
 
 @Controller
 public class HomeController {
@@ -54,6 +55,23 @@ public class HomeController {
     ObjectMapper objectMapper = new ObjectMapper();
     try {
       return objectMapper.writeValueAsString(car);
+    } catch (Exception e) {
+      return "{'error': '" + e.toString() +"'}";
+    }    
+  }
+
+  @ResponseBody
+  @GetMapping(value="/person", produces=MediaType.APPLICATION_JSON_VALUE)
+  public String getPerson() {
+    //Person person = new Person("Cường", 28, "cuong@techmaster.vn");
+    Person[] people = {
+      new Person("Cường", 28, "cuong@techmaster.vn"), 
+      new Person("Vượng", 24, "vuong@gmail.vn")
+    };
+
+    ObjectMapper objectMapper = new ObjectMapper();
+    try {
+      return objectMapper.writeValueAsString(people);
     } catch (Exception e) {
       return "{'error': '" + e.toString() +"'}";
     }    

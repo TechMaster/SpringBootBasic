@@ -6,9 +6,9 @@
   <title>Document</title>
 </head>
 <body>
-  <h1 th:text="${appName}"></h1>
+  <h1 th:text="${appName}">Hello World</h1>
   <ul>
-    <li th:each="book: ${books}" th:text="${book.title + ' : ' + book.author}"></li>
+    <li th:each="book: ${books}" th:text="${book.title + ' : ' + book.author}">Demo</li>
   </ul>
 </body>
 </html>

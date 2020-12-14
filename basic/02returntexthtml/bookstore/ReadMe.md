@@ -60,10 +60,10 @@ Thêm phương thức getAbout()
 
 ```java
 @ResponseBody
-  @GetMapping(value="/about", produces=MediaType.TEXT_HTML_VALUE)
-  public String getAbout() {
-    return "About page";
-  }
+@GetMapping(value="/about", produces=MediaType.TEXT_HTML_VALUE)
+public String getAbout() {
+  return "About page";
+}
 ```
 
 không cần biên dịch lại hãy truy cập để thấy tính năng Live Reload của spring-boot-devtools

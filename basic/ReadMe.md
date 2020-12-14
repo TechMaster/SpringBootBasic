@@ -8,4 +8,3 @@
 - [Bài 6](06bookwithcss/bookstore): Trang trí bài số 5 bằng CSS
 - [Bài tập](homework): có 2 bài tập tình huống và rất nhiều câu hỏi ôn tập khi đi phỏng vấn thế nào cũng sẽ hỏi
 - [Slide PDF](slides): hãy xem kỹ những PowerPoint slide. Trên lớp đôi khi giảng viên không đủ thời gian trình bày hết từng trang một
-

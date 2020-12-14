@@ -1,8 +1,8 @@
 spring:
   application:
-    name: Amazon Book Store
+    name: Kim Dong Book Store
 server:
-  port: 9500
+  port: 9000
 
 magic:
   key: mnw#q5412$09()

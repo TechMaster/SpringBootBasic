@@ -1,5 +1,12 @@
-# Các phương pháp thực hiện Dependency Injection khác nhau
+# 03 phương pháp Dependency Injection khác nhau
+- Cách 1: Constructor Based Injection
+- Cách 2: Setter Based Injection
+- Cách 3: Field Based Injection
 
+Ví dụ phỏng theo cấu tạo của xe ô tô
+
+![](car.jpg)
+![](diagram.jpg)
 ## Cách 1: Constructor Based Injection
 ## Cách 2: Setter Based Injection
 ## Cách 3: Field Based Injection

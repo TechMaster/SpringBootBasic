@@ -162,13 +162,13 @@ Kết quả thu được ở đường dẫn http://localhost:8080/books2
 
 ## Thí nghiệm 5: Bổ xung ảnh ở trang about.html tại đường dẫn /about
 
-Bổ xung ảnh ![bookstore.jpg](src/main/resources/static/images/bookstore.jpg) vào thư mục resources/static/images
+Bổ xung ảnh ![bookstore.jpg](src/main/resources/static/images/bookstore.jpg) vào thư mục [resources/static/images](src/main/resources/static/images)
 
 ```
 ├── main
 │   └── resources
 │       ├── static
-│       │   └── images
+│       │   └── images  <-- Tạo thư mục này để chứa ảnh
 │       │       └── bookstore.jpg
 ```
 
