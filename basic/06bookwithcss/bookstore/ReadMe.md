@@ -1,5 +1,5 @@
 # Sử dụng Thymeleaf căn bản
-
+Đây là phần nâng cấp của ví dụ [05bookcollection](../../05bookcollection/bookstore/)
 ## Thí nghiệm 7: Bổ xung CSS cho /book4 nhìn đẹp hơn
 Bổ xung [style.css](src/main/resources/static/css/style.css) vào thư mục resource/static/css
 ```
@@ -16,8 +16,8 @@ Bổ xung [style.css](src/main/resources/static/css/style.css) vào thư mục r
 │   │               └── BookstoreApplication.java
 │   └── resources
 │       ├── static
-│       │   ├── css
-│       │   │   └── style.css
+│       │   ├── css <-- bổ xung thư mục css
+│       │   │   └── style.css  <-- thêm styless.css để giao diện đẹp hơn
 │       │   └── images
 │       │       ├── 1.jpg
 │       │       ├── 2.jpg

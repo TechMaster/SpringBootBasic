@@ -9,7 +9,7 @@
    - [baeldung - Reading a CSV File into an Array](https://www.baeldung.com/java-csv-file-array)
 
 3. Tóm lại vài cách:
-   - Lập trình mở file, đọc từng dòng lệnh một vào String, cắt String theo dấu phân cách, . Cách này code nhiều, thủ công, bạn xem đầy đủ từng dòng. Cũng hay cho người mới học Java.
+   - Lập trình mở file, đọc từng dòng lệnh một vào String, cắt String theo dấu phân cách.Cách này code nhiều, thủ công, bạn xem đầy đủ từng dòng. Cũng hay cho người mới học Java.
    - Sử dụng thư viện dependency để đọc file CSV và ánh xạ từng dòng CSV vào đối tượng POJO (Plain Old Java Object). Các này lập trình thực dụng sẽ chọn vì nó tiện dụng.
 
 4. Hãy đừng cố gắng viết chương trình với quá nhiều chức năng vội mà hãy đi từng bước nhỏ, dễ trước rồi nâng lên dần. Ví dụ đọc file thô cần làm trước rồi mới đến phân tích nội dung từng dòng trong file CSV. Sau khi chạy được, thì mới nâng lên đọc từng dòng file CSV vào đối tượng POJO
@@ -144,3 +144,5 @@ Grand-i10,Hyndai,350,2793,grand-i10.png
 Viết rất nhiều logic vào phương thức trong Controller không phải là cách hay để bố trí code trong dự án Spring Boot.
 
 Việc truy xuất đến CSDL, đọc dữ liệu từ file hay gọi đến REST API khác, chúng ta nên đóng gói vào Component được annotate ```@Service```
+
+Hãy xem bài tập ở phần Bean để chuyển bớt logic trong Controller vào một Bean có kiểu là ```@Service```
