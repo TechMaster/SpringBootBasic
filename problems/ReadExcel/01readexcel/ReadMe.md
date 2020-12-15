@@ -221,3 +221,4 @@ Nó là thư viện sử dụng lại [Apache POI](https://poi.apache.org/).
 
 Đến đây mình sẽ tạo một thư mục khác để refactor code nhé. Code viết trực tiếp vào hàm main nhìn rất rối, mà phải đóng gói vào trong class
 
+Xem tiếp bài [Đọc file Excel vào POJO](../02readexcelPOJO)
