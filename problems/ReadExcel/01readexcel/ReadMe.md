@@ -3,6 +3,7 @@
 Giả sử tôi là một lập trình viên chưa có nhiều kinh nghiệm. Sau khi tốt nghiệp khoá Spring Boot ở Techmaster và xin việc tại FSoft. Sau vòng phỏng vấn Java căn bản và lý thuyết Spring Boot tạm gọi là thành công trả lời được 70% số câu hỏi, nhà tuyển dụng đưa ra một yêu cầu:
 "Em hãy code một ứng dụng Spring Boot đơn giản, đọc file Excel này ra rồi hiển thị lên web site. Lập trình cẩn thận bao hết các khả năng gây lỗi, crash ứng dụng có thể. Em có 48 giờ để nộp. Nhớ viết document giải thích chi tiết, rồi đẩy lên github gửi link cho anh xem !"
 
+## Tìm kiếm giải pháp trên Google, Stack Overflow, YouTube
 1. Tiếng Anh của tôi ở mức độ trung bình. Do đó tôi sẽ nghĩ đến vài từ khoá kiểu như
    - "Java đọc file Excel"
    - "Java đọc file Excel vào đối tượng"
@@ -22,11 +23,12 @@ Kinh nghiệm khi tìm kiếm trên Google nên bỏ bớt những từ thừa n
 
 Tìm được bài của bạn Nam Hà Minh [How to Read Excel Files in Java using Apache POI](https://www.codejava.net/coding/how-to-read-excel-files-in-java-using-apache-poi). Bài này mới, tác giả Việt nam, phần comment độc giả khen ngợi mạnh. Có vẻ ổn đấy. Giờ bình tĩnh đọc. Đừng cuống. Còn 48 giờ cơ mà.
 
-4. Đọc tuts lập trình thế nào?
-   - Hãy gạch đầu dòng những ý chính
-   - Nếu tác giả viết quá dài dòng, hãy tìm link github nếu có, để tải về chạy thử luôn. Chạy được có vẻ ngon, thì đọc tiếp.
-   - Nếu quá vội, bỏ qua tất cả phần giới thiệu màu mẻ, nhảy bổ vào ngay đoạn code quan trọng nhất. Chú ý cách này chỉ áp dụng khi trình code đã cao. Còn mới vào nghề cứ phải tĩnh tâm, hít thở đều, tắt Facebook, đóng Zalo mà đọc.
-   - Đọc đến đâu thử mở IDE ra code luôn kiểm chứng.
+## Cách đọc một bài viết lập trình
+- Hãy gạch đầu dòng những ý chính
+- Nếu tác giả viết quá dài dòng, hãy tìm link github nếu có, để tải về chạy thử luôn. Chạy được có vẻ ngon, thì đọc tiếp.
+- Nếu quá vội, bỏ qua tất cả phần giới thiệu màu mẻ, nhảy bổ vào ngay đoạn code quan trọng nhất. Chú ý cách này chỉ áp dụng khi trình code đã cao. Còn mới vào nghề cứ phải tĩnh tâm, hít thở đều, tắt Facebook, đóng Zalo mà đọc.
+- Đọc đến đâu thử mở IDE ra code luôn kiểm chứng. Chọn code đơn giản nhất, ít dòng nhất để thử.
+- Gặp những từ khoá nào mới nếu thấy cần tiếp tục Google, tuy nhiên nếu cấp độ tìm kiếm quá sâu bạn sẽ lạc lối vào mớ hỗn độn những khái niệm mới, công nghệ mới. Càng đọc sẽ càng hoang mang. Đừng làm vậy. Hãy sử dụng Mind Map để vẽ bản đồ liên hệ giữa các khái niệm
 
 **Cụ thể trong bài viết của Nam Hà Minh có mấy ý sau đây**
   - Dùng thư viện Apache POI. Lại Google tiếp
@@ -45,7 +47,14 @@ Tìm được bài của bạn Nam Hà Minh [How to Read Excel Files in Java usi
   - Các khái niệm căn bản của POI. Tác giả viết rất sáng sủa rồi.
   ![](poi.jpg)
 
- 5. Code theo tác giả bài viết. Tác giả cũng thừa nhận đây là đoạn code *bẩn*, chưa được tối ưu và bắt lỗi chặt chẽ. Vậy mình copy và cố gắng chạy đã. Đừng cầu toàn. Nhưng ông nào lập trình cầu toàn, kỹ ngay từ đầu thường mất nhiều thời gian.
+  Sau khi đọc bài viết xong, tôi có thể vẽ mind map để hình dung tổng thế vấn đề. Khi đã code thành công, có thể viết bài chia sẻ lại, lấy điểm trước nhà tuyển dụng.
+  ![](mindmap_poi.jpg)
+
+
+
+## Code theo tác giả bài viết
+
+Tác giả cũng thừa nhận đây là đoạn code *bẩn*, chưa được tối ưu và bắt lỗi chặt chẽ. Vậy mình copy và cố gắng chạy đã. Đừng cầu toàn. Nhưng ông nào lập trình cầu toàn, kỹ ngay từ đầu thường mất nhiều thời gian.
   
     ```java
     package net.codejava.excel;
@@ -125,13 +134,17 @@ Nhưng code trên mạng lại là ```public class SimpleExcelReaderExample```, 
 
 Cần bổ xung thêm try catch
 ```java
- try (FileInputStream inputStream = new FileInputStream(new File(excelFilePath));
-                Workbook workbook = new XSSFWorkbook(inputStream);) {
+try (FileInputStream inputStream = new FileInputStream(new File(excelFilePath));
+    Workbook workbook = new XSSFWorkbook(inputStream);) {
+    \\ Đọc file excel
+} catch (Exception e) {
+
+}
 ```
 
 Xem thêm file [App.java](src/main/java/readexcel/App.java)
 
-## Code của tác giả chỉ chạy ở phiên bản cũ 3.11
+### Code của tác giả chỉ chạy ở phiên bản cũ 3.11
 Phiên bản mới nhất là 4.1.2
 ```xml
   <dependency>
@@ -198,4 +211,13 @@ public class App {
     }
 }
 ```
+
+## Đừng dừng lại ở đây !
+Cách của tác Nam Hà Minh cũng cổ điển thôi. Giờ hãy thử tiếp phương pháp đọc từng dòng rồi ánh xạ vào POJO (Plain Old Java Object). Tôi google "Read Excel to POJO" ra được thư viện này
+
+[https://github.com/ozlerhakan/poiji](https://github.com/ozlerhakan/poiji#getting-started)
+
+Nó là thư viện sử dụng lại [Apache POI](https://poi.apache.org/).
+
+Đến đây mình sẽ tạo một thư mục khác để refactor code nhé. Code viết trực tiếp vào hàm main nhìn rất rối, mà phải đóng gói vào trong class
 
