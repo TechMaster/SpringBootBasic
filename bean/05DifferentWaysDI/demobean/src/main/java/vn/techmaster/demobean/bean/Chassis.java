@@ -1,6 +1,6 @@
 package vn.techmaster.demobean.bean;
 
-public class Chasis {
+public class Chassis {
   private Door door;
 
   public Door getDoor() {
