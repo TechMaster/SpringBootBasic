@@ -98,8 +98,8 @@ Car [manufacter=Hyndai, model=Grand-i10, photo=grand-i10.png, price=350, sales=2
 ```
 
 ## Kết luận
-Xuất phát từ một bài tập phỏng vấn lập trình thi tuyển vào FSoft hay Viettel, các bạn có 48 tiếng để hoàn thành. Do đó cần phải giải pháp hợp lý. Không cần quá hoàn mỹ cầu toàn vội, mà chạy được đã. Có nhiều đoạn code, keyword chúng ta chứ hiểu, cứ tạm chấp nhận. Khi chạy ra kết quả chúng ta sẽ tự tin, phấn khích hơn rất nhiều. Đó là động lực để tìm hiểu tiếp.
+Xuất phát từ một bài tập phỏng vấn lập trình thi tuyển vào FSoft hay Viettel, các bạn có 48 tiếng để hoàn thành. Do đó cần phải giải pháp hợp lý. Không cần quá hoàn mỹ cầu toàn vội, mà chạy được đã. Có nhiều đoạn code, keyword chúng ta chưa hiểu, cứ tạm chấp nhận. Khi chạy ra kết quả chúng ta sẽ tự tin, phấn khích hơn rất nhiều. Đó là động lực để tìm hiểu tiếp.
 
 Sau khi đã làm chủ được phương án đơn giản, chúng ta tìm tiếp phương án tốt hơn, hiện đại hơn. Khi tìm kiếm, đọc tài liệu trên mạng, bạn nên dùng Mind Map để ghi chú lại.
 
-Công việc lập trình viên là vậy đó: gặp vấn đề > tìm giải pháp > code thử > cải tiến > document > bàn giao.
+Công việc lập trình viên là vậy đó: gặp vấn đề > tìm giải pháp > code thử > fix bug > cải tiến > tìm phương án mới > lặp lại > lặp lại > cho đến khi thấy hài lòng > document > bàn giao hoặc viết bài chia sẻ để ghi chép lại kinh nghiệm.
