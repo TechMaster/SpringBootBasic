@@ -4,9 +4,8 @@
 - [Bài 2](02ApplicationContextAware/demobean/): Truy xuất đến singleton ApplicationContext bằng cách nào?
 - [Bài 3](03ComponentScan/demobean/): Cơ chế quét Class được đánh đấu  bởi ```@Component``` và các phương thức được đánh dấu ```@Bean```
 - [Bài 4](04DependencyInjection/demobean/): Cơ chế cấu hình động thành phần.
-- [Bài 5]: Các phương pháp DI khác nhau
+- [Bài 5](05DifferentWaysDI): Ba phương pháp DI khác nhau
 - [Bài 6](06TopCarServiceComponent): @Service component
-- [Bài 7](): Dependency với Logging
 - [Bài tập](homework)
 
 ## Tham khảo
