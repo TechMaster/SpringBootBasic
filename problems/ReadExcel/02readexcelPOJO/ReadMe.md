@@ -39,10 +39,12 @@ Chúng ta đã có Poiji. Giờ hãy vào web site [https://mvnrepository.com/](
 </dependency>
 ```
 Sau đó paste vào file [pom.xml](pom.xml)
+
 ![](pom.jpg)
 
 ## Cấu trúc file Excel và class POJO tương ứng
 Hãy chú ý tên các cột ở hàng đầu tiên
+
 ![](topcar.jpg)
 
 Nội dung file [Car](src/main/java/readexcel/Car.java)
