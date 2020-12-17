@@ -5,7 +5,8 @@
 - [Bài 3](03ComponentScan/demobean/): Cơ chế quét Class được đánh đấu  bởi ```@Component``` và các phương thức được đánh dấu ```@Bean```
 - [Bài 4](04DependencyInjection/demobean/): Cơ chế cấu hình động thành phần.
 - [Bài 5](05DifferentWaysDI/demobean/): Ba phương pháp DI khác nhau
-- [Bài 6](06TopCarServiceComponent): @Service component
+- [Bài 6](06LazyPrototype): Tạo đối tượng bean mới mỗi lần nó được gọi đến
+- [Bài 7](07TopCarServiceComponent): @Service component
 - [Bài tập](homework)
 
 ## Tham khảo
