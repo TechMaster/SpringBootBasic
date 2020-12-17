@@ -9,7 +9,7 @@ import vn.techmaster.demobean.bean.StreetMap;
 @Configuration
 public class MapConfig {
   @Bean
-  @Scope("singleton") //Đừng khởi tạo đối tượng theo kiểu Singleton truyền thống nữa!
+  @Scope("prototype") //Đừng khởi tạo đối tượng theo kiểu Singleton truyền thống nữa!
   //Hãy thử bỏ @Scope("prototype") rồi refresh trình duyệt ở địa chỉ http://localhost:8080/route vài lần
   public StreetMap streetmap() {    
     return new StreetMap();

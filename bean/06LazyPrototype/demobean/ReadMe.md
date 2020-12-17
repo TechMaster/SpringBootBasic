@@ -97,6 +97,13 @@ Các thành phần cấu hình lên xe ô tô tương đối là ổn định, t
 
   Mỗi lần người dùng truy cập http://localhost:8080/route thì ```mycar.navigate()``` được gọi, bên trong nó ```streetMap.getRoute()``` được gọi. Do ```StreetMap``` được đánh dấu là ```@Scope("prototype")```, và thuộc tính streetMap được đánh dấu là ```@Lazy``` nên streetMap được tạo mới, mỗi lần ```streetMap.getRoute()``` chạy.
 
+  Kết quả trả về trên trình duyệt sau mỗi lần F5 refresh sẽ như sau:
+  ```
+  From: 48 Tố Hữu, Nam Từ Liêm -> To: Hồ Đồng Đò
+  From: 15 Đoàn Trần Nghiệp, Hai Bà Trưng -> To: Sân Gold Tam Đảo
+  From: 79 Mai Hắc Đế, Hai Bà Trưng -> To: Royal City
+  From: 2 Hàng Bạc, Hoàn Kiếm -> To: Sân bay Nội Bài
+  ```
 
 ## Tổng kết
   ```@Scope("prototype")``` + ```@Lazy``` tạo đối tượng Bean mới mỗi khi nó được dùng đến. Cách này hoàn toàn trái ngược với cách truyền thống Bean là đối tượng Singleton.
