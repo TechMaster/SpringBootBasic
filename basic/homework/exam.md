@@ -48,13 +48,13 @@
 Khác biệt của scope  ```<scope>runtime</scope>``` với ```<scope>test</scope>``` là gì?
 
 13. Khi ta tạo một class Book như dưới đây
-`	```java
+	```java
 	public class Book {
-		private int id;
-		private String title;
-		private String author;
+	 private int id;
+	 private String title;
+	 private String author;
 	}
-	````
+	```
 Hãy liệt kê các cách trong Visual Studio Code hay IntelliJ để tự động sinh ra các phương thức getter, setters, equalsTo, hash, toString
 
 14. Cách để thay đổi port mặc định của ứng dụng Spring Boot sang port 9000 trong file application.yml như thế nào?
