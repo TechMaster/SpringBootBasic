@@ -66,7 +66,7 @@ Hãy liệt kê các cách trong Visual Studio Code hay IntelliJ để tự đ�
 17. Tại sao các thuộc tính của một class trong Model thường có access modifier là private? Tại không để mặc định hoặc là public cho dễ truy xuất?
 	```java
 	public class Book {
-		private int id;  //thường là private
+	  private int id;  //thường là private
 	}
 	```
 
