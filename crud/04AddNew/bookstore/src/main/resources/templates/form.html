@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add book</title>
+</head>
+<body>
+  <form action="#" th:action="@{/book/save}" th:object="${book}" method="post"
+          novalidate="novalidate">
+      <input type="text" placeholder="title" th:field="*{title}"/><br><br>
+      <input type="text" placeholder="description" th:field="*{description}"/><br><br>
+      <button type="submit">Save</button>
+  </form>
+</body>
+</html>

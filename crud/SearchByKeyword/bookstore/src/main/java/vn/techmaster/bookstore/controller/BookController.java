@@ -45,7 +45,7 @@ public class BookController {
     return "book";
   }
 
-  @PostMapping("save")
+  @PostMapping("/save")
   public String save(Book book, BindingResult result, RedirectAttributes redirect) {
     if (result.hasErrors()) {
       return "form";
