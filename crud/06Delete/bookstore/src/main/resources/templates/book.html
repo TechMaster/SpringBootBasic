@@ -8,6 +8,7 @@
 <body>
   <h1 th:text="${book.title}"></h1><br>
   <p th:text="${book.description}"></p><br>
-  <a th:href="@{/book/edit/{id}(id=${book.id})}">Edit book</a> <!-- Thêm link Edit -->
+  <a th:href="@{/book/edit/{id}(id=${book.id})}">Edit book</a>&nbsp;&nbsp;
+  <a th:href="@{/book/delete/{id}(id=${book.id})}">Delete book</a><br>
 </body>
 </html>

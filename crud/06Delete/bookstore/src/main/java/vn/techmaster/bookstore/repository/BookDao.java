@@ -75,11 +75,11 @@ public class BookDao extends Dao<Book> {
 
   @Override
   public void deleteByID(int id) {
-    // TODO Auto-generated method stub
+    get(id).ifPresent(existbook -> collections.remove(existbook));
   }
 
   @Override
-  public void delete(Book t) {
-    // TODO Auto-generated method stub
+  public void delete(Book book) {
+    deleteByID(book.getId());
   }
 }

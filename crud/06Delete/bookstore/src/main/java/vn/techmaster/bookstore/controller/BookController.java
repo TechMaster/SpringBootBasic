@@ -63,4 +63,10 @@ public class BookController {
     }
     return "form";
   }
+
+  @GetMapping(value = "/delete/{id}")
+  public String deleteByID(@PathVariable("id") int id) {    
+    bookDao.deleteByID(id);        
+    return "redirect:/book";
+  }
 }

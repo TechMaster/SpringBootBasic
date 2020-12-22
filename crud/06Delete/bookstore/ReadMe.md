@@ -1,97 +1,81 @@
-# Edit/Update sửa nội dung một đầu sách sẵn có
+# Delete xoá một đầu sách
 
-Để sửa một đầu sách sẵn có, chúng ta cần có id của đầu sách đó, tiếp đến lấy dữ liệu đầu sách đổ vào một form. Người dùng sửa đổi, rồi submit
+Để xoá một đầu sách, chúng ta cần có id của đầu sách đó rồi tạo GET request tới đường dẫn
+http://localhost:8080/book/delete/id
+
+**Đây không phải là cách an toàn để thao tác xoá. Vì**
+
+Lệnh xoá nằm trên URL. Người dùng hoặc hacker chỉ cần tìm được id rồi mở trình duyệt các bản ghi sẽ bị xoá. Cách đúng đắn:
+
+1. Kiểm tra phân quyền được phép xoá hay không.
+2. Sử dụng phương thức POST hoặc tốt nhất là phương thức DELETE
+
+Trong khuôn khổ "Em tập làm khoá học", chúng ta cứ thực hiện lệnh DELETE qua phương thức GET
 
 ## Cấu trúc thư mục
+```
+.
+├── java
+│   ├── vn
+│   │   ├── techmaster
+│   │   │   ├── bookstore
+│   │   │   │   ├── config
+│   │   │   │   │   └── RepoConfig.java
+│   │   │   │   ├── controller
+│   │   │   │   │   └── BookController.java <-- Thêm phương thức GET /book/delete/id ở đây
+│   │   │   │   ├── model
+│   │   │   │   │   └── Book.java
+│   │   │   │   ├── repository
+│   │   │   │   │   ├── BookDao.java <-- Thực hiện nốt 2 phương thức xoá
+│   │   │   │   │   └── Dao.java
+│   │   │   │   └── BookstoreApplication.java
+├── resources
+│   ├── static
+│   │   └── book.csv
+│   ├── templates
+│   │   ├── allbooks.html
+│   │   ├── book.html <-- Thêm link Delete vào đây
+│   │   └── form.html
+│   └── application.properties
+```
+## Thực hiện từng bước
 
-## Thực hành từng bước
+1. Trong [BookController.java](src/main/java/vn/techmaster/bookstore/controller/BookController.java), thêm phương thức GET
 
-1. Trong [BookDao.java](src/main/java/vn/techmaster/bookstore/repository/BookDao.java) bổ xung phương thức
   ```java
-  @Override
-  public void update(Book book) {
-    get(book.getId()).ifPresent(existbook -> {
-      existbook.setTitle(book.getTitle());
-      existbook.setDescription(book.getDescription());
-    });
+  @GetMapping(value = "/delete/{id}")
+  public String deleteByID(@PathVariable("id") int id) {    
+    bookDao.deleteByID(id);        
+    return "redirect:/book"; //Xoá xong thì quay về trang http://localhost:8080/book
   }
   ```
-2. Trong [book.html](src/main/resources/templates/book.html) thêm link để trỏ sang form edit
-```html
-<body>
+
+2. Trong [book.html](src/main/resources/templates/book.html) bổ xung link Delete
+  ```<a th:href="@{/book/delete/{id}(id=${book.id})}">Delete book</a><br>```
+  nội dung sau khi thêm sẽ như sau:
+  ```html
+  <body>
   <h1 th:text="${book.title}"></h1><br>
   <p th:text="${book.description}"></p><br>
-  <a th:href="@{/book/edit/{id}(id=${book.id})}">Edit book</a> <!-- Thêm link Edit -->
-</body>
-```
+  <a th:href="@{/book/edit/{id}(id=${book.id})}">Edit book</a>&nbsp;&nbsp;
+  <a th:href="@{/book/delete/{id}(id=${book.id})}">Delete book</a><br>  
+  </body>
+  ```
 
-3. Trong [BookController.java](src/main/java/vn/techmaster/bookstore/controller/BookController.java) thêm phương thức hứng GET request ở ```/book/edit/id```
-```java
-@GetMapping(value = "/edit/{id}")
-public String editBookId(@PathVariable("id") int id, Model model) {    
-  Optional<Book> book = bookDao.get(id);
-  if (book.isPresent()) {
-    model.addAttribute("book", book.get());
-  } 
-  return "form";
-}
-```
-Giải thích:
-- ```value = "/edit/{id}"``` đây là đường dẫn có tham số id động ở cuối cùng
-- ```@PathVariable("id") int id``` hãy lấy tham số id trên đường dẫn truyền vào biến ```int id```
-- ```Optional<Book>```: khai báo biến có thể null
-- ```book.isPresent()```: nếu biến book không null
-- ```book.get()```: unwrap biến kiểu Optional
+3. Chạy thử, ơ tại sao không xoá được nhỉ ?
+  Hoá ra quên chưa implement nốt phương thức delete ở [BookDao.java](src/main/java/vn/techmaster/bookstore/repository/BookDao.java)
 
-4. Trong chức năng Edit, chúng ta vẫn dùng lại [form.html](src/main/resources/templates/form.html), tuy nhiên có sự khác biệt với khi tạo mới đầu sách.
-- Khi Add New, đối tượng book truyền vào form.html được khởi tạo bằng defaul constructor. Các thuộc tính là rỗng, id = 0.
-- Khi Edit, đối tượng book có các trường chứa dữ liệu thực sự, id khác 0. Chúng ta phải cần id khác 0 để sau khi sửa lại POST thông tin sửa đổi lên server
+  Trong [BookDao.java](src/main/java/vn/techmaster/bookstore/repository/BookDao.java) thêm 2 phương thức:
 
-5. Trong [form.html](src/main/resources/templates/form.html), thêm một trường ẩn (hidden field)
-```<input type="hidden" placeholder="id" th:field="*{id}"/>```. Trường này lưu book.id, chúng ta để nó ẩn vì không muốn người dùng cuối tuỳ tiện sửa id của đầu sách.
-
-```html
-<form action="#" th:action="@{/book/save}" th:object="${book}" method="post"
-          novalidate="novalidate">
-      <input type="hidden" placeholder="id" th:field="*{id}"/><br><br>
-      <input type="text" placeholder="title" th:field="*{title}"/><br><br>
-      <input type="text" placeholder="description" th:field="*{description}"/><br><br>
-      <button type="submit">Save</button>
-</form>
-```
-
-6. Trong [BookController.java](src/main/java/vn/techmaster/bookstore/controller/BookController.java)
-cần sửa lại logic của phương thức save để phân biệt 2 trường hợp:
-  - Add New: ```book.id == 0```
-  - Edit Update: ```book.id > 0```
-  
-```java
-@PostMapping("/save") // Hứng POST request gọi đến /book/save
-public String save(Book book, BindingResult result) {
-  if (result.hasErrors()) {
-    return "form";
+  ```java
+  @Override
+  public void deleteByID(int id) {
+    get(id).ifPresent(existbook -> collections.remove(existbook));
   }
-  bookDao.add(book);
-  return "redirect:/book"; // Chuyển về đường dẫn /book
-}
-```
 
-thành
-
-```java
-@PostMapping("/save")
-public String save(Book book, BindingResult result, RedirectAttributes redirect) {
-  if (result.hasErrors()) {
-    return "form";
+  @Override
+  public void delete(Book book) {
+    deleteByID(book.getId());
   }
-  if (book.getId() > 0) { //Nếu có trường id có nghĩa là đây là edit form
-    bookDao.update(book);
-  } else { //Nếu id ==0 có nghĩa book lần đầu được add new
-    bookDao.add(book);
-  }
-      
-  return "redirect:/book";
-}
-```
-
-7. Biên dịch và chạy thử: thêm sau đó sửa đổi một số đầu sách. 
+  ```
+4. Chạy lại thấy đầu sách đã được xoá
