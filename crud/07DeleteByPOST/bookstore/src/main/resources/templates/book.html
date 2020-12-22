@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title th:text="${book.title}"></title>
+</head>
+<body>
+  <form action="#" th:action="@{/book/delete}" th:object="${book}" method="post" novalidate="novalidate">
+    <input type="hidden" th:field="*{id}"/>
+    <h1 th:text="${book.title}"></h1><br>
+    <p th:text="${book.description}"></p><br>
+    <a th:href="@{/book/edit/{id}(id=${book.id})}">Edit book</a>&nbsp;&nbsp;
+    <button type="submit">Delete</button>
+  </form>
+</body>
+</html>

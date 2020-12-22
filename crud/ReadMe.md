@@ -14,8 +14,9 @@ Một tác giả có thể viết nhiều đầu sách. Một đầu sách cũng
 3. [03ViewDetail](03ViewDetail/bookstore): Xem chi tiết một đầu sách
 4. [04AddNew](04AddNew/bookstore): Thêm mới một đầu sách
 5. [05EditUpdate](05EditUpdate/bookstore): Sửa đổi thông tin đầu sách
-6. [06Delete](06Delete/bookstore): Xoá một đầu sách
-7. [07Search](07Search/bookstore): Tìm kiếm theo keyword
+6. [06Delete](06Delete/bookstore): Xoá một đầu sách bằng phương thức GET
+7. [07DeleteByPOST](07DeleteByPOST/bookstore): Xoá một đầu sách bằng phương thức POST
+8. [08Search](08Search/bookstore): Tìm kiếm theo keyword
 
 ## Lý thuyết
 

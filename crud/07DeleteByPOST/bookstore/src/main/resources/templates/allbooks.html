@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Store</title>
+</head>
+<body>
+  <a href="/book/">Trang đầu</a>&nbsp;&nbsp;
+  <a href="/book/add">Thêm mới</a><br>
+  <ul>
+    <li th:each="book: ${books}">
+      <a th:href="@{/book/{id}(id=${book.id})}"><strong th:text="${book.title}"></strong></a><br>
+      <p th:text="${book.description}"></p>
+    </li>
+  </ul>
+</body>
+</html>
