@@ -1,6 +1,38 @@
 # Xem chi tiết nội dung một đầu sách
 
-Ở bài 01, chúng ta đã liệt kê các đầu sách, giờ chúng ta sẽ bổ xung link để mở ra trang chi tiết xem từng đầu sách một
+Ở bài 01, chúng ta đã liệt kê các đầu sách, giờ chúng ta sẽ bổ xung link để mở ra trang chi tiết xem từng đầu sách một. Chúng ta dùng hyperlink có cấu trúc như sau
+
+```<a href="/book/id>Book title</a>```
+
+id chính là thuộc tính id  xác đính duy nhất đối tượng Book
+## Cấu trúc thư mục
+
+```
+.
+├── java
+│   ├── vn
+│   │   ├── techmaster
+│   │   │   ├── bookstore
+│   │   │   │   ├── config
+│   │   │   │   │   └── RepoConfig.java
+│   │   │   │   ├── controller
+│   │   │   │   │   └── BookController.java <-- Thêm phương thức hứng GET request /book/id
+│   │   │   │   ├── model
+│   │   │   │   │   └── Book.java
+│   │   │   │   ├── repository
+│   │   │   │   │   ├── BookDao.java <-- Thêm phương thức để tìm đối tượng Book theo id
+│   │   │   │   │   └── Dao.java
+│   │   │   │   └── BookstoreApplication.java
+├── resources
+│   ├── static
+│   │   └── book.csv
+│   ├── templates
+│   │   ├── allbooks.html  <-- Bổ xung hyperlink đến /book/id
+│   │   └── book.html  <-- Mới thêm để xem chi tiết một đầu sách
+│   └── application.properties
+```
+
+## Thực hành từng bước
 
 1. Thực hiện phương thức get(int id)
 
@@ -14,7 +46,20 @@ public Optional<Book> get(int id) {
 
 Chú ý hàm này viết theo phong cách Lambda Expression của Java 8. Biểu thức trong filter hiểu là khi duyệt qua từng phần tử u, hãy kiểm tra xem ```u.getId() == id``` nếu bằng nhau thì lấy luôn phần tử đầu tiên ```.findFirst()```
 
-2. Bổ xung file template [book.html](src/main/resources/templates/book.html)
+2. Thêm phương thức trong [BookController.java](src/main/java/vn/techmaster/bookstore/controller/BookController.java) để hứng request tới đường dẫn ```<a href="/book/id>Book title</a>```
+
+```java
+@GetMapping(value = "/{id}")
+public String getByID(@PathVariable("id") int id, Model model) {
+  Optional<Book> book = bookDao.get(id);
+  if (book.isPresent()) {
+    model.addAttribute("book", book.get());
+  }    
+  return "book";
+}
+```
+
+3. Bổ xung file template [book.html](src/main/resources/templates/book.html)
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -30,7 +75,7 @@ Chú ý hàm này viết theo phong cách Lambda Expression của Java 8. Biểu
 </html>
 ```
 
-3. Chỉnh lại template [allbooks.html](src/main/resources/templates/allbooks.html)
+4. Chỉnh lại template [allbooks.html](src/main/resources/templates/allbooks.html) từ
 ```html
 <ul>
     <li th:each="book: ${books}">
@@ -39,6 +84,7 @@ Chú ý hàm này viết theo phong cách Lambda Expression của Java 8. Biểu
     </li>
 </ul>
 ```
+thành
 ```html
 <ul>
     <li th:each="book: ${books}">
@@ -47,3 +93,4 @@ Chú ý hàm này viết theo phong cách Lambda Expression của Java 8. Biểu
     </li>
 </ul>
 ```
+
