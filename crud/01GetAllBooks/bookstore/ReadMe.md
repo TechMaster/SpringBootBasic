@@ -20,6 +20,33 @@ Có những hành động (activities) đối với Book:
 
 Trong bài này, chúng ta chỉ làm một việc duy nhất là liệt kê các đầu sách
 
+### Cấu trúc thư mục
+```
+.
+├── main
+│   ├── java
+│   │   ├── vn
+│   │   │   ├── techmaster
+│   │   │   │   ├── bookstore
+│   │   │   │   │   ├── config
+│   │   │   │   │   │   └── RepoConfig.java
+│   │   │   │   │   ├── controller
+│   │   │   │   │   │   └── BookController.java
+│   │   │   │   │   ├── model
+│   │   │   │   │   │   └── Book.java
+│   │   │   │   │   ├── repository
+│   │   │   │   │   │   ├── BookDao.java
+│   │   │   │   │   │   └── Dao.java
+│   │   │   │   │   ├── request
+│   │   │   │   │   │   └── SearchRequest.java
+│   │   │   │   │   └── BookstoreApplication.java
+│   ├── resources
+│   │   ├── static
+│   │   ├── templates
+│   │   │   └── allbooks.html
+│   │   └── application.properties
+```
+
 
 ### 1. Khởi tạo dự án
 Sử dụng [https://start.spring.io/](https://start.spring.io/) hoặc [Spring Initializr](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-spring-initializr) để khởi tạo dự án.
@@ -126,8 +153,22 @@ public class BookDao extends Dao<Book> {
   }
 }
 ```
+### 5. Tạo cấu hình để biến BookDao thành một Bean
+Tạo thư mục [config](src/main/java/vn/techmaster/bookstore/config)
 
-### 5. Tạo BookController
+Tạo [class RepoConfig](src/main/java/vn/techmaster/bookstore/config/RepoConfig.java)
+```java
+@Configuration
+public class RepoConfig {
+
+  @Bean
+  public BookDao bookDao() {
+    return new BookDao();
+  }  
+}
+```
+
+### 6. Tạo BookController
 Tạo thư mục [controller](src/main/java/vn/techmaster/bookstore/controller), sau đó tạo [BookController.java](src/main/java/vn/techmaster/bookstore/controller/BookController.java)
 
 ```java
@@ -135,7 +176,7 @@ Tạo thư mục [controller](src/main/java/vn/techmaster/bookstore/controller),
 @RequestMapping("/book")  //Đường dẫn /book sẽ là đường dẫn gốc chung cho các phương thức bên trong BookController
 public class BookController {
   @Autowired
-  private BookDao bookDao;
+  private BookDao bookDao; //Gán Bean bookDao vào biến này
 
   @GetMapping
   public String listAll(Model model) {
@@ -145,7 +186,7 @@ public class BookController {
 }
 ```
 
-### 6. Tạo Thymeleaf template
+### 7. Tạo Thymeleaf template
 Trong thư mục [static/templates] tạo file [allbooks.html](src/main/resources/templates/allbooks.html)
 
 Đoạn code này duyệt qua các đối tượng Book trong mảng để hiển thị
@@ -158,7 +199,7 @@ Trong thư mục [static/templates] tạo file [allbooks.html](src/main/resource
 </ul>
 ```
 
-### 7: Biên dịch và vào http://localhost:8080/book
+### 9: Biên dịch và vào http://localhost:8080/book
 Kết quả nhận được sẽ như sau
 
 ![](images/getAllBooks.jpg)

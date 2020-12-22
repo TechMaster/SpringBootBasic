@@ -11,6 +11,5 @@ public class RepoConfig {
   @Bean
   public BookDao bookDao() {
     return new BookDao();
-  }
-  
+  }  
 }
