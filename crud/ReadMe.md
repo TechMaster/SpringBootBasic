@@ -12,7 +12,7 @@ Một tác giả có thể viết nhiều đầu sách. Một đầu sách cũng
 1. [01GetAllBooks](01GetAllBooks/bookstore): DAO, lấy danh sách book được tạo trong constructor
 2. [02LoadCSV](02LoadCSV/bookstore): Đọc dữ liệu từ CSV vào
 3. [03ViewDetail](03ViewDetail/bookstore): Xem chi tiết một đầu sách
-4. [04AddNew](AddNew/bookstore): Thêm mới một đầu sách
+4. [04AddNew](04AddNew/bookstore): Thêm mới một đầu sách
 
 ## Lý thuyết
 
