@@ -33,11 +33,4 @@ public class Book {
     this.description = description;
   }
 
-  
-  public Book(int id, String title, String description) {
-    this.id = id;
-    this.title = title;
-    this.description = description;
-  }
-
 }

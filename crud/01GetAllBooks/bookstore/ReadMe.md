@@ -37,8 +37,6 @@ Trong bài này, chúng ta chỉ làm một việc duy nhất là liệt kê cá
 │   │   │   │   │   ├── repository
 │   │   │   │   │   │   ├── BookDao.java
 │   │   │   │   │   │   └── Dao.java
-│   │   │   │   │   ├── request
-│   │   │   │   │   │   └── SearchRequest.java
 │   │   │   │   │   └── BookstoreApplication.java
 │   ├── resources
 │   │   ├── static
