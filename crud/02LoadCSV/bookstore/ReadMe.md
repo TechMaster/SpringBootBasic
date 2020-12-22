@@ -62,7 +62,7 @@ public void add(Book book) {
 Nếu collections chưa có phần tử thì gán id của đối tượng book là 1. Ngược lại sẽ là id phần tử cuối cùng tăng thêm 1.
 Do chúng ta không thay đổi vị trí phần tử trong mảng, nên id của đối tượng Book trong mảng là tăng dần.
 
-1. Sửa lại constructor của [BookDao.java](src/main/java/vn/techmaster/bookstore/repository/BookDao.java)
+5. Sửa lại constructor của [BookDao.java](src/main/java/vn/techmaster/bookstore/repository/BookDao.java)
 từ bản cũ
 ```java
 public BookDao() {
@@ -86,7 +86,6 @@ public BookDao bookDao() {
   return new BookDao();
 }
 ```
-
 thành để đọc vào CSV file
 ```java
 @Bean
