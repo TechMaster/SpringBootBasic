@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -84,8 +83,9 @@ public class BookController {
 
   @PostMapping("/search")
   public String searchByKeyword(@ModelAttribute SearchRequest request, BindingResult bindingResult, Model model) {
-    System.out.println(request.getKeyword());
-    model.addAttribute("books", bookDao.searchByKeyword(request.getKeyword()));
+    if (!bindingResult.hasFieldErrors()) {
+      model.addAttribute("books", bookDao.searchByKeyword(request.getKeyword()));
+    }    
     return "allbooks";
   }
 }

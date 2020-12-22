@@ -22,7 +22,7 @@ Bài này chuyển qua phương thức POST, có bảo mật hơn một chút. S
 │   │   │   │   │   ├── BookDao.java
 │   │   │   │   │   └── Dao.java
 │   │   │   │   ├── request
-│   │   │   │   │   └── DeleteRequest.java
+│   │   │   │   │   └── DeleteRequest.java <-- dùng để binding dữ liệu trong Request.Body
 │   │   │   │   └── BookstoreApplication.java
 ├── resources
 │   ├── static
