@@ -1,7 +1,5 @@
 package vn.techmaster.bookstore.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 public class Book {
   int id;  
   String title;
@@ -28,6 +26,12 @@ public class Book {
   }
 
   public void setDescription(String description) {
+    this.description = description;
+  }
+
+  public Book(int id, String title, String description) {
+    this.id = id;
+    this.title = title;
     this.description = description;
   }
 

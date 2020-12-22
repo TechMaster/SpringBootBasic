@@ -27,8 +27,7 @@ Sử dụng [https://start.spring.io/](https://start.spring.io/) hoặc [Spring 
 Chọn các dependencies sau đây:
 1. spring-boot-starter-web
 2. spring-boot-devtools
-3. jackson-dataformat-csv
-4. spring-boot-starter-thymeleaf
+3. spring-boot-starter-thymeleaf
 
 Xem chi tiết file [pom.xml](pom.xml) được sinh ra
 
@@ -111,3 +110,55 @@ public class BookDao extends Dao<Book> {
   }  
 }
 ```
+
+Viết logic cho 2 phương thức đầu tiên
+```java
+public class BookDao extends Dao<Book> {
+
+  public BookDao() {
+    collections.add(new Book(1, "Không gia đình", "Chú bé Remy lang thang theo gánh xiếc của bác Vitaly"));
+    collections.add(new Book(2, "Cuốn theo chiều gió", "Nội chiến Hoa kỳ, cuộc tình giữa Red Butler và Ohara"));
+  }
+
+  @Override
+  public List<Book> getAll() {
+    return collections;
+  }
+}
+```
+
+### 5. Tạo BookController
+Tạo thư mục [controller](src/main/java/vn/techmaster/bookstore/controller), sau đó tạo [BookController.java](src/main/java/vn/techmaster/bookstore/controller/BookController.java)
+
+```java
+@Controller
+@RequestMapping("/book")  //Đường dẫn /book sẽ là đường dẫn gốc chung cho các phương thức bên trong BookController
+public class BookController {
+  @Autowired
+  private BookDao bookDao;
+
+  @GetMapping
+  public String listAll(Model model) {
+    model.addAttribute("books", bookDao.getAll());
+    return "allbooks";
+  }  
+}
+```
+
+### 6. Tạo Thymeleaf template
+Trong thư mục [static/templates] tạo file [allbooks.html](src/main/resources/templates/allbooks.html)
+
+Đoạn code này duyệt qua các đối tượng Book trong mảng để hiển thị
+```html
+<ul>
+  <li th:each="book: ${books}">
+    <a th:href="@{/book/{id}(id=${book.id})}"><strong th:text="${book.title}"></strong></a><br>
+    <p th:text="${book.description}"></p>
+  </li>
+</ul>
+```
+
+### 7: Biên dịch và vào http://localhost:8080/book
+Kết quả nhận được sẽ như sau
+
+![](images/getAllBooks.jpg)

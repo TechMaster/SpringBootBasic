@@ -10,7 +10,7 @@ public class RepoConfig {
 
   @Bean
   public BookDao bookDao() {
-    return new BookDao("book.csv");
+    return new BookDao();
   }
   
 }

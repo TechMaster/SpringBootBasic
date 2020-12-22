@@ -6,10 +6,14 @@ import vn.techmaster.bookstore.model.Book;
 
 public class BookDao extends Dao<Book> {
 
+  public BookDao() {
+    collections.add(new Book(1, "Không gia đình", "Chú bé Remy lang thang theo gánh xiếc của bác Vitaly"));
+    collections.add(new Book(2, "Cuốn theo chiều gió", "Nội chiến Hoa kỳ, cuộc tình giữa Red Butler và Ohara"));
+  }
+
   @Override
   public List<Book> getAll() {
-    // TODO Auto-generated method stub
-    return null;
+    return collections;
   }
 
   @Override
