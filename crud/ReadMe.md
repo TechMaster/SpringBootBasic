@@ -9,8 +9,9 @@ Một tác giả có thể viết nhiều đầu sách. Một đầu sách cũng
 3. Phân loại sách: mỗi quyển sách có tối đa 3 phân loại. Lịch sử, khoá học, viễn tưởng, ngôn tình, thơ, truyện tranh, sách ảnh, audio book, trinh thám, self help....
 
 ### Danh sách bài thực hành
-1. [01GetAllBooks](01GetAllBooks/bookstore)
-2. []
+1. [01GetAllBooks](01GetAllBooks/bookstore): DAO, lấy danh sách book được tạo trong constructor
+2. [02LoadCSV](02LoadCSV/bookstore): Đọc dữ liệu từ CSV vào
+3. [03ViewDetail](03ViewDetail/bookstore): Xem chi tiết một đầu sách
 
 ## Lý thuyết
 
