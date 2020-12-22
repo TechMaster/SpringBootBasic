@@ -13,6 +13,9 @@ Một tác giả có thể viết nhiều đầu sách. Một đầu sách cũng
 2. [02LoadCSV](02LoadCSV/bookstore): Đọc dữ liệu từ CSV vào
 3. [03ViewDetail](03ViewDetail/bookstore): Xem chi tiết một đầu sách
 4. [04AddNew](04AddNew/bookstore): Thêm mới một đầu sách
+5. [05EditUpdate](05EditUpdate/bookstore): Sửa đổi thông tin đầu sách
+6. [06Delete](06Delete/bookstore): Xoá một đầu sách
+7. [07Search](07Search/bookstore): Tìm kiếm theo keyword
 
 ## Lý thuyết
 

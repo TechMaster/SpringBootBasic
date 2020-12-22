@@ -3,7 +3,32 @@
 1. Tạo phương thức GET trả về form nhập dữ liệu
 2. Tạo phương thức POST để hứng dữ liệu gửi lên
 
-
+## Cấu trúc thư mục
+```
+.
+├── java
+│   ├── vn
+│   │   ├── techmaster
+│   │   │   ├── bookstore
+│   │   │   │   ├── config
+│   │   │   │   │   └── RepoConfig.java
+│   │   │   │   ├── controller
+│   │   │   │   │   └── BookController.java <-- Thêm 2 phương thức GET Form Add New và hứng POST request
+│   │   │   │   ├── model
+│   │   │   │   │   └── Book.java
+│   │   │   │   ├── repository
+│   │   │   │   │   ├── BookDao.java
+│   │   │   │   │   └── Dao.java
+│   │   │   │   └── BookstoreApplication.java
+├── resources
+│   ├── static
+│   │   └── book.csv
+│   ├── templates
+│   │   ├── allbooks.html <-- Thêm link đến Form Add New
+│   │   ├── book.html
+│   │   └── form.html <-- Form Add New
+│   └── application.properties
+```
 ## Thực hành từng bước
 
 1. Tạo phương thức GET trả về form nhập dữ liệu
@@ -84,6 +109,8 @@ rồi gán vào 2 thuộc tính của đối tượng [Book](src/main/java/vn/te
 String title;
 String description;
 ```
+
+Lỗi khi chuyển đổi sẽ được trả về qua phương thức ```BindingResult.hasErrors()```
 
 5. Chạy và thử tạo một số đầu sách mới.
 ![](images/add_new.jpg)

@@ -1,7 +1,4 @@
 # Dự án eBook Store
-
-
-
 ### 1. Khởi tạo dự án
 Sử dụng [https://start.spring.io/](https://start.spring.io/) hoặc [Spring Initializr](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-spring-initializr) để khởi tạo dự án.
 
