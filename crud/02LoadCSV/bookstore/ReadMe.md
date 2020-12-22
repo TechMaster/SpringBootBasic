@@ -1,6 +1,8 @@
 # Nạp dữ liệu từ CSV vào BookDao
 
-1. Thêm file [book.csv](src/main/resources/static/book.csv) vào thư mục [resources/static](src/main/resources/static)
+1. Thêm file [book.csv](src/main/resources/static/book.csv) vào thư mục [resources/static](src/main/resources/static).
+
+**Chú ý file book.csv này delimiter là dấu | chứ không phải là dấu phẩy thông thường**
 
 
 2. Thêm đoạn này vào [pom.xml](src/main/java/vn/techmaster/bookstore/controller/BookController.java)
@@ -38,6 +40,8 @@ public abstract void readCSV(String csvFile);
     }
   }
 ```
+
+Chú ý:  ```CsvSchema schema = CsvSchema.emptySchema().withHeader().withColumnSeparator('|');``` có thêm đoạn **withColumnSeparator('|')** để đọc đúng file CSV ngăn bằng dấu pipe |. Nếu CSV dùng dấu phẩy thì bỏ lệnh này đi.
 
 và phương thức ```public void add(Book book)``` vì nó được gọi khi đọc file CSV
 ```java
@@ -109,7 +113,8 @@ public Book(int id, String title, String description) {
 }
 ```
 vì nếu nó tồn tại sẽ báo lỗi này khi biên dịch
-```Factory method 'bookDao' threw exception; nested exception is com.fasterxml.jackson.databind.RuntimeJsonMappingException: Cannot construct instance of `vn.techmaster.bookstore.model.Book`
+
+```Factory method 'bookDao' threw exception; nested exception is com.fasterxml.jackson.databind.RuntimeJsonMappingException: Cannot construct instance of "vn.techmaster.bookstore.model.Book"
 ```
 
 9. Biên dịch và vào địa chỉ http://localhost:8080/book
