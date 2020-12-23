@@ -1,4 +1,4 @@
-## Giới thiệu
+# Giới thiệu
 Dự án eBook Store giới thiệu các đầu sách ebook do các tác giả viết. Cộng đồng có thể viết nhận xét và hỗ trợ tài chính để sách được xuất bản ra sách giấy.
 
 Trong khuôn khổ ví dụ cho sinh viên lớp SpringBoot eBook Store có một số chức năng sau đây
@@ -8,7 +8,7 @@ Trong khuôn khổ ví dụ cho sinh viên lớp SpringBoot eBook Store có mộ
 Một tác giả có thể viết nhiều đầu sách. Một đầu sách cũng được viết bởi nhiều tác giả.
 3. Phân loại sách: mỗi quyển sách có tối đa 3 phân loại. Lịch sử, khoá học, viễn tưởng, ngôn tình, thơ, truyện tranh, sách ảnh, audio book, trinh thám, self help....
 
-### Danh sách bài thực hành
+## Danh sách bài thực hành
 1. [01GetAllBooks](01GetAllBooks/bookstore): DAO, lấy danh sách book được tạo trong constructor
 2. [02LoadCSV](02LoadCSV/bookstore): Đọc dữ liệu từ CSV vào
 3. [03ViewDetail](03ViewDetail/bookstore): Xem chi tiết một đầu sách
@@ -18,21 +18,55 @@ Một tác giả có thể viết nhiều đầu sách. Một đầu sách cũng
 7. [07DeleteByPOST](07DeleteByPOST/bookstore): Xoá một đầu sách bằng phương thức POST
 8. [08Search](08Search/bookstore): Tìm kiếm theo keyword
 
-## Lý thuyết
+# Lý thuyết
 
-### Cơ sở dữ liệu quan hệ
-Trong bài số 1 này, chúng ta làm quen với cơ sở dữ liệu quan hệ [H2](https://www.h2database.com/html/main.html). H2 là một cơ sở dữ liệu viết bằng Java được nhúng vào trong Spring Boot Application. Nó lưu dữ liệu trong bộ nhớ động (in memory), hỗ trợ đầy đủ các tính năng căn bản của cơ sở dữ liệu quan hệ. H2 phù hợp để lập trình thử nghiệp, quy mô rất nhỏ chứ không phù hợp dự án triển khai thật (in production). Để có kiến thức cho bài này, các bạn cần tìm hiểu thêm về CSDL quan hệ (Relational Database Management System) và truy vấn SQL (Structure Query Language).
+## 1. CRUD
+CRUD == Create . Read . Update . Delete đây là 4 thao tác căn bản lên một đối tượng bản ghi (record).
+Trong CSDL chúng ta có khái niệm bản ghi (record) sau khi truy vấn từ 1 dòng trong 1 bảng hay liên kết từ nhiều bảng (joined query). Còn trong Java, chúng ta một đối tượng được lưu trong Collection.
 
-- [SQL Tutorial](https://www.w3schools.com/sql/)
-- [SQL cho người mới bắt đầu](https://techmaster.vn/khoa-hoc/l9y/sql-cho-nguoi-moi-bat-dau)
+Bên cạnh CRUD còn một số thao tác khác như:
+- Liệt Kê (List)
+- Sắp xếp (Sort)
+- Phân trang (Paginate)
+- Tìm theo từ khoá (Search by keyword)
+- Lọc theo tiêu chí (Filter by criteria)
+- Xoá nhiều bản ghi (Batch delete)
 
-### Ánh xạ Object Relational Mapping (ORM)
-Trong Java chúng ta có các class (kiểu). Từ class sẽ tạo ra các đối tượng. Các đối tượng này nếu bỏ qua, không quan tâm đến các phương thức thì chúng ta gọi là POJO (Plain Old Object Model). Chúng ta thấy 1 đối tượng POJO cũng tương đồng với một bản ghi (record).
+Đọc thêm:
+- [CRUD là gì?](https://viblo.asia/p/crud-la-gi-lap-trinh-website-crud-crud-database-Ljy5VyLzlra)
 
-Làm sao để ánh xạ một đối tượng POJO với một bản ghi record?
-[Cơ chế ORM](https://viblo.asia/p/object-relational-mapping-djeZ1PQ3KWz) ra đời.
+## 2. Request vs Response
 
-### DAO - Respository
+Request là yêu cầu gửi đến cho ứng dụng web hoặc REST API.
+Response là phản hồi trả về từ ứng dụng web hoặc REST API.
+
+**Request có thể tạo ra bởi:**
+- HTML Web: GET và POST
+- JavaScript: JavaScript thuần (vanilla) hay dùng các thư viện JQuery, React, Angular, Vue...
+- Ứng dụng di động (IOS, Android, Flutter, React Native) gửi yêu cầu lên server
+- Ứng dụng crawl dữ liệu
+- Ứng dụng server cũng có thể trở thành client để yêu cầu lấy dữ liệu từ ứng dụng server khác
+
+Đọc thêm:
+- [HTTP - Requests](https://www.tutorialspoint.com/http/http_requests.htm)
+- [Định nghĩa GET tại Mozila](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/GET)
+
+**Response**
+
+## 3. Phương thức GET và POST
+Ở bài REST, chúng ta sẽ thực hành với các HTTP Verb phổ biến (GET, POST, PUT, DELETE). Đối với Web, HTML, chỉ có 2 loại HTTP Verb là GET và POST. Trong Web, muốn tạo PUT, DELETE thì phải tạo lời gọi bằng JavaScript.
+
+Đọc thêm:
+- [GET vs POST](https://www.w3schools.com/tags/ref_httpmethods.asp)
+- [GET vs POST: Key Difference between HTTP Methods](https://www.guru99.com/difference-get-post-http.html)
+
+
+### HTML Form
+
+Đọc thêm
+- [HTML Forms](https://www.w3schools.com/html/html_forms.asp)
+- [Định nghĩa Form trong Mozila](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form)
+## DAO - Respository
 - DAO (Data Access Object): đọc bài này nhé [Hướng dẫn Java Design Pattern – DAO](https://gpcoder.com/4935-huong-dan-java-design-pattern-dao/)
 
 - Respository: [DAO vs Repository Patterns](https://www.baeldung.com/java-dao-vs-repository)
