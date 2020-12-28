@@ -61,14 +61,18 @@ Response là phản hồi trả về từ ứng dụng web hoặc REST API.
 - [GET vs POST: Key Difference between HTTP Methods](https://www.guru99.com/difference-get-post-http.html)
 
 
-### HTML Form
+### 4. HTML Form
 
 Đọc thêm
 - [HTML Forms](https://www.w3schools.com/html/html_forms.asp)
 - [Định nghĩa Form trong Mozila](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form)
-## DAO - Respository
+### 5. DAO - Respository
 - DAO (Data Access Object): đọc bài này nhé [Hướng dẫn Java Design Pattern – DAO](https://gpcoder.com/4935-huong-dan-java-design-pattern-dao/)
 
 - Respository: [DAO vs Repository Patterns](https://www.baeldung.com/java-dao-vs-repository)
 
 Chú ý đọc kỹ, phần kiểm tra sẽ có câu hỏi so sánh DAO với Respository đó!
+
+# Bài tập về nhà
+
+Thực hành lại đủ 

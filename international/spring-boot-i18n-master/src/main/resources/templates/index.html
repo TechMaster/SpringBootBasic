@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>I18N Spring Boot</title>
+  </head>
+  <body>
+    <h2 data-th-text="#{label.welcome}"></h2>
+    <p data-th-text="#{label.content}"></p>
+    <p data-th-text="#{label.changeLang}"></p>
+    <ul>
+    	<li>
+    		<a href="/index?lang=en" data-th-text="#{label.lang.en}"></a>
+    	</li>
+    	<li>
+    		<a href="/index?lang=de" data-th-text="#{label.lang.de}"></a>
+    	</li>
+    	<li>
+    		<a href="/index?lang=fr" data-th-text="#{label.lang.fr}"></a>
+    	</li>
+    </ul>
+  </body>
+</html>
