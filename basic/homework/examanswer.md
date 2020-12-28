@@ -1,11 +1,12 @@
-# Đề kiểm tra kiến thức lớp SpringBoot 1A + 1B
+# Đáp án đề kiểm tra kiến thức lớp SpringBoot 1A + 1B
 
-- Thời gian làm 180 phút.
-- Cách làm: viết ra giấy ghi rõ {họ và tên, email}
-- Làm câu nào hãy ghi rõ số thứ tự câu hỏi.
-- Thực hành đến đâu thì ghi lại câu trả lời đến đó.
-- Câu nào khó quá thì bỏ, tất nhiên là mất 1 điểm.
-- Viết lời giải trên cả 2 mặt giấy, nếu hơn 1 tờ thì giập ghim để không thất lạc
+Công việc tối thứ 3 29/12/2020, hãy đọc kỹ đáp án này rồi chấm chéo cho bài làm của bạn.
+
+Với mỗi câu trả lời sai, rối nghĩa, khó hiểu, chữ không đọc nổi --> 0 điẻm
+
+Với câu trả lời đúng, khá đúng, chữ đọc được --> 1 điểm
+
+Sau đó cộng tổng số điểm, gửi lại cho cô Thanh Hương để nhập vào trong hệ thống điểm.
 
 
 ## Bài 1: căn bản
@@ -324,6 +325,15 @@ và ```@Lazy``` cùng với ```@Autowired``` khi annotate biến.
 </dependency>
 ```
 
+hoặc
+
+```xml
+<dependency>
+    <groupId>com.opencsv</groupId>
+    <artifactId>opencsv</artifactId>
+</dependency>
+```
+
 ---
 
 **37. Hãy kể tên 2 thư viện depedency đọc Excel vào POJO**
@@ -332,7 +342,6 @@ và ```@Lazy``` cùng với ```@Autowired``` khi annotate biến.
 <dependency>
   <groupId>org.apache.poi</groupId>
   <artifactId>poi-ooxml</artifactId>
-  <version>VERSION</version>
 </dependency>
 ```
 
@@ -342,7 +351,6 @@ và
 <dependency>
     <groupId>com.github.ozlerhakan</groupId>
     <artifactId>poiji</artifactId>
-    <version>3.0.2</version>
 </dependency>
 ```
 
