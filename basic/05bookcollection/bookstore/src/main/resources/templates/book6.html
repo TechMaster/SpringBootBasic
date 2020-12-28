@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+        .hide {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1 th:text="${appName}"></h1>
+    <ul>
+        <li th:each="book, status: ${books}" th:class="${status.even}?'hide'">
+            <span th:text="${book.title + ' : ' + book.author}"></span>
+        </li>
+    </ul>
+    </div>
+</body>
+</html>

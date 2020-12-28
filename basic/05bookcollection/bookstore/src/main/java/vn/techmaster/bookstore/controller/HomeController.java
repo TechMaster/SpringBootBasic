@@ -77,4 +77,21 @@ public class HomeController {
     model.addAttribute(APP_NAME, appName);
     return "book4";
   }
+  
+  // Trả về books là mảng của đối tượng kiểu Book, thêm ảnh cho từng sách, CSS đẹp
+  @GetMapping(value = "/book6")
+  public String getBook6(Model model) {
+    Book[] bookCollection = { 
+      new Book(1, "Cafe cùng Tony", "Tony"),
+      new Book(2, "Dế Mèn Phiêu Lưu Ký", "Tô Hoài"),
+      new Book(3, "Gone with wind", "Magaret Michel"),
+      new Book(4, "Mắt Biếc", "Nguyễn Nhật Ánh"),
+      new Book(5, "Không gia đình", "Hector Malot"),
+      new Book(6, "Hoàng tử bé", "Saint-Exupéry")
+    };
+
+    model.addAttribute(BOOKS, bookCollection);
+    model.addAttribute(APP_NAME, appName);
+    return "book6";
+  }
 }

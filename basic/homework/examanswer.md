@@ -12,23 +12,24 @@
 **1. Spring Boot khác gì với Spring Framework?**
 
 Hãy tham khảo bài này [A Comparison Between Spring and Spring Boot](https://www.baeldung.com/spring-vs-spring-boot)
-	> Spring Boot is basically an extension of the Spring framework which eliminated the boilerplate configurations required for setting up a Spring application.
+> Spring Boot is basically an extension of the Spring framework which eliminated the boilerplate configurations required for setting up a Spring application.
 
-	> Spring Boot là mở rộng, cải tiến của Spring framework. Nó loại bỏ bớt các cấu hình mẫu khung (thường là khá dài dòng) khi khởi tạo một ứng dụng Spring.
+> Spring Boot là mở rộng, cải tiến của Spring framework. Nó loại bỏ bớt các cấu hình mẫu khung (thường là khá dài dòng) khi khởi tạo một ứng dụng Spring.
 
-	**Ưu điểm của Spring Boot:**
-		- Cung cấp sẵn các thư viện dependencies đơn giản việc xây dựng và cấu hình ứng dụng. Ví dụ Thymeleaf có một thư viện [Thymeleaf](https://mvnrepository.com/artifact/org.thymeleaf/thymeleaf) nhưng Spring Boot sẽ dùng một thư viện [Spring Boot Starter Thymeleaf](https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-thymeleaf) cấu hình dành riêng cho ứng dụng SpringBoot.
-		- Nhúng sẵn web server bên trong ứng dụng Spring Boot để đơn giản hoá khi đóng gói. Mặc định là TomCat nhưng có thể thay bằng Netty.
-		- Hỗ trợ lấy thông số, kiểm tra sức khoẻ ứng dụng [Spring Boot Actuator](https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-features.html)
-		- Có nhiều cách cấu hình ứng dụng sử dụng ```@Configuration``` hoặc ```application.properties``` hoặc ```application.yml```
-		- Có sẵn các cấu hình mặc định ví dụ bố trí các thức mục con... để giảm tối đa cấu hình lại.
+**Ưu điểm của Spring Boot:**
+
+- Cung cấp sẵn các thư viện dependencies đơn giản việc xây dựng và cấu hình ứng dụng. Ví dụ Thymeleaf có một thư viện [Thymeleaf](https://mvnrepository.com/artifact/org.thymeleaf/thymeleaf) nhưng Spring Boot sẽ dùng một thư viện [Spring Boot Starter Thymeleaf](https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-thymeleaf) cấu hình dành riêng cho ứng dụng SpringBoot.
+- Nhúng sẵn web server bên trong ứng dụng Spring Boot để đơn giản hoá khi đóng gói. Mặc định là TomCat nhưng có thể thay bằng Netty.
+- Hỗ trợ lấy thông số, kiểm tra sức khoẻ ứng dụng [Spring Boot Actuator](https://docs.spring.io/spring-boot/docs/current/reference/html/production-ready-features.html)
+- Có nhiều cách cấu hình ứng dụng sử dụng ```@Configuration``` hoặc ```application.properties``` hoặc ```application.yml```
+- Có sẵn các cấu hình mặc định ví dụ bố trí các thức mục con... để giảm tối đa cấu hình lại.
 ----
 **2. Những cải tiến Spring Boot so với Servlet JSP trước đây?**
 
-	Cải tiến của Spring Boot so với Servlet JSP:
-		- Spring Boot cấu hình sẵn gần như mọi thứ. Còn Servlet sử dụng XML để cấu hình
-		- Spring Boot đóng gói TomCat bên trong. Servlet dùng TomCat ở ngoài
-		- Servlet gồm các API ở mức thấp xử lý request - response. Trong khi Spring Boot bổ xung thêm pattern Model - View - Controller
+Cải tiến của Spring Boot so với Servlet JSP:
+- Spring Boot cấu hình sẵn gần như mọi thứ. Còn Servlet sử dụng XML để cấu hình
+- Spring Boot đóng gói TomCat bên trong. Servlet dùng TomCat ở ngoài
+- Servlet gồm các API ở mức thấp xử lý request - response. Trong khi Spring Boot bổ xung thêm pattern Model - View - Controller
 ----
 **3. JAR khác WAR ở những điểm nào?**
 
@@ -119,65 +120,234 @@ public class Book {
 Hãy liệt kê các cách trong Visual Studio Code hay IntelliJ để tự động sinh ra các phương thức getter, setters, equalsTo, hash, toString
 
 Trả lời: Trong Visual Studio Code, chuột phải, menu rồi chọn Source Action
+
 ---
 
 **14. Cách để thay đổi port mặc định của ứng dụng Spring Boot sang port 9000 trong file application.yml như thế nào?**
+```yml
+server:
+	port: 9000
+```
 
+---
 
-15. Có thể định nghĩa một key/value mới trong application.properties được không?
+**15. Có thể định nghĩa một key/value mới trong application.properties được không?**
 
-16. Trong một dự án SpringBoot có thể có 2 file cấu hình application.yml và application.properties cùng song song tồn tại được không?
+Hoàn toàn được.
 
-17. Tại sao các thuộc tính của một class trong Model thường có access modifier là private? Tại không để mặc định hoặc là public cho dễ truy xuất?
-	```java
-	public class Book {
-	  private int id;  //thường là private
-	}
-	```
+---
 
-18. Trong thư mục dự án Spring Boot, chúng ta thường thấy các thư mực controller, model, service, repository. Hỏi liệu có thể để các file class XXXController.java ở thư mục cùng cấp với Application.java?
-Việc bố trí thư mục này có ý nghĩa gì?
+**16. Trong một dự án SpringBoot có thể có 2 file cấu hình application.yml và application.properties cùng song song tồn tại được không?**
 
+Hoàn toàn được. Giá trị định nghĩ trong application.yml được load sau, do đó sẽ đè lên giá trị trong application.properties nếu bị trùng
 
-19. Trong tiến trình khởi động ứng dụng Spring Boot, web server TomCat khởi động trước hay là đối tượng Application khởi động trước?
+---
 
-20. Tính năng NIO trong web server TomCat là gì? Câu này cứ Google thôi.
+**17. Tại sao các thuộc tính của một class trong Model thường có access modifier là private? Tại không để mặc định hoặc là public cho dễ truy xuất?**
 
-21. Ta có một mảng các đối tượng kiểu Book cần trả về kiểu application/json vậy phải dùng thư viện gì để convert mảng này sang JSON string?
+```java
+public class Book {
+	private int id;  //thường là private
+}
+```
 
-22. Sau khi bạn tạo xong Spring Boot project, bạn phát hiện ra bạn quên không chọn dependency Thymeleaf, vậy bạn phải làm gì để bổ xung dependency này?
+Trả lời: ưu tiên dùng ```private``` để kiểm soát việc đọc (getter) và ghi (setter). Có thể viết logic để biến đổi dữ liệu khi đọc ra, hoặc validate dự liệu khi ghi
 
-23. Hãy mô tả cú pháp Thymeleaf để gán giá trị động vào 2 thuộc tính ```src``` và ```alt``` của thẻ ```<img>```. Xem bài này [](../05bookcollection/bookstore/)
+---
 
-24. Ta có một mảng 20 phần tử nhưng khách hàng chỉ muốn hiển thị ra tất cả các phần tử ở vị trí lẻ: 1, 3, 5, 7, 9,.. vậy phải làm thế nào? Gợi ý xử lý trong Controller hoặc sử dụng cú pháp Thymeleaf
+**18. Trong thư mục dự án Spring Boot, chúng ta thường thấy các thư mực controller, model, service, repository. Hỏi liệu có thể để các file class XXXController.java ở thư mục cùng cấp với Application.java?
+Việc bố trí thư mục này có ý nghĩa gì?**
 
-25. Khái niệm POJO trong java là gì?
+Trả lời:
+Hoàn toàn có thể để class XXXController.java ở thư mục cùng cấp với Application.java nhưng việc này không khuyến khích. Hãy để class XXXController.java vào trong thư mục controller
 
+Việc bố trí thư mục giúp phân loại chức năng của các file java tốt hơn, dễ tìm và quản lý hơn.
+
+---
+
+**19. Trong tiến trình khởi động ứng dụng Spring Boot, web server TomCat khởi động trước hay là đối tượng Application khởi động trước?**
+
+Đối tượng Application khởi động trước, đọc các cấu hình vào đặc biệt là cấu hình web server rồi mới khởi động TomCat. Mở log lúc khởi động ra sẽ thấy
+
+---
+
+**20. Tính năng NIO trong web server TomCat là gì?**
+
+Tính năng NIO trong web server TomCat là Non-blocking I/O. Tính năng này đối lập với blocking I/O.
+
+Non Blocking I/O dùng chung 1 thread để xử lý vào ra nhiều kết nối. Còn Blocking I/O với mỗi kết nối phải tạo ra một thread riêng biệt
+
+[Xem giải thích chi tiết ở đây](http://tutorials.jenkov.com/java-nio/nio-vs-io.html)
+
+---
+
+**21.  Ta có một mảng các đối tượng kiểu Book cần trả về kiểu application/json vậy phải dùng thư viện gì để convert mảng này sang JSON string?**
+
+[jackson-databind](https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind)
+
+---
+
+**22.  Sau khi bạn tạo xong Spring Boot project, bạn phát hiện ra bạn quên không chọn dependency Thymeleaf, vậy bạn phải làm gì để bổ xung dependency này?**
+
+Sửa file pom.xml bổ xung
+```xml
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-thymeleaf</artifactId>
+    <version>2.4.1</version>
+</dependency>
+```
+---
+
+**23.  Hãy mô tả cú pháp Thymeleaf để gán giá trị động vào 2 thuộc tính ```src``` và ```alt``` của thẻ ```<img>```.**
+
+```html
+<img th:attr="src=@{'/images/' + ${book.id} + '.jpg'}, alt=${book.title}"/>
+```
+
+---
+**24.  Ta có một mảng 20 phần tử nhưng khách hàng chỉ muốn hiển thị ra tất cả các phần tử ở vị trí lẻ: 1, 3, 5, 7, 9,.. vậy phải làm thế nào?** Gợi ý xử lý trong Controller hoặc sử dụng cú pháp Thymeleaf
+
+Cách đơn giản nhất là tạo một ArrayList mới, duyệt qua mảng ban đầu chọn ra phần tử ở các vị trí lẻ 1, 3, 5.
+
+Còn đây là cách sử dụng biến status trong ```th:each```. Kiểm tra nếu ```status.even``` bằng true thì thêm ```class = "hide"``` để ẩn li vị trí chẵn
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+        .hide {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1 th:text="${appName}"></h1>
+    <ul>
+        <li th:each="book, status: ${books}" th:class="${status.even}?'hide'">
+            <span th:text="${book.title + ' : ' + book.author}"></span>
+        </li>
+    </ul>
+    </div>
+</body>
+</html>
+```
+
+----
+**25.  Khái niệm POJO trong java là gì?**
+
+```POJO``` viết tắt của Plain Old Java Object, có nghĩa là đối tượng Java thuần tuý.
+
+----
 
 ## Bài 2: Bean, Dependency Injection
-26. Hãy giải thích tóm tắt cơ chế Dependency Injection cho người không giỏi CNTT cũng có thể hiểu được.
 
-27. Hãy liệt ít nhất 2 cách để lấy Application Context. Xem [02ApplicationContextAware](../../bean/02ApplicationContextAware/demobean)
+----
+**26. Hãy giải thích tóm tắt cơ chế Dependency Injection cho người không giỏi CNTT cũng có thể hiểu được.**
 
-28. Cơ chế nào giúp ApplicationContext có thể có được danh sách tất cả các component and bean?
+Dependency Inject là cách để lắp ghép linh hoạt các thành phần tạo nên ứng dụng theo quy ước mặc định hoặc cấu hình có chủ ý của lập trình viên.
 
-29. ```@Component``` khác với ```@Bean``` ở những điểm nào?
+---
 
-30. Annotation ```@Configuration``` có tác dụng gì. Xem [02ApplicationContextAware](../../bean/02ApplicationContextAware/demobean)
+**27.   Hãy liệt ít nhất 2 cách để lấy Application Context.**
 
-31. Khi có 2 bean trả về cùng kiểu, dùng annotation nào để ưu tiên dùng mặc định một bean?
+Cách 1: sử dụng
+```java
+@Autowired
+private ApplicationContext appContext;
+```
 
-32. Tên của bean mặc định sẽ là tên phương thức được annotated bởi @Bean, tuy nhiên chúng ta có thể đổi lại tên bean khác với tên phương thức. Cú pháp sẽ là gì?
+Cách 2: Kế thừa ```interface ApplicationContextAware```
+rồi viết đè phương thức ```void setApplicationContext(ApplicationContext applicationContext)```
 
-33. Khi có 2 bean khác tên, nhưng trả về cùng 1 kiểu, cùng với annotation ```@Autowired```, chúng ta cần thêm annotation nào khác để chọn bean theo tên trước khi gán vào biến?
+---
 
-34. Trong một ứng dụng, có thể có nhiều class được đánh dấu ```@Configuration``` hay chỉ được phép duy nhất một?
+**28.  Cơ chế nào giúp ApplicationContext có thể có được danh sách tất cả các component and bean?**
 
-35. Mặc định mỗi bean được tạo ra dưới dạng một Singleton, cơ chế nào cho phép bean được đăng ký ApplicationContext nhưng chỉ khởi tạo khi cần?
+Cơ chế Component Scan. Cần phải enable ```@AutoScan``` lên hoặc dùng annotation ```@SpringBootApplication```.
+
+----
+
+**29.  ```@Component``` khác với ```@Bean``` ở những điểm nào?**
+```@Component``` annotate ở mức class. Còn ```@Bean``` annotate phương thức sẽ trả đối tượng sẽ trở thành bean. ```@Bean``` phải sử dụng bên trong class được đánh dấu bởi ```@Configuration```
+
+----
+
+**30. Annotation ```@Configuration``` có tác dụng gì?**
+Tạo ra class cấu hình có các phương thức trả về Bean
+
+---
+
+**31.  Khi có 2 bean trả về cùng kiểu, dùng annotation nào để ưu tiên dùng mặc định một bean?**
+
+Sử dụng ```@Primary```
+
+---
+
+**32.  Tên của bean mặc định sẽ là tên phương thức được annotated bởi @Bean, tuy nhiên chúng ta có thể đổi lại tên bean khác với tên phương thức. Cú pháp sẽ là gì?**
+
+Sử dụng ```@Bean(name = "newNameOfBean")```
+
+---
+
+**33.  Khi có 2 bean khác tên, nhưng trả về cùng 1 kiểu, cùng với annotation ```@Autowired```, chúng ta cần thêm annotation nào khác để chọn bean theo tên trước khi gán vào biến?**
+
+Sử dụng ```@Qualifier("nameOfBean")```
+
+**34.  Trong một ứng dụng, có thể có nhiều class được đánh dấu ```@Configuration``` hay chỉ được phép duy nhất một?**
+
+Hoàn toàn có nhiều class được đánh dấu bằng ```@Configuration```
+
+---
+
+**35.  Mặc định mỗi bean được tạo ra dưới dạng một Singleton, cơ chế nào cho phép bean được đăng ký ApplicationContext nhưng chỉ khởi tạo khi cần?**
+
+Sử dụng khai báo
+
+```java
+@Bean
+@Scope("prototype")
+```
+và ```@Lazy``` cùng với ```@Autowired``` khi annotate biến.
+
+---
 
 ## Bài 3: Đọc CSV, Excel
 36. Hãy kể tên thư viện dependency đọc CSV vào POJO
+```xml
+<dependency>
+  <groupId>com.fasterxml.jackson.dataformat</groupId>
+  <artifactId>jackson-dataformat-csv</artifactId>
+</dependency>
+```
 
-37. Hãy kể tên 2 thư viện depedency đọc Excel vào POJO
+---
 
-38. Tại sao cách đọc dữ liệu vào POJO lại được ưa chuộng hơn cách đọc từng dòng rồi cắt chuỗi
+**37. Hãy kể tên 2 thư viện depedency đọc Excel vào POJO**
+
+```xml
+<dependency>
+  <groupId>org.apache.poi</groupId>
+  <artifactId>poi-ooxml</artifactId>
+  <version>VERSION</version>
+</dependency>
+```
+
+và 
+
+```xml
+<dependency>
+    <groupId>com.github.ozlerhakan</groupId>
+    <artifactId>poiji</artifactId>
+    <version>3.0.2</version>
+</dependency>
+```
+
+---
+
+ **38. Tại sao cách đọc dữ liệu vào POJO lại được ưa chuộng hơn cách đọc từng dòng rồi cắt chuỗi**
+
+Vì nó giúp lập trình không phải sửa lại code tách chuỗi, xác định cột khi cấu trúc CSV thay đổi. Khi đọc dữ liệu vào POJO, lập trình viên chỉ cần định nghĩa class có thuộc tính ứng với cột trong csv. Mặc định là trùng tên, nhưng bổ xung tham số có thể ánh xạ khác tên. Có thể bỏ qua một số thuộc tính có trong class mà không có trong csv.
