@@ -17,6 +17,21 @@ import org.springframework.util.ResourceUtils;
 @Service
 public class MoneyConverter {
 
+  /**
+   * Đọc dữ liệu từ file JSON vào JsonNode masterNode
+   */
+  /*private void loadExchangeRateFromJSON() {
+
+  }*/
+
+  /**
+   * Lấy tỷ giá chuyển đổi 1 USD sang currencyCode
+   * @param currencyCode
+   * @return
+   */
+  /*public float getExchangeRate(String currencyCode) {
+
+  }*/
   public void parseExchangeRate() {
     try {
       File file = ResourceUtils.getFile("classpath:static/exchange_rate.json");
@@ -24,12 +39,14 @@ public class MoneyConverter {
       BufferedReader bufferedReader = new BufferedReader(reader);
       ObjectMapper objectMapper = new ObjectMapper();
       JsonNode masterNode = objectMapper.readTree(bufferedReader);
-
+      JsonNode rate = masterNode.get("VND");
+      System.out.println(rate.asText()); 
+      /*`
       Iterator<Map.Entry<String, JsonNode>> iter = masterNode.fields();
       while (iter.hasNext()) {
          var node = iter.next(); 
          System.out.println(node.getKey() + " = " +  node.getValue()); 
-      }
+      }*/
 
     } catch (FileNotFoundException e) {
       System.out.println(e);
