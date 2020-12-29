@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BMI Calculator</title>
+</head>
+<body>
+  <nav th:replace="layout :: header"></nav>
+  <br>
+  <h1>BMI not refactored</h1>
+  <form action="#" th:action="@{/bmi}" th:object="${bmiRequest}" method="post">
+    <input type="text" placeholder="Your name" th:field="*{name}"/><br><br>
+    <input type="text" placeholder="Your email" th:field="*{email}"/><br><br>
+    <input type="text" placeholder="Your height" th:field="*{height}"/> (m)<br><br>
+    <input type="text" placeholder="Your weight" th:field="*{weight}"/> (kg)<br><br>
+    <button type="submit">Calculate BMI</button>
+  </form>
+  <br>
+  <div>
+    BMI Index : <strong th:text="${bmiResult?.bmiIndex}"></strong><br>
+    Phân loại: <strong th:text="${bmiResult?.category}"></strong>
+  </div>
+</body>
+</html>
