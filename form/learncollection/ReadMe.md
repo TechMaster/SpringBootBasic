@@ -16,7 +16,7 @@ id,fullname,job,city
 8,Briny Bullivent,Police,Barcelona
 ```
 
-2. Viết nốt logic của [PersonRepositoryCSV.java](src/main/java/vn/techmaster/pathquery/repository/PersonRepositoryCSV.java) tuân thủ theo [PersonRepositoryInterface.java](src/main/java/vn/techmaster/pathquery/repository/PersonRepositoryInterface.java)
+2. Viết nốt logic của [PersonRepositoryCSV.java](src/main/java/vn/techmaster/learncollection/repository/PersonRepositoryCSV.java) tuân thủ theo [PersonRepositoryInterface.java](src/main/java/vn/techmaster/learncollection/repository/PersonRepositoryInterface.java)
 
 ```java
 List<Person> getAll(); //Liệt kê danh sách tất cả

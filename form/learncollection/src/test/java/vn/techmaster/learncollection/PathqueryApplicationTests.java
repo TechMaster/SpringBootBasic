@@ -1,10 +1,10 @@
-package vn.techmaster.pathquery;
+package vn.techmaster.learncollection;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class PathqueryApplicationTests {
+class LearnCollectionApplicationTests {
 
 	@Test
 	void contextLoads() {

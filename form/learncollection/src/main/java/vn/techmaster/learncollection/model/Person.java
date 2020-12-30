@@ -1,4 +1,4 @@
-package vn.techmaster.pathquery.model;
+package vn.techmaster.learncollection.model;
 
 public class Person {
   private int id;

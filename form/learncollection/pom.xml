@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>vn.techmaster</groupId>
-	<artifactId>pathquery</artifactId>
+	<artifactId>learncollection</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>pathquery</name>
+	<name>learncollection</name>
 	<description>Demo project for Spring Boot</description>
 
 	<properties>

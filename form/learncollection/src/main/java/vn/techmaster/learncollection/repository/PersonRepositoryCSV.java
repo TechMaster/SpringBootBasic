@@ -1,9 +1,9 @@
-package vn.techmaster.pathquery.repository;
+package vn.techmaster.learncollection.repository;
 
 import java.util.HashMap;
 import java.util.List;
 
-import vn.techmaster.pathquery.model.Person;
+import vn.techmaster.learncollection.model.Person;
 
 public class PersonRepositoryCSV implements PersonRepositoryInterface {
 
