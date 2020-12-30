@@ -1,14 +1,14 @@
 package vn.techmaster.money;
 
-import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import static org.assertj.core.api.Assertions.*;
 
 import vn.techmaster.money.model.CurrencyRate;
 import vn.techmaster.money.model.ExchangeRate;
@@ -59,6 +59,6 @@ public class MoneyConverterTests {
 		HashMap<String, CurrencyRate> mapCurrencyRates = moneyConverter.getMapCurrencyRates();
 		assertThat(mapCurrencyRates).hasSizeGreaterThan(10);
 		assertThat(mapCurrencyRates.get("JPY")).extracting("code").hasToString("JPY");
-		assertThat(mapCurrencyRates.get("KRW")).extracting("currency").hasToString("Won");
+		assertThat(mapCurrencyRates.get("KRW")).extracting("name").hasToString("South Korean Won");
 	}
 }

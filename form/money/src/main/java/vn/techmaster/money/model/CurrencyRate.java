@@ -1,20 +1,18 @@
 package vn.techmaster.money.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CurrencyRate {
-  private String currency;
+  @JsonProperty("Currency")
+  private String name;
+
+  @JsonProperty("AlphabeticCode")
   private String code;
   private float rate; // Quy đổi 1 USD sang được bao nhiêu
 
-  public String getCurrency() {
-    return currency;
-  }
-
-  public void setCurrency(String currency) {
-    this.currency = currency;
-  }
+  
 
   public String getCode() {
     return code;
@@ -34,6 +32,14 @@ public class CurrencyRate {
 
   @Override
   public String toString() {
-    return "CurrencyRate [code=" + code + ", currency=" + currency + ", rate=" + rate + "]";
+    return "CurrencyRate [code=" + code + ", currency=" + name + ", rate=" + rate + "]";
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
   }
 }

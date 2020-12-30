@@ -7,7 +7,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -39,6 +41,12 @@ public class MoneyConverter {
 
   public HashMap<String, CurrencyRate> getMapCurrencyRates() {
     return mapCurrencyRates;
+  }
+
+  public List<CurrencyRate> getSortedCurrencyCode() {
+    ArrayList<CurrencyRate> listCurrency = new ArrayList<>(mapCurrencyRates.values());
+    Collections.sort(listCurrency, Comparator.comparing(CurrencyRate::getName));
+    return listCurrency;
   }
 
   /**

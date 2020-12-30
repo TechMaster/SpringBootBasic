@@ -37,8 +37,7 @@ public class ExperimentController {
     currencies.add(new Currency("KRW", "South Korea Won"));
     currencies.add(new Currency("VND", "Vietnamese Dong"));
     model.addAttribute("currencies", currencies);  //trả về danh sách mã 3 ký tự của tiền tệ và tên tiền tệ
-    return "convert";
-    
+    return "convert";    
   }
 
 }
