@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Money Converter Form</title>
+</head>
+
+<body>
+  <h1>Thí nghiệm: tạo form chuyển đổi tiền tệ</h1>
+  <br>
+  <form action="#" th:action="@{/exp/convert}" method="post" th:object=${moneyConvertRequest}>
+    <label for="amount">Amount</label><input type="number" id="amount" th:field="${moneyConvertRequest.amount}">
+    <br><br>
+    <label for="fromCurrencySelect">From</label>
+    <select th:field="${moneyConvertRequest.fromCurrency}" id="fromCurrencySelect">      
+      <option th:each="currency : ${currencies}" th:value="${currency.code}" th:text="${currency.name}"></option>
+    </select>
+    <label for="toCurrencySelect">To</label>
+    <select th:field="${moneyConvertRequest.toCurrency}" id="toCurrencySelect">      
+      <option th:each="currency : ${currencies}" th:value="${currency.code}" th:text="${currency.name}"></option>
+    </select>
+    <br><br>
+    <button type="sumoneyt">Convert</button>
+  </form>
+</body>
+
+</html>

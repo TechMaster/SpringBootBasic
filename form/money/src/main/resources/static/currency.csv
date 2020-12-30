@@ -1,4 +1,4 @@
-Country,CountryCode,Currency,Code
+country,countryCode,currency,code
 New Zealand,NZ,New Zealand Dollars,NZD,
 Cook Islands,CK,New Zealand Dollars,NZD
 Niue,NU,New Zealand Dollars,NZD
@@ -151,11 +151,11 @@ Jamaica,JM,Jamaican Dollar,JMD
 Jordan,JO,Jordanian Dinar,JOD
 Kazakhstan,KZ,Tenge,KZT
 Kenya,KE,Kenyan Shilling,KES
-Korea North,KP,Won,KPW
-Korea South,KR,Won,KRW
+Korea North,KP,North Korea Won,KPW
+Korea South,KR,South Korea Won,KRW
 Kuwait,KW,Kuwaiti Dinar,KWD
 Kyrgyzstan,KG,Som,KGS
-Lao PeopleÕs Democratic Republic,LA,Kip,LAK
+Lao People Democratic Republic,LA,Kip,LAK
 Latvia,LV,Lat,LVL
 Lebanon,LB,Lebanese Pound,LBP
 Lesotho,LS,Loti,LSL

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Render Select Box</title>
+</head>
+
+<body>
+  <h1>Thí nghiệm: đổ dữ liệu vào select / option</h1>
+  <br>
+  <form action="#" th:action="@{/exp/select}" method="post" th:object=${moneyConvertRequest}>
+    <select th:field="${moneyConvertRequest.fromCurrency}" id="fromCurrencySelect">      
+      <option th:each="currency : ${currencies}" th:value="${currency.code}" th:text="${currency.name}"></option>
+    </select>
+  </form>
+</body>
+
+</html>

@@ -1,4 +1,4 @@
-package vn.techmaster.bmi.model;
+package vn.techmaster.money.model;
 
 public class ExchangeRate {
   private String code;
@@ -17,6 +17,11 @@ public class ExchangeRate {
   }
 
   public void setRate(float rate) {
+    this.rate = rate;
+  }
+
+  public ExchangeRate(String code, float rate) {
+    this.code = code;
     this.rate = rate;
   }
 }

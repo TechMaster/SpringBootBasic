@@ -1,9 +1,9 @@
-package vn.techmaster.bmi.controller;
+package vn.techmaster.money.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
-import vn.techmaster.bmi.service.MoneyConverter;
+import vn.techmaster.money.service.MoneyConverter;
 
 
 

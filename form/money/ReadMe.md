@@ -1,3 +1,8 @@
+# Money Converter
+ 
+ Tình huống như sau: bạn đến xin việc ở một ngân hàng lớn. Họ đang cần xây dựng một dịch vụ tra tỷ giá ngoại tệ với giao diện tương tự như sau:
+ 
+ ![Money Converter](images/money_converter.jpg)
 # Gợi ý các bước tiến hành
 
 1. Phân tích nghiệp vụ
@@ -5,7 +10,7 @@
 3. Định nghĩa cấu trúc dữ liệu phù hợp
 4. Nạp dữ liệu vào ```@Service``` component
 
-
+Trình code của chúng ta chưa nhiều, do đó hãy làm nhiều thí nghiệm nhỏ chạy tốt, rồi mới ghép lại thành một dự án hoàn chỉnh
 
 ## 1. Phân tích nghiệp vụ
 Tỷ giá ngoại tệ luôn biến động và được cập nhật theo ngày. Ứng dụng cần phải lấy dữ liệu từ một nguồn có sẵn nào đó. Vậy đi tìm nó!
@@ -62,13 +67,13 @@ Nếu ấn vào link này [https://v6.exchangerate-api.com/v6/da65c8cd73399287d4
 
 ## 3. Định nghĩa cấu trúc dữ liệu phù hợp
 
-Trong class [CurrencyRate.java](src/main/java/vn/techmaster/bmi/model/CurrencyRate.java) dùng để load dữ liệu từ file [currency.csv](src/main/resources/static/currency.csv)
+Trong class [CurrencyRate.java](src/main/java/vn/techmaster/money/model/CurrencyRate.java) dùng để load dữ liệu từ file [currency.csv](src/main/resources/static/currency.csv)
 
 Tuy nhiên có một trường ```private float rate```. Trường này sẽ không có trong currency.csv mà sẽ phải lấy từ file [exchange_rate.json](src/main/resources/static/exchange_rate.json)
 
 Để xây dựng một mảng các đối tượng ExchangeRate gồm đầy đủ các trường, chúng ta làm như sau:
-1. Đọc dữ liệu từ [currency.csv](src/main/resources/static/currency.csv) vào mảng các đối tượng [CurrencyRate.java](src/main/java/vn/techmaster/bmi/model/CurrencyRate.java)
-2. Đọc dữ liệu từ [exchange_rate.json](src/main/resources/static/exchange_rate.json) vào mảng các đối tượng [ExchangeRate.java](src/main/java/vn/techmaster/bmi/model/ExchangeRate.java). Xem ví dụ mẫu ở đây
+1. Đọc dữ liệu từ [currency.csv](src/main/resources/static/currency.csv) vào mảng các đối tượng [CurrencyRate.java](src/main/java/vn/techmaster/money/model/CurrencyRate.java)
+2. Đọc dữ liệu từ [exchange_rate.json](src/main/resources/static/exchange_rate.json) vào mảng các đối tượng [ExchangeRate.java](src/main/java/vn/techmaster/money/model/ExchangeRate.java). Xem ví dụ mẫu ở đây
 ```java
 public void parseExchangeRate() {
     try {
@@ -110,7 +115,9 @@ AZN = 1.7033
 BAM = 1.5976
 ...
 ```
-3. 
+3. Thí nghiệm lấy tỷ giá 1 USD sang loại tiền khác.
+
+
 
 
 

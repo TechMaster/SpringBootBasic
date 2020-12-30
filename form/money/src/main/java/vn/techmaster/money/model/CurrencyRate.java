@@ -1,27 +1,12 @@
-package vn.techmaster.bmi.model;
+package vn.techmaster.money.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class CurrencyRate {
-  private String country;
-  private String countryCode;
   private String currency;
   private String code;
   private float rate; // Quy đổi 1 USD sang được bao nhiêu
-
-  public String getCountry() {
-    return country;
-  }
-
-  public void setCountry(String country) {
-    this.country = country;
-  }
-
-  public String getCountryCode() {
-    return countryCode;
-  }
-
-  public void setCountryCode(String countryCode) {
-    this.countryCode = countryCode;
-  }
 
   public String getCurrency() {
     return currency;
@@ -45,5 +30,10 @@ public class CurrencyRate {
 
   public void setRate(float rate) {
     this.rate = rate;
-  }  
+  }
+
+  @Override
+  public String toString() {
+    return "CurrencyRate [code=" + code + ", currency=" + currency + ", rate=" + rate + "]";
+  }
 }
