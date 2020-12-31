@@ -76,7 +76,39 @@ Gợi ý nên dùng thêm thư viện [Guava của Google](https://github.com/go
 Khi xử lý với lượng dữ liệu quá 20 dòng, chúng ta rất khó trong việc kiểm tra tính đúng đắn của logic.
 Do đó hãy tạo một file csv khoảng 20 dòng, [personsmall.csv](src/main/resources/static/personsmall.csv)
 
-### Tip 2: Hãy sử dụng Automation Test.
+### Tip 2: Hãy mạnh dạn ứng dụng kỹ thuật Dependency Injection (DI)
+DI không phải là kỹ thuật gì cao siêu. Nó giống như lắp Lego vậy thôi.
+Nếu bạn để ý trong thư mục [resources/static](src/main/resources/static)
+
+Trong bài này, chúng ta phải truy vấn dữ liệu từ bảng / danh sách Person rất nhiều. Do đó cần phải tạo một class là Repository.
+
+Hỏi: Repository khác gì với Service? Em thấy chúng có giống nhau quá !
+Đáp: Spring Boot cung cấp 2 annotation ```@Repository``` và ```@Service``` trong package org.springframework.stereotype. Đây là định nghĩa của 2 annotation này. Chúng chả khác gì nhau về cú pháp cả!
+
+```java
+@Target({ElementType.TYPE})
+@Retention(RetentionPolicy.RUNTIME)
+@Documented
+@Component
+public @interface Repository
+```
+
+```java
+@Target({ElementType.TYPE})
+@Retention(RetentionPolicy.RUNTIME)
+@Documented
+@Component
+public @interface Service
+```
+
+Tuy nhiên ```@Service``` đánh dấu cho class tầng dịch vụ ~ service layer. Tầng dịch vụ có thể kết nối đến database qua repository, có thể gửi email, gọi đến REST API khác để lấy dữ liệu, có thể publish một event vào message queue hoặc subscribe một event từ queue. Một service có thể gọi đến nhiều repository.
+
+```@Repository``` đánh dấu cho class tập trung thao tác dữ liệu với CSDL quan hệ MySQL, Postgresql, Oracle, MSSQL... hay phi quan hệ như MongoDB.
+
+Một lập trình viên ngược đời (nerd programmer) có thể đánh dấu một class với ```@Service``` nhưng trong class đó thao tác dữ liệu dùng [JPA](https://spring.io/projects/spring-data-jpa). Việc này có thể được, nhưng nó vi phạm quy ước (break convention) cấu trúc dự án Spring Boot.
+
+
+### Tip 3: Hãy sử dụng Automation Test.
 
 Trong Java có một thư viện Automation Test rất tốt là JUnit. Phiên bản hiện này là [JUnit5](https://junit.org/junit5/) có rất nhiều cải tiến so với JUnit4.
 
@@ -94,7 +126,8 @@ Nguyên tắc số 1 trong quản lý chất lượng sản phẩm đó là ki�
 
 Nguyên tắc số 2: đó là tiến hành kiểm tra chất lượng ngay từ đầu, không để sản xuất sau một thời gian mới kiểm tra.
 
-Trong dự án này chúng ta sẽ dùng [JUnit5](https://junit.org/junit5/) và AssertJ(https://assertj.github.io/doc/).
+Trong dự án này chúng ta sẽ dùng [JUnit5](https://junit.org/junit5/) và [AssertJ](https://assertj.github.io/doc/).
+
 Đây là phần XML các bạn cần thêm vào file [pom.xml](pom.xml)
 ```xml
 <dependency>
@@ -125,6 +158,8 @@ Hỏi: Viết mã test vào thư mục nào?
 │   │                   └── PersonRepositoryTest.java
 ```
 
+Hỏi: Có thể viết bao nhiêu testing class trong một ứng dụng Spring Boot?
+Đáp: Bạn có thể viết bao nhiêu tuỳ thích. Tốt nhất mỗi testing class tập trung kiểm thử một class chức năng tương ứng. Ví dụ trong bài này [PersonRepositoryTest.java](src/test/java/vn/techmaster/learncollection/PersonRepositoryTest.java) sẽ kiểm thử [PersonRepositoryCSV.java](src/main/java/vn/techmaster/learncollection/repository/PersonRepositoryCSV.java)
 
 
 
