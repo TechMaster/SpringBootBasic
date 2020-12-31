@@ -82,6 +82,7 @@ DI không phải là kỹ thuật gì cao siêu. Nó giống như lắp Lego v�
 Trong bài này, chúng ta phải truy vấn dữ liệu từ bảng / danh sách Person rất nhiều. Do đó cần phải tạo một class là Repository.
 
 **Hỏi**: Repository khác gì với Service? Em thấy chúng có giống nhau quá !
+
 **Đáp**: Spring Boot cung cấp 2 annotation ```@Repository``` và ```@Service``` trong package org.springframework.stereotype. Đây là định nghĩa của 2 annotation này. Chúng chả khác gì nhau về cú pháp cả!
 
 ```java
@@ -107,11 +108,13 @@ Tuy nhiên ```@Service``` đánh dấu cho class tầng dịch vụ ~ service la
 Một lập trình viên ngược đời (nerd programmer) có thể đánh dấu một class với ```@Service``` nhưng trong class đó thao tác dữ liệu dùng [JPA](https://spring.io/projects/spring-data-jpa). Việc này có thể được, nhưng nó vi phạm quy ước (break convention) cấu trúc dự án Spring Boot.
 
 **Hỏi:** Tầng Controller có gọi trực tiếp Repository được không hay phải luôn thông qua Service?
+
 **Đáp:** Service layer/component chỉ thực sự hữu ích khi nó tổng hợp, điều phối thao tác dữ liệu từ nhiều Repository, validate dữ liệu, biến đổi dữ liệu.
 Nếu máy móc bổ xung thêm tầng ở giữa nhưng không làm gì hữu ích chỉ làm tốc độ ứng dụng chậm lại.
 
 **Hỏi:** Tại sao thầy lại tạo một public Interface [PersonRepositoryInterface.java](src/main/java/vn/techmaster/learncollection/repository/PersonRepositoryInterface.java) rồi sau đó lại tạo class  [PersonRepositoryCSV.java](src/main/java/vn/techmaster/learncollection/repository/PersonRepositoryCSV.java) tuân thủ Interface. Việc này có vẻ thừa, vì controller có thể dùng trực tiếp class ```PersonRepositoryCSV```?
 
+**Đáp:**
 Nếu bạn để ý trong thư mục [resources/static](src/main/resources/static) có 2 file:
 - [person.csv](src/main/resources/static/person.csv)
 - [person.sql](src/main/resources/static/person.sql)
@@ -154,6 +157,7 @@ Trong dự án này chúng ta sẽ dùng [JUnit5](https://junit.org/junit5/) và
 ```
 
 **Hỏi:** Viết mã test vào thư mục nào?
+
 **Đáp:** Trong thư mục src có 2 thư mục main và test. Thư mục test là nới các bạn sẽ đặt các Testing class. Khi kiểm thử, IDE sẽ quét tất các các phương thức trong thư mục này.
 ```
 .
@@ -168,11 +172,5 @@ Trong dự án này chúng ta sẽ dùng [JUnit5](https://junit.org/junit5/) và
 ```
 
 **Hỏi:** Có thể viết bao nhiêu testing class trong một ứng dụng Spring Boot?
+
 **Đáp:** Bạn có thể viết bao nhiêu tuỳ thích. Tốt nhất mỗi testing class tập trung kiểm thử một class chức năng tương ứng. Ví dụ trong bài này [PersonRepositoryTest.java](src/test/java/vn/techmaster/learncollection/PersonRepositoryTest.java) sẽ kiểm thử [PersonRepositoryCSV.java](src/main/java/vn/techmaster/learncollection/repository/PersonRepositoryCSV.java)
-
-
-
-
-
-
-

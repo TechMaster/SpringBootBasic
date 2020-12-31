@@ -27,3 +27,7 @@ upload.path=/Users/techmaster/Desktop/upload/
 
 Tạo file báo lỗi 404 ở thư mục
 resources > templates > error > 404.html
+
+## Tham khảo 
+
+[](https://spring.io/guides/gs/uploading-files/)
