@@ -69,7 +69,7 @@ Gợi ý nên dùng thêm thư viện [Guava của Google](https://github.com/go
 - [Immutable Collection](https://github.com/google/guava/wiki/ImmutableCollectionsExplained)
 - [New Collection Types](https://github.com/google/guava/wiki/NewCollectionTypesExplained)
 
-
+-----
 ## Hướng dẫn làm bài tập này
 
 ### Tip 1: Hãy thu nhỏ, đơn giản hoá dữ liệu để dễ quan sát
@@ -78,12 +78,11 @@ Do đó hãy tạo một file csv khoảng 20 dòng, [personsmall.csv](src/main/
 
 ### Tip 2: Hãy mạnh dạn ứng dụng kỹ thuật Dependency Injection (DI)
 DI không phải là kỹ thuật gì cao siêu. Nó giống như lắp Lego vậy thôi.
-Nếu bạn để ý trong thư mục [resources/static](src/main/resources/static)
 
 Trong bài này, chúng ta phải truy vấn dữ liệu từ bảng / danh sách Person rất nhiều. Do đó cần phải tạo một class là Repository.
 
-Hỏi: Repository khác gì với Service? Em thấy chúng có giống nhau quá !
-Đáp: Spring Boot cung cấp 2 annotation ```@Repository``` và ```@Service``` trong package org.springframework.stereotype. Đây là định nghĩa của 2 annotation này. Chúng chả khác gì nhau về cú pháp cả!
+**Hỏi**: Repository khác gì với Service? Em thấy chúng có giống nhau quá !
+**Đáp**: Spring Boot cung cấp 2 annotation ```@Repository``` và ```@Service``` trong package org.springframework.stereotype. Đây là định nghĩa của 2 annotation này. Chúng chả khác gì nhau về cú pháp cả!
 
 ```java
 @Target({ElementType.TYPE})
@@ -107,7 +106,17 @@ Tuy nhiên ```@Service``` đánh dấu cho class tầng dịch vụ ~ service la
 
 Một lập trình viên ngược đời (nerd programmer) có thể đánh dấu một class với ```@Service``` nhưng trong class đó thao tác dữ liệu dùng [JPA](https://spring.io/projects/spring-data-jpa). Việc này có thể được, nhưng nó vi phạm quy ước (break convention) cấu trúc dự án Spring Boot.
 
+**Hỏi:** Tầng Controller có gọi trực tiếp Repository được không hay phải luôn thông qua Service?
+**Đáp:** Service layer/component chỉ thực sự hữu ích khi nó tổng hợp, điều phối thao tác dữ liệu từ nhiều Repository, validate dữ liệu, biến đổi dữ liệu.
+Nếu máy móc bổ xung thêm tầng ở giữa nhưng không làm gì hữu ích chỉ làm tốc độ ứng dụng chậm lại.
 
+**Hỏi:** Tại sao thầy lại tạo một public Interface [PersonRepositoryInterface.java](src/main/java/vn/techmaster/learncollection/repository/PersonRepositoryInterface.java) rồi sau đó lại tạo class  [PersonRepositoryCSV.java](src/main/java/vn/techmaster/learncollection/repository/PersonRepositoryCSV.java) tuân thủ Interface. Việc này có vẻ thừa, vì controller có thể dùng trực tiếp class ```PersonRepositoryCSV```?
+
+Nếu bạn để ý trong thư mục [resources/static](src/main/resources/static) có 2 file:
+- [person.csv](src/main/resources/static/person.csv)
+- [person.sql](src/main/resources/static/person.sql)
+
+Phiên bản đầu tiên của ứng dụng này chúng ta thao tác với file CSV. Nhưng sau đó phiên bản tiếp theo chúng ta nâng cấp lên CSDL quan hệ H2 hoặc MySQL. Nếu tầng Service hoặc Controller kết nối đến một concrete repository class (một class cụ thể), thì chúng ta đã tạo ra một quan hệ cứng nhắc tight coupling. Tight coupling là điều không mong muốn khi nâng cấp, cải tiến phần mềm. Quy tắc là "Programming against Interface not Implementation".
 ### Tip 3: Hãy sử dụng Automation Test.
 
 Trong Java có một thư viện Automation Test rất tốt là JUnit. Phiên bản hiện này là [JUnit5](https://junit.org/junit5/) có rất nhiều cải tiến so với JUnit4.
@@ -115,9 +124,9 @@ Trong Java có một thư viện Automation Test rất tốt là JUnit. Phiên b
 - [A Guide to JUnit 5](https://www.baeldung.com/junit-5)
 - [JUnit 5 Tutorial](https://howtodoinjava.com/junit-5-tutorial/)
 
-Hỏi: JUnit dùng để viết kiểm thử sao lại dùng vào bài tập này?
+**Hỏi:** JUnit dùng để viết kiểm thử sao lại dùng vào bài tập nặng về xử lý dữ liệu Collection này?
 
-Trả lời: Kiến trúc của ứng dụng Spring Boot là multi-layers (nhiều tầng): View <-> Controller -> Service -> Repository -> Entity -> Database
+**Trả lời:** Kiến trúc của ứng dụng Spring Boot là multi-layers (nhiều tầng): View <-> Controller -> Service -> Repository -> Entity -> Database
 ![](images/unitTestRepository.jpg)
 
 Bài tập này tập trung vào lập trình phần xử lý dữ liệu ở Repository. Nếu phải lập trình đầy đủ các tầng Controller, View rồi Service thì rất khó kiểm soát lỗi. 
@@ -144,8 +153,8 @@ Trong dự án này chúng ta sẽ dùng [JUnit5](https://junit.org/junit5/) và
 </dependency>
 ```
 
-Hỏi: Viết mã test vào thư mục nào?
-Đáp: Trong thư mục src có 2 thư mục main và test. Thư mục test là nới các bạn sẽ đặt các Testing class. Khi kiểm thử, IDE sẽ quét tất các các phương thức trong thư mục này.
+**Hỏi:** Viết mã test vào thư mục nào?
+**Đáp:** Trong thư mục src có 2 thư mục main và test. Thư mục test là nới các bạn sẽ đặt các Testing class. Khi kiểm thử, IDE sẽ quét tất các các phương thức trong thư mục này.
 ```
 .
 ├── src
@@ -158,8 +167,8 @@ Hỏi: Viết mã test vào thư mục nào?
 │   │                   └── PersonRepositoryTest.java
 ```
 
-Hỏi: Có thể viết bao nhiêu testing class trong một ứng dụng Spring Boot?
-Đáp: Bạn có thể viết bao nhiêu tuỳ thích. Tốt nhất mỗi testing class tập trung kiểm thử một class chức năng tương ứng. Ví dụ trong bài này [PersonRepositoryTest.java](src/test/java/vn/techmaster/learncollection/PersonRepositoryTest.java) sẽ kiểm thử [PersonRepositoryCSV.java](src/main/java/vn/techmaster/learncollection/repository/PersonRepositoryCSV.java)
+**Hỏi:** Có thể viết bao nhiêu testing class trong một ứng dụng Spring Boot?
+**Đáp:** Bạn có thể viết bao nhiêu tuỳ thích. Tốt nhất mỗi testing class tập trung kiểm thử một class chức năng tương ứng. Ví dụ trong bài này [PersonRepositoryTest.java](src/test/java/vn/techmaster/learncollection/PersonRepositoryTest.java) sẽ kiểm thử [PersonRepositoryCSV.java](src/main/java/vn/techmaster/learncollection/repository/PersonRepositoryCSV.java)
 
 
 
