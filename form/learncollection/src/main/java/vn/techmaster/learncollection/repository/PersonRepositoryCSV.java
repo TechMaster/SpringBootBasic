@@ -1,11 +1,51 @@
 package vn.techmaster.learncollection.repository;
 
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.Reader;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import com.fasterxml.jackson.databind.MappingIterator;
+import com.fasterxml.jackson.databind.ObjectReader;
+import com.fasterxml.jackson.dataformat.csv.CsvMapper;
+import com.fasterxml.jackson.dataformat.csv.CsvSchema;
+
+import org.springframework.util.ResourceUtils;
 
 import vn.techmaster.learncollection.model.Person;
 
 public class PersonRepositoryCSV implements PersonRepositoryInterface {
+  private ArrayList<Person> people;
+
+  public PersonRepositoryCSV() {
+    people = new ArrayList<>();
+    loadData("personsmall.csv");
+  }
+
+  private void loadData(String csvFile) {
+    try {
+      File file = ResourceUtils.getFile("classpath:static/" + csvFile);
+      CsvMapper mapper = new CsvMapper(); // Dùng để ánh xạ cột trong CSV với từng trường trong POJO
+      CsvSchema schema = CsvSchema.emptySchema().withHeader(); // Dòng đầu tiên sử dụng làm Header
+      ObjectReader oReader = mapper.readerFor(Person.class).with(schema); // Cấu hình bộ đọc CSV phù hợp với kiểu
+      Reader reader = new FileReader(file);
+      MappingIterator<Person> mi = oReader.readValues(reader); // Iterator đọc từng dòng trong file
+      while (mi.hasNext()) {
+        Person person = mi.next();
+        people.add(person);
+      }
+    } catch (IOException e) {
+      System.out.println(e);   
+    }
+  }
+
+  @Override
+  public List<Person> getAll() {
+    return people;
+  }
 
   @Override
   public HashMap<String, Integer> findTop5Citis() {
@@ -25,11 +65,7 @@ public class PersonRepositoryCSV implements PersonRepositoryInterface {
     return null;
   }
 
-  @Override
-  public List<Person> getAll() {
-    // TODO Auto-generated method stub
-    return null;
-  }
+  
 
   @Override
   public List<String> getSortedCities() {

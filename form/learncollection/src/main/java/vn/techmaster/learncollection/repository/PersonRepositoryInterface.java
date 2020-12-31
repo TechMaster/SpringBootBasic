@@ -6,6 +6,7 @@ import java.util.List;
 import vn.techmaster.learncollection.model.Person;
 
 public interface PersonRepositoryInterface {
+  
   List<Person> getAll(); //Liệt kê danh sách tất cả
 
   List<Person> sortPeopleByFullName(); //Liệt kê danh sách sắp xếp theo tên full name từ A-Z
