@@ -31,6 +31,22 @@ public Car car() {
   return new Car(engine); //Construction based Dependency Injection, truyền engine vào tham số của Car constructor
 }
 ```
+**Chú ý:**
+Với những class được annotated bởi ```@Component```, ```@Controller```, ```@Service```, ```@Respository``` , chúng ta phải sử dụng phương pháp inject qua constructor dùng ```@Autowired```
+
+Xem [FunRepository.java](src/main/java/vn/techmaster/demobean/bean/FunRepository.java)
+```java
+@Repository
+public class FunRepository {
+  @Autowired
+  public FunRepository(@Value("${engineType}") String engineType) {
+    System.out.println("FunRepository :" + engineType);
+  }  
+}
+```
+
+Ở đây tôi inject giá trị ```engineType``` lưu trong file cấu hình [application.properties](src/main/resources/application.properties). Constructor của FunRepository cần được đánh dấu với ```@Autowired``` và trong tham số truyền vào cần thêm ```@Value("${engineType}")``` để lấy giá trị từ cấu hình gán vào tham số ```engineType```
+
 
 ## Cách 2: Setter Based Injection
 Hãy xem file [ChassisConfig.java](src/main/java/vn/techmaster/demobean/configuration/ChassisConfig.java) ở phương thức ```public Chassis chassis()``` trả về Bean kiểu Chassis
@@ -68,5 +84,7 @@ public class Car {
   ...  
 }
 ```
+
+
 ## Tham khảo
 - [Intro to Inversion of Control and Dependency Injection with Spring](https://www.baeldung.com/inversion-control-and-dependency-injection-in-spring)

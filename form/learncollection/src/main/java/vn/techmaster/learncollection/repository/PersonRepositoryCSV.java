@@ -23,13 +23,9 @@ import vn.techmaster.learncollection.model.Person;
 
 @Repository
 public class PersonRepositoryCSV implements PersonRepositoryInterface {
-  @Autowired
-  @Value("${csvFile}")  
-  private String csvFile;
-
   private ArrayList<Person> people;
-
-  public PersonRepositoryCSV(String csvFile) {
+  @Autowired
+  public PersonRepositoryCSV(@Value("${csvFile}") String csvFile) {
     people = new ArrayList<>();
     loadData(csvFile);
   }

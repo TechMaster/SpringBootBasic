@@ -26,8 +26,16 @@ class PersonRepositoryTest {
 	@Test
 	public void getSortedCities(){
 		List<String> sortedCities = personRepository.getSortedCities();
+		sortedCities.forEach(System.out::println);
+	/*
+		Cách này viết dài
 		assertThat(sortedCities).contains("Paris", "Dubai");
-		assertThat(sortedCities).isSortedAccordingTo(Comparator.naturalOrder());
+		assertThat(sortedCities).isSortedAccordingTo(Comparator.naturalOrder());*/
+
+		//Cách này chain các điều kiện test với nhau ngắn gọn và đẹp hơn
+		assertThat(sortedCities).isSortedAccordingTo(Comparator.naturalOrder())
+		.contains("Paris", "Dubai", "Hanoi", "Bejing");
+
 	}
 
 }
