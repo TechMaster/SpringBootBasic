@@ -66,8 +66,9 @@ public class PersonRepositoryCSV implements PersonRepositoryInterface {
 
   @Override
   public List<String> getSortedJobs() {
-    // TODO Auto-generated method stub
-    return null;
+    return people.stream().
+    map(Person::getJob).
+    sorted().collect(Collectors.toList());
   }
 
   @Override

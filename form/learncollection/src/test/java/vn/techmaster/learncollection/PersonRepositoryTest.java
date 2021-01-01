@@ -23,10 +23,10 @@ class PersonRepositoryTest {
 		assertThat(people).hasSize(20);		
 	}
 
-	@Test
+	@Test	
 	public void getSortedCities(){
 		List<String> sortedCities = personRepository.getSortedCities();
-		sortedCities.forEach(System.out::println);
+		sortedCities.forEach(System.out::println);  //In theo tất các thành phố ra để kiểm tra xem có sắp xếp không
 	/*
 		Cách này viết dài
 		assertThat(sortedCities).contains("Paris", "Dubai");
@@ -35,6 +35,15 @@ class PersonRepositoryTest {
 		//Cách này chain các điều kiện test với nhau ngắn gọn và đẹp hơn
 		assertThat(sortedCities).isSortedAccordingTo(Comparator.naturalOrder())
 		.contains("Paris", "Dubai", "Hanoi", "Bejing");
+	}
+
+	@Test	
+	public void getSortedJobs(){
+		List<String> sortedJobs = personRepository.getSortedJobs();
+		sortedJobs.forEach(System.out::println); 
+
+		assertThat(sortedJobs).isSortedAccordingTo(Comparator.naturalOrder())
+		.contains("Pole Dancer", "Bartender", "Banker", "Soldier");
 
 	}
 
