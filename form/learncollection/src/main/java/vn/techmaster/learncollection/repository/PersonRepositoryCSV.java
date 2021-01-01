@@ -24,6 +24,7 @@ import vn.techmaster.learncollection.model.Person;
 @Repository
 public class PersonRepositoryCSV implements PersonRepositoryInterface {
   private ArrayList<Person> people;
+
   @Autowired
   public PersonRepositoryCSV(@Value("${csvFile}") String csvFile) {
     people = new ArrayList<>();
@@ -43,7 +44,7 @@ public class PersonRepositoryCSV implements PersonRepositoryInterface {
         people.add(person);
       }
     } catch (IOException e) {
-      System.out.println(e);   
+      System.out.println(e);
     }
   }
 
@@ -54,21 +55,18 @@ public class PersonRepositoryCSV implements PersonRepositoryInterface {
 
   @Override
   public List<String> getSortedCities() {
-    /*return people.stream().
-    sorted(Comparator.comparing(Person::getCity)).
-    map(Person::getCity).collect(Collectors.toList());*/
+    /*
+     * return people.stream(). sorted(Comparator.comparing(Person::getCity)).
+     * map(Person::getCity).collect(Collectors.toList());
+     */
 
-    return people.stream().
-    map(Person::getCity).
-    sorted().collect(Collectors.toList());
+    return people.stream().map(Person::getCity).sorted().collect(Collectors.toList());
 
   }
 
   @Override
   public List<String> getSortedJobs() {
-    return people.stream().
-    map(Person::getJob).
-    sorted().collect(Collectors.toList());
+    return people.stream().map(Person::getJob).sorted().collect(Collectors.toList());
   }
 
   @Override
@@ -89,10 +87,6 @@ public class PersonRepositoryCSV implements PersonRepositoryInterface {
     return null;
   }
 
-  
-
-  
-
   @Override
   public HashMap<String, Integer> groupJobByCount() {
     // TODO Auto-generated method stub
@@ -107,6 +101,36 @@ public class PersonRepositoryCSV implements PersonRepositoryInterface {
 
   @Override
   public List<Person> sortPeopleByFullName() {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public HashMap<String, Float> averageCityAge() {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public HashMap<String, Float> averageJobAge() {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public HashMap<String, Float> averageJobSalary() {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public List<String> find5CitiesHaveMostSpecificJob(String job) {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public HashMap<String, Float> top5HighestSalaryCities() {
     // TODO Auto-generated method stub
     return null;
   }

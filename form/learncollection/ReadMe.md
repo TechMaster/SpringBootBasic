@@ -68,7 +68,9 @@ Gợi ý nên dùng thêm thư viện [Guava của Google](https://github.com/go
 
 - [Immutable Collection](https://github.com/google/guava/wiki/ImmutableCollectionsExplained)
 - [New Collection Types](https://github.com/google/guava/wiki/NewCollectionTypesExplained)
-
+- [Implementing GroupBy using Google guava Multimap and Function](http://www.gregbugaj.com/?p=228)
+- [Guide to Guava Multiset](https://www.baeldung.com/guava-multiset)
+- [Guava – Sets](https://www.baeldung.com/guava-sets)
 -----
 ## Hướng dẫn làm bài tập này
 

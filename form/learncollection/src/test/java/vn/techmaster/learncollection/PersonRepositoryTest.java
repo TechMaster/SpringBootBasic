@@ -34,7 +34,7 @@ class PersonRepositoryTest {
 
 		//Cách này chain các điều kiện test với nhau ngắn gọn và đẹp hơn
 		assertThat(sortedCities).isSortedAccordingTo(Comparator.naturalOrder())
-		.contains("Paris", "Dubai", "Hanoi", "Bejing");
+		.contains("Berlin", "Budapest", "Buenos Aires", "Copenhagen", "Hanoi", "Jakarta","Mexico City","Zagreb");
 	}
 
 	@Test	
@@ -43,7 +43,7 @@ class PersonRepositoryTest {
 		sortedJobs.forEach(System.out::println); 
 
 		assertThat(sortedJobs).isSortedAccordingTo(Comparator.naturalOrder())
-		.contains("Pole Dancer", "Bartender", "Banker", "Soldier");
+		.contains("Pole Dancer", "Bartender", "Developer", "Personal Trainer", "Soldier", "Teacher", "Taxi Driver", "Nurse", "Musician");
 
 	}
 

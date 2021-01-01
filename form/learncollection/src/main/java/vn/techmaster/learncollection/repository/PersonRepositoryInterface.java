@@ -41,4 +41,10 @@ public interface PersonRepositoryInterface {
 
   HashMap<String, String> findTopJobInCity(); //Ở mỗi thành phố, tìm nghề nào có nhiều người làm nhất
 
+  HashMap<String, Float> averageJobSalary(); //Ứng với mỗi nghề nghiệp (job - String), tính mức lương trung bình (float)
+
+  HashMap<String, Float> top5HighestSalaryCities(); //Tìm 5 thành phố có mức lương trung bình cao nhất, sắp xếp từ cao xuống thấp
+
+  HashMap<String, Float> averageJobAge(); //Ứng với mỗi loại job hãy tính độ tuổi trung bình
+
 }
