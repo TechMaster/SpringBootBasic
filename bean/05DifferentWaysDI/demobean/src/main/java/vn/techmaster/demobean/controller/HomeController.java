@@ -7,16 +7,22 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import vn.techmaster.demobean.bean.Car;
+import vn.techmaster.demobean.bean.FunRepository;
 
 @Controller
 public class HomeController {
 
   @Autowired
-  Car mycar; //Lấy bean có tên là car
+  Car car; //Lấy bean có tên là car
+
+  @Autowired
+  FunRepository funRepo;
+
 
   @ResponseBody
   @GetMapping(value = "/", produces=MediaType.TEXT_HTML_VALUE)
   public String getHome() {
-    return mycar.toString();
+    
+    return car.toString();
   }
 }

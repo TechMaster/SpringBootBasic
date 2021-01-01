@@ -7,12 +7,15 @@ import java.io.Reader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.databind.MappingIterator;
 import com.fasterxml.jackson.databind.ObjectReader;
 import com.fasterxml.jackson.dataformat.csv.CsvMapper;
 import com.fasterxml.jackson.dataformat.csv.CsvSchema;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.ResourceUtils;
 
@@ -20,11 +23,15 @@ import vn.techmaster.learncollection.model.Person;
 
 @Repository
 public class PersonRepositoryCSV implements PersonRepositoryInterface {
+  @Autowired
+  @Value("${csvFile}")  
+  private String csvFile;
+
   private ArrayList<Person> people;
 
-  public PersonRepositoryCSV() {
+  public PersonRepositoryCSV(String csvFile) {
     people = new ArrayList<>();
-    loadData("personsmall.csv");
+    loadData(csvFile);
   }
 
   private void loadData(String csvFile) {
@@ -50,6 +57,24 @@ public class PersonRepositoryCSV implements PersonRepositoryInterface {
   }
 
   @Override
+  public List<String> getSortedCities() {
+    /*return people.stream().
+    sorted(Comparator.comparing(Person::getCity)).
+    map(Person::getCity).collect(Collectors.toList());*/
+
+    return people.stream().
+    map(Person::getCity).
+    sorted().collect(Collectors.toList());
+
+  }
+
+  @Override
+  public List<String> getSortedJobs() {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
   public HashMap<String, Integer> findTop5Citis() {
     // TODO Auto-generated method stub
     return null;
@@ -69,17 +94,7 @@ public class PersonRepositoryCSV implements PersonRepositoryInterface {
 
   
 
-  @Override
-  public List<String> getSortedCities() {
-    // TODO Auto-generated method stub
-    return null;
-  }
-
-  @Override
-  public List<String> getSortedJobs() {
-    // TODO Auto-generated method stub
-    return null;
-  }
+  
 
   @Override
   public HashMap<String, Integer> groupJobByCount() {

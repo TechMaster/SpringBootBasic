@@ -38,7 +38,7 @@ public class PathController {
     return "Food ID: " + foodId + ", type: " + type;
   }
 
-  http://localhost:8080//api/foos?id=abc&type=mexico
+  //http://localhost:8080//api/foos?id=abc&type=mexico
   @GetMapping("/api/foos")
   @ResponseBody
   public String getFoos(@RequestParam Map<String,String> allParams) {
