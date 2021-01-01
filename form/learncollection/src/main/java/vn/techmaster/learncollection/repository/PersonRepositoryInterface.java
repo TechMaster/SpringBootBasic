@@ -9,7 +9,7 @@ public interface PersonRepositoryInterface {
   
   List<Person> getAll(); //Liệt kê danh sách tất cả
 
-  List<Person> sortPeopleByFullName(); //Liệt kê danh sách sắp xếp theo tên full name từ A-Z
+  List<Person> sortPeopleByFullNameReversed(); //Liệt kê danh sách sắp xếp theo tên full name từ Z-A
 
   List<String> getSortedJobs(); //Lấy danh sách tất cả nghề nghiệp đã được sắp xếp từ A-Z
 
@@ -46,5 +46,9 @@ public interface PersonRepositoryInterface {
   HashMap<String, Float> top5HighestSalaryCities(); //Tìm 5 thành phố có mức lương trung bình cao nhất, sắp xếp từ cao xuống thấp
 
   HashMap<String, Float> averageJobAge(); //Ứng với mỗi loại job hãy tính độ tuổi trung bình
+
+  HashMap<String, Float> averageCityAge(); //Ứng với mỗi thành phố hãy tính độ tuổi trung bình
+
+  List<String> find5CitiesHaveMostSpecificJob(String job); //Với một nghề cụ thể, hãy tìm ra 5 thành phố có nhiều làm nghề đó nhất
 
 }

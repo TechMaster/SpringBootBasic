@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -54,14 +55,17 @@ public class PersonRepositoryCSV implements PersonRepositoryInterface {
   }
 
   @Override
+  public List<Person> sortPeopleByFullNameReversed() {
+    return people.stream().sorted(Comparator.comparing(Person::getFullname).reversed()).collect(Collectors.toList());
+  }
+
+  @Override
   public List<String> getSortedCities() {
     /*
      * return people.stream(). sorted(Comparator.comparing(Person::getCity)).
      * map(Person::getCity).collect(Collectors.toList());
      */
-
     return people.stream().map(Person::getCity).sorted().collect(Collectors.toList());
-
   }
 
   @Override
@@ -99,11 +103,7 @@ public class PersonRepositoryCSV implements PersonRepositoryInterface {
     return null;
   }
 
-  @Override
-  public List<Person> sortPeopleByFullName() {
-    // TODO Auto-generated method stub
-    return null;
-  }
+ 
 
   @Override
   public HashMap<String, Float> averageCityAge() {

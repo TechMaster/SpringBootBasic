@@ -47,4 +47,11 @@ class PersonRepositoryTest {
 
 	}
 
+	@Test
+	public void sortPeopleByFullNameReversed() {
+		List<Person> sortedPeople = personRepository.sortPeopleByFullNameReversed();
+		sortedPeople.forEach(person -> System.out.println(person.getFullname()));
+		assertThat(sortedPeople).isSortedAccordingTo(Comparator.comparing(Person::getFullname).reversed());
+	}
+
 }
