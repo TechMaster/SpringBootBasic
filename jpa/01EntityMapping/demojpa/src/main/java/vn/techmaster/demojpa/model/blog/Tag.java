@@ -1,17 +1,13 @@
-package vn.techmaster.demojpa.model;
+package vn.techmaster.demojpa.model.blog;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-
-import com.google.common.collect.Sets;
 
 import lombok.Data;
 

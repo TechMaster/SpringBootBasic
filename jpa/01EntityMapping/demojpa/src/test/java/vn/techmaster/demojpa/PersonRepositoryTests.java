@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import static org.assertj.core.api.Assertions.assertThat;
 
-import vn.techmaster.demojpa.model.Person;
+import vn.techmaster.demojpa.model.mapping.Person;
 import vn.techmaster.demojpa.repository.PersonRepository;
 
 @DataJpaTest

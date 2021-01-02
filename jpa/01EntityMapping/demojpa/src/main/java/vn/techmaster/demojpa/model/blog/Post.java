@@ -1,4 +1,4 @@
-package vn.techmaster.demojpa.model;
+package vn.techmaster.demojpa.model.blog;
 
 import java.util.Set;
 
@@ -21,8 +21,7 @@ import lombok.Data;
 @Entity(name = "Post")
 @Table(name = "post")
 @Data
-public class Post {
- 
+public class Post { 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id; 

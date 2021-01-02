@@ -1,0 +1,2 @@
+- a unidirectional @OneToMany association
+- a bidirectional @OneToMany association

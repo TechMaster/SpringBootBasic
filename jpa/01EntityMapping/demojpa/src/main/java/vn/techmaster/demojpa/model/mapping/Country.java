@@ -1,4 +1,4 @@
-package vn.techmaster.demojpa.model;
+package vn.techmaster.demojpa.model.mapping;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
