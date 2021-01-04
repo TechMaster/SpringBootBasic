@@ -96,13 +96,33 @@ public class FirstExample {
 
 ## JPA và những công nghệ thao tác CSDL trong liên quan trong Java
 
+1. [JDBC](https://en.wikipedia.org/wiki/Java_Database_Connectivity) thư viện cấp thấp chỉ gửi câu lệnh SQL đến database
+2. [Hibernate](https://hibernate.org/) là một thư viện ORM ổn định, lâu đời, nhiều contributor, sử dụng XML để cấu hình
+3. [Eclipse Link](https://www.eclipse.org/eclipselink/) là một ORM khác, mới hơn, tập trung có những chức năng mới Annotation, bỏ bớt những chức năng cũ. Code của Eclipse tương đồng rất nhiều với code Spring Boot JPA
+4. JPA là thư viện mức cao hơn, sử dụng lại các thư viện ORM cấp thấp hơn như Hibernate và Eclipse Link 
+
+![](images/jpa.png)
+
+**Hỏi:** Spring Boot Data và Spring Boot JPA có liên quan gì đến nhau?
+
+**Đáp:** Spring Boot Data tập hợp nhiều thư viện thao tác dữ liệu. JPA là một trong số đó, nó tập trung kết nối CSDL quan hệ, Relational Database Managment System. Còn có các thư viên khác kết nối MongoDB, Elastic Search, Neo4J
+
+![](images/spring_data.jpg)
+
+Nội dung khoá học Spring Boot tại Techmaster sẽ tập trung vào JPA vì nó thông dụng và căn bản nhất. Sau đó các bạn nên tìm hiểu thêm [Spring Data MongoDB](https://spring.io/projects/spring-data-mongodb) cho dữ liệu phi quan hệ và [Spring Data Elasticsearch](https://spring.io/projects/spring-data-elasticsearch) đánh chỉ mục vào tìm kiếm theo từ khoá.
 
 
+## Các phần tiếp theo chúng ta sẽ học lập trình JPA
 
+1. [Entity Mapping](EntityMapping.md)
+2. [TestEntityManager](TestEntityManager.md)
+3. [Load dữ liệu từ file *.sql](LoadData.md)
+4. [JpaRepository, CRUDRepository](Repository.md)
+5. [One To Many Relationship](OneToMany.md)
+6. [Many to Many Relationship](ManyToMany.md)
+7. [Transaction](Transaction.md)
+8. [Performance Tuning](performancetuning.md)
 
-
-Persistence annotations can be applied at three different levels: class, method, and field
-The @Id annotation indicates not only that the id field is the persistent identifier or primary key for the entity
 
 ## Tham khảo
 - [Spring Boot With H2 Database](https://www.baeldung.com/spring-boot-h2-database)

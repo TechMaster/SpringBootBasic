@@ -7,7 +7,7 @@ import javax.persistence.Table;
 import javax.persistence.AccessType;
 
 @Entity
-//@Table(name = "car")
+@Table(name = "car")
 @Access(AccessType.FIELD) //https://www.logicbig.com/tutorials/java-ee-tutorial/jpa/access-type.html
 /*
 @Id private long id;  --> @Access(AccessType.FIELD)
