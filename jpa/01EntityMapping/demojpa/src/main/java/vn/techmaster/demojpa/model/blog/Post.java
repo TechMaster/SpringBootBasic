@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.persistence.Version;
 
 import com.google.common.collect.Sets;
 
@@ -26,6 +27,8 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id; 
     private String title;
+    @Version
+    private int version;
      
     @Embedded
     private Audit audit = new Audit();
@@ -40,7 +43,7 @@ public class Post {
 
     public Post(String title) {
         this.title = title;
-    }
+    }   
 
     public void addTag(Tag tag) {
         tags.add(tag);
@@ -52,6 +55,5 @@ public class Post {
         tags.remove(tag);
         tag.getPosts().remove(this);
     }
- 
 
 }
