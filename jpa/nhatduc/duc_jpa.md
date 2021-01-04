@@ -1,5 +1,7 @@
 ##JPA là gì?
 
+Người dịch Trần Nhật Đức, lớp Spring Boot 1 A+B, Techmaster 3/2020-3/2021
+
 **Spring Boot JPA**  là một bản ghi chi tiết của Java để quản lý dữ liệu  **quan hệ**  trong các ứng dụng Java. Nó cho phép chúng ta truy cập và lưu trữ dữ liệu giữa các object/class Java và database quan hệ. JPA tuân theo  **Object-Relation Mapping**  (ORM). Nó là một tập hợp các interface. Nó cũng cung cấp một API  **EntityManager**  runtime để xử lý các câu query và giao dịch trên các object dựa trên database. Nó sử dụng ngôn ngữ truy vấn hướng đối tượng độc lập nền tảng JPQL (Java Persistent Query Language).
 
 JPA bao gồm ba lĩnh vực:
