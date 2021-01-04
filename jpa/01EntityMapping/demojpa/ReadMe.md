@@ -1,5 +1,6 @@
 # JPA
-JPA là viết tắt của Java Persistence API. Đây là một công nghệ để giúp ánh xạ, chuyển đổi 2 chiều dữ liệu Java Class/Object vào CSDL quan hệ. Công nghệ này gọi là Object Relational Mapping, viết tắt là ORM.
+JPA là viết tắt của Java Persistence API. Đây là một công nghệ để giúp ánh xạ, chuyển đổi 2 chiều dữ liệu Java Class/Object vào CSDL quan hệ trên nền tảng Java (gồm cả Java, Kotlin, Groovy). Công nghệ này gọi là Object Relational Mapping, viết tắt là ORM.
+
 
 Trước khi có ORM, chúng ta sử dụng các thư viện như ODBC (Windows), JDBC (Java) để kết nối vào CSDL quan hệ, rồi gửi các câu lệnh SQL đến CSDL. CSDL thực hiện lệnh đó rồi trả về kết quả. Ứng dụng sẽ phải bóc tách kết quả theo cách khá thủ công và tốn nhiều dòng code đó là duyệt qua mảng các bản ghi (array of records), ở mỗi dòng (record), lấy ra từng trường, kiểm tra kiểu dữ liệu từng trường
 
@@ -82,9 +83,15 @@ public class FirstExample {
 ``` 
 ## Object Relation Mapping - ORM
 
-Ưu điểm của ORM so với công nghệ kết nối CSDL trước đây JDBC/ODBC là gì?
+**Ưu điểm của ORM so với công nghệ kết nối CSDL trước đây JDBC/ODBC là gì?**
 
+1. Giảm việc lập trình thủ công bóc tách từng trường trong mỗi bản ghi trả về. Thay vào đó lập trình viên làm việc với các class, object vốn đã quen hơn.
+2. Có sẵn nhiều phương thức căn bản để lập trình viên không cần viết lệnh SQL. Hầu hết các lệnh căn bản sẽ tối ưu hơn và bảo mật hơn (tránh được [SQL INJECTION VÀ CÁCH PHÒNG CHỐNG](https://viblo.asia/p/sql-injection-va-cach-phong-chong-OeVKB410lkW))
+3. Nhờ có ORM, mà lập trình viên không còn phải quan tâm qua chi tiết đến từng loại CSDL: H2, SQLite, MySQL, Postgresql, MS-SQL Server, Oracle... Nếu không sử dụng những tính năng đặc thù, hãy những lệnh SQL dành riêng cho từng loại CSDL, thì ứng dụng dễ dàng chuyển đổi giữa các loại CSDL khác nhau.
+
+**Nhược điểm của ORM**
 1. 
+
 
 
 ##
