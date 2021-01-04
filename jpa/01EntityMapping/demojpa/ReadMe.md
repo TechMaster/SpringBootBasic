@@ -90,11 +90,15 @@ public class FirstExample {
 3. Nhờ có ORM, mà lập trình viên không còn phải quan tâm qua chi tiết đến từng loại CSDL: H2, SQLite, MySQL, Postgresql, MS-SQL Server, Oracle... Nếu không sử dụng những tính năng đặc thù, hãy những lệnh SQL dành riêng cho từng loại CSDL, thì ứng dụng dễ dàng chuyển đổi giữa các loại CSDL khác nhau.
 
 **Nhược điểm của ORM**
-1. 
+1. Giữa lập trình hướng đối tượng và lập trình SQL trực tiếp CSDL luôn có những điểm khác biệt: kiểu dữ liệu, cách dữ liệu được truy vấn và lưu. Người ta gọi là [ORM impedance mismatch](https://en.wikipedia.org/wiki/Object%E2%80%93relational_impedance_mismatch). Vấn đề này dẫn đến việc khó khăn trong tối ưu tốc độ và bảo mật trong những trường hợp đặc biệt. Với bất kỳ công nghệ nào, bạn không thể đạt tối ưu ở mọi tiêu chí.
+2. Không thể giải quyết hết lệnh truy vấn phức tạp. Nếu viết câu lệnh SQL đặc thù, dùng kiểu dữ liệu đặc thù của CSDL ví dụ JSONB, Array, Enum thì sẽ không chuyển sang CSDL khác được nữa !
+3. Đôi khi phức tạp hơn mức cần thiết. Lập trình viên vẫn phải học cả ORM và SQL !
+
+## JPA và những công nghệ thao tác CSDL trong liên quan trong Java
 
 
 
-##
+
 
 
 Persistence annotations can be applied at three different levels: class, method, and field
