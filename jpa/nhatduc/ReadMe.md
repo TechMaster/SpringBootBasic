@@ -1,4 +1,4 @@
-##JPA là gì?
+# JPA là gì?
 
 Người dịch Trần Nhật Đức, lớp Spring Boot 1 A+B, Techmaster 3/2020-3/2021
 
@@ -12,7 +12,7 @@ JPA bao gồm ba lĩnh vực:
 
 JPA không phải là một framework. Nó định nghĩa một khái niệm có thể được thực thi bởi bất kỳ framework nào.
 
-##Tại sao chúng ta nên sử dụng JPA?
+## Tại sao chúng ta nên sử dụng JPA?
 
 JPA đơn giản hơn, gọn gàng hơn và ít tốn công sức hơn là JDBC, SQL hay ánh xạ viết tay. JPA thích hợp cho các ứng dụng phức tạp không tuân theo hiệu suất. Ưu điểm chính của JPA so với JDBC là: trong JPA, dữ liệu được biểu thị bằng các object và class trong khi trong JDBC dữ liệu được biểu diễn bằng các bảng và bản ghi. Nó sử dụng POJO để biểu diễn dữ liệu liên tục giúp đơn giản hóa việc lập trình database. Có một số ưu điểm khác của JPA:
 
@@ -53,7 +53,7 @@ Hình sau mô tả kiến trúc các cấp độ class của JPA, cùng các cla
 
 Các class và interface chúng ta đã thảo luận ở trên duy trì một mối quan hệ. Hình dưới đây cho thấy mối quan hệ giữa các class và interface.
 
-![](images\ClassRelationship.png)
+![](images/ClassRelationship.png)
 
 - Mối quan hệ giữa EntityManager và EntiyTransaction là  **1:1**. Có một instance EntityTransaction cho mỗi hoạt động EntityManager.
 - Mối quan hệ giữa EntityManageFactory và EntiyManager là  **một-nhiều**. Nó là một class factory chứa các instance EntityManager.
@@ -70,7 +70,7 @@ Trong ORM, ánh xạ (mapping) các đối tượng Java tới các bảng datab
 
 Trong hình sau, layer ORM là một layer chuyển đổi. Nó điều chỉnh ngôn ngữ của đồ thị object sang ngôn ngữ của SQL và các bảng quan hệ.
 
-![ORM.png](images\ORM.png)
+![ORM.png](images/ORM.png)
 
 Layer ORM tồn tại giữa ứng dụng và database. Nó chuyển đổi các class và object Java để chúng có thể được lưu trữ và quản lý trong database quan hệ. Theo mặc định, tên class trở thành tên của bảng và các trường trở thành cột. Khi một ứng dụng thiết lập, mỗi hàng trong bảng tương ứng với một object.
 
@@ -130,7 +130,7 @@ Spring Boot có thể tự động cấu hình một embedded database như  **H
 
 Trong Spring Boot, chúng ta có thể dễ dàng tích hợp database Apache Derby chỉ bằng cách thêm dependency  **Derby**  vào tệp pom.xml.
 
-```
+```xml
 <dependency>
  <groupId>org.apache.derby</groupId>
  <artifactId>derby</artifactId>
