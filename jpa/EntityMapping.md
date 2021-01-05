@@ -6,7 +6,7 @@
 3. Method
 
 ## @Entity, @Table
-Áp dụng cho Class.
+*Áp dụng cho Class.*
 
 Để ánh xạ (mapping) một Java class vào một bảng CSDL chúng ta sẽ dùng annotation ```@Entity```
 - ```@Entity```: có thuộc tính name đặt tên cho entity trong câu lệnh truy vấn
@@ -66,7 +66,7 @@ Nếu tạo từng đối tượng rồi lưu xuống CSDL thì dùng ```Generat
 ### @Embeddable - @Embedded kiểu nhúng
 ```@Embeddable``` cho phép một nhóm các thuộc tính có thể nhúng vào một class khác. Mục đích để tái sử dụng nhóm các thuộc tính lặp đi lặp lại. Còn ```@Embedded``` chỉ ra điểm nhúng
 
-Hãy tham khảo [Audit.java](src/main/java/vn/techmaster/demojpa/model/blog/Audit.java) và [Post.java](src/main/java/vn/techmaster/demojpa/model/blog/Post.java)
+Hãy tham khảo [Audit.java](01EntityMapping/demojpa/src/main/java/vn/techmaster/demojpa/model/blog/Audit.java)
 **Post.java**
 ```java
 @Entity
@@ -96,11 +96,92 @@ public class Audit {
 }
 ```
 ## @Access và AccessType
-Áp dụng cho Class, Field hoặc Property
+*Áp dụng cho Class, Field hoặc Property*
+
+```@Access``` để cấu hình cách JPA truy cập vào dữ liệu bên trong một đối tượng. Có 3 cách truy cập:
+1. Đọc / ghi trực tiếp vào Field: ```@Access(AccessType.FIELD)```
+2. Đọc qua Getter của property. Ghi qua Setter của Property: ```@Access(AccessType.PROPERTY)```
+3. Trộn lẫn giữa 2 cách này.
+
+Xem [Car.java](01EntityMapping/demojpa/src/main/java/vn/techmaster/demojpa/model/mapping/Car.java)
+
+Áp dụng cấp độ Class
+```java
+@Entity
+@Table(name = "car")
+@Access(AccessType.FIELD)
+public class Car {
+  ...
+}
+```
+
+Áp dụng cấp độ Field (instant variables)
+```java
+@Entity
+@Table(name = "car")
+public class Car {
+  @Id private long id;  //@Access(AccessType.FIELD)
+  ...
+}
+```
+Áp dụng cấp độ Property (getter / setter)
+```java
+@Entity
+@Table(name = "car")
+public class Car {
+  @Id    //Đặt @Id là hiểu @Access(AccessType.PROPERTY)
+  public long getId() {
+    return id;
+  }
+}
+```
+
+Tác giả Thorben Janssen khuyến khích sử dụng ```@Access(AccessType.FIELD)``` vì:
+1. Code dễ đọc hơn
+2. JPA truy cập trực tiếp không qua getter / setter. Tốc độ sẽ nhanh hơn.
+3. Logic đọc - ghi giá trị không bị phụ thuộc getter / setter. Do đó dùng hoặc tuỳ biến getter / setter thoải mái.
+4. Không cần áp dụng ```@Transient``` với các utility method. Ý nghĩa ```@Transient``` sẽ giải thích ở phần sau.
 
 
+Đọc thêm 
+- [Access Strategies in JPA and Hibernate – Which is better, field or property access?](https://thorben-janssen.com/access-strategies-in-jpa-and-hibernate/)
+- [JPA - Access Type](https://www.logicbig.com/tutorials/java-ee-tutorial/jpa/access-type.html)
 
+## @NaturalId
 
-## Đọc thêm
-1. [How to generate primary keys with JPA and Hibernate](https://thorben-janssen.com/jpa-generate-primary-keys/)
-2. [Access Strategies in JPA and Hibernate – Which is better, field or property access?](https://thorben-janssen.com/access-strategies-in-jpa-and-hibernate/)
+Ngoài ```@Id``` JPA còn có ```@NaturalId``` như là một khoá uniqe khác hỗ trợ cho việc tìm kiếm.
+Ví dụ trong nội bộ ứng dụng, tìm kiếm product bằng id dạng numeric cho tốc độ nhanh nhất. Tuy nhiên khi hiện thị ra giao diện web, mỗi product có một unique slug (một đường dẫn gợi nhớ duy nhất). Yêu cầu làm sao chỉ dùng unique slug mà vẫn tìm ra sản phẩm mà không cần id. Lúc này ta dùng ```@NaturalId``` để làm một unique key bổ trợ cho primary key.
+
+```java
+@Entity
+@Table(name = "product")
+public class Product {
+  @Id
+  @GeneratedValue
+  private Long id;
+
+  private String title;
+
+  @NaturalId //<-- Khoá unique bổ trợ thêm
+  @Column(nullable = false, unique = true)
+  private String slug;
+```
+
+Thử nghiệm tìm kiếm qua ```@NaturalId```, xem file [ProductTests.java](01EntityMapping/demojpa/src/test/java/vn/techmaster/demojpa/ProductTests.java)
+
+```java
+@Test
+public void insertAndFindProductByNaturalId() {
+  Product product = new Product();
+  product.setTitle("High-Performance Java persistence");
+  String slug = "high-performance-java-persistence";
+  product.setSlug(slug);
+  em.persist(product);
+  
+  Session session = em.unwrap(Session.class);
+  Product product1 = session.bySimpleNaturalId(Product.class).load(slug);
+  assertThat(product1).isEqualTo(product);
+}
+``
+
+Đọc thêm [The best way to map a @NaturalId business key with JPA and Hibernate](https://vladmihalcea.com/the-best-way-to-map-a-naturalid-business-key-with-jpa-and-hibernate/)

@@ -9,22 +9,7 @@ import javax.persistence.AccessType;
 @Entity
 @Table(name = "car")
 @Access(AccessType.FIELD) //https://www.logicbig.com/tutorials/java-ee-tutorial/jpa/access-type.html
-/*
-@Id private long id;  --> @Access(AccessType.FIELD)
-Cách này có nhiều ưu điểm hơn AccessType.PROPERTY
-https://thorben-janssen.com/access-strategies-in-jpa-and-hibernate/
-
-@Id  --> @Access(AccessType.PROPERTY)
-public long getId() {
-  return id;
-}
-
-Có thể trộn lẫn 
-
-*/
-
 public class Car {
-  //id, model,  maker, year
   @Id private long id;
   private String model;
   private String maker;
@@ -42,7 +27,7 @@ public class Car {
   public void setId(long id) {
     this.id = id;
   }
-  
+  @Access(AccessType.PROPERTY)
   public String getModel() {
     return model;
   }
