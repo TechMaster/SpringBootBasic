@@ -3,13 +3,14 @@
 *Chú ý khi đọc tài liệu hướng dẫn này: JPA, ORM, Hibernate, EclipseLink, JDBC là những công nghệ rất phức tạp. Chúng có nhiều phiên bản, biến thể và cải tiến qua nhiều version khác nhau. Chúng ta chỉ học những gì cần thiết nhất để lập trình. Phần còn lại phải tra cứu thêm sách càng mới càng tốt*
 ## Các nội dung chính
 1. [Entity Mapping](EntityMapping.md)
-2. [Data JPA Test](JPATest.md)
-3. [Load dữ liệu từ file *.sql](LoadData.md)
-4. [JpaRepository, CRUDRepository](Repository.md)
-5. [One To Many Relationship](OneToMany.md)
-6. [Many to Many Relationship](ManyToMany.md)
-7. [Transaction](Transaction.md)
-8. [Performance Tuning](performancetuning.md)
+2. [Lombok](Lombok.md)
+3. [Data JPA Test](JPATest.md)
+4. [Load dữ liệu từ file *.sql](LoadData.md)
+5. [JpaRepository, CRUDRepository](Repository.md)
+6. [One To Many Relationship](OneToMany.md)
+7. [Many to Many Relationship](ManyToMany.md)
+8. [Transaction](Transaction.md)
+9. [Performance Tuning](performancetuning.md)
 
 
 ## JPA là gì?
