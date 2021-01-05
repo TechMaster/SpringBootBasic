@@ -6,7 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.AccessType;
 
-@Entity
+@Entity(name ="oto")
 @Table(name = "car")
 @Access(AccessType.FIELD) //https://www.logicbig.com/tutorials/java-ee-tutorial/jpa/access-type.html
 public class Car {
