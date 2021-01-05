@@ -8,9 +8,9 @@ import javax.persistence.AccessType;
 
 @Entity(name ="oto")
 @Table(name = "car")
-@Access(AccessType.FIELD) //https://www.logicbig.com/tutorials/java-ee-tutorial/jpa/access-type.html
+//@Access(AccessType.FIELD) //https://www.logicbig.com/tutorials/java-ee-tutorial/jpa/access-type.html
 public class Car {
-  @Id private long id;
+  private long id;
   private String model;
   private String maker;
   private int year;
@@ -20,6 +20,7 @@ public class Car {
     return "Car [id=" + id + ", maker=" + maker + ", model=" + model + ", year=" + year + "]";
   }
   
+  @Id
   public long getId() {
     return id;
   }
