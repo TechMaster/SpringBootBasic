@@ -1,4 +1,4 @@
 # Session Cookie
 
-Phần này do thầy Nguyễn Trường Thịnh biên soạn
+Phần này do thầy Trần Thịnh biên soạn
 ![](mindmap.jpg)
