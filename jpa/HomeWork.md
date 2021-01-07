@@ -68,7 +68,7 @@ Nên tạo ra một ```@Service``` tên là ```AuthService``` để lộ ra các
 - hashPassword
 - isAdmin
 
-Đừng lao vào làm những hàm khó, chọn hàm dễ làm trước. Chạy ok, mới làm hàng phức tạp.
+Đừng lao vào làm những hàm khó, chọn hàm dễ làm trước. Chạy ok, mới làm hàm phức tạp.
 
 Tất cả kiến thức các bạn đều đã được học rồi. Giờ xem lại các ví dụ mẫu rồi code thôi.
 Lịch chấm bài trong 7 ngày kể từ hôm giao bài tập. Nộp muộn trừ 2 điểm.

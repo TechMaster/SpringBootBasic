@@ -1,21 +1,23 @@
 package vn.techmaster.demojpa.model.blog;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
 import com.google.common.collect.Sets;
-
-import javax.persistence.JoinColumn;
-
 
 import lombok.Data;
 
@@ -31,7 +33,35 @@ public class Post {
      
     @Embedded
     private Audit audit = new Audit();
+
+    //----- Chỗ này chuyên viết các constructor
+    public Post(String title) {
+        this.title = title;
+    }
  
+    //Quan hệ một nhiều:
+    //Một post có nhiều comment
+    @OneToMany(
+        cascade = CascadeType.ALL,
+        orphanRemoval = true
+    )
+    @JoinColumn(name = "post_id")
+    private List<Comment> comments = new ArrayList<>();
+    public void addComment(Comment comment) {
+        comments.add(comment);
+        comment.setPost(this);
+    }
+
+    public void removeComment(Comment comment) {
+        comments.remove(comment);
+        comment.setPost(null);
+    }
+
+    //------------
+    //Quan hệ nhiều nhiều:
+    //- Một post được phân loại bởi 1 hay nhiều tag. 
+    //- Ngược lại mỗi tag dùng để phân loại nhiều post
+
     @ManyToMany
     @JoinTable(
         name = "post_tag",
@@ -40,19 +70,14 @@ public class Post {
     )
     private Set<Tag> tags = Sets.newHashSet(); //Dùng Guava Set
 
-    public Post(String title) {
-        this.title = title;
-    }   
-
     public void addTag(Tag tag) {
         tags.add(tag);
-        tag.getPosts().add(this);
-        
+        tag.getPosts().add(this);        
     }
  
     public void removeTag(Tag tag) {
         tags.remove(tag);
         tag.getPosts().remove(this);
-    }
+    }    
 
 }
