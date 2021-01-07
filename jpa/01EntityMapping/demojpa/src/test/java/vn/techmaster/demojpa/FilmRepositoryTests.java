@@ -4,14 +4,11 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.data.domain.Sort;
-import org.springframework.data.domain.Sort.Direction;
 
 import vn.techmaster.demojpa.model.mapping.Film;
 import vn.techmaster.demojpa.repository.FilmRepository;
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 

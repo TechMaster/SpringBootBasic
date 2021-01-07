@@ -152,6 +152,12 @@ Tác giả Thorben Janssen khuyến khích sử dụng ```@Access(AccessType.FIE
 Ngoài ```@Id``` JPA còn có ```@NaturalId``` như là một khoá uniqe khác hỗ trợ cho việc tìm kiếm.
 Ví dụ trong nội bộ ứng dụng, tìm kiếm product bằng id dạng numeric cho tốc độ nhanh nhất. Tuy nhiên khi hiện thị ra giao diện web, mỗi product có một unique slug (một đường dẫn gợi nhớ duy nhất). Yêu cầu làm sao chỉ dùng unique slug mà vẫn tìm ra sản phẩm mà không cần id. Lúc này ta dùng ```@NaturalId``` để làm một unique key bổ trợ cho primary key.
 
+Khác biệt giữa ```@Id``` primary key và ```@NaturalId``` là gì?
+
+- Primary Key và NaturalId luôn là Unique và Not Null
+- Primary Key nên giữ nguyên, ổn định, tuyết đối không thay đổi. Nó được dùng để join các bảng khác
+- NaturalID có thể thay đổi ví dụ như slug, email, số di động. Nó chỉ dùng để tìm kiếm đối tượng chứ không nên dùng để join các bảng khác.
+
 ```java
 @Entity
 @Table(name = "product")
@@ -182,6 +188,96 @@ public void insertAndFindProductByNaturalId() {
   Product product1 = session.bySimpleNaturalId(Product.class).load(slug);
   assertThat(product1).isEqualTo(product);
 }
-``
+```
 
 Đọc thêm [The best way to map a @NaturalId business key with JPA and Hibernate](https://vladmihalcea.com/the-best-way-to-map-a-naturalid-business-key-with-jpa-and-hibernate/)
+
+## @Transient
+
+Thuộc tính nhất thời - @Transient chỉ định những thuộc tính sẽ không được lưu trữ xuống CSDL.
+
+Hãy xem file [Employee.java](01EntityMapping/demojpa/src/main/java/vn/techmaster/demojpa/model/mapping/Employee.java). Thuộc tính ```fullname``` mà một thuộc tính nhất thời, nó không được gán qua setter, nó được trả về qua
+getter
+```java
+public String getFullname() {
+  return firstName + " " + lastName;
+}
+```
+
+
+```java
+@Entity
+@Table(name = "employee")
+public class Employee {
+  @Id  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private long id;
+
+  @Transient private String fullname;
+  private String firstName;
+  private String lastName;
+
+  public Long getId() {
+    return id;
+  }
+
+  public String getFullname() {
+    return firstName + " " + lastName;
+  }
+}
+```
+Hãy chạy thử unit test ở file [EmployeeTests.java](01EntityMapping/demojpa/src/test/java/vn/techmaster/demojpa/EmployeeTests.java).
+
+Tham khảo tiếp file [Audit.java](01EntityMapping/demojpa/src/main/java/vn/techmaster/demojpa/model/blog/Audit.java). Đối tượng ```private LoggedUser loggedUser``` dùng để lấy id của người dùng đăng nhập. Rõ ràng chúng ta không cần phải lưu đối tượng này xuống database vậy hãy đánh dấu nó là ```@Transient```
+
+```java
+@Embeddable
+@Data
+public class Audit {
+    @Transient //Phải dùng @Transient để không bổ xung loggedUser thành một cột
+    @Autowired
+    private LoggedUser loggedUser;  
+```
+
+Xem tiếp file [Person.java](01EntityMapping/demojpa/src/main/java/vn/techmaster/demojpa/model/mapping/Person.java), thuộc tính ```private int age``` không nên lưu xuống cơ sở dữ liệu mà nó được tính động ở getter ```getAge()``` theo giá trị của ```birthday```
+
+```java
+@Transient
+private int age;
+public int getAge(){
+  Date safeDate = new Date(birthday.getTime());
+  LocalDate birthDayInLocalDate = safeDate.toInstant()
+  .atZone(ZoneId.systemDefault())
+  .toLocalDate();
+  return Period.between(birthDayInLocalDate, LocalDate.now()).getYears();
+}
+```
+
+## @Column
+```@Column``` là annotation bổ xung tính chất cho cột tương ứng với trường trong class. Nó có tham số như sau:
+- ```String name```: đặt lên tên cột khác với tên trường
+- ```boolean unique() default false;```: đặt yêu cầu duy nhất nếu là true. Mặc định là false
+- ```boolean nullable() default true;```: cho phép cột có giá trị null không. Mặc định là true
+- ```boolean updatable() default true;```: cho phép cột có được sửa đổi dữ liệu không. Mặc định là true
+- ```String columnDefinition() default "";```: tuỳ biến luôn cả cách tạo ra cột bằng cách viết trực tiếp câu lệnh SQL DDL (Data Defintion Language)
+- ```int length() default 255;```: định số ký tự nếu là String
+
+
+## @Temporal
+
+Dữ liệu nạp vào bảng person kiểu như thế này
+```sql
+insert into person (id, fullname, job, gender, city, salary, birthday) values (1, 'Riobard Folli', 'Project Manager', 'Male', 'Berlin', 10022, '1970-02-19');
+```
+Trong lệnh Insert dữ liệu cho cột birthday là String ```'1970-02-19'```. Nếu muốn chuyển sang kiểu Date thực thụ trong CSDL , ta sẽ xử lý như sau
+```java
+  @Column(name="birthday")
+  @Temporal(TemporalType.DATE)
+  private Date birthday;
+```
+
+TemporalType hỗ trợ 3 kiểu:
+1. DATE 
+2. TIME: java.sql.Time
+3. TIMESTAMP: java.sql.Timestamp
+
+

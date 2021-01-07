@@ -19,10 +19,6 @@ public class Audit {
     @Transient //Phải dùng @Transient để không bổ xung loggedUser thành một cột
     @Autowired
     private LoggedUser loggedUser;  
-    /* LoggedUser là một @Component, khi ứng dụng SpringBoot chạy nó được nạp vào ApplicationContext
-    Tuy nhiên khi kiểm thử với @DataJpaTest, sẽ không có ApplicationContext nữa, nên loggedUser = null
-    */
-
  
     @Column(name = "created_on")
     private LocalDateTime createdOn;
