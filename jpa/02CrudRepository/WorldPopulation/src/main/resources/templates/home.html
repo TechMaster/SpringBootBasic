@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>World Population</title>
+</head>
+<body>
+  <table>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Population</th>
+    </tr>
+
+    <#list countries as country>
+        <tr>
+            <td>${country.id}</td>
+            <td><a href="/${country.id}">${country.name}</a></td>
+            <td>${country.population}</td>
+        </tr>
+    </#list>
+</table>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <p><a href="/">Back</a></p>
+  <h1>
+    <#if country??>
+      ${country.id} - ${country.name} - ${country.population}
+    <#else>
+      No country found
+    </#if>
+    </h1>
+</body>
+</html>

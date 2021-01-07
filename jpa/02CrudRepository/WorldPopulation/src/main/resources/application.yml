@@ -1,0 +1,21 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
+  
+spring:
+  main:
+    banner-mode: "CONSOLE"
+  jpa:
+    database: h2
+    hibernate:
+      dialect: org.hibernate.dialect.H2Dialect
+      ddl-auto: create-drop
+  freemarker:
+    template-loader-path: classpath:/templates
+    suffix: .html
+  
+logging:
+  level:
+    org:
+      springframework: ERROR

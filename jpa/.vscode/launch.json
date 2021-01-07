@@ -23,6 +23,12 @@
       "request": "launch",
       "mainClass": "vn.techmaster.movies.MoviesApplication",
       "projectName": "movies"
+    },
+    {
+      "type": "java",
+      "name": "Launch MavenWrapperDownloader",
+      "request": "launch",
+      "mainClass": "MavenWrapperDownloader"
     }
   ]
 }
