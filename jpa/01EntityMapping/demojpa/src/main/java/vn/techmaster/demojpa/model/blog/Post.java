@@ -43,7 +43,7 @@ public class Post {
     //Một post có nhiều comment
     @OneToMany(
         cascade = CascadeType.ALL,
-        orphanRemoval = true
+        orphanRemoval = false
     )
     @JoinColumn(name = "post_id")
     private List<Comment> comments = new ArrayList<>();

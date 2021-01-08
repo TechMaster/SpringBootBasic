@@ -22,7 +22,8 @@ public class EmployeeTests {
 
     Employee emp = new Employee("Trịnh", "Cường");
     tem.persist(emp);
-
+    tem.flush();
+    System.out.println(emp.getId());
     assertThat(emp.getId()).isGreaterThan(10); //employee.sql ban đầu có 10 bản ghi, thêm một đối tượng nữa id sẽ phải lớn hơn 10
     assertThat(emp.getFullname()).isEqualTo("Trịnh Cường");
 

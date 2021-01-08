@@ -47,13 +47,13 @@ public class PostCommentTest {
     assertThat(comment2.getPost().getId()).isEqualTo(post1.getId());
   }
 
-  @Test
+  /*@Test
   public void testCascadePersist() {
     System.out.println(comment1.getId());
 
     assertThat(post1.getComments()).hasSize(2);
     assertThat(comment2.getPost().getId()).isEqualTo(post1.getId());
-  }
+  }*/
 
 
 
