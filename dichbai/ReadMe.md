@@ -6,9 +6,9 @@ Mỗi bạn trong lớp sẽ dịch 5 bài.
 1. Hãy xem danh sách các bài viết rồi đăng ký với cô Thanh Thương
 2. Ghi rõ link đến văn bản gốc, tên tiếng Anh đầy đủ
 3. Ghi rõ họ và tên người dịch. Nên có cả email để nhà tuyển dụng có thể tìm thế profile của bạn. Cơ hội việc làm đó !
-4. Hightlight mã nguồn đây đủ
+4. Hightlight mã nguồn đầy đủ
 5. Chia sẻ lên blog chung của Techmaster. Liên cô Thanh Hương, huong@techmaster.vn để được cấp quyền tác giả viết bài
-Cuối khoá học, chúng ta sẽ làm một bài tổng kết rồi link để các bài dịch. Mục tiêu càng có nhiều người đọc bài viết của các bạn càng tốt.
+Cuối khoá học, chúng ta sẽ làm một bài tổng kết rồi link để các bài dịch. Mục tiêu càng có nhiều người đọc bài viết của các bạn càng tốt --> Search Engine Optimization.
 
 
 **Nên làm**
@@ -17,11 +17,7 @@ Code ví dụ thường đã cũ, bạn có thể nâng cấp, hoặc cải ti�
 2. Gửi bài cho bạn cùng học để review, sửa lỗi chính tả, cũng như đọc xem có dễ hiểu không
 3. Giữ nguyên các từ tiếng Anh không có từ tiếng Việt tương đương, hoặc là từ khoá, tên class, tên method. Mục tiêu là người đọc dễ hiểu, chứ không nên dịch 1-1 máy móc
 
-**Không nên**
-1. Dịch lấy thành tích cho đủ. Bạn sẽ học được rất nhiều nếu
-  
-
-Chúc các bạn thành công và sớm tìm được việc làm ứng ý
+**Chúc các bạn dịch vui và tìm được việc làm Java Spring Boot ưng ý**
 
 
 ## Java
