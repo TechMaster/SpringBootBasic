@@ -130,6 +130,9 @@ Code cũng rất hay các bạn nhé. Mà lại giống Java
 
 ## Unit Test
 - [Spring Boot - Application Unit Testing with @SpringBootTest](https://www.logicbig.com/tutorials/spring-framework/spring-boot/boot-application-testing.html)
+- [Difference Between @Mock and @MockBean](https://rieckpil.de/difference-between-mock-and-mockbean-spring-boot-applications/)
+- [Fix No Qualifying Spring Bean Error For Spring Boot Tests](https://rieckpil.de/fix-no-qualifying-spring-bean-error-for-spring-boot-tests/)
+
 ### Mockito
 - [Danh sách các bài hướng dẫn về Mockito](https://www.logicbig.com/tutorials/unit-testing/mockito.html)
 - [Mockito - Creating Spy Of Real Objects](https://www.logicbig.com/tutorials/unit-testing/mockito/creating-spy-of-real-object.html)

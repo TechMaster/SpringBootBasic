@@ -6,9 +6,8 @@ import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
@@ -17,7 +16,8 @@ import javax.persistence.Table;
 import javax.persistence.JoinColumn;
 
 import org.hibernate.annotations.NaturalId;
-
+import java.nio.ByteBuffer;
+import java.util.UUID;
 import lombok.Data;
 
 @Entity
@@ -27,16 +27,22 @@ public class User {
   @Id
   private String id;
 
+  @Column(nullable = false, length = 64)
   private String fullname;
 
   @NaturalId
+  @Column(unique = true, nullable = false)
   private String email;
 
+  @Column(nullable = false)
   private String hashedPassword;
 
-  public User(String fullname, String email, String password) {
+  public User(String fullname, String email, String hashedPassword) {
+    //Generate short id https://gist.github.com/LeeSanghoon/5811136
+    this.id = Long.toString(ByteBuffer.wrap(UUID.randomUUID().toString().getBytes()).getLong(), Character.MAX_RADIX);
     this.fullname = fullname;
     this.email = email;
+    this.hashedPassword = hashedPassword;
   }
 
 

@@ -2,9 +2,19 @@ package vn.techmaster.authen.service;
 
 import java.util.List;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+
 import vn.techmaster.authen.model.User;
 
+@Service
 public class AuthenService implements IAuthenService {
+ 
+  private final PasswordEncoder encoder;
+
+  public AuthenService(PasswordEncoder encoder){
+    this.encoder = encoder;
+  }
 
   @Override
   public void createAccount(String fullname, String email, String password) throws AuthenException {
@@ -37,9 +47,8 @@ public class AuthenService implements IAuthenService {
   }
 
   @Override
-  public String hashPassword(String password) {
-    // TODO Auto-generated method stub
-    return null;
+  public String hashPassword(String password) {    
+    return encoder.encode(password);
   }
 
   @Override
