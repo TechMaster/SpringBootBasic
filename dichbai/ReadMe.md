@@ -5,7 +5,7 @@ Mỗi bạn trong lớp sẽ dịch 5 bài.
 **Quy định khi dịch bài:**
 1. Hãy xem danh sách các bài viết rồi đăng ký với cô Thanh Thương
 2. Ghi rõ link đến văn bản gốc, tên tiếng Anh đầy đủ
-3. Ghi rõ họ và tên người dịch. Nên có cả email để nhà tuyển dụng có thể tìm thế profile của bạn. Cơ hội việc làm đó !
+3. Ghi rõ họ và tên người dịch. Nên có cả email để nhà tuyển dụng có thể tìm thấy profile của bạn. Cơ hội việc làm đó !
 4. Hightlight mã nguồn đầy đủ
 5. Chia sẻ lên blog chung của Techmaster. Liên cô Thanh Hương, huong@techmaster.vn để được cấp quyền tác giả viết bài
 Cuối khoá học, chúng ta sẽ làm một bài tổng kết rồi link để các bài dịch. Mục tiêu càng có nhiều người đọc bài viết của các bạn càng tốt --> Search Engine Optimization.
@@ -29,7 +29,7 @@ Code ví dụ thường đã cũ, bạn có thể nâng cấp, hoặc cải ti�
 - [Spring cookies tutorial](http://zetcode.com/spring/cookies/ )
 - [Guide to Spring Session](https://www.baeldung.com/spring-session)
 - [Spring Boot + Session Management Hello World Example](https://www.javainuse.com/spring/springboot_session)
-- [Spring Boot Interview Questions] (https://www.javainuse.com/spring/SpringBootInterviewQuestions)
+- [Spring Boot Interview Questions](https://www.javainuse.com/spring/SpringBootInterviewQuestions)
 - [Spring Transaction Management: @Transactional In-Depth](https://www.marcobehler.com/guides/spring-transaction-management-transactional-in-depth)
 - [Control the Session with Spring Security](https://www.baeldung.com/spring-security-session)
 - [Logging](https://www.tutorialspoint.com/spring_boot/spring_boot_logging.htm)
