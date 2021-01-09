@@ -25,7 +25,7 @@ Ví dụ Post - Comment. Bảng Comment có cột postid là Foreign Key tham ch
 ![](images/post_comment.jpg)
 
 
-### Trong JPA hay Hibernate
+### ```@OneToMany``` và ```@ManyToOne```
 *Hibernate là thư viện ORM, còn JPA là thư viện bổ xung thêm API, và sử dụng Hibernate hay Eclipse Link*. Quan hệ One to Many được đánh dấu bởi 2 annotation ```@OneToMany``` và ```@ManyToOne```:
 
 File [Post.java](01EntityMapping/demojpa/src/main/java/vn/techmaster/demojpa/model/blog/Post.java), gọi là Entity phía One.
@@ -65,7 +65,7 @@ public class Comment {
 ### @JoinColumn(name = "post_id")
 ```@JoinColumn``` đặc tả cột Foreign Key ở Entity phía Many bảng comment. Thuộc tính ```name``` đặt tên cột.
 
-#### Cascade Operation
+### Cascade Operation
 Cascade Operation là Entity phía One có những hành động gì, thì áp dụng hành động tương tự ở Entity phía Many. Có 5 loại hành động Entity thực hiện với Persistence Context. Loại All là tổ hợp tất cả.
 
 1. Persist: lưu entity mới tạo nhưng chưa lưu (đang ở trạng thái transient) vào Persistence Context. Chỉ thêm một động tác flush, thì các thay đổi thực sự được ghi ổn định vào CSDL. 
@@ -94,7 +94,7 @@ public void removeComments() {
 
 Ở chế độ ```CascadeType.ALL, CascadeType.Remove```, khi xoá một Post, thì tất cả các Comment sẽ bị xoá. Đổi sang ```CascadeType.Refresh```, chạy lại ```removeComments``` sẽ báo lỗi vì các Comment không bị xoá.
 
-#### orphanRemoval
+### orphanRemoval
 Nếu ```orphanRemoval = true```  khi một Entity phía Many không được tham chiếu bởi một Entity phía One, thì nó sẽ bị xoá.
 Trong hàm kiểm thử này, ```post1``` loại bỏ ```comment1``` và ```comment2``` ra khỏi danh sách ```private List<Comment> comments = new ArrayList<>();``` 
 
@@ -126,7 +126,7 @@ public void removeOrphanComment() {
 
 Thử đổi ```orphanRemoval = false``` chạy lại hàm kiểm thử này sẽ báo lỗi vì comment1 và 2 không bị xoá
 
-#### private List<Comment> comments = new ArrayList<>();
+### private List<Comment> comments = new ArrayList<>();
 Entity phía One cần có thuộc tính kiểu List, Set hoặc HashMap để lưu các Entity phía Many.
 Ngoài ra cần có 2 phương thức thêm và bớt Entity phía Many
 
@@ -143,7 +143,7 @@ public void removeComment(Comment comment) {
 }
 ```
 
-#### @ManyToOne
+### @ManyToOne
 Xem file [Comment.java](01EntityMapping/demojpa/src/main/java/vn/techmaster/demojpa/model/blog/Comment.java):
 
 Annotation ```@ManyToOne``` sẽ đánh dấu cho thuộc tính ```post``` (Entity phía One).
@@ -153,7 +153,7 @@ private Post post;
 ```
 
 Chúng ta thấy ở [Post.java](01EntityMapping/demojpa/src/main/java/vn/techmaster/demojpa/model/blog/Post.java) thì có thuộc tính ```List<Comment> comments``` liên kết đến nhiều Comment. Ở [Comment.java](01EntityMapping/demojpa/src/main/java/vn/techmaster/demojpa/model/blog/Comment.java) có thuộc tính ```Post post``` trỏ ngược lại. Quan hệ này là Bidirection (song phương). Còn một biến thể nữa là quan hệ Unidirection (đơn phương). Đọc thêm [What is the difference between Unidirectional and Bidirectional JPA and Hibernate associations?](https://stackoverflow.com/questions/5360795/what-is-the-difference-between-unidirectional-and-bidirectional-jpa-and-hibernat).
-#### Thuộc tính fetch trong @OneToMany và @ManyToOne
+### Thuộc tính fetch trong @OneToMany và @ManyToOne
 Trong 2 annotation ```@OneToMany``` và ```@ManyToOne``` đều có thuộc tính Fetch quy định cách lấy dữ liệu từ database lên Persistence Context.
 
 1. ```FetchType = LAZY```: trì hoãn việc lấy dữ liệu cho đến khi người dùng đọc thuộc tính đó. Dùng loại này, lần đầu truy vấn tốc độ sẽ nhanh hơn, nhưng phải mất 2 lần truy vấn mới lấy được Entity liên quan.
