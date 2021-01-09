@@ -179,9 +179,11 @@ public void LazyOrEager(){
   spring.jpa.show-sql=true
   spring.jpa.properties.hibernate.format_sql=true
   ```
-2. Đặt breakpoint ở câu lệnh cần quan sát.
+2. Đặt breakpoint ở câu lệnh cần quan sát trong bài này là đoạn tìm đối tượng comment từ CSDL
 3. Chạy debug đến breakpoint này, xoá nội dung Terminal cho đỡ rồi
 4. Click Step Over để nhìn câu lệnh SQL debug được in ra
+
+Chú ý tôi bổ xung annotation  ```@Sql({"/post.sql"})``` nạp sẵn một số bản ghi vào CSDL H2. Ban đầu chạy hàm test này, bảng post và comment có dữ liệu. Và tôi chủ đích lấy bản ghi chưa được nạp vào vùng nhớ của Persistence Context, khi đó lệnh truy vấn mới được sinh ra và khác biệt 2 chế độ Fetch thể hiện rõ.
 
 Khi Fetch Type là Lazy, lệnh ```Comment findComment1 = tem.find(Comment.class, 1L);``` sẽ chuyển thành câu lệnh SQL như sau
 ```sql
