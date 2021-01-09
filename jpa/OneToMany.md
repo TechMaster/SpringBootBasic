@@ -153,9 +153,71 @@ private Post post;
 ```
 
 Chúng ta thấy ở [Post.java](01EntityMapping/demojpa/src/main/java/vn/techmaster/demojpa/model/blog/Post.java) thì có thuộc tính ```List<Comment> comments``` liên kết đến nhiều Comment. Ở [Comment.java](01EntityMapping/demojpa/src/main/java/vn/techmaster/demojpa/model/blog/Comment.java) có thuộc tính ```Post post``` trỏ ngược lại. Quan hệ này là Bidirection (song phương). Còn một biến thể nữa là quan hệ Unidirection (đơn phương). Đọc thêm [What is the difference between Unidirectional and Bidirectional JPA and Hibernate associations?](https://stackoverflow.com/questions/5360795/what-is-the-difference-between-unidirectional-and-bidirectional-jpa-and-hibernat).
-### Thuộc tính fetch trong @OneToMany và @ManyToOne
+
+### Thuộc tính fetch LAZY vs EAGER
 Trong 2 annotation ```@OneToMany``` và ```@ManyToOne``` đều có thuộc tính Fetch quy định cách lấy dữ liệu từ database lên Persistence Context.
 
 1. ```FetchType = LAZY```: trì hoãn việc lấy dữ liệu cho đến khi người dùng đọc thuộc tính đó. Dùng loại này, lần đầu truy vấn tốc độ sẽ nhanh hơn, nhưng phải mất 2 lần truy vấn mới lấy được Entity liên quan.
 2. ```FetchType = EAGER```: lấy dự liệu của thuộc tính tham chiếu đến Entity đầu bên kia luôn. Lần đầu truy vấn chậm, nhưng lấy đầy đủ thông tin Entity cả 2 phía.
+
+Hãy chạy hàm test
+```java
+@Test
+@Sql({"/post.sql"})
+public void LazyOrEager(){
+  Comment findComment1 = tem.find(Comment.class, 1L);
+  System.out.println("-----");
+  Post post = findComment1.getPost();
+  System.out.println(post.getTitle());
+  assertThat(post.getTitle()).isNotNull();
+}
+```
+Để thí nghiệm khác biệt giữa ```FetchType = LAZY``` vs ```FetchType = EAGER``` hãy bật chế độ xem câu lệnh SQL trong terminal khi debug unit test:
+
+1. Khai báo trong application.properties dòng lệnh 
+  ```
+  spring.jpa.show-sql=true
+  spring.jpa.properties.hibernate.format_sql=true
+  ```
+2. Đặt breakpoint ở câu lệnh cần quan sát.
+3. Chạy debug đến breakpoint này, xoá nội dung Terminal cho đỡ rồi
+4. Click Step Over để nhìn câu lệnh SQL debug được in ra
+
+Khi Fetch Type là Lazy, lệnh ```Comment findComment1 = tem.find(Comment.class, 1L);``` sẽ chuyển thành câu lệnh SQL như sau
+```sql
+select
+    comment0_.id as id1_3_0_,
+    comment0_.post_id as post_id3_3_0_,
+    comment0_.title as title2_3_0_ 
+from
+    comment comment0_ 
+where
+    comment0_.id=?
+```
+
+Vào file [Comment.java](01EntityMapping/demojpa/src/main/java/vn/techmaster/demojpa/model/blog/Comment.java), chuyển sang ```FetchType = EAGER```, câu lệnh ```Comment findComment1 = tem.find(Comment.class, 1L);``` sẽ được JPA -> Hibernate chuyển thành câu lệnh JOIN bảng comment với bảng post để một lần chạy lấy được thông tin của POST luôn.
+
+```sql
+select
+  comment0_.id as id1_3_0_,
+  comment0_.post_id as post_id3_3_0_,
+  comment0_.title as title2_3_0_,
+  post1_.id as id1_9_1_,
+  post1_.created_by as created_2_9_1_,
+  post1_.created_on as created_3_9_1_,
+  post1_.updated_by as updated_4_9_1_,
+  post1_.updated_on as updated_5_9_1_,
+  post1_.title as title6_9_1_,
+  post1_.version as version7_9_1_ 
+from
+  comment comment0_ 
+left outer join
+  post post1_ 
+      on comment0_.post_id=post1_.id 
+where
+  comment0_.id=?
+```
+
+
+
 

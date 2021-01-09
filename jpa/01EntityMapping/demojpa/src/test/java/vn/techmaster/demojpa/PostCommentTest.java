@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
-
+import org.springframework.test.context.jdbc.Sql;
 
 import vn.techmaster.demojpa.model.blog.Post;
 import vn.techmaster.demojpa.model.blog.Comment;
@@ -88,6 +88,18 @@ public class PostCommentTest {
     assertThat(findComment1).isNull();
     assertThat(findComment2).isNull();
   }
+
+  @Test
+  @Sql({"/post.sql"})
+  public void LazyOrEager(){
+    Comment findComment1 = tem.find(Comment.class, 1L);
+    System.out.println("-----");
+    Post post = findComment1.getPost();
+    System.out.println(post.getTitle());
+    assertThat(post.getTitle()).isNotNull();
+  }
+
+
 
 
 }

@@ -4,6 +4,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.test.context.jdbc.Sql;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.Comparator;
@@ -15,6 +17,7 @@ import javax.persistence.Query;
 import vn.techmaster.demojpa.model.mapping.Car;
 
 @DataJpaTest
+@Sql({"/car.sql"})
 public class CarTests {
   @Autowired
   private EntityManager tem;  

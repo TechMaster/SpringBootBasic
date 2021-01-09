@@ -20,10 +20,12 @@ import javax.persistence.Version;
 import com.google.common.collect.Sets;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity(name = "Post")
 @Table(name = "post")
 @Data
+@NoArgsConstructor
 public class Post { 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id; 
@@ -43,7 +45,7 @@ public class Post {
     //Một post có nhiều comment
     @OneToMany(
         cascade = CascadeType.ALL,
-        orphanRemoval = false
+        orphanRemoval = true
     )
     @JoinColumn(name = "post_id")
     private List<Comment> comments = new ArrayList<>();

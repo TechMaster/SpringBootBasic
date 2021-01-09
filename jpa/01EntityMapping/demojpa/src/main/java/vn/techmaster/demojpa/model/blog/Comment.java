@@ -10,22 +10,23 @@ import javax.persistence.PreRemove;
 import javax.persistence.Table;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "comment")
 @Data
-
+@NoArgsConstructor
 public class Comment {
   @Id 
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
-  private String text;
+  private String title;
 
-  public Comment(String text) {
-    this.text = text;
+  public Comment(String title) {
+    this.title = title;
   }
 
-  @ManyToOne(fetch = FetchType.LAZY)
+  @ManyToOne(fetch = FetchType.EAGER)
   private Post post;
 
   @PreRemove
