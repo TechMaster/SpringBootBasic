@@ -114,6 +114,9 @@ Code cũng rất hay các bạn nhé. Mà lại giống Java
 - [Database Handling](https://www.tutorialspoint.com/spring_boot/spring_boot_database_handling.htm)
 - [Native Queries – How to call native SQL queries with JPA & Hibernate](https://thorben-janssen.com/jpa-native-queries/)
 - [Spring Data JPA Tutorial](https://www.stackchief.com/tutorials/Spring%20Data%20JPA%20Tutorial)
+- [Entity state transitions with JPA and Hibernate](https://vladmihalcea.com/a-beginners-guide-to-jpa-hibernate-entity-state-transitions/)
+- [Flush strategies in JPA and Hibernate](https://vladmihalcea.com/a-beginners-guide-to-jpahibernate-flush-strategies/). hiểu sâu cơ chế flush
+
 - [DataSource configuration](https://howtodoinjava.com/spring-boot2/datasource-configuration/)
 - [Inheritance Strategies with JPA and Hibernate – The Complete Guide](https://thorben-janssen.com/complete-guide-inheritance-strategies-jpa-hibernate)
 - [Hibernate Inheritance Mapping](https://www.baeldung.com/hibernate-inheritance)
