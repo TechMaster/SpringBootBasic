@@ -26,7 +26,7 @@ Ví dụ Post - Comment. Bảng Comment có cột postid là Foreign Key tham ch
 
 
 ### Trong JPA hay Hibernate
-(Hibernate là thư viện ORM, còn JPA là thư viện bổ xung thêm API, và sử dụng Hibernate hay Eclipse Link), quan hệ One to Many được đánh dấu bởi annotation như sau:
+*Hibernate là thư viện ORM, còn JPA là thư viện bổ xung thêm API, và sử dụng Hibernate hay Eclipse Link*. Quan hệ One to Many được đánh dấu bởi 2 annotation ```@OneToMany``` và ```@ManyToOne```:
 
 File [Post.java](01EntityMapping/demojpa/src/main/java/vn/techmaster/demojpa/model/blog/Post.java), gọi là Entity phía One.
 
