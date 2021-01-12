@@ -8,10 +8,12 @@ import org.springframework.test.context.jdbc.Sql;
 import vn.techmaster.demojpa.model.mapping.Car;
 import vn.techmaster.demojpa.model.mapping.MakerCount;
 import vn.techmaster.demojpa.repository.CarRepository;
+
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.tuple;
+
 
 import java.util.Comparator;
 import java.util.List;
@@ -72,12 +74,19 @@ public class CarRepositoryTests {
     assertThat(cars).extracting("year").containsOnly(2008);
   }
 
-  /*@Test
+  @Test
   public void countByMakerTest() {
     List<MakerCount> makerCounts= carRepository.countByMaker();
     makerCounts.forEach(System.out::println);
     assertThat(makerCounts).isSortedAccordingTo(Comparator.comparing(MakerCount::getMaker));
-  }*/
+  }
+
+  @Test
+  public void top5CarMakerTest() {
+    List<MakerCount> top5Makers= carRepository.topCarMaker(PageRequest.of(0, 5));
+    top5Makers.forEach(System.out::println);
+    assertThat(top5Makers).hasSize(5);
+  }
 
   
 

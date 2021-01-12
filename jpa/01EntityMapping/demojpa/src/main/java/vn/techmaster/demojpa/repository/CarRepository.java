@@ -1,9 +1,10 @@
 package vn.techmaster.demojpa.repository;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Stream;
 
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -25,8 +26,15 @@ public interface CarRepository extends JpaRepository<Car, Long> {
   @Query("SELECT o FROM oto AS o WHERE o.year=:year")
   List<Car> listCarInYear(@Param("year") int year);
 
-  /*@Query("SELECT new vn.techmaster.demojpa.model.mapping.MakerCount(c.maker, COUNT(c.maker)) " + 
-  "FROM oto AS c GROUP BY c.maker")
-  List<MakerCount> countByMaker();*/
+  // Phải ghi rõ domain, package của kiểu trả về vn.techmaster.demojpa.model.mapping.MakerCount
+  @Query("SELECT new vn.techmaster.demojpa.model.mapping.MakerCount(c.maker, COUNT(*)) " + 
+  "FROM oto AS c GROUP BY c.maker ORDER BY c.maker ASC")
+  List<MakerCount> countByMaker();
+
+  @Query("SELECT new vn.techmaster.demojpa.model.mapping.MakerCount(c.maker, COUNT(*)) " + 
+  "FROM oto AS c GROUP BY c.maker ORDER BY COUNT(*) DESC")
+  List<MakerCount> topCarMaker(Pageable pageable);
+  //Chú ý PSQL không hỗ trợ cú pháp SELECT TOP hay LIMIT, thay vào đó phải truyền vào Pageable pageable
+
 }
 
