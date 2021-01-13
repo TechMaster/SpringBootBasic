@@ -16,7 +16,7 @@ import javax.persistence.Transient;
 
 import lombok.Data;
 
-@Entity
+@Entity(name = "person")
 @Table(name = "person")
 @Data
 public class Person {

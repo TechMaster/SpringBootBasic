@@ -6,8 +6,8 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.jdbc.Sql;
 
 import vn.techmaster.demojpa.model.mapping.Car;
-import vn.techmaster.demojpa.model.mapping.MakerCount;
 import vn.techmaster.demojpa.repository.CarRepository;
+import vn.techmaster.demojpa.repository.MakerCount;
 
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;

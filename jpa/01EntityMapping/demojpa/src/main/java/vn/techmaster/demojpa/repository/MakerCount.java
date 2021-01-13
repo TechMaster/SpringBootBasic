@@ -1,4 +1,4 @@
-package vn.techmaster.demojpa.model.mapping;
+package vn.techmaster.demojpa.repository;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
