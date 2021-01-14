@@ -22,5 +22,12 @@
 ![](images/new_post.jpg)
 
 ![](images/post_detail.jpg)
-### Dữ liệu mẫu có sẵn
+
+## Quan hệ giữa các bảng
+- One user writes many posts
+- One user writes many comments
+- One post can receive many comments
+
+## Dữ liệu mẫu có sẵn
+6 users mẫu với password là 'abc' đã được nạp sẵn từ file [user.sql](src/main/resources/user.sql)
 ![](images/sample_users.jpg)
