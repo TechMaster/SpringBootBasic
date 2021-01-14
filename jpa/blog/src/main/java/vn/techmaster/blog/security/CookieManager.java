@@ -9,16 +9,16 @@ import org.springframework.stereotype.Component;
 public class CookieManager {
   private final String LOGIN_COOKIE = "loginsuccess";
 
-  public boolean isAuthenticated(HttpServletRequest request) {
+  public String getAuthenticatedEmail(HttpServletRequest request) {
     Cookie[] cookies = request.getCookies();
     if (cookies != null) {
       for (var cookie:cookies) {
         if (cookie.getName().equals(LOGIN_COOKIE)) {
-          return true;
+          return cookie.getValue();
         }
       }
     }
-    return false;
+    return null;
   }
 
   public void setAuthenticated(HttpServletResponse response, String email){

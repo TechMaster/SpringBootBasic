@@ -22,11 +22,8 @@ public class HomeController {
   @Autowired private IAuthenService authenService;
 
   @Autowired private CookieManager cookieManager;
-
-  static final String LOGIN_REQUEST = "loginRequest";
-  static final String LOGIN_TEMPLATE = "login.html";  
-  static final String REDIRECT_POSTS = "redirect:/posts";
-  static final String REDIRECT_HOME = "redirect:/";
+  public static final String LOGIN_REQUEST = "loginRequest";
+  
 
   @GetMapping("/")
   public String home() {
@@ -35,17 +32,17 @@ public class HomeController {
 
   @GetMapping("/login")
   public String showLoginForm(Model model,  HttpServletRequest request) {
-    if (cookieManager.isAuthenticated(request)) {
-      return REDIRECT_POSTS;
+    if (cookieManager.getAuthenticatedEmail(request) != null) {
+      return Route.REDIRECT_POSTS;
     }
     model.addAttribute(LOGIN_REQUEST, new LoginRequest());
-    return LOGIN_TEMPLATE;
+    return Route.LOGIN_TEMPLATE;
   }
 
   @GetMapping("/logout")
   public String logout(HttpServletResponse response) {
     cookieManager.setNotAuthenticated(response);
-    return REDIRECT_HOME;
+    return Route.REDIRECT_HOME;
   }
 
 
@@ -58,16 +55,16 @@ public class HomeController {
         try {
           authenService.login(loginRequest);
           cookieManager.setAuthenticated(response, loginRequest.getEmail());          
-          return REDIRECT_POSTS; 
+          return Route.REDIRECT_POSTS; 
         } catch (AuthenException e) {
           model.addAttribute(LOGIN_REQUEST, new LoginRequest(loginRequest.getEmail(), ""));
           model.addAttribute("errorMessage", e.getMessage());
-          return LOGIN_TEMPLATE;
+          return Route.LOGIN_TEMPLATE;
         }
       } else {
         model.addAttribute(LOGIN_REQUEST, new LoginRequest());
         model.addAttribute("errorMessage", "Submitted is invalid");
-        return LOGIN_TEMPLATE;
+        return Route.LOGIN_TEMPLATE;
       }
   }
 }
