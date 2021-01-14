@@ -14,32 +14,40 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import vn.techmaster.blog.controller.request.LoginRequest;
+import vn.techmaster.blog.security.CookieManager;
 import vn.techmaster.blog.service.AuthenException;
 import vn.techmaster.blog.service.IAuthenService;
 @Controller
 public class HomeController {
-  @Autowired
-  private IAuthenService authenService;
-  final String LOGIN_REQUEST = "loginRequest";
-  final String LOGIN_TEMPLATE = "login.html";
-  final String LOGIN_COOKIE = "loginsuccess";
-  final String REDIRECT_POSTS = "redirect:/posts";
+  @Autowired private IAuthenService authenService;
+
+  @Autowired private CookieManager cookieManager;
+
+  static final String LOGIN_REQUEST = "loginRequest";
+  static final String LOGIN_TEMPLATE = "login.html";  
+  static final String REDIRECT_POSTS = "redirect:/posts";
+  static final String REDIRECT_HOME = "redirect:/";
+
+  @GetMapping("/")
+  public String home() {
+    return "home.html";
+  }
 
   @GetMapping("/login")
   public String showLoginForm(Model model,  HttpServletRequest request) {
-    Cookie[] cookies = request.getCookies();
-    if (cookies != null) {
-      for (var cookie:cookies) {
-        if (cookie.getName().equals(LOGIN_COOKIE)) {
-          return REDIRECT_POSTS;
-        }
-      }
+    if (cookieManager.isAuthenticated(request)) {
+      return REDIRECT_POSTS;
     }
-
-
     model.addAttribute(LOGIN_REQUEST, new LoginRequest());
     return LOGIN_TEMPLATE;
   }
+
+  @GetMapping("/logout")
+  public String logout(HttpServletResponse response) {
+    cookieManager.setNotAuthenticated(response);
+    return REDIRECT_HOME;
+  }
+
 
   @PostMapping("/login")
   public String handleLogin(@ModelAttribute LoginRequest loginRequest, 
@@ -49,10 +57,7 @@ public class HomeController {
       if (!bindingResult.hasErrors()) {        
         try {
           authenService.login(loginRequest);
-          Cookie loginCookie = new Cookie(LOGIN_COOKIE, loginRequest.getEmail());
-          loginCookie.setMaxAge(30 * 60);
-          response.addCookie(loginCookie);
-          
+          cookieManager.setAuthenticated(response, loginRequest.getEmail());          
           return REDIRECT_POSTS; 
         } catch (AuthenException e) {
           model.addAttribute(LOGIN_REQUEST, new LoginRequest(loginRequest.getEmail(), ""));

@@ -14,5 +14,6 @@
     <input type="password" placeholder="Password" th:field="*{password}"/><br><br>
     <button type="submit">Login</button>
   </form>
+  <p th:text="*{errorMessage}">Error Message</p>
 </body>
 </html>
