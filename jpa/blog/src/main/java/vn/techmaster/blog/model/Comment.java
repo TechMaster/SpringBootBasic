@@ -43,6 +43,11 @@ public class Comment {
   @ManyToOne(fetch = FetchType.LAZY)
   private User commenter; //Mỗi comment phải do một commenter viết
 
+  public void setCommenter(User user) {
+    user.getComments().add(this);
+    this.commenter = user;
+  }
+
   @ManyToOne(fetch = FetchType.LAZY)
   private Post post; //Mỗi comment phải gắn vào một post
  

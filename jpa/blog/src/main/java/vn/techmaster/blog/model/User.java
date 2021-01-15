@@ -62,10 +62,10 @@ public class User {
   )
   @JoinColumn(name = "user_id")
   private List<Comment> comments = new ArrayList<>();
-  public void addComment(Comment comment) {
+  /*public void addComment(Comment comment) {
     comments.add(comment);
     comment.setCommenter(this);
-  }
+  }*/
   public void removeComment(Comment comment) {
     comments.remove(comment);
     comment.setCommenter(null);
