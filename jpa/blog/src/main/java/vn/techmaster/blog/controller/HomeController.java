@@ -9,19 +9,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import vn.techmaster.blog.DTO.UserInfo;
 import vn.techmaster.blog.controller.request.LoginRequest;
-import vn.techmaster.blog.security.CookieManager;
+
+
 import vn.techmaster.blog.service.AuthenException;
 import vn.techmaster.blog.service.IAuthenService;
 @Controller
 public class HomeController {
   @Autowired private IAuthenService authenService;
-
-  @Autowired private CookieManager cookieManager;
   public static final String LOGIN_REQUEST = "loginRequest";
   
 
@@ -32,7 +31,7 @@ public class HomeController {
 
   @GetMapping("/login")
   public String showLoginForm(Model model,  HttpServletRequest request) {
-    if (cookieManager.getAuthenticatedEmail(request) != null) {
+    if (authenService.isLogined(request)) {
       return Route.REDIRECT_POSTS;
     }
     model.addAttribute(LOGIN_REQUEST, new LoginRequest());
@@ -41,7 +40,7 @@ public class HomeController {
 
   @GetMapping("/logout")
   public String logout(HttpServletResponse response) {
-    cookieManager.setNotAuthenticated(response);
+    authenService.clearLoginedCookie(response);
     return Route.REDIRECT_HOME;
   }
 
@@ -53,9 +52,9 @@ public class HomeController {
     HttpServletResponse response){      
       if (!bindingResult.hasErrors()) {        
         try {
-          authenService.login(loginRequest);
-          cookieManager.setAuthenticated(response, loginRequest.getEmail());          
-          return Route.REDIRECT_POSTS; 
+          UserInfo user = authenService.login(loginRequest);          
+          authenService.setLoginedCookie(response, user);
+          return Route.REDIRECT_POSTS;
         } catch (AuthenException e) {
           model.addAttribute(LOGIN_REQUEST, new LoginRequest(loginRequest.getEmail(), ""));
           model.addAttribute("errorMessage", e.getMessage());

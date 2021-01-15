@@ -40,6 +40,11 @@ public class Post {
     public void preUpdate() {
         lastUpdate = LocalDateTime.now();
     }
+
+    public Post(String title, String content) {
+        this.title = title;
+        this.content = content;
+    }
     //-------
     @OneToMany(
         cascade = CascadeType.ALL,
