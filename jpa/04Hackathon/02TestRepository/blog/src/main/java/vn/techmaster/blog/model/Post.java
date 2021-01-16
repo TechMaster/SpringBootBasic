@@ -63,5 +63,5 @@ public class Post {
     }
     //------
     @ManyToOne(fetch = FetchType.LAZY)
-    private User author;
+    private User user;  //Tác giả viết post
 }

@@ -34,7 +34,7 @@ public class PostRepositoryTest {
     //postRepo.save(post);
     assertThat(post.getId()).isEqualTo(1L); //Đã được lưu xuống Persistence Context
     
-    assertThat(post.getAuthor()).isEqualTo(user);
+    assertThat(post.getUser()).isEqualTo(user);
 
     User bob = userRepo.findById(1L).get(); //Lấy user Bob qua id
     assertThat(postRepo.existsById(1L)).isTrue(); //Kiểm tra post với id = 1L đã có trong CSDL chưa?
@@ -54,7 +54,7 @@ public class PostRepositoryTest {
     postRepo.flush();
     assertThat(post.getId()).isEqualTo(1L); //Đã được lưu xuống Persistence Context
     
-    assertThat(post.getAuthor()).isEqualTo(bob);
+    assertThat(post.getUser()).isEqualTo(bob);
     assertThat(bob.getPosts().get(0)).isEqualTo(post);
   }
 
@@ -70,7 +70,7 @@ public class PostRepositoryTest {
     postRepo.flush();
     long postId = post.getId();
     bob.removePost(post);
-    assertThat(post.getAuthor()).isNull();  //Đầu tiên thuộc tính Author set null
+    assertThat(post.getUser()).isNull();  //Đầu tiên thuộc tính Author set null
     userRepo.flush();
 
     Optional<Post> optionalPost = postRepo.findById(postId);
@@ -97,7 +97,6 @@ public class PostRepositoryTest {
     Optional<Post> optionalPost = postRepo.findById(postId);
     assertThat(post).isNotNull(); //đối tượng này chỉ tồn tại trong hàm đang chạy chứ trong CSDL post đã bị xoá
     assertThat(optionalPost).isNotPresent(); //Post cũng không còn tồn tại trong CSDL
-
   }
 
 

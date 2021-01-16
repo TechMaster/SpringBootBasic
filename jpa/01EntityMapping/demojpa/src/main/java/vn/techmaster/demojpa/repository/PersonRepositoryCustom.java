@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-import org.springframework.data.domain.Pageable;
 
 import vn.techmaster.demojpa.model.mapping.Person;
 

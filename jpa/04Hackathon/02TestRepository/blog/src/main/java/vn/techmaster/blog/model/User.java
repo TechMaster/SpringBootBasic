@@ -19,7 +19,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity(name = "user")
-@Table(name = "user")
+@Table(name = "users")  //Để không bị lỗi khi kết nối vào Postgresql
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -46,12 +46,12 @@ public class User {
   private List<Post> posts = new ArrayList<>();
   public void addPost(Post post) {
     posts.add(post);
-    post.setAuthor(this);
+    post.setUser(this);
   }
 
   public void removePost(Post post) {
     posts.remove(post);
-    post.setAuthor(null);
+    post.setUser(null);
   }
 
   //Một User viết nhiều Comment

@@ -107,7 +107,7 @@ class PersonRepositoryTests {
 	@Test
 	void jobAverageSalary() {
 		List<JobSalary> result =  personRepo.jobAverageSalary();
-		assertThat(result).hasSizeGreaterThan(0).isSortedAccordingTo(Comparator.comparing(JobSalary::getAveragesalary));
+		assertThat(result).hasSizeGreaterThan(0).isSortedAccordingTo(Comparator.comparing(JobSalary::getAveragesalary).reversed());
 	}
 
 	@Test
@@ -120,6 +120,7 @@ class PersonRepositoryTests {
 	@Test
 	void averageJobAge(){
 		Map<String, Double> result = personRepo.averageJobAge();
+		assertThat(result).isNotEmpty();
 		assertThat(result.values()).allSatisfy(a -> {
 			assertThat(a > 0 && a < 100).isTrue();
 		});

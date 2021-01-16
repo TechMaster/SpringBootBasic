@@ -1,7 +1,6 @@
 package vn.techmaster.demojpa;
 
 import org.hibernate.Session;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.junit.jupiter.api.TestInstance.Lifecycle;

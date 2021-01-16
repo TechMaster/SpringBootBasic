@@ -41,20 +41,62 @@ void addNewPost() {
   //postRepo.save(post);
   assertThat(post.getId()).isEqualTo(1L); //Đã được lưu xuống Persistence Context
   
-  assertThat(post.getAuthor()).isEqualTo(user);
+  assertThat(post.getUser()).isEqualTo(user);
 
   User bob = userRepo.findById(1L).get(); //Lấy user Bob qua id
   assertThat(postRepo.existsById(1L)).isTrue(); //Kiểm tra post với id = 1L đã có trong CSDL chưa?
   assertThat(bob.getPosts().get(0)).isEqualTo(post); //Kiểm tra xem thực sự user Bob ở CSDL đã thực sự có post chưa
 }
 ```
-1. ```userRepo.flush();```
-2. ```userRepo.save(user);```
-3. ```postRepo.save(post);```
-
 Bạn sẽ phân vân giữa 3 câu lệnh sau đây
-1. ```
 
+1. ```userRepo.flush();```: Lệnh này ok vì nó lưu thay đổi của user đồng thời post gắn với user xuống CSDL
+2. ```userRepo.save(user);```: Lệnh này sai, vì nó có tác dụng lưu đối tượng mới tạo ra
+3. ```postRepo.save(post);```: Lệnh này ok vì lưu đối tượng post mới tạo ra xuống CSDL
+
+Lệnh ```userRepo.flush();```
+
+
+## ```save``` khác gì với ```flush```?
+
+Trong file [PostRepositoryTest.java](src/test/java/vn/techmaster/blog/PostRepositoryTest.java), hãy xem phương thức ```void persistNewPost()```
+
+```java
+@Test
+@DisplayName("Tạo một post mới dùng PostRepository để lưu")
+void persistNewPost() {
+  User bob = userRepo.findByEmail("bob@gmail.com").get();
+  
+  Post post = new Post("I love Spring Boot", "I love Spring Boot so much");
+  bob.addPost(post);
+
+  assertThat(post.getId()).isNull(); //Chưa được persist vào Persistence Context
+  postRepo.save(post);  //Dùng postRepo để lưu đối tượng post mới
+  postRepo.flush();
+  assertThat(post.getId()).isEqualTo(1L); //Đã được lưu xuống Persistence Context
+  
+  assertThat(post.getUser()).isEqualTo(bob);
+  assertThat(bob.getPosts().get(0)).isEqualTo(post);
+}
+```
+Lệnh ```postRepo.save(post);``` sinh ra lệnh INSERT bản ghi
+```sql
+insert 
+into
+  post
+  (id, User_id, content, last_update, title) 
+values
+  (null, ?, ?, ?, ?)
+```
+Lệnh ```postRepo.flush();``` sinh ra câu lệnh UPDATE cập nhật Foreign key
+```sql
+update
+  post 
+set
+  user_id=? 
+where
+  id=?
+```
 ## Phân biệt 
 
 ## Debug câu lệnh SQL JPA-Hibernate sẽ sinh ra

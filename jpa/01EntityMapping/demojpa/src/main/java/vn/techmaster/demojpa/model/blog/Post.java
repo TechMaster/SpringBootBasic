@@ -1,6 +1,7 @@
 package vn.techmaster.demojpa.model.blog;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -17,7 +18,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
-import com.google.common.collect.Sets;
+
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -70,8 +71,8 @@ public class Post {
         joinColumns = @JoinColumn(name = "post_id"),
         inverseJoinColumns = @JoinColumn(name = "tag_id")
     )
-    private Set<Tag> tags = Sets.newHashSet(); //Dùng Guava Set
-
+    private Set<Tag> tags = new HashSet<>();
+    
     public void addTag(Tag tag) {
         tags.add(tag);
         tag.getPosts().add(this);        
