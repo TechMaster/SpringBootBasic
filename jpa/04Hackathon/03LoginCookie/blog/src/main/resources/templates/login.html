@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Micro Blog - Login</title>
+</head>
+<body>
+  <h1>Login</h1>
+  <form action="#" th:action="@{/login}" th:object="${loginRequest}" method="post">
+    <label for="pass">Email</label><br>
+    <input type="text" placeholder="Email" th:field="*{email}"/><br><br>
+    <label for="pass">Password (3 characters minimum):</label><br>
+    <input type="password" placeholder="Password" th:field="*{password}"/><br><br>
+    <button type="submit">Login</button>
+  </form>
+  <p th:text="*{errorMessage}">Error Message</p>
+</body>
+</html>
