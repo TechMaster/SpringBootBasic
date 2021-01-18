@@ -15,7 +15,7 @@ import vn.techmaster.testcontainer.model.Post;
 import vn.techmaster.testcontainer.repository.PostRepository;
 
 @Sql("post.sql")
-public class PostRepoTest extends MySQLTestBase{
+public class PostRepoTest extends H2TestBase{
   @Autowired
   private PostRepository postRepo;
   

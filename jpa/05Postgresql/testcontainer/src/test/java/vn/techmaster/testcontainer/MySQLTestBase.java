@@ -12,11 +12,10 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 
 @Testcontainers
 @DataJpaTest
-@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
 @TestInstance(Lifecycle.PER_CLASS) // để cho phương thức @BeforeAll chạy được
 public abstract class MySQLTestBase {
   @Container
-  private static MySQLContainer container = 
+  private static MySQLContainer<?> container = 
   new MySQLContainer<>("mysql:8")
   .withDatabaseName("foo")
   .withUsername("foo")
