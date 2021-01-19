@@ -7,15 +7,15 @@ import java.util.Optional;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import vn.techmaster.blog.model.Post;
 import vn.techmaster.blog.model.User;
 import vn.techmaster.blog.repository.PostRepository;
 import vn.techmaster.blog.repository.UserRepository;
+import vn.techmaster.blog.testbase.PostgresqlTestBase;
 
-@DataJpaTest
-public class PostRepositoryTest {
+
+public class PostRepositoryTest extends PostgresqlTestBase{
   @Autowired  private UserRepository userRepo;
   @Autowired  private PostRepository postRepo;
   
