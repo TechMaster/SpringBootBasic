@@ -7,8 +7,9 @@
 4. Ghi rõ họ và tên.
 5. Viết chữ càng rõ ràng, càng đẹp càng tốt. Chữ xấu khó đọc, khi bạn chấm có quyền trừ điểm !
 6. Ai không đi và làm bài kiểm tra nhận 0 điểm, không có cơ hội làm lại.
+7. Phần lập trình thì phải chạy ra kết quả demo cho giảng viên buổi chấm chéo. Ai làm xong tại lớp sẽ được cộng 2 điểm.
 
-## Phần 1: Định nghĩa Entity trong JPA
+## Phần 1: Định nghĩa Entity trong JPA (3 điểm)
 1. Thuộc tính ```name``` trong annotation ```@Entity``` khác với thuộc tính ```name``` trong ```@Table``` như thế nào? Hãy giải thích rõ cần thì minh hoạ
 2. Để debug câu lệnh SQL mà Hibernate sẽ sinh ra trong quá trình thực thi, cần phải bổ xung lệnh nào vào file application.properties?
 3. Khi sử dụng H2, cần bổ xung lệnh nào vào application.properties để có thể xem được bảng dữ liệu, viết câu lệnh truy vấn đến H2 database?
@@ -31,7 +32,48 @@
 16. ```@AllArgsConstructor``` trong Lombok sẽ sinh ra constructor có đặc điểm gì?
 17. Nếu đã đánh dấu class với ```@Data``` của Lombok, chúng ta có được phép tự viết thêm constructor với những tham số tuỳ chọn không?
 18. Annotation ```@GeneratedValue``` dùng để chọn cách tự sinh unique id cho primary key phải là trường kiểu int hoặc long. Nếu trường primary key có kiểu là String, chúng ta không thể dùng ```@GeneratedValue``` vậy hãy thử liệt kê các cách đảm bảo sinh ra chuỗi có tính duy nhất? *Google đi*
-## Phần 2: Quan hệ One to Many và Many to Many
-1.
 
-## Phần 3
+## Phần 2: Quan hệ One to Many và Many to Many (2 điểm)
+Có 3 Entity [Product.java](exam/src/main/java/vn/techmaster/exam/model/Product.java) và [Category.java](exam/src/main/java/vn/techmaster/exam/model/Category.java)
+và [Tag.java](exam/src/main/java/vn/techmaster/exam/model/Tag.java)
+
+1. Hãy bổ xung định nghĩa quan hệ One to Many giữa bảng Category (One) -- Product (Many). Chú ý khi một Category xoá, thì không được phép xoá Product, mà chỉ set thuộc tính Category của Product là null.
+2. Hãy bổ xung định nghĩa quan hệ Many to Many giữa bảng Tag(Many) -- Product(Many).
+
+Có 2 Entity [Student.java](exam/src/main/java/vn/techmaster/exam/model/Student.java) và [Course.java](exam/src/main/java/vn/techmaster/exam/model/Course.java)
+
+3. Hãy mô tả quan hệ Many to Many. Một Student có thể học nhiều Course. Một Course có nhiều Student tham gia. Bảng trung gian giữa Student và Course cần có một trường là điểm score kiểu int giá trị gán vào từ 0 đến 10. Cần validate ở phương thức setter.
+Hãy xem kỹ bài viết này [Many-To-Many Relationship in JPA](https://www.baeldung.com/jpa-many-to-many) để bổ xung bảng course_registration.
+
+**Dữ liệu mẫu để kiểm thử:**
+student.sql
+```sql
+INSERT INTO student (id, name) VALUES (1, 'bob');
+INSERT INTO student (id, name) VALUES (2, 'alice');
+INSERT INTO student (id, name) VALUES (3, 'tom');
+INSERT INTO student (id, name) VALUES (4, 'jane');
+INSERT INTO student (id, name) VALUES (5, 'van');
+INSERT INTO student (id, name) VALUES (6, 'long');
+```
+course.sql
+```sql
+INSERT INTO course (id, name) VALUES (1, 'math');
+INSERT INTO course (id, name) VALUES (2, 'music');
+INSERT INTO course (id, name) VALUES (3, 'history');
+```
+Nội dung môn học và điểm
+bob học {math: 7, music: 5, history: 8}
+alice học {math: 8, music: 2, history: 9}
+tom học {math: 4, history: 10}
+jane học {music: 9, history: 8}
+van học {math: 9, music: 7, history: 6}
+long học {math: 10, music: 3}
+
+
+## Phần 3: Truy vấn (2 điểm)
+Hãy lập trình JPARepository và viết JUnit5 để tính
+1. Trả về liệt kê sinh viên tham gia từng môn học ```Map<String, List<Student>>```: key là tên môn học, value là danh sách sinh viên đăng ký
+2. Viết Native Query để tính điểm trung bình một môn bất kỳ
+3. Liệt kê danh sách sinh viên học math nhưng không học music
+
+Nếu nộp tất cả ngay tại lớp được thưởng 2 điểm. MAX là 12 điểm
