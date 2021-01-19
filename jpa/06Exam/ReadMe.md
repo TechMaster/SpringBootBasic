@@ -61,14 +61,15 @@ INSERT INTO course (id, name) VALUES (1, 'math');
 INSERT INTO course (id, name) VALUES (2, 'music');
 INSERT INTO course (id, name) VALUES (3, 'history');
 ```
-Nội dung môn học và điểm
+**Nội dung môn học và điểm**
+```
 bob học {math: 7, music: 5, history: 8}
 alice học {math: 8, music: 2, history: 9}
 tom học {math: 4, history: 10}
 jane học {music: 9, history: 8}
 van học {math: 9, music: 7, history: 6}
 long học {math: 10, music: 3}
-
+```
 
 ## Phần 3: Truy vấn (2 điểm)
 Hãy lập trình JPARepository và viết JUnit5 để tính
