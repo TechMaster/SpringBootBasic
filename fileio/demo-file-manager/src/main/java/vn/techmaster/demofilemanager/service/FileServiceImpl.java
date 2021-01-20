@@ -90,7 +90,7 @@ public class FileServiceImpl implements FileService {
 	@Override
 	public Resource loadAsResource(String rootDirName, String dirPath, String fileName) {
 		try {
-			Path file = FileManagerUtils.getRealAbsoluteFilePath(rootLocation, rootDirName, dirPath);
+			Path file = FileManagerUtils.getRealAbsoluteFilePath(rootLocation, rootDirName, dirPath, fileName);
 			Resource resource = new UrlResource(file.toUri());
 			if (resource.exists() || resource.isReadable()) {
 				return resource;
@@ -159,7 +159,7 @@ public class FileServiceImpl implements FileService {
 		if (FileManagerUtils.isUnSafe(fileName))
 			return false;
 
-		Path realDirPath = FileManagerUtils.getRealAbsoluteFilePath(rootLocation, rootDirName, dirPath);
+		Path realDirPath = FileManagerUtils.getRealAbsoluteFilePath(rootLocation, rootDirName, dirPath, fileName);
 		/*
 		 * Files.walk(pathToBeDeleted) .sorted(Comparator.reverseOrder())
 		 * .map(Path::toFile) .forEach(File::delete);
@@ -171,11 +171,4 @@ public class FileServiceImpl implements FileService {
 			return false;
 		}
 	}
-
-	public static void main(String[] args) {
-		FileService fileService = new FileServiceImpl(new StorageProperties());
-		List<FileInfo> files = fileService.findAllRecursive(DIR_NAME, "", null);
-		files.forEach(System.out::println);
-	}
-
 }

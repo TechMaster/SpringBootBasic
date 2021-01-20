@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorator="~{layout/index}">
+	layout:decorator="~{layout/index}"
+	 xmlns:sec="http://www.thymeleaf.org">
 
 <th:block layout:fragment="css">
 <style>
@@ -83,11 +84,16 @@
 			contentType: false,
 			processData: false,
 		}).done(function(data, textStatus, xhr) {
-			if (xhr.status != 201) return;
+			if (xhr.status != 201) {
+				alert("Can not upload file");
+				return;
+			}
 			let fileInfos = data;
 			appendFiles(fileInfos);
 			$('#upload-form').children('div').children('input')[0].value = "";
-		});
+		}).fail(function(xhr, status, error) {
+			alert("Can not upload file. Error: " + status + xhr.responseText);
+	    });
 	});
 
 	$('#go-to-parent-dir').click(function () {
@@ -155,7 +161,7 @@
 			downloadTd.style.padding = "5px 5px 5px 5px";
 			if (!fileInfo.dir) {
 				let downloadA = document.createElement("a");
-				downloadA.href = encFilePath + '/fileContentDownload';
+				downloadA.href = 'api/files/' + encFilePath + '/fileContentDownload';
 				downloadA.setAttribute('download', fileInfo.name);
 				downloadA.innerHTML = '<i class="fas fa-download"></i>';
 	
@@ -222,7 +228,7 @@
 			url: `api/files/${getRootDirName()}/${encodeURI(getNameFromPath(filePath))}`,
 		}).done(function(data, textStatus, xhr) {
 			if (xhr.status != 200) {
-				alert('ì‚­ì œ ì‹¤íŒ¨');
+				alert('Can not delete file.');
 				return;
 			}
 
@@ -267,14 +273,13 @@
 			</label>
 		</div>
 
-		<!-- ìƒˆ í�´ë�” ë²„íŠ¼ -->
 		<button id="create-dir" class="btn btn-primary btn-sm"><i class="fas fa-folder-plus"></i></button>
 	</div>
 
 	<form id="upload-form" action="/" method="post" enctype="multipart/form-data">
 		<div class="form-group upload-box">
 			<input type="file" class="upload-box-input" id="file" name="files"
-				data-multiple-caption="{count} ê°œ íŒŒì�¼" multiple>
+				data-multiple-caption="{count}" multiple>
 
 			<label class="upload-box-label" for="file">Drag and drop files!</label>
 		</div>

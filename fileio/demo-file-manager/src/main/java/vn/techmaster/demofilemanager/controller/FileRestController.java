@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import lombok.extern.slf4j.Slf4j;
+import vn.techmaster.demofilemanager.error.FileManagerException;
 import vn.techmaster.demofilemanager.error.FileManagerFileNotFoundException;
 import vn.techmaster.demofilemanager.model.FileInfo;
 import vn.techmaster.demofilemanager.service.FileService;
@@ -122,7 +123,7 @@ public class FileRestController {
 	 * @param request HttpRequest
 	 * @return
 	 */
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PreAuthorize("hasRole('ADMIN')")
 	@PostMapping("/api/dir/" + FileService.SAFE_DIR_NAME)
 	public ResponseEntity<FileInfo> postSafeDir(@RequestParam String dirName, HttpServletRequest request) {
 		HttpSession session = request.getSession();
@@ -146,7 +147,7 @@ public class FileRestController {
 		String dirPath = HttpSessionWrapper.getDirPath(session);
 
 		List<FileInfo> fileInfos = fileService.findAll(FileService.DIR_NAME, dirPath, null);
-		if (request.isUserInRole("ROLE_ADMIN")) {
+		if (request.isUserInRole("ADMIN")) {
 			fileInfos.addAll(fileService.findAll(FileService.SAFE_DIR_NAME, dirPath, null));
 		}
 
@@ -198,7 +199,7 @@ public class FileRestController {
 	 * @param request  HttpRequest
 	 * @return
 	 */
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PreAuthorize("hasRole('ADMIN')")
 	@GetMapping("/api/files/" + FileService.SAFE_DIR_NAME + "/{fileName}")
 	public ResponseEntity<FileInfo> getSafeFile(@PathVariable String fileName, HttpServletRequest request) {
 		HttpSession session = request.getSession();
@@ -218,7 +219,7 @@ public class FileRestController {
 	 * @param request  HttpRequest
 	 * @return
 	 */
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PreAuthorize("hasRole('ADMIN')")
 	@GetMapping("/api/files/" + FileService.SAFE_DIR_NAME + "/{fileName}/fileContentDownload")
 	public ResponseEntity<Resource> getSafeFileContentToDownload(@PathVariable String fileName,
 			HttpServletRequest request) {
@@ -259,14 +260,14 @@ public class FileRestController {
 	 * @param request HttpRequest
 	 * @return
 	 */
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PreAuthorize("hasRole('ADMIN')")
 	@PostMapping("/api/files/" + FileService.SAFE_DIR_NAME)
 	public ResponseEntity<List<FileInfo>> postSafeFile(@RequestParam MultipartFile[] files,
 			HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		String dirPath = HttpSessionWrapper.getDirPath(session);
 		/*
-		 * if (!request.isUserInRole("ROLE_ADMIN")) { return new
+		 * if (!request.isUserInRole("ADMIN")) { return new
 		 * ResponseEntity<>(HttpStatus.NO_CONTENT); }
 		 */
 		try {
@@ -294,7 +295,7 @@ public class FileRestController {
 	 * @param request
 	 * @return
 	 */
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PreAuthorize("hasRole('ADMIN')")
 	@DeleteMapping("/api/files/" + FileService.SAFE_DIR_NAME + "/{fileName}")
 	public ResponseEntity<Void> deleteSafeFile(@PathVariable String fileName, HttpServletRequest request) {
 		HttpSession session = request.getSession();
@@ -308,6 +309,12 @@ public class FileRestController {
 
 	@ExceptionHandler(FileManagerFileNotFoundException.class)
 	public ResponseEntity<?> handleFileManagerFileNotFoundException(FileManagerFileNotFoundException exc) {
-		return ResponseEntity.notFound().build();
+		return new ResponseEntity<>(exc.getMessage(), HttpStatus.NOT_FOUND);
 	}
+
+	@ExceptionHandler(FileManagerException.class)
+	public ResponseEntity<?> handleFileManagerException(FileManagerException exc) {
+		return new ResponseEntity<>(exc.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+
 }
