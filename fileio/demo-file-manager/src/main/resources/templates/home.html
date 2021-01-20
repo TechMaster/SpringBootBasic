@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="~{layout/index}">
+
+<th:block layout:fragment="css">
+<style>
+.upload-box-input {
+	border: 2px dashed dodgerblue;
+	border-radius: 5px;
+	width: 100%;
+	height: 150px;
+	padding: 150px 5px 0px 5px;
+	text-align: center;
+}
+.upload-box-label {
+	width: 100%;
+	text-align: center;
+}
+</style>
+</th:block>
+
+<th:block layout:fragment="script">
+<script>
+	const FILE_ROOT_COL = 0;
+	const FILE_NAME_COL = 1;
+	const FILE_SIZE_COL = 2;
+	const FILE_DELT_COL = 3;
+
+	const fileTableBody = $('#file-table').children('tbody');
+	const filePathIdx = {};
+
+	let depth = "[[ ${session.depth} ]]";
+	if (depth.length == 0) depth = 0;
+	let dirPath = "[[ ${session.dirPath} ]]";
+	if (dirPath.length == 0) dirPath = '';
+
+	function updateDir(_depth, _dirPath) {
+		depth = _depth;
+		dirPath = _dirPath;
+
+		$('#sess-depth').text(depth);
+		$('#sess-dir-path').text(dirPath);
+	}
+
+	function getRootDirName() {
+		return $('input[name=rootDirName]:checked').val();
+	}
+
+	function getNameFromPath(path) {
+		const names = path.split('/');
+		return names[names.length - 1];
+	}
+
+	$.get(`api/dir/${depth}/${getNameFromPath(dirPath)}`).done(function(data, textStatus, xhr) {
+		if (xhr.status == 200) {
+			let fileInfos = data.fileInfos;
+			updateDir(data.depth, data.dirPath);
+			appendFiles(fileInfos);
+		}
+	});
+
+	$('#create-dir').click(function () {
+		let dirName = prompt('Enter directory name');
+		if (dirName === null || dirName.length <= 0)
+			return;
+
+		$.post(`api/dir/${getRootDirName()}`, { dirName }).done(function(data, textStatus, xhr) {
+			if (xhr.status == 201) {
+				appendFiles([data]); // dir info
+			}
+		});
+	});
+
+	$('#upload-btn').click(function () {
+		let uploadForm = document.getElementById('upload-form');
+		let data = new FormData(uploadForm);
+
+		$.ajax({
+			method: "post",
+			url: `api/files/${getRootDirName()}`,
+			data,
+			contentType: false,
+			processData: false,
+		}).done(function(data, textStatus, xhr) {
+			if (xhr.status != 201) return;
+			let fileInfos = data;
+			appendFiles(fileInfos);
+			$('#upload-form').children('div').children('input')[0].value = "";
+		});
+	});
+
+	$('#go-to-parent-dir').click(function () {
+		if (!depth || depth < 0)
+			return;
+
+		$.get(`api/dir/${depth - 1}`).done(function(data, textStatus, xhr) {
+			if (xhr.status != 200) {
+				alert('Can not get target dir');
+				return;
+			}
+			let fileInfos = data.fileInfos;
+			let fileTableRows = fileTableBody.children('tr');
+			for (let i = 0; i < fileTableRows.length; i++) {
+				fileTableRows[i].remove();
+				filePathIdx[i] = undefined;
+			}
+
+			updateDir(data.depth, data.dirPath);
+
+			appendFiles(fileInfos);
+		});
+	});
+
+	function appendFiles(fileInfos) {
+		let idx = 0;
+		fileInfos.forEach(function(fileInfo) {
+			console.log(fileInfo);
+			let encFilePath = encodeURI(fileInfo.rootDirName + dirPath + '/' + fileInfo.name);
+
+			// Row
+			let tr = document.createElement("tr");
+			tr.style.textAlign = "center";
+
+			// Col 0 : root dir-name
+			let rootDirNameTd = document.createElement("td");
+			rootDirNameTd.style.padding = "5px 5px 5px 5px";
+			rootDirNameTd.innerText = fileInfo.rootDirName;
+
+			tr.appendChild(rootDirNameTd);
+
+			// Col 1 : name
+			let nameTd = document.createElement("td");
+			nameTd.style.padding = "5px 5px 5px 5px";
+			if (fileInfo.dir) {
+				let nameA = document.createElement("a");
+				nameA.innerText = fileInfo.name;
+				nameA.href = `javascript:getDir(${idx}, '${fileInfo.name}')`;
+				nameTd.appendChild(nameA);
+			} else {
+				nameTd.innerText = fileInfo.name;
+			}
+
+			tr.appendChild(nameTd);
+			
+			// Col 2 : size
+			let sizeTd = document.createElement("td");
+			sizeTd.style.padding = "5px 5px 5px 5px";
+			sizeTd.innerText = fileInfo.size + " KB";
+
+			tr.appendChild(sizeTd);
+
+			// Col 3 : download button
+			let downloadTd = document.createElement("td");
+			downloadTd.style.padding = "5px 5px 5px 5px";
+			if (!fileInfo.dir) {
+				let downloadA = document.createElement("a");
+				downloadA.href = encFilePath + '/fileContentDownload';
+				downloadA.setAttribute('download', fileInfo.name);
+				downloadA.innerHTML = '<i class="fas fa-download"></i>';
+	
+				downloadTd.appendChild(downloadA);
+			}
+
+			tr.appendChild(downloadTd);
+
+			// Col 4 : delete button
+			let deleteTd = document.createElement("td");
+			deleteTd.style.padding = "5px 5px 5px 5px";
+	
+			let deleteA = document.createElement("a");
+			deleteA.href = "javascript:deleteFile(" + idx + ")";
+			deleteA.innerHTML = '<i class="fas fa-trash-alt" style="color: red"></i>';
+
+			deleteTd.appendChild(deleteA);
+
+			tr.appendChild(deleteTd);
+			
+			fileTableBody.append(tr);
+			filePathIdx[idx] = fileInfo.rootDirName + '/' + fileInfo.dirPath + '/' + fileInfo.name;
+			idx++;
+		});
+	}
+
+	function getDir(idx, dirName) {
+		let filePath = filePathIdx[idx];
+		if (filePath == undefined) {
+			alert('Can not find file path');
+			return;
+		}
+
+		if (!depth || depth < 0)
+			depth = 0;
+
+		$.get(`api/dir/${depth + 1}/${encodeURI(dirName)}`).done(function(data, textStatus, xhr) {
+			if (xhr.status != 200) {
+				alert('Can not get directory info');
+				return;
+			}
+			let fileInfos = data.fileInfos;
+
+			let fileTableRows = fileTableBody.children('tr');
+			for (let i = 0; i < fileTableRows.length; i++) {
+				let tr = fileTableRows[i];
+				tr.remove();
+				filePathIdx[i] = undefined;
+			}
+
+			updateDir(data.depth, data.dirPath);
+
+			appendFiles(fileInfos);
+		});
+	}
+
+	function deleteFile(idx) {
+		let filePath = filePathIdx[idx];
+		if (filePath == undefined || !confirm("Do you want to delete file"))
+			return;
+
+		$.ajax({
+			method: "delete",
+			url: `api/files/${getRootDirName()}/${encodeURI(getNameFromPath(filePath))}`,
+		}).done(function(data, textStatus, xhr) {
+			if (xhr.status != 200) {
+				alert('ì‚­ì œ ì‹¤íŒ¨');
+				return;
+			}
+
+			let fileTableRows = fileTableBody.children('tr');
+			for (let i = 0; i < fileTableRows.length; i++) {
+				let tr = fileTableRows[i];
+				if (tr.children[FILE_ROOT_COL].innerText + "/" +
+						tr.children[FILE_NAME_COL].innerText == filePath) {
+					tr.remove();
+					break;
+				}
+			}
+			filePathIdx[idx] = undefined;
+		});
+	}
+</script>
+</th:block>
+
+<div layout:fragment="content" class="container-fluid">
+	<div style="height: 10px"></div>
+
+	<div>
+		Current path:
+		[
+		<span id="sess-depth" th:text="${session.depth}"></span>
+		] 
+		<span id="sess-dir-path" th:text="${session.dirPath}"></span>
+
+		<button id="go-to-parent-dir" class="btn btn-primary btn-sm"><i class="fas fa-level-up-alt"></i></button>
+
+		<br>
+
+		<!-- Root -->
+		<div class="form-check-inline">
+			<label class="form-check-label">
+				<input type="radio" class="form-check-input" name="rootDirName" th:text="${rootDirName}" th:value="${rootDirName}" checked>
+			</label>
+		</div>
+		<div class="form-check" sec:authorize="isAuthenticated()">
+			<label class="form-check-label">
+				<input type="radio" class="form-check-input" name="rootDirName" th:text="${rootSafeDirName}" th:value="${rootSafeDirName}">
+			</label>
+		</div>
+
+		<!-- ìƒˆ í�´ë�” ë²„íŠ¼ -->
+		<button id="create-dir" class="btn btn-primary btn-sm"><i class="fas fa-folder-plus"></i></button>
+	</div>
+
+	<form id="upload-form" action="/" method="post" enctype="multipart/form-data">
+		<div class="form-group upload-box">
+			<input type="file" class="upload-box-input" id="file" name="files"
+				data-multiple-caption="{count} ê°œ íŒŒì�¼" multiple>
+
+			<label class="upload-box-label" for="file">Drag and drop files!</label>
+		</div>
+	</form>
+
+	<div class="form-group text-center">
+		<button id="upload-btn" type="button" class="btn btn-primary">Upload</button>
+		<input id="rootDirName" type="hidden" th:value="${rootDirName}">
+	</div>
+
+	<form id="delete-form" action="/" method="post" enctype="multipart/form-data" style="display: none">
+	</form>
+
+	<hr>
+
+	<h4>File</h4>
+
+	<table id="file-table" class="table-responsive table-striped">
+		<thead>
+			<tr style="text-align: center"><th>Group</th><th>File name</th><th>Size</th><th></th><th></th>
+		</thead>
+		<tbody></tbody>
+	</table>
+
+</div>
+
+</html>

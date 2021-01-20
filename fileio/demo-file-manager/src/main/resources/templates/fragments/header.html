@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<header th:fragment="headerFragment">
+
+	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+		<div class="navbar-header">
+			<a class="navbar-brand" th:href="@{/}">Home</a>
+		</div>
+		<ul class="nav navbar-nav">
+			<li>
+				<a th:href="@{/mp3}"><i class="fas fa-music fa-lg" style="color: white; margin: 8px"></i></a>
+			</li>
+		</ul>
+
+		<ul class="nav navbar-nav ml-auto">
+			<li sec:authorize="isAuthenticated()">
+				<a href="javascript:document.getElementById('logout').submit();">
+					<i class="fas fa-sign-out-alt fa-lg" style="color: white; margin: 8px"></i>
+				</a>
+			</li>
+		</ul>
+	</nav>
+
+	<form id="logout" th:action="@{/logout}" method="POST"></form>
+
+</header>
+
+</html>
