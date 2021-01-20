@@ -15,6 +15,11 @@
 		</ul>
 
 		<ul class="nav navbar-nav ml-auto">
+			<li sec:authorize="!isAuthenticated()">
+				<a href="javascript:document.getElementById('login').submit();">
+					<i class="fas fa-sign-in-alt fa-lg" style="color: white; margin: 8px"></i>
+				</a>
+			</li>
 			<li sec:authorize="isAuthenticated()">
 				<a href="javascript:document.getElementById('logout').submit();">
 					<i class="fas fa-sign-out-alt fa-lg" style="color: white; margin: 8px"></i>
@@ -24,6 +29,7 @@
 	</nav>
 
 	<form id="logout" th:action="@{/logout}" method="POST"></form>
+	<form id="login" th:action="@{/login}" method="POST"></form>
 
 </header>
 

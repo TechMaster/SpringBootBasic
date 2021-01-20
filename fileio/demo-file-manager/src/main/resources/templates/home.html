@@ -166,6 +166,20 @@
 				downloadA.innerHTML = '<i class="fas fa-download"></i>';
 	
 				downloadTd.appendChild(downloadA);
+				if ((/\.(gif|jpe?g|tiff?|png|webp|bmp)$/i).test(fileInfo.name)) {
+			        $('<a>',{
+			        	style: 'margin-left: 10px;',
+			            href: '#',
+			            click: function(){
+							$('#viewFile').empty();
+			            	let img = $('<img>');
+			            	img.attr('src', downloadA.href);
+	            			img.attr('width', 500);
+	            			img.appendTo('#viewFile');
+	            			return false;
+			            }
+			        }).html('<i class="fas fa-eye"></i>').appendTo(downloadTd);
+				}
 			}
 
 			tr.appendChild(downloadTd);
@@ -296,14 +310,16 @@
 	<hr>
 
 	<h4>File</h4>
-
-	<table id="file-table" class="table-responsive table-striped">
+	<div class="flex-container">
+	<div><table id="file-table" class="table-responsive table-striped">
 		<thead>
 			<tr style="text-align: center"><th>Group</th><th>File name</th><th>Size</th><th></th><th></th>
 		</thead>
 		<tbody></tbody>
 	</table>
-
+	</div>
+	<div id="viewFile" style="max-height: 100px; max-width: 50%"></div>
+	</div>
 </div>
 
 </html>
