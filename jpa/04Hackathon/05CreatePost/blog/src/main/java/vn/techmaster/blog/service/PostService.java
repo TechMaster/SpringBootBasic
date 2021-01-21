@@ -39,8 +39,30 @@ public class PostService implements iPostService {
 
   @Override
   public List<Post> getAllPostsByUserID(long user_id) {
-
     return postRepo.findByUserId(user_id);
   }
-  
+
+  @Override
+  public Optional<Post> findById(Long id) {
+    return postRepo.findById(id);
+  }
+
+  @Override
+  public void deletePostById(Long id) {
+    postRepo.deleteById(id);
+  }
+
+  @Override
+  public void updatePost(PostRequest postRequest) {
+    Optional<Post> optionalPost = postRepo.findById(postRequest.getId());
+    if (optionalPost.isPresent()) {
+      Post post = optionalPost.get();
+      post.setTitle(postRequest.getTitle());
+      post.setContent(postRequest.getContent());
+      postRepo.saveAndFlush(post);
+    } else {
+      createNewPost(postRequest);
+    }
+    
+  }
 }

@@ -6,9 +6,6 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class PostRequest {
+public class IdRequest {
   private Long id;
-  private String title;
-  private String content;
-  private Long user_id;
 }

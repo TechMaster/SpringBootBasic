@@ -1,6 +1,7 @@
 package vn.techmaster.blog.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -12,4 +13,6 @@ import vn.techmaster.blog.model.Post;
 public interface PostRepository extends JpaRepository<Post, Long> {
   @Query(value = "SELECT * FROM post AS p WHERE p.user_id = :user_id", nativeQuery = true)
   List<Post> findByUserId(@Param("user_id") long user_id);
+
+  Optional<Post> findById(Long id);
 }
