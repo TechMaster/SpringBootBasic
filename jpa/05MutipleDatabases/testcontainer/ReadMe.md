@@ -77,6 +77,7 @@ public interface PostRepository extends JpaRepository<Post, Long> {
 
 
 ### 1. Các dependencies phục vụ cho TestContainers
+![](images/spring_Initializr.jpg)
 
 Thư viện chính TestContainers
 ```xml

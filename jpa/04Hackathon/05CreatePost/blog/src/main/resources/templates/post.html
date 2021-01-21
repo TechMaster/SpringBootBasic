@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title th:text="${user_fullname} + '\'s micro blog'"></title>
+</head>
+<body>
+  <h1>Create new post</h1>
+  <a href="/logout">Logout</a><br><br>
+  <form action="#" th:action="@{/post}" th:object="${post}" method="post">
+    <input type="hidden" placeholder="id" th:field="*{id}"/>
+    <input type="hidden" placeholder="id" th:field="*{user_id}"/>
+    <input type="text" name="title" id="title" size="40" th:field="*{title}"><br><br>
+    <textarea name="content" id="content" cols="40" rows="10" th:field="*{content}"></textarea><br><br>
+    <button type="submit">Save</button>
+  </form>
+</body>
+</html>

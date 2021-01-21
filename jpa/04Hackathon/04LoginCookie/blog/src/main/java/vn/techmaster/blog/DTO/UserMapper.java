@@ -1,6 +1,7 @@
 package vn.techmaster.blog.DTO;
 
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
 import vn.techmaster.blog.model.User;
@@ -8,6 +9,6 @@ import vn.techmaster.blog.model.User;
 @Mapper
 public interface UserMapper {
   UserMapper INSTANCE = Mappers.getMapper(UserMapper.class);
-  //@Mapping()
   UserInfo userToUserInfo(User user);
+  User userInfoToUser(UserInfo userInfo);
 }
