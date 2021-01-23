@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import vn.techmaster.blog.DTO.PostMapper;
-import vn.techmaster.blog.DTO.UserMapper;
 import vn.techmaster.blog.controller.request.PostRequest;
 import vn.techmaster.blog.model.Post;
 import vn.techmaster.blog.model.User;
