@@ -14,12 +14,17 @@ import vn.techmaster.blog.repository.PostRepository;
 import vn.techmaster.blog.repository.UserRepository;
 
 @Service
-public class PostService implements iPostService {
+public class PostService implements IPostService {
   @Autowired
   PostRepository postRepo;
 
   @Autowired
   UserRepository userRepo;
+
+  @Override
+  public List<Post> findAll() {
+    return postRepo.findAll();
+  }
 
   @Override
   public List<Post> getAllPostOfUser(User user) {

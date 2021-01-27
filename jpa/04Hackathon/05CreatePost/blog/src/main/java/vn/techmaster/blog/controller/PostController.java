@@ -13,19 +13,22 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import vn.techmaster.blog.DTO.PostMapper;
+import vn.techmaster.blog.DTO.PostPOJO;
 import vn.techmaster.blog.DTO.UserInfo;
+import vn.techmaster.blog.DTO.UserMapper;
 import vn.techmaster.blog.controller.request.IdRequest;
 import vn.techmaster.blog.controller.request.PostRequest;
 import vn.techmaster.blog.model.Post;
 import vn.techmaster.blog.service.IAuthenService;
-import vn.techmaster.blog.service.iPostService;
+import vn.techmaster.blog.service.IPostService;
 
 
 
 @Controller
 public class PostController {
   @Autowired private IAuthenService authenService;
-  @Autowired private iPostService postService;
+  @Autowired private IPostService postService;
 
   @GetMapping("/posts")
   public String getAllPosts(Model model, HttpServletRequest request) { 
@@ -72,11 +75,14 @@ public class PostController {
 
   //Lấy ra một post cụ thể cùng
   @GetMapping("/post/{id}")
-  public String showPostAndComment(@PathVariable("id") long id, Model model) {
+  public String showPostAndComment(@PathVariable("id") long id, Model model, HttpServletRequest request) {
+    UserInfo loginUserInfo = authenService.getLoginedUser(request);
     Optional<Post> optionalPost = postService.findById(id);
     if (optionalPost.isPresent()) {
-      model.addAttribute("post", optionalPost.get());
-      model.addAttribute("user", optionalPost.get().getUser());
+      Post post = optionalPost.get();
+      PostPOJO postPOJO = PostMapper.INSTANCE.postToPostPOJO(post);
+      model.addAttribute("post", postPOJO);
+      model.addAttribute("user", loginUserInfo);
       return Route.POST_COMMENT;
     } else {
       return Route.REDIRECT_HOME;
@@ -109,7 +115,8 @@ public class PostController {
         user.getId());
       
       model.addAttribute("post", postReqest);
-      model.addAttribute("user_fullname", user.getFullname());
+      UserInfo userInfo = UserMapper.INSTANCE.userToUserInfo(post.getUser());
+      model.addAttribute("user", userInfo);
       return Route.POST;
     } else {
       return Route.REDIRECT_POSTS;

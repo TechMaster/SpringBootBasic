@@ -4,6 +4,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 //import java.util.Optional;
+import java.util.Optional;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -48,8 +49,7 @@ public class PostCommentRepositoryTest {
   void commentAPostComplex(){
     User bob = userRepo.findByEmail("bob@gmail.com").get();
     User alice = userRepo.findByEmail("alice@gmail.com").get();
-    userRepo.save(bob);
-    userRepo.save(alice);
+
 
     Post post1 = new Post("Hà nội có tuyết rơi", "Hôm nay trời quá lạnh. Tuyết rời đầy");
     bob.addPost(post1);
@@ -95,4 +95,40 @@ public class PostCommentRepositoryTest {
   void removeUserCascadeRemovePostsAndComments(){
 
   }*/
+
+  @Test
+  void findPostWithUserById(){
+    User bob = userRepo.findByEmail("bob@gmail.com").get();
+    User alice = userRepo.findByEmail("alice@gmail.com").get();
+
+
+    Post post1 = new Post("Hà nội có tuyết rơi", "Hôm nay trời quá lạnh. Tuyết rời đầy");
+    bob.addPost(post1);
+
+    Post post2 = new Post("MU đại thắng Chelsea", "Trận đấu sớm hôm nay MU đã thắng Chelsea 4-1");
+    alice.addPost(post2);
+
+    Comment comment1 = new Comment("Tôi cực thích lạnh");
+    comment1.setCommenter(alice);
+    post1.addComment(comment1);
+
+    Comment comment2 = new Comment("Tôi sợ lạnh");
+    comment2.setCommenter(bob);
+    post1.addComment(comment2);
+
+    Comment comment3 = new Comment("Paul Pogba đã quá hay. Soljkaer vững ghế");
+    comment3.setCommenter(bob);
+    post2.addComment(comment3);    
+
+    postRepo.save(post1);
+    postRepo.save(post2);
+    userRepo.flush();
+    postRepo.flush();
+
+    long post1ID = post1.getId();
+    Optional<Post> oPost = postRepo.findPostWithUserById(post1ID);
+    Post post = oPost.get();
+    assertThat(post.getUser()).isNotNull();
+  }
+
 }

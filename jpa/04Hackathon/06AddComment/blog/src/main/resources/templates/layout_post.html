@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:fragment="head">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+  <title th:text="${post} ? ${post.userFullName} + '\'s micro blog': 'Home page'"></title>
+</head>
+<body>
+  <div th:fragment="menu" class="mb-3">
+    <h1 th:text="${post} ? ${post.userFullName} + '\'s micro blog': 'Home page'">Home Page</h1>
+    <a href="/" class="me-4">Home</a>
+    <a href="/login" class="me-4" th:style="${user==null ? 'display:inline' : 'display:none'}">Login</a>
+    <a href="/post" class="me-4" th:style="${user==null ? 'display:none' : 'display:inline'}">Write a post</a>
+    <a href="/logout" class="me-4" th:style="${user==null ? 'display:none' : 'display:inline'}"  th:text="${user!=null ? 'Log out as ' + user.fullname : ''}">Logout</a><br>
+  </div> 
+</body>
+</html>

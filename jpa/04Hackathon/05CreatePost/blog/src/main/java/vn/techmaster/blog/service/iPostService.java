@@ -7,11 +7,12 @@ import vn.techmaster.blog.controller.request.PostRequest;
 import vn.techmaster.blog.model.Post;
 import vn.techmaster.blog.model.User;
 
-public interface iPostService {
-  List<Post> getAllPostOfUser(User user);  
-  List<Post> getAllPostsByUserID(long user_id);
+public interface IPostService {
+  public List<Post> findAll();
+  public List<Post> getAllPostOfUser(User user);  
+  public List<Post> getAllPostsByUserID(long user_id);
   public void createNewPost(PostRequest postRequest);
-  Optional<Post> findById(Long id);
-  void deletePostById(Long id);
+  public Optional<Post> findById(Long id);
+  public void deletePostById(Long id);
   public void updatePost(PostRequest postRequest);
 }

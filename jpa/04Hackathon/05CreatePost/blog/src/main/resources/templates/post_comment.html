@@ -1,32 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title th:text="${user.fullname} + '\'s micro blog'"></title>
-  <style>
-    form {
-      display: inline;
-    }
-  </style>
+
+<head th:replace="layout :: head">
 </head>
+
 <body>
-  <h1 th:text="${user.fullname} + '\'s micro blog'"></h1>
-  <a href="/post">New Post</a>&nbsp;&nbsp;&nbsp;&nbsp;
-  <a href="/logout">Logout</a>
+  <div class="container">
+    <menu th:replace="layout.html :: menu"> </menu>
 
-  <h1 th:text="${post.title}"></h1>
-  <em th:text="${#temporals.format(post.lastUpdate, 'dd-MMM-yyyy')}"></em>
-  <p th:text="${post.content}"></p>
-  <hr>
+    <h1 th:text="${post.title}"></h1>
+    <em th:text="${#temporals.format(post.lastUpdate, 'dd-MMM-yyyy')}"></em>
+    <p th:text="${post.content}"></p>
+    <hr>
+    <div class="d-flex" th:classappend="${user!=null && user.id==post.user_id ? 'd-inline' : 'd-none'}">
+      <form action="#" th:action="@{/post/delete}" method="post" class="me-3">
+        <input type="hidden" name="post_id" th:field="${post.id}">
+        <button type="submit" class="btn btn-danger mr-5">Delete</button>
+      </form>
 
-  <form action="#" th:action="@{/post/delete}" method="post">
-    <input type="hidden" name="post_id" th:field="${post.id}">
-    <button type="submit">Delete</button>
-  </form>
-  <form action="#" th:action="@{/post/edit}" method="post">
-    <input type="hidden" name="post_id" th:field="${post.id}">
-    <button type="submit">Edit</button>
-  </form>
+      <form action="#" th:action="@{/post/edit}" method="post">
+        <input type="hidden" name="post_id" th:field="${post.id}">
+        <button type="submit" class="btn btn-primary">Edit</button>
+      </form>
+    </div>
+  </div>
 </body>
+
 </html>

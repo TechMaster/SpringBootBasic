@@ -1,19 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title th:text="${user_fullname} + '\'s micro blog'"></title>
-</head>
+<head th:replace="layout :: head"></head>
 <body>
+  <div class="container">
   <h1>Create new post</h1>
   <a href="/logout">Logout</a><br><br>
-  <form action="#" th:action="@{/post}" th:object="${post}" method="post">
-    <input type="hidden" placeholder="id" th:field="*{id}"/>
-    <input type="hidden" placeholder="id" th:field="*{user_id}"/>
-    <input type="text" name="title" id="title" size="40" th:field="*{title}"><br><br>
-    <textarea name="content" id="content" cols="40" rows="10" th:field="*{content}"></textarea><br><br>
-    <button type="submit">Save</button>
-  </form>
+    <form action="#" th:action="@{/post}" th:object="${post}" method="post">
+      <input type="hidden" placeholder="id" th:field="*{id}"/>
+      <input type="hidden" placeholder="id" th:field="*{user_id}"/>
+      <div class="mb-3">
+        <label for="title" class="form-label">Title</label>
+        <input type="text" th:field="*{title}" class="form-control" id="title" placeholder="Title of your post">
+      </div>
+      <div class="mb-3">
+        <label for="content" class="form-label">Content</label>
+        <textarea class="form-control" th:field="*{content}" id="content" rows="10" cols="70"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Save</button>      
+    </form>    
+  </div>
 </body>
 </html>
