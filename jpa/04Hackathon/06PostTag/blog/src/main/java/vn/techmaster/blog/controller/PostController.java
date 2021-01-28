@@ -3,6 +3,7 @@ package vn.techmaster.blog.controller;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -23,6 +24,7 @@ import vn.techmaster.blog.controller.request.IdRequest;
 import vn.techmaster.blog.controller.request.PostRequest;
 import vn.techmaster.blog.model.Comment;
 import vn.techmaster.blog.model.Post;
+import vn.techmaster.blog.model.Tag;
 import vn.techmaster.blog.service.IAuthenService;
 import vn.techmaster.blog.service.IPostService;
 import vn.techmaster.blog.service.PostException;
@@ -54,7 +56,8 @@ public class PostController {
       PostRequest postReqest = new PostRequest();
       postReqest.setUser_id(user.getId());
       model.addAttribute("post", postReqest);
-      model.addAttribute("user_fullname", user.getFullname());
+      List<Tag> tags = postService.getAllTags();
+      model.addAttribute("tags", tags);
       return Route.POST;
     } else {
       return Route.REDIRECT_HOME;
@@ -90,6 +93,9 @@ public class PostController {
       Post post = optionalPost.get();
       PostPOJO postPOJO = PostMapper.INSTANCE.postToPostPOJO(post);
       model.addAttribute("post", postPOJO);
+
+      Set<Tag> tags = post.getTags();
+      model.addAttribute("tags", tags);
 
       List<Comment> comments = post.getComments(); 
       Collections.reverse(comments); 
@@ -129,16 +135,14 @@ public class PostController {
 
     if (user != null && optionalPost.isPresent()) {
       Post post = optionalPost.get();
-      PostRequest postReqest = new PostRequest(
-        post.getId(),
-        post.getTitle(), 
-        post.getContent(), 
-        user.getId());
+      PostRequest postReqest =  PostMapper.INSTANCE.postToPostRequest(post);
       
       model.addAttribute("post", postReqest);
+      List<Tag> tags = postService.getAllTags();
+      model.addAttribute("tags", tags);
       UserInfo userInfo = UserMapper.INSTANCE.userToUserInfo(post.getUser());
       model.addAttribute("user", userInfo);
-      return Route.POST;
+      return "post2.html";
     } else {
       return Route.REDIRECT_POSTS;
     }   

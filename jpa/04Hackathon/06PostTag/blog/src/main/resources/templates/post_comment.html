@@ -10,7 +10,11 @@
 
     <h3 th:text="${post.title}"></h3>
     <em th:text="${#temporals.format(post.lastUpdate, 'dd-MMM-yyyy')}"></em>
-    <p th:text="${post.content}"></p>
+    <em>
+      <span>Tags: </span>
+      <a class="me-2" th:each="tag : ${tags}" th:href="${'/tag/' + tag.id}" th:text="${tag.name}">
+    </em>
+    <p th:text="${post.content}" class="mt-2"></p>
     <hr>
     <div class="d-flex" th:classappend="${user!=null && user.id==post.user_id ? 'd-inline' : 'd-none'}">
       <form action="#" th:action="@{/post/delete}" method="post" class="me-3">

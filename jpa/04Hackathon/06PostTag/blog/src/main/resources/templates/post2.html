@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head th:replace="layout :: head"></head>
+
+<body>
+  <div class="container">
+    <h1 th:text="${post.id > 0 ? 'Edit a post' : 'Create new post'}"></h1>
+    <a href="/logout">Logout</a><br><br>
+    <form action="#" th:action="@{/post}" th:object="${post}" method="post">
+      <input type="hidden" th:field="*{id}" />
+      <input type="hidden" th:field="*{user_id}" />
+      <div class="mb-3">
+        <label for="title" class="form-label">Title</label>
+        <input type="text" th:field="*{title}" class="form-control" id="title" placeholder="Title of your post">
+      </div>
+      <div class="form-check d-inline-flex" th:each="tag : ${tags}">
+        <input class="form-check-input me-2" type="checkbox" 
+        th:value="${tag.id}"
+        name="tags"
+        id="${tag.id}"
+        th:checked="${#lists.contains(post.tags, tag)}">
+        <label class="form-check-label me-4" for="${tag.id}" th:text="${tag.name}"></label>
+      </div>
+      <div class="mb-3">
+        <label for="content" class="form-label">Content</label>
+        <textarea class="form-control" th:field="*{content}" id="content" rows="10" cols="70"></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+  </div>
+</body>
+
+</html>

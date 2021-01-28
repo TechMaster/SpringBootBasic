@@ -11,8 +11,10 @@ import vn.techmaster.blog.controller.request.CommentRequest;
 import vn.techmaster.blog.controller.request.PostRequest;
 import vn.techmaster.blog.model.Comment;
 import vn.techmaster.blog.model.Post;
+import vn.techmaster.blog.model.Tag;
 import vn.techmaster.blog.model.User;
 import vn.techmaster.blog.repository.PostRepository;
+import vn.techmaster.blog.repository.TagRepository;
 import vn.techmaster.blog.repository.UserRepository;
 
 @Service
@@ -22,6 +24,9 @@ public class PostService implements IPostService {
 
   @Autowired
   UserRepository userRepo;
+
+  @Autowired
+  TagRepository tagRepo;
 
   @Override
   public List<Post> findAll() {
@@ -33,7 +38,7 @@ public class PostService implements IPostService {
     return postRepo.findAll();
   }
 
-  public void createNewPost(PostRequest postRequest) throws PostException{
+  public void createNewPost(PostRequest postRequest) throws PostException {
     Optional<User> optionalUser = userRepo.findById(postRequest.getUser_id());
     if (optionalUser.isPresent()) {
       User user = optionalUser.get();
@@ -61,12 +66,13 @@ public class PostService implements IPostService {
   }
 
   @Override
-  public void updatePost(PostRequest postRequest) throws PostException{
+  public void updatePost(PostRequest postRequest) throws PostException {
     Optional<Post> optionalPost = postRepo.findById(postRequest.getId());
     if (optionalPost.isPresent()) {
       Post post = optionalPost.get();
       post.setTitle(postRequest.getTitle());
       post.setContent(postRequest.getContent());
+      post.setTags(postRequest.getTags());
       postRepo.saveAndFlush(post);
     } else {
       createNewPost(postRequest);
@@ -83,9 +89,14 @@ public class PostService implements IPostService {
       Comment comment = new Comment(commentRequest.getContent());
       comment.setUser(oUser.get());
       post.addComment(comment);
-      postRepo.flush();      
+      postRepo.flush();
     } else {
       throw new PostException("Post or User is missing");
     }
+  }
+
+  @Override
+  public List<Tag> getAllTags() {   
+    return tagRepo.findAll();
   }
 }
