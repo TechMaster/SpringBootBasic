@@ -3,7 +3,7 @@
 <head th:replace="layout :: head"></head>
 <body>
   <div class="container">
-    <menu th:replace="layout :: menu"></menu>
+    <menu th:replace="layout :: menu(title=${user} ? ${user.fullname} + '\'s micro blog': 'Home page')"></menu>
     <ul>
       <li th:each="post: ${posts}">
         <a th:href="@{/post/{id}(id=${post.id})}"><strong th:text="${post.title}"></strong></a>

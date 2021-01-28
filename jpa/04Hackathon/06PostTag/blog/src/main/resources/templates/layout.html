@@ -8,8 +8,8 @@
   <title th:text="${user} ? ${user.fullname} + '\'s micro blog': 'Home page'"></title>
 </head>
 <body>
-  <div th:fragment="menu" class="mb-3">
-    <h1 th:text="${user} ? ${user.fullname} + '\'s micro blog': 'Home page'">Home Page</h1>
+  <div th:fragment="menu(title)" class="mb-3">
+    <h1 th:text="${title}">Home Page</h1>
     <a href="/" class="me-4">Home</a>
     <a href="/login" class="me-4" th:style="${user==null ? 'display:inline' : 'display:none'}">Login</a>
     <a href="/post" class="me-4" th:style="${user==null ? 'display:none' : 'display:inline'}">Write a post</a>

@@ -6,10 +6,12 @@ import java.util.Optional;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -36,7 +38,7 @@ public class PostController {
   @Autowired private IAuthenService authenService;
   @Autowired private IPostService postService;
 
-  @GetMapping("/posts")
+  @GetMapping("/posts")  //Liệt kê các post của một blogger cụ thể
   public String getAllPosts(Model model, HttpServletRequest request) { 
     UserInfo user = authenService.getLoginedUser(request);
     if (user != null) {
@@ -49,13 +51,14 @@ public class PostController {
     } 
   }
 
-  @GetMapping("/post")  //Show form để tạo Post
+  @GetMapping("/post")  //Show form để tạo mới Post
   public String createEditPostForm(Model model, HttpServletRequest request) {
     UserInfo user = authenService.getLoginedUser(request);
     if (user != null) {
       PostRequest postReqest = new PostRequest();
       postReqest.setUser_id(user.getId());
       model.addAttribute("post", postReqest);
+      model.addAttribute("user", user);
       List<Tag> tags = postService.getAllTags();
       model.addAttribute("tags", tags);
       return Route.POST;
@@ -65,10 +68,16 @@ public class PostController {
   }
 
   @PostMapping("/post")
-  public String createEditPostSubmit(@ModelAttribute PostRequest postRequest, HttpServletRequest request) {
+  public String createEditPostSubmit(@Valid @ModelAttribute("post") PostRequest postRequest, BindingResult bindingResult, Model model, HttpServletRequest request) {
     UserInfo user = authenService.getLoginedUser(request);
-    if (user != null && user.getId() == postRequest.getUser_id()) {
+    if (bindingResult.hasErrors()) {
+      List<Tag> tags = postService.getAllTags();
+      model.addAttribute("tags", tags);
+			return Route.POST;
+    }
+    
 
+    if (user != null && user.getId() == postRequest.getUser_id()) {
       try {
         if (postRequest.getId() == null) {
           postService.createNewPost(postRequest); //Create

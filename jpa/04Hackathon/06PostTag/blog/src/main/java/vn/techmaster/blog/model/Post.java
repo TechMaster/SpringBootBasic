@@ -33,9 +33,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Post { 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id; 
+    private Long id;
     private String title;
-    @Column(length=3000)
+    @Column(length=5000)
     private String content;
     private LocalDateTime lastUpdate;
     @PrePersist //Trước khi lưu khi khởi tạo record
