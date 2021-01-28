@@ -12,7 +12,7 @@
     <em th:text="${#temporals.format(post.lastUpdate, 'dd-MMM-yyyy')}"></em>
     <em>
       <span>Tags: </span>
-      <a class="me-2" th:each="tag : ${tags}" th:href="${'/tag/' + tag.id}" th:text="${tag.name}">
+      <a class="me-2" th:each="tag : ${tags}" th:href="${'/tag/' + tag.id}" th:text="${tag.name}">tag link</a>
     </em>
     <p th:text="${post.content}" class="mt-2"></p>
     <hr>

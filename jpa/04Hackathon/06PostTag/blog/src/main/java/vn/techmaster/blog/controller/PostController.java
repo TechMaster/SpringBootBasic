@@ -74,8 +74,7 @@ public class PostController {
       List<Tag> tags = postService.getAllTags();
       model.addAttribute("tags", tags);
 			return Route.POST;
-    }
-    
+    }  
 
     if (user != null && user.getId() == postRequest.getUser_id()) {
       try {
