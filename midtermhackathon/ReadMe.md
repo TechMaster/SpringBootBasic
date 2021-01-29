@@ -34,9 +34,6 @@ Tuần tới, chúng ta sẽ nghỉ ngày thứ 3 và thứ 4. Tối thứ 5 ch�
 
 ![](Calendar.jpg)
 
-Trong cả ngày thứ 7 30/1/2020 từ 8:00 sáng đến 8:00 tối, chúng ta sẽ có buổi hackathon tại Techmaster.
-Chúng ta sẽ tạo thành nhóm 2 người do giảng viên chỉ định. Thực tế khi vào dự án phần mềm bạn không có cơ hội chọn bạn mà dự án có ai bạn phải chấp nhận làm việc với họ. Bạn không ưng họ, bạn quit dự án.
-
 Do hackathon này diễn ra trong cả ngày nên điểm sẽ nhân đôi.
 
 ## Chủ đề Hackathon: xây dựng hệ thống khiếu nại báo cáo lỗi.
