@@ -1,5 +1,9 @@
 # Hackathon giữa kỳ
 
+## Thời gian - Địa điểm
+- Thời gian: 9:00 sáng - 8:30 tối ngày 30/1/2021
+- Địa điểm: phòng số 1, 2, 4, 5, cơ sở 48 Tố Hữu, Techmaster
+
 ## Đảm bảo an toàn trước nguy cơ Covid
 Để đảm bảo an toàn cho sinh viên đến thực hành Hackathon, Techmaster yêu cầu sinh viên tuân thủ các quy định sau đây:
 
