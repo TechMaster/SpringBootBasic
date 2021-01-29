@@ -48,3 +48,11 @@ Tuỳ bạn. Để đơn giản tôi sẽ cung cấp sẵn vài User và Roles, 
 ### Cách thức chấm bài:
 1. Tôi sẽ không xem code của các bạn. Vì gần cuối ngày, nếu xem code để chấm thì thời gian sẽ kéo dài đến 10 giờ đêm.
 2. Tôi chỉ chấm theo chức năng có tuân thủ theo đúng màn hình mockup bằng Balsamiq không.
+
+
+## Màn hình Mockup
+![](login.jpg)
+
+![](mainscreen.jpg)
+
+![](new_bug.jpg)
