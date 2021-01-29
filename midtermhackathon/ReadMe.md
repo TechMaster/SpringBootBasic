@@ -1,5 +1,20 @@
 # Hackathon giữa kỳ
 
+## Đảm bảo an toàn trước nguy cơ Covid
+Để đảm bảo an toàn cho sinh viên đến thực hành Hackathon, Techmaster yêu cầu sinh viên tuân thủ các quy định sau đây:
+
+1. Sử dụng thang bộ nếu có thể.
+2. Đeo khẩu trang nếu đi thang máy. Rửa tay bằng cồn khi vào lớp.
+3. Ngồi mỗi người một bàn, cách nhau tối thiểu 1.4 mét, làm đồ án độc lập.
+4. Không bắt tay. Hạn chế trò chuyện trực tiếp.
+5. Buổi trưa đi ăn, hãy đeo khẩu trang.
+
+Techmaster bố trí 3 phòng học số 1, số 2, số 4 và số 5 đủ rộng rãi, yên tĩnh cho sinh viên giãn cách và yên tĩnh lập trình.
+
+Chúng ta còn khoảng 2-3 buổi Hackathon full day để chuẩn bị kỹ năng lập trình trước khi đi xin việc. Nếu vì lý do bất khả kháng bạn không đến dự 1 buổi Hackathon, hãy chấp nhận 0 điểm, rồi gỡ lại ở buổi Hackthon sau. **Học là phải hành, không thực hành, không có đồ án, Techmaster không thể cam kết việc làm.**
+
+------
+
 Hackathon là một hoạt động lập trình nhóm theo một chủ đề cho trước hoặc chủ đề do nhóm đề xuất. Thời gian Hackathon từ 8 tiếng đến khoảng 48 tiếng tuỳ mức độ khó. Hackathon cho chúng ta những trải nghiệm gì và kinh nghiệm gì:
 1. Kỹ năng hoàn thành sản phẩm trong một thời gian ngắn: bắt buộc phải tập trung cao độ
 2. Khả năng phối hợp đồng đội

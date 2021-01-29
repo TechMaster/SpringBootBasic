@@ -2,8 +2,8 @@
 Khoá học trong 18 buổi học x 3 tiếng.
 
 - Tác giả Trịnh Minh Cường, cuong@techmaster.vn
-- Giảng viên hướng dẫn thực hành: Đoàn Quang Hoà, Trịnh Minh Cường
-- Giảng viên thỉnh giảng: Trịnh Minh Thuý, Nam Loda.me, Trần Hữu Cương
+- Giảng viên hướng dẫn thực hành: Trịnh Minh Cường
+- Giảng viên thỉnh giảng: Nam Loda.me, Trần Thịnh, Trịnh Minh Thuý, Nguyễn Tuấn Anh
 
 ## Nội dung học
 1. Basic: căn bản, cấu trúc ứng dụng SpringBoot
