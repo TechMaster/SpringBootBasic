@@ -11,7 +11,11 @@
 
 Techmaster bố trí 3 phòng học số 1, số 2, số 4 và số 5 đủ rộng rãi, yên tĩnh cho sinh viên giãn cách và yên tĩnh lập trình.
 
-Chúng ta còn khoảng 2-3 buổi Hackathon full day để chuẩn bị kỹ năng lập trình trước khi đi xin việc. Nếu vì lý do bất khả kháng bạn không đến dự 1 buổi Hackathon, hãy chấp nhận 0 điểm, rồi gỡ lại ở buổi Hackthon sau. **Học là phải hành, không thực hành, không có đồ án, Techmaster không thể cam kết việc làm.**
+Chúng ta còn khoảng 2-3 buổi Hackathon full day để chuẩn bị kỹ năng lập trình trước khi đi xin việc. Nếu vì lý do bất khả kháng bạn không đến dự 1 buổi Hackathon, hãy chấp nhận 0 điểm, rồi gỡ lại ở buổi Hackthon sau. 
+
+Nếu có công điện chính thức của chính phủ yêu cầu dừng hoạt động đào tạo, kinh doanh vào tối nay 29/01/2021 thì buổi Hackathon mới hoãn.
+
+**Học là phải hành: không thực hành, không có đồ án, Techmaster không thể cam kết việc làm.**
 
 ------
 
