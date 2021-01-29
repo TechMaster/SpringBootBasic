@@ -15,7 +15,7 @@
 
 Techmaster bố trí 3 phòng học số 1, số 2, số 4 và số 5 đủ rộng rãi, yên tĩnh cho sinh viên giãn cách và yên tĩnh lập trình.
 
-Chúng ta còn khoảng 2-3 buổi Hackathon full day để chuẩn bị kỹ năng lập trình trước khi đi xin việc. Nếu vì lý do bất khả kháng bạn không đến dự 1 buổi Hackathon, hãy chấp nhận 0 điểm, rồi gỡ lại ở buổi Hackthon sau. 
+ Chúng ta còn khoảng 2-3 buổi Hackathon full day để chuẩn bị kỹ năng lập trình trước khi đi xin việc. Nếu vì lý do bất khả kháng bạn không đến dự 1 buổi Hackathon, hãy chấp nhận 0 điểm, rồi gỡ lại ở buổi Hackthon sau. Sau Tết nếu không phải dãn cách, cứ mỗi tuần chúng ta sẽ có 1 buổi Hackathon full day vào thứ 7. Vậy thầy chỉ thông báo, các bạn đừng bắt thầy phải tạo vote. Chúng ta là một tập thể hướng đến một mục đích quan trọng cuối cùng là mỗi sinh viên trở thành lập trình viên Spring Boot có việc làm, có lương tốt. Vậy đừng bàn những việc quá cá nhân ảnh hưởng đến tiến độ học của cả lớp.
 
 Nếu có công điện chính thức của chính phủ yêu cầu dừng hoạt động đào tạo, kinh doanh vào tối nay 29/01/2021 thì buổi Hackathon mới hoãn.
 
