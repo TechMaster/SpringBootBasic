@@ -3,7 +3,7 @@
 <head th:replace="layout :: head"></head>
 <body>
   <div class="container">
-  <menu th:replace="layout :: menu(title='Create new post')"></menu>
+  <menu th:replace="layout :: menu(title=${post.id > 0 ? 'Edit a post' : 'Create new post'})"></menu>
     <form action="#" th:action="@{/post}" th:object="${post}" method="post">
       <input type="hidden" th:field="*{id}"/>
       <input type="hidden" th:field="*{user_id}"/>
@@ -12,11 +12,19 @@
         <input type="text" th:field="*{title}" class="form-control" id="title" placeholder="Title of your post">
         <p class="alert alert-danger" th:if="${#fields.hasErrors('title')}" th:errors="*{title}">title Error></p>
       </div>
-      <div class="form-check d-inline-flex" th:each="tag : ${tags}">
+      <!--When create new post we don't need check radio box-->
+      <div th:unless="${post.id > 0}" class="form-check d-inline-flex" th:each="tag : ${allTags}">
         <input class="form-check-input me-2" type="checkbox" 
-        th:value="${tag.id}" 
+        th:value="${tag.id}"
+        name="tags">
+        <label class="form-check-label me-4" for="${tag.id}" th:text="${tag.name}"></label>
+      </div>
+      
+      <div th:if="${post.id > 0}" class="form-check d-inline-flex" th:each="tag : ${allTags}">
+        <input class="form-check-input me-2" type="checkbox" 
+        th:value="${tag.id}"
         name="tags"
-        id="${tag.id}">
+        th:checked="${#lists.contains(post.tags, tag)}">
         <label class="form-check-label me-4" for="${tag.id}" th:text="${tag.name}"></label>
       </div>
     

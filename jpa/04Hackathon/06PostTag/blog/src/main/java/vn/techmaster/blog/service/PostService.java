@@ -30,7 +30,7 @@ public class PostService implements IPostService {
 
   @Override
   public List<Post> findAll() {
-    return postRepo.findAll();
+    return postRepo.findAll();  //Bổ xung pagination vào đây !
   }
 
   @Override

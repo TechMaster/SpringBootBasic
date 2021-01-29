@@ -60,7 +60,7 @@ public class PostController {
       model.addAttribute("post", postReqest);
       model.addAttribute("user", user);
       List<Tag> tags = postService.getAllTags();
-      model.addAttribute("tags", tags);
+      model.addAttribute("allTags", tags);
       return Route.POST;
     } else {
       return Route.REDIRECT_HOME;
@@ -134,7 +134,7 @@ public class PostController {
     return Route.REDIRECT_POSTS;
   }
 
-  //Edit một post
+  //Mở form để edit một post
   @PostMapping("/post/edit")
   public String editPost(@ModelAttribute IdRequest idRequest, Model model, HttpServletRequest request) {
     UserInfo user = authenService.getLoginedUser(request);
@@ -147,10 +147,10 @@ public class PostController {
       
       model.addAttribute("post", postReqest);
       List<Tag> tags = postService.getAllTags();
-      model.addAttribute("tags", tags);
+      model.addAttribute("allTags", tags);
       UserInfo userInfo = UserMapper.INSTANCE.userToUserInfo(post.getUser());
       model.addAttribute("user", userInfo);
-      return "post2.html";
+      return Route.POST;
     } else {
       return Route.REDIRECT_POSTS;
     }   
