@@ -22,19 +22,9 @@ Nếu có công điện chính thức của chính phủ yêu cầu dừng hoạ
 **Học là phải hành: không thực hành, không có đồ án, Techmaster không thể cam kết việc làm.**
 
 ------
-
-Hackathon là một hoạt động lập trình nhóm theo một chủ đề cho trước hoặc chủ đề do nhóm đề xuất. Thời gian Hackathon từ 8 tiếng đến khoảng 48 tiếng tuỳ mức độ khó. Hackathon cho chúng ta những trải nghiệm gì và kinh nghiệm gì:
-1. Kỹ năng hoàn thành sản phẩm trong một thời gian ngắn: bắt buộc phải tập trung cao độ
-2. Khả năng phối hợp đồng đội
-3. Kỹ năng tìm giải pháp nhanh, cân đối giữa code chạy được và hoàn hảo
-
-Trong ngành CNTT, việc làm thêm giờ để đẩy nhanh tiến độ hoàn thành đúng thời hạn là việc thường xuyên xảy ra. Thường dự án khởi động chậm, bàn tới bàn lui, code thẩn thơ trong 60% thời gian hoạch định, 40% thời gian còn lại thực sự code, nhưng code ra nhiều lỗi, phát sinh thêm yêu cầu và kết quả là cả team phải làm việc 7 ngày một tuần, mỗi ngày 12 tiếng.
-
-Tuần tới, chúng ta sẽ nghỉ ngày thứ 3 và thứ 4. Tối thứ 5 chúng ta sẽ chữa bài tập cũ hoặc nếu nhiều bạn đã làm được bài Blog Post thì chúng ta học Spring Security buổi đầu tiên.
-
 ![](Calendar.jpg)
 
-Do hackathon này diễn ra trong cả ngày nên điểm sẽ nhân đôi.
+Do hackathon này diễn ra trong cả ngày nên điểm sẽ nhân đôi. Chỉ chấm trên giao diện chạy. Không tham gia thực hành nhận 0 điểm.
 
 ## Chủ đề Hackathon: xây dựng hệ thống khiếu nại báo cáo lỗi.
 
