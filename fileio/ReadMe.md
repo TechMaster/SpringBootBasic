@@ -5,14 +5,15 @@
    - Hạn chế file upload
    - Cấu hình thư mục lưu file upload lên
 2. Upload file với RestController
-3. Demo tổng hợp - App quản lý file trên server<br>
+3. Demo tổng hợp - App quản lý file trên server  
 a. Chức năng của app
    - Show thư mục root (quản lý file upload, chia ra 2 thư mục con cho user thường và admin)
    - Liệt kê file và folder thuộc trực tiếp folder đang làm việc
    - Upload fle vào folder đang làm việc
    - Xóa file/folder
    - Tạo folder con
-   - Download file<br>
+   - Download file
+
 b. Các bước thực hiện
    - Cấu hình thư mục gốc lưu file upload trên server + hạn chế kích thước file
    - Phân quyền với spring security và sử dụng thư mục riêng chỉ cho admin truy cập
@@ -20,10 +21,10 @@ b. Các bước thực hiện
    - Viết FileRestController để cung cấp các api làm việc với file, viết các file service để xử lý business
    - Thiết kế giao diện với thymeleaf, css, js
    - Viết các function trong js để call rest api, sau đó update lại home page
-4. Các kỹ thuật cần dùng
-a. Làm việc với Java (tài liệu dịch đi kèm)
-b. Làm việc với Multipart file trong Spring
-- Upload file:
+4. Các kỹ thuật cần dùng<br>
+a. Làm việc với Java (tài liệu dịch đi kèm)  
+b. Làm việc với Multipart file trong Spring  
+- Upload file:  
 -- Làm việc với Rest Controller (tham khảo đến FileRestController trong project)
 ```sh
 	@PostMapping("/api/files/" + FileService.DIR_NAME)
@@ -40,8 +41,8 @@ b. Làm việc với Multipart file trong Spring
 		}
 	}
 ```
-Kiểu trả về tùy mục đích để viết, có thể chỉ đơn giản là message với result để thể hiện kết quả. Ở đây sử dụng FileInfo là 1 class với các thuộc tính đơn giản của file để hiển thị.Response trả về sẽ có body là dạng json chứa 1 list các fileinfo chứa thông tin các file được upload lên server.
-Argument khai báo của method: @RequestParam MultipartFile[] files. Khi khai báo như thế này, param "files" được gửi từ client sẽ được spring tự động đọc vào biến files. Lưu ý là spring support gửi nhiều file 1 lúc, nên ở đây dùng MultipartFile array (tương ứng với thuộc tính multiple <input type="file" name="files" multiple/>) (Xem project demo-form-upload để hiểu rõ hơn về upload 1 file và upload nhiều file)
+Kiểu trả về tùy mục đích để viết, có thể chỉ đơn giản là message với result để thể hiện kết quả. Ở đây sử dụng FileInfo là 1 class với các thuộc tính đơn giản của file để hiển thị.Response trả về sẽ có body là dạng json chứa 1 list các fileinfo chứa thông tin các file được upload lên server.  
+Argument khai báo của method: @RequestParam MultipartFile[] files. Khi khai báo như thế này, param "files" được gửi từ client sẽ được spring tự động đọc vào biến files. Lưu ý là spring support gửi nhiều file 1 lúc, nên ở đây dùng MultipartFile array (tương ứng với thuộc tính multiple <input type="file" name="files" multiple/>) (Xem project demo-form-upload để hiểu rõ hơn về upload 1 file và upload nhiều file)  
 Khi đã lấy được file gửi từ client, việc làm gì với file này sẽ do tùy từng bài toán. Ví dụ ở đây sẽ lưu file này vào thư mục chỉ định trong storage trên server (tham khảo đến FileServiceImpl trong project)
 ```sh
 	public List<FileInfo> saveAll(String rootDirName, String dirPath, MultipartFile[] mpFiles) {
