@@ -99,6 +99,15 @@ public class BlogAppRunner implements CommandLineRunner {
 }
 ```
 
+Đoạn code ```user.addPost(post);``` sẽ báo lỗi nếu trong [User.java](src/main/java/vn/techmaster/blog/model/User.java) tôi chọn  FetchType của quan hệ User <--> Post là Lazy. Do đó chuyển tạm sang ```FetchType.EAGER```
+
+```java
+public class Post { 
+    @ManyToOne(fetch = FetchType.EAGER) //Phải đổi từ LAZY sang EAGER
+    private User user;  //Tác giả viết post
+}
+```
+Lỗi này làm tôi mất luôn 2 tiếng chiều nay. Hiện vẫn muốn để ```fetch = FetchType.LAZY``` sẽ tốt hơn.
 ## Phân trang Pagination
 
 Sau khi sinh động ngẫu nhiên số lượng Post đủ lớn chúng ta sẽ phân trang.
