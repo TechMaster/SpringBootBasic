@@ -39,10 +39,11 @@ public class HomeController {
       page = 0;
     }
     Page<Post> pagePosts = postService.findAllPaging(page, 10);
-    int totalPages = pagePosts.getTotalPages();
+
     List<Post> posts = pagePosts.getContent();
     model.addAttribute("posts", posts);
-    model.addAttribute("currentpage", page);
+    List<Paging> pagings = Paging.generatePages(page, pagePosts.getTotalPages());
+    model.addAttribute("pagings", pagings);
     return Route.HOME;
   }
 

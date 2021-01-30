@@ -62,7 +62,7 @@ public class SpringBootApplicationRunner implements ApplicationRunner {
 ```
 ## Tự sinh 2000 bản ghi Post
 
-Chúng ta cần bổ xung thêm một depedency vào [pom.xml](pom.xml)
+1. Chúng ta cần bổ xung thêm một depedency vào [pom.xml](pom.xml)
 ```xml
 <dependency>
 	<groupId>com.thedeanda</groupId>
@@ -70,7 +70,126 @@ Chúng ta cần bổ xung thêm một depedency vào [pom.xml](pom.xml)
 	<version>2.1</version>
 </dependency>
 ```
+Dependecy này giúp chúng ta sinh ngẫu nhiên các đoạn text Lorem Ispum Dolor
 
+2. Viết class ```ApplicationRunner```
+Khi chưa có chức năng phân trang, đừng sinh nhiều bản ghi quá. 20 là ok.
+```java
+@Component
+public class BlogAppRunner implements CommandLineRunner {
+  @Autowired  private UserRepository userRepo;
+  @Autowired  private PostRepository postRepo;
 
+  @Override
+  public void run(String... args) throws Exception {
+    List<User> users = userRepo.findAll();
+    Lorem lorem = LoremIpsum.getInstance();
+    int count = 0;
+    Random random = new Random();
+    int numberOfUsers = users.size();
+    while (count < 200) {  //Tạo ra 200 bản ghi
+      int userIndex = random.nextInt(numberOfUsers);
+      User user = users.get(userIndex);
+      Post post = new Post(lorem.getTitle(2, 5), lorem.getParagraphs(2, 4));  //Sinh dữ liệu ngẫu nhiên cho Post    
+      user.addPost(post);
+      postRepo.save(post);
+    }
+    userRepo.flush();
+  }  
+}
+```
+
+## Phân trang Pagination
+
+Sau khi sinh động ngẫu nhiên số lượng Post đủ lớn chúng ta sẽ phân trang.
+
+1. Trong [PostService.java](src/main/java/vn/techmaster/blog/service/PostService.java), bổ xung phương thức này trả về dữ liệu phân trang
+
+```java
+@Override
+public Page<Post> findAllPaging(int page, int pageSize) {
+  return postRepo.findAll(PageRequest.of(page, pageSize)); // Bổ xung pagination vào đây !
+}
+```
+
+2. Trong [HomeController.java](src/main/java/vn/techmaster/blog/controller/HomeController.java)
+bổ xung thêm tham số đường dẫn page chỉ page hiện thời
+
+```java
+@GetMapping(value = {"/", "/{page}"})
+  public String home(@PathVariable(value="page", required = false) Integer page, Model model, HttpServletRequest request) {
+    UserInfo user = authenService.getLoginedUser(request);    
+    if (user != null) {  //Người dùng đã login      
+      model.addAttribute("user", user);
+    }
+    if (page == null) {
+      page = 0;
+    }
+    Page<Post> pagePosts = postService.findAllPaging(page, 10); //Mỗi page 10 Post
+
+    List<Post> posts = pagePosts.getContent();
+    model.addAttribute("posts", posts);
+    //Sinh ra cấu trúc dữ liệu phân trang
+    List<Paging> pagings = Paging.generatePages(page, pagePosts.getTotalPages());
+    model.addAttribute("pagings", pagings);
+    return Route.HOME;
+  }
+```
+
+3. Viết thuật toán phân trang [Paging.java](src/main/java/vn/techmaster/blog/controller/Paging.java)
+Phần này chúng ta cần: Cấu trúc dữ liệu Paging và thuật toán để tạo ra mảng Paging
+
+Cấu trúc dữ liệu Paging sẽ đổ vào [paging component của Bootstrap](https://getbootstrap.com/docs/5.0/components/pagination/)
+
+```java
+public class Paging {
+  public String title; //Title của nút
+  public int index; //Số thứ tự trang bắt đầu từ 0
+  public String active; //Nếu là trang hiện thời thì trả về 'active' còn không trả về ''
+  public Paging(String title, int index, String active) {
+    this.title = title;
+    this.index = index;
+    this.active = active;
+  }
+}
+```
+
+4. Viết hàm static để sinh mảng ```Paging``` gồm 2 nút Prev và Next hai đầu, các các nút ở giữa
+```java
+public static List<Paging> generatePages(int selectedPage, int totalPages) {
+  //https://codereview.stackexchange.com/questions/240235/java-pagination-algorithm
+  int offset = 5;
+  // set start index relative to selected  
+  int start = selectedPage - (offset / 2);
+  // adjust for first pages   
+  start = Math.max(start, 0);
+  // set end index relative to start    
+  int end = start + offset;
+  // adjust start and end for last pages     
+  if (end > totalPages - 1) {
+      end = totalPages - 1;
+      start = end - offset + 1;
+  }
+  ArrayList<Paging> pagings = new ArrayList<>();
+  pagings.add(new Paging("Prev", selectedPage > 0 ? selectedPage - 1: 0, ""));
+  for (int i = start; i < end; i++){
+    Paging paging = new Paging(String.valueOf(i + 1), i, (i == selectedPage) ? "active" : "");
+    pagings.add(paging);
+  }
+  pagings.add(new Paging("Next", Math.min(selectedPage + 1, totalPages - 1), ""));
+  return pagings;
+}
+```
+5. Sửa lại Thymeleaf [home.html](src/main/resources/templates/home.html). Thêm khối này vào
+  ```html
+  <nav>
+    <ul class="pagination">
+      <li class="page-item" th:each="paging : ${pagings}" th:classappend="${paging.active}"><a class="page-link" th:href="${'/' + paging.index}" th:text="${paging.title}"></a></li>       
+    </ul>
+  </nav>
+  ```
+
+Thành quả sau một ngày Hackathon nghiêm túc của tôi đây.
+![](images/pagination.jpg)
 
 

@@ -1,17 +1,16 @@
 package vn.techmaster.blog.controller;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 public class Paging {
   public String title;
   public int index;
-  public boolean isCurrent;
-  public Paging(String title, int index, boolean isCurrent) {
+  public String active;
+  public Paging(String title, int index, String active) {
     this.title = title;
     this.index = index;
-    this.isCurrent = isCurrent;
+    this.active = active;
   }
 
   public static List<Paging> generatePages(int selectedPage, int totalPages) {
@@ -29,10 +28,12 @@ public class Paging {
         start = end - offset + 1;
     }
     ArrayList<Paging> pagings = new ArrayList<>();
+    pagings.add(new Paging("Prev", selectedPage > 0 ? selectedPage - 1: 0, ""));
     for (int i = start; i < end; i++){
-      Paging paging = new Paging()
+      Paging paging = new Paging(String.valueOf(i + 1), i, (i == selectedPage) ? "active" : "");
+      pagings.add(paging);
     }
-
-
+    pagings.add(new Paging("Next", Math.min(selectedPage + 1, totalPages - 1), ""));
+    return pagings;
   }
 }

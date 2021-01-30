@@ -25,7 +25,6 @@ public class BlogAppRunner implements CommandLineRunner {
   @Autowired  private UserRepository userRepo;
   @Autowired  private PostRepository postRepo;
 
-
   @Override
   public void run(String... args) throws Exception {
     List<User> users = userRepo.findAll();
