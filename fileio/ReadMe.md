@@ -13,6 +13,7 @@ a. Chức năng của app
    - Xóa file/folder
    - Tạo folder con
    - Download file
+
 b. Các bước thực hiện
    - Cấu hình thư mục gốc lưu file upload trên server + hạn chế kích thước file
    - Phân quyền với spring security và sử dụng thư mục riêng chỉ cho admin truy cập
