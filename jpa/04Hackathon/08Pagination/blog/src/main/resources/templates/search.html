@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="layout :: head"></head>
+<body>
+  <div class="container">
+    <menu th:replace="layout :: menu(title='Search')"></menu>
+    <form action="#" th:action="@{/search}" th:object="${searchRequest}" method="post">
+      <input type="text" th:field="*{term}" class="form-control mb-3" id="term" placeholder="term to search">
+      <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+  </div>
+</body>
+</html>

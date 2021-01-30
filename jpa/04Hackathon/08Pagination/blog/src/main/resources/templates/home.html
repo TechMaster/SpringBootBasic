@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head th:replace="layout :: head">
+</head>
+
+<body>
+  <div class="container">
+    <menu th:replace="layout :: menu(title='Micro blog page')"></menu>
+    <div class="row mt-5 justify-content-center">
+      <div class="card mx-2 mb-3" style="max-width: 300px;" th:each="post: ${posts}">
+        <div class="card-body">
+          <h5 class="card-title" th:text="${post.title}"></h5>
+          <h6 class="card-subtitle mb-2 text-muted" th:text="${post.getUser().getFullname()}">Card subtitle</h6>
+          <p class="card-text" th:text="${#strings.abbreviate(post.content, 100)}">content</p>
+          <a th:href="@{/post/{id}(id=${post.id})}" class="card-link">See more...</a>
+        </div>        
+      </div>
+    </div>
+    <nav aria-label="Page navigation example">
+      <ul class="pagination">
+        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+        <li class="page-item"><a class="page-link" href="#">1</a></li>
+        <li class="page-item"><a class="page-link" href="#">2</a></li>
+        <li class="page-item"><a class="page-link" href="#">3</a></li>
+        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+      </ul>
+    </nav>
+  </div>
+</body>
+
+</html>

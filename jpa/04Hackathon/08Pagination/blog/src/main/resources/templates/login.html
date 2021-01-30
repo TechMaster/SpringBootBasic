@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="layout :: head"></head>
+<body>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <h1>Login</h1>
+      <form action="#" th:action="@{/login}" th:object="${loginRequest}" method="post">
+        <div class="mb-3">
+          <label for="email" class="form-label">Email address</label>
+          <input type="email" placeholder="email" th:field="*{email}" class="form-control" id="email"/>
+        </div>
+        <div class="mb-3">
+          <label for="pass" class="form-label">Password</label>
+          <input type="password" placeholder="Password" th:field="*{password}" class="form-control" id="pass"/>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+      <p th:text="*{errorMessage}">Error Message</p>
+    </div>
+  </div>
+</div>
+</body>
+</html>
