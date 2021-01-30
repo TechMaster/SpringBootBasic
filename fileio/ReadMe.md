@@ -135,8 +135,11 @@ $.ajax({
 			$('#upload-form').children('div').children('input')[0].value = "";
 		}).fail(function(xhr, status, error) {
 ```
+
 được dùng để xử lý request bất đồng bộ: trong done() function sẽ xử lý dữ liệu json trả về từ server (FileRestController), trong fail() function sẽ xử lý error nếu nhận được error từ phía server.
-	- Làm việc với Spring MVC form upload (project demo-form-upload)
+
+-
+	-  Làm việc với Spring MVC form upload (project demo-form-upload)  
 Ở project này, làm việc với @Controller và Spring MVC để upload file theo 2 hình thức: upload 1 file và upload nhiều file từ form (submit form của html).
 ```sh
     @PostMapping("/uploadFile")
