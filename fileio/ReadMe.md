@@ -21,9 +21,9 @@ b. Các bước thực hiện
    - Thiết kế giao diện với thymeleaf, css, js
    - Viết các function trong js để call rest api, sau đó update lại home page
 4. Các kỹ thuật cần dùng<br>
-a. Làm việc với Java (tài liệu dịch đi kèm)<br>
-b. Làm việc với Multipart file trong Spring
-- Upload file:
+a. Làm việc với Java (tài liệu dịch đi kèm).
+b. Làm việc với Multipart file trong Spring.
+- Upload file:.
 -- Làm việc với Rest Controller (tham khảo đến FileRestController trong project)
 ```sh
 	@PostMapping("/api/files/" + FileService.DIR_NAME)
