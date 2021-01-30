@@ -191,6 +191,42 @@ Phía fileService sẽ copy nội dung file upload sang 1 file mới tạo trong
 Files.copy(file.getInputStream(), copyLocation, StandardCopyOption.REPLACE_EXISTING);
 ```
 
+-
+	-  Hạn chế kích thước file
+Khai báo trong application.properties các thuộc tinh sau để hạn chế kích thước file upload
+```sh
+spring.servlet.multipart.max-file-size=5MB
+spring.servlet.multipart.max-request-size=20MB
+```
+max-file-size là giới hạn kích cỡ của file được upload, còn max-request-size giới hạn kích cỡ của request được gửi đi  
+Khi file được chọn từ client có kích cỡ hơn 5MB, thì spring sẽ trả ra exception. Để xử lý exception này và trả về những thông tin mình mong muốn, thì dùng 1 kỹ thuật quản lý exception hay sử dụng trong spring là @ControllerAdvice (@RestControllerAdvice) và @ExceptionHandler(MaxUploadSizeExceededException.class)  
+ @ControllerAdvice: đánh dấu controller này là một global controller, nghĩa là nó xử lý chung cho tất cả các controller khác.  
+ @ExceptionHandler: Được sử dụng để bắt các exception bắn ra từ tất cả các method khác ở trong Controller mà có class được khai báo trong cú pháp của nó
+```sh
+@ControllerAdvice
+public class FileManagerControllerAdvice {
+	@ExceptionHandler(MaxUploadSizeExceededException.class)
+	public ResponseEntity<?> handleFileSizeLimitExceeded(MaxUploadSizeExceededException exc) {
+	    return new ResponseEntity<>(exc.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+}
+
+```
+method handleFileSizeLimitExceeded sẽ bắt exception có class là MaxUploadSizeExceededException mà bắn ra từ các controller khác
+Ngoài ra trong FileRestController các bạn cũng sẽ thấy có sử dụng:
+```sh
+	@ExceptionHandler(FileManagerFileNotFoundException.class)
+	public ResponseEntity<?> handleFileManagerFileNotFoundException(FileManagerFileNotFoundException exc) {
+		return new ResponseEntity<>(exc.getMessage(), HttpStatus.NOT_FOUND);
+	}
+
+	@ExceptionHandler(FileManagerException.class)
+	public ResponseEntity<?> handleFileManagerException(FileManagerException exc) {
+		return new ResponseEntity<>(exc.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+```
+Lúc này handleFileManagerFileNotFoundException method sẽ bắt các FileManagerFileNotFoundException mà bắn ra từ các method khác trong FileRestController class.
+
 - Đọc nội dung file và download file từ server
 Một cách đơn giản để trả về nội dung file cho việc download hoặc view là trả về đối tượng Resource của spring như trong ví dụ dưới đây
 ```sh
