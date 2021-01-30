@@ -2,12 +2,15 @@
 
 Trong phần này chúng ta sẽ bổ xung chức năng phân loại bài viết: tagging a post. Một Post được đánh dấu bởi nhiều Tag. Một Tag dùng để đánh dấu nhiều Post
 Bảng TAG
+
 ![](images/tag.jpg)
 
 Bảng POST
+
 ![](images/post.jpg)
 
 Bảng trung gian POST_TAG
+
 ![](images/post_tag.jpg)
 ## Định nghĩa quan hệ nhiều - nhiều ~ Many to Many
 
@@ -50,7 +53,7 @@ public class Tag {
 
 Chúng ta bổ xung thêm file [tag.sql](src/main/resources/tag.sql) để nạp sẵn dữ liệu cho bảng Tag.
 
-Ở đây chúng ta thấy trong ```class Post``` có 2 phương thức ```addTag(Tag tag)``` và ```removeTag(Tag tag)``` mà tại sao không có chiều ngược lại ở ```class Tag``` kiểu như ```addPost(Post post)``` và ```removePost(Post post)``?
+Ở đây chúng ta thấy trong ```class Post``` có 2 phương thức ```addTag(Tag tag)``` và ```removeTag(Tag tag)``` mà tại sao không có chiều ngược lại ở ```class Tag``` kiểu như ```addPost(Post post)``` và ```removePost(Post post)``` ?
 Trả lời: 
 - Có thể bổ xung 2 method tương ứng ở ```class Tag``` nhưng việc đó khiến cho code rối.
 - Chủ thể quan trọng ở đây là Post. Tag là thông tin bổ trợ, do đó chúng ta tạo 2 phương thức tác động lên Post
@@ -207,7 +210,7 @@ public String showPostAndComment(@PathVariable("id") long id, Model model, HttpS
 ### Fragment, truyền tham số vào Fragment
 ```th:fragment``` là một khối các mã HTML + Thymeleaf được tái sử dụng
 
-1. Để dùng lại một fragement chúng ta có chọn ```th:replace``` và 
+1. Để dùng lại một fragement chúng ta có chọn ```th:replace``` hoặc ```th:insert```. Khác biệt là replace sẽ thay thế toàn bộ nội dung ở target tag bằng fragment tag, còn insert thì nhúng fragment tag vào targert tag.
 Xem [layout.html](src/main/resources/templates/layout.html)
 
 ```html
@@ -268,6 +271,7 @@ if (user != null && optionalPost.isPresent()) {
 
 Cách sinh checkbox nói trên tạm gọi là cách dùng ```th:field``` lúc tạo mới Post thì thành công nhưng Edit thì báo lỗi rất khó hiểu. Chúng ta phải tìm cách khác. Cách này chia 2 trường hợp: Create và Edit.
 
+Xem file [post.html](src/main/resources/templates/post.html)
 **Sinh checkbox trạng thái Create, chưa có ô nào check**
 Trường hợp này điều kiện ```post.id > 0``` là false
 ```html

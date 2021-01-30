@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head th:replace="layout_post :: head">
+</head>
+
+<body>
+  <div class="container">
+    <menu th:replace="layout_post :: menu"> </menu>
+
+    <h3 th:text="${post.title}"></h3>
+    <em th:text="${#temporals.format(post.lastUpdate, 'dd-MMM-yyyy')}"></em>
+    <em>
+      <span>Tags: </span>
+      <a class="me-2" th:each="tag : ${tags}" th:href="${'/tag/' + tag.id}" th:text="${tag.name}">tag link</a>
+    </em>
+    <p th:text="${post.content}" class="mt-2"></p>
+    <hr>
+    <div class="d-flex" th:classappend="${user!=null && user.id==post.user_id ? 'd-inline' : 'd-none'}">
+      <form action="#" th:action="@{/post/delete}" method="post" class="me-3">
+        <input type="hidden" name="post_id" th:field="${post.id}">
+        <button type="submit" class="btn btn-danger">Delete</button>
+      </form>
+
+      <form action="#" th:action="@{/post/edit}" method="post" class="me-3">
+        <input type="hidden" name="post_id" th:field="${post.id}">
+        <button type="submit" class="btn btn-primary">Edit</button>
+      </form>
+    </div>    
+    <button class="btn btn-primary mt-3" th:classappend="${user!=null ? 'd-block' : 'd-none'}" type="button"
+      data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+      Comment
+    </button>
+    <div id="collapseExample" class="collapse mt-1">
+      <form action="#" th:action="@{/comment}" th:object="${commentRequest}" method="post">
+        <input type="hidden" th:name="post_id" th:field="*{post_id}">
+        <div class="mb-3">
+          <label for="content" class="form-label">Content</label>
+          <textarea class="form-control" th:field="*{content}" id="content" rows="6" cols="50"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Save comment</button>
+      </form>
+    </div>
+
+    <blockquote class="blockquote mt-3" th:each="comment: ${comments}">
+      <p class="mb-3  " th:text="${comment.content}"></p>
+      <footer class="blockquote-footer"><a href="#" th:text="${comment.user.fullname}"></a></footer>
+    </blockquote>
+  </div>
+</body>
+
+</html>
