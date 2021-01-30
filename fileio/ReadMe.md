@@ -20,8 +20,8 @@ b. Các bước thực hiện
    - Viết FileRestController để cung cấp các api làm việc với file, viết các file service để xử lý business
    - Thiết kế giao diện với thymeleaf, css, js
    - Viết các function trong js để call rest api, sau đó update lại home page
-4. Các kỹ thuật cần dùng
-a. Làm việc với Java (tài liệu dịch đi kèm)
+4. Các kỹ thuật cần dùng<br>
+a. Làm việc với Java (tài liệu dịch đi kèm)<br>
 b. Làm việc với Multipart file trong Spring
 - Upload file:
 -- Làm việc với Rest Controller (tham khảo đến FileRestController trong project)
