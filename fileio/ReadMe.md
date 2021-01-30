@@ -12,7 +12,7 @@ a. Chức năng của app
    - Upload fle vào folder đang làm việc
    - Xóa file/folder
    - Tạo folder con
-   - Download file 
+   - Download file  
 b. Các bước thực hiện
    - Cấu hình thư mục gốc lưu file upload trên server + hạn chế kích thước file
    - Phân quyền với spring security và sử dụng thư mục riêng chỉ cho admin truy cập
