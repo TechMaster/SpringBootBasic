@@ -7,6 +7,11 @@ Chúng ta có 2 lựa chọn công nghệ tìm kiếm là Lucence và Elastic Se
 
 Trong bài này tôi dùng Lucence để minh hoạ
 
+Màn hình tìm kiếm
+![](images/search.jpg)
+
+Màn hình kết quả
+![](images/searchresult.jpg)
 ## 1. Bổ xung dependency 
 
 Bổ xung 2 dependencies sau đây vào file [pom.xml](pom.xml)
@@ -111,3 +116,33 @@ Form để tìm kiếm [search.html](src/main/resources/templates/search.html)
 </form>
 ```
 Hiển thị kết quả tìm kiếm [searchresult.html](src/main/resources/templates/searchresult.html)
+
+## 7. Reindex lại indexing file
+[SearchController.java](src/main/java/vn/techmaster/blog/controller/SearchController.java)
+```java
+@GetMapping("/search/index")
+public String reindexFullText(Model model, HttpServletRequest request) {
+  UserInfo user = authenService.getLoginedUser(request);    
+  if (user != null) {  //Người dùng đã login      
+    model.addAttribute("user", user);
+  }
+  postService.reindexFullText();
+  return Route.REDIRECT_HOME;
+}
+```
+
+Bổ xung phương thức đánh lại chỉ mục trong [PostService.java](src/main/java/vn/techmaster/blog/service/PostService.java)
+```java
+@Override
+public void reindexFullText() {
+  SearchSession searchSession = Search.session(em);
+
+  MassIndexer indexer = searchSession.massIndexer(Post.class).dropAndCreateSchemaOnStart(true)
+  .typesToIndexInParallel( 2 )
+  .batchSizeToLoadObjects(10)
+  .idFetchSize(200)
+  .threadsToLoadObjects(5)
+  .cacheMode(CacheMode.IGNORE);
+  indexer.start();    
+}
+```

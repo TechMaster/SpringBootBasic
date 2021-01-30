@@ -22,4 +22,6 @@ public interface IPostService {
   public List<Tag> getAllTags();
 
   public List<Post> searchPost(String term, int limit, int offset);
+
+  public void reindexFullText();
 }

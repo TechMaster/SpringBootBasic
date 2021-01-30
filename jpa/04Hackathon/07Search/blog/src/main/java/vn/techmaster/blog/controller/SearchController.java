@@ -41,4 +41,15 @@ public class SearchController {
     model.addAttribute("posts", posts);
     return Route.SEARCH_RESULT;
   }
+
+  
+  @GetMapping("/search/index")
+  public String reindexFullText(Model model, HttpServletRequest request) {
+    UserInfo user = authenService.getLoginedUser(request);    
+    if (user != null) {  //Người dùng đã login      
+      model.addAttribute("user", user);
+    }
+    postService.reindexFullText();
+    return Route.REDIRECT_HOME;
+  }
 }
