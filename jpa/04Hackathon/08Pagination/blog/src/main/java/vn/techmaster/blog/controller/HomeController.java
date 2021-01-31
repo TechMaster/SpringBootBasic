@@ -38,7 +38,7 @@ public class HomeController {
     if (page == null) {
       page = 0;
     }
-    Page<Post> pagePosts = postService.findAllPaging(page, 10);
+    Page<Post> pagePosts = postService.findAllPaging(page, 8);
 
     List<Post> posts = pagePosts.getContent();
     model.addAttribute("posts", posts);
