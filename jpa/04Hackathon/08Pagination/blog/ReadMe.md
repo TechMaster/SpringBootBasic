@@ -8,7 +8,7 @@ Tôi muốn tạo ra 2000 bản ghi Post tự động để tạo tình huống 
 1. [Spring Boot: ApplicationRunner and CommandLineRunner](https://dzone.com/articles/spring-boot-applicationrunner-and-commandlinerunne)
 2. [When and why do we need ApplicationRunner and Runner interface?](https://stackoverflow.com/questions/59328583/when-and-why-do-we-need-applicationrunner-and-runner-interface)
 
-![](images/homepage.jpg)
+
 
 ## ApplicationRunner hay là CommandLineRunner
 Có 2 interface ```ApplicationRunner``` và ```CommandLineRunner``` để bổ xung logic ngay khi Spring Boot khởi động hoàn tất. Khác biệt giữa hai interface này là:
@@ -139,7 +139,7 @@ Cách sửa nhanh nhất là bổ xung annotation ```@Transactional``` vào
 ```java
 @Override
 @Transactional
-public void run(String... args) throws Exception {
+public void generateSampleData() {
 }
 ```
 
@@ -233,5 +233,21 @@ public static List<Paging> generatePages(int selectedPage, int totalPages) {
   </nav>
   ```
 
+## Thêm FontAwesome
+
+Trong [layout.html](src/main/resources/templates/layout.html) phần head thêm dòng này
+```html
+<script src="https://kit.fontawesome.com/df2eef8f6b.js" crossorigin="anonymous"></script>
+```
+
+Trong [home.html](src/main/resources/templates/home.html), thêm đoạn này để hiển thị số comment trong một post. Ý nghĩa là nếu có ít nhất một comment thì hiển thị số lượng comment và icon comment
+```html
+<div th:if="${post.comments.size > 0}" style="display:inline">
+  <span class="me-2" th:text="${post.comments.size}"></span><i class="fa fa-commenting-o" aria-hidden="true"></i>
+</div>
+```
+![](images/fontawesome.jpg)
+
 Thành quả sau một ngày Hackathon nghiêm túc của tôi đây.
-![](images/pagination.jpg)
+![](images/homepage.jpg)
+
