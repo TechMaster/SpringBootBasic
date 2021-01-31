@@ -90,7 +90,8 @@ public class BlogAppRunner implements CommandLineRunner {
     while (count < 200) {  //Tạo ra 200 bản ghi
       int userIndex = random.nextInt(numberOfUsers);
       User user = users.get(userIndex);
-      Post post = new Post(lorem.getTitle(2, 5), lorem.getParagraphs(2, 4));  //Sinh dữ liệu ngẫu nhiên cho Post    
+      Post post = new Post(lorem.getTitle(2, 5), lorem.getParagraphs(2, 4)); //Sinh dữ liệu ngẫu nhiên cho Post
+      post.
       user.addPost(post);
       postRepo.save(post);
     }
@@ -99,15 +100,22 @@ public class BlogAppRunner implements CommandLineRunner {
 }
 ```
 
-Đoạn code ```user.addPost(post);``` sẽ báo lỗi nếu trong [User.java](src/main/java/vn/techmaster/blog/model/User.java) tôi chọn  FetchType của quan hệ User <--> Post là Lazy. Do đó chuyển tạm sang ```FetchType.EAGER```
+Đoạn code ```user.addPost(post);``` sẽ báo lỗi ```failed-to-lazily-initialize-a-collection-of-role-could-not-initialize-proxy-no-session``` nếu trong [User.java](src/main/java/vn/techmaster/blog/model/User.java) tôi chọn  FetchType của quan hệ User <--> Post là Lazy. Do đó chuyển tạm sang ```FetchType.EAGER```. 
 
+Đọc các bài này. Đặc biệt bài cuối cùng có nhiều cách sửa:
+- [How to solve the “failed to lazily initialize a collection of role” Hibernate exception](https://stackoverflow.com/questions/11746499/how-to-solve-the-failed-to-lazily-initialize-a-collection-of-role-hibernate-ex)
+- [The best way to handle the LazyInitializationException](https://vladmihalcea.com/the-best-way-to-handle-the-lazyinitializationexception/)
+- [Failed to lazily initialize a collection of role could not initialize proxy – no Session
+](https://www.netsurfingzone.com/hibernate/failed-to-lazily-initialize-a-collection-of-role-could-not-initialize-proxy-no-session)
+
+Cách sửa nhanh nhất là bổ xung annotation ```@Transactional``` vào
 ```java
-public class Post { 
-    @ManyToOne(fetch = FetchType.EAGER) //Phải đổi từ LAZY sang EAGER
-    private User user;  //Tác giả viết post
+@Override
+@Transactional
+public void run(String... args) throws Exception {
 }
 ```
-Lỗi này làm tôi mất luôn 2 tiếng chiều nay. Hiện vẫn muốn để ```fetch = FetchType.LAZY``` sẽ tốt hơn.
+
 ## Phân trang Pagination
 
 Sau khi sinh động ngẫu nhiên số lượng Post đủ lớn chúng ta sẽ phân trang.
@@ -167,7 +175,7 @@ public class Paging {
 ```java
 public static List<Paging> generatePages(int selectedPage, int totalPages) {
   //https://codereview.stackexchange.com/questions/240235/java-pagination-algorithm
-  int offset = 5;
+  int offset = Math.min(5, totalPages);
   // set start index relative to selected  
   int start = selectedPage - (offset / 2);
   // adjust for first pages   
@@ -175,8 +183,8 @@ public static List<Paging> generatePages(int selectedPage, int totalPages) {
   // set end index relative to start    
   int end = start + offset;
   // adjust start and end for last pages     
-  if (end > totalPages - 1) {
-      end = totalPages - 1;
+  if (end > totalPages) {
+      end = totalPages;
       start = end - offset + 1;
   }
   ArrayList<Paging> pagings = new ArrayList<>();
@@ -200,5 +208,3 @@ public static List<Paging> generatePages(int selectedPage, int totalPages) {
 
 Thành quả sau một ngày Hackathon nghiêm túc của tôi đây.
 ![](images/pagination.jpg)
-
-

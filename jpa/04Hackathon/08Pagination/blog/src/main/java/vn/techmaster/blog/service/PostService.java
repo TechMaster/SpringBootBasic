@@ -13,7 +13,6 @@ import org.hibernate.search.mapper.orm.session.SearchSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import vn.techmaster.blog.DTO.PostMapper;
@@ -69,8 +68,8 @@ public class PostService implements IPostService {
   }
 
   @Override
-  public List<Post> getAllPostsByUserID(long user_id) {
-    return postRepo.findByUserId(user_id);
+  public List<Post> getAllPostsByUserID(long userId) {
+    return postRepo.findByUserId(userId);
   }
 
   @Override
@@ -99,9 +98,9 @@ public class PostService implements IPostService {
   }
 
   @Override
-  public void addComment(CommentRequest commentRequest, long user_id) throws PostException {
+  public void addComment(CommentRequest commentRequest, long userId) throws PostException {
     Optional<Post> oPost = postRepo.findById(commentRequest.getPost_id());
-    Optional<User> oUser = userRepo.findById(user_id);
+    Optional<User> oUser = userRepo.findById(userId);
     if (oPost.isPresent() && oUser.isPresent()) {
       Post post = oPost.get();
       Comment comment = new Comment(commentRequest.getContent());

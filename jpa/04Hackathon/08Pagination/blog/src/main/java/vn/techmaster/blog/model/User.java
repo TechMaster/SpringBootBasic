@@ -40,7 +40,7 @@ public class User {
   @OneToMany(
     cascade = CascadeType.ALL,
     orphanRemoval = true,
-    fetch = FetchType.EAGER //Phải chuyển sang FetchType.EAGER tạm nếu không có lỗi
+    fetch = FetchType.LAZY
   )
   @JoinColumn(name = "user_id")
   private List<Post> posts = new ArrayList<>();

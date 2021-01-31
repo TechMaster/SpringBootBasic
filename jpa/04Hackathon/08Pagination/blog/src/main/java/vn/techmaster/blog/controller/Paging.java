@@ -15,7 +15,7 @@ public class Paging {
 
   public static List<Paging> generatePages(int selectedPage, int totalPages) {
     //https://codereview.stackexchange.com/questions/240235/java-pagination-algorithm
-    int offset = 5;
+    int offset = Math.min(5, totalPages);
     // set start index relative to selected  
     int start = selectedPage - (offset / 2);
     // adjust for first pages   
@@ -23,8 +23,8 @@ public class Paging {
     // set end index relative to start    
     int end = start + offset;
     // adjust start and end for last pages     
-    if (end > totalPages - 1) {
-        end = totalPages - 1;
+    if (end > totalPages) {
+        end = totalPages;
         start = end - offset + 1;
     }
     ArrayList<Paging> pagings = new ArrayList<>();

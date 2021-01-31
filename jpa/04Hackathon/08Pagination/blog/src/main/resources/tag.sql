@@ -6,3 +6,7 @@ insert into tag(id, name) values (5, 'Văn học - điện ảnh');
 insert into tag(id, name) values (6, 'Kinh tế');
 insert into tag(id, name) values (7, 'Du lịch');
 insert into tag(id, name) values (8, 'Tâm sự');
+insert into tag(id, name) values (9, 'Ẩm thực');
+insert into tag(id, name) values (10, 'Ô tô - xe máy');
+insert into tag(id, name) values (11, 'Tình yêu');
+insert into tag(id, name) values (12, 'Quân sự');
