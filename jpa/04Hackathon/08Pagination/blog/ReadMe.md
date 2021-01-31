@@ -8,6 +8,7 @@ Tôi muốn tạo ra 2000 bản ghi Post tự động để tạo tình huống 
 1. [Spring Boot: ApplicationRunner and CommandLineRunner](https://dzone.com/articles/spring-boot-applicationrunner-and-commandlinerunne)
 2. [When and why do we need ApplicationRunner and Runner interface?](https://stackoverflow.com/questions/59328583/when-and-why-do-we-need-applicationrunner-and-runner-interface)
 
+![](images/homepage.jpg)
 
 ## ApplicationRunner hay là CommandLineRunner
 Có 2 interface ```ApplicationRunner``` và ```CommandLineRunner``` để bổ xung logic ngay khi Spring Boot khởi động hoàn tất. Khác biệt giữa hai interface này là:
@@ -72,31 +73,57 @@ public class SpringBootApplicationRunner implements ApplicationRunner {
 ```
 Dependecy này giúp chúng ta sinh ngẫu nhiên các đoạn text Lorem Ispum Dolor
 
-2. Viết class ```ApplicationRunner```
-Khi chưa có chức năng phân trang, đừng sinh nhiều bản ghi quá. 20 là ok.
+2. Viết class [BlogAppRunner.java](src/main/java/vn/techmaster/blog/BlogAppRunner.java)
+Phương thức ```void run(String... args)``` sẽ gọi đến  ```postService.generateSampleData();```
 ```java
 @Component
 public class BlogAppRunner implements CommandLineRunner {
-  @Autowired  private UserRepository userRepo;
-  @Autowired  private PostRepository postRepo;
+  @Autowired
+  IPostService postService;
 
   @Override
   public void run(String... args) throws Exception {
-    List<User> users = userRepo.findAll();
-    Lorem lorem = LoremIpsum.getInstance();
-    int count = 0;
-    Random random = new Random();
-    int numberOfUsers = users.size();
-    while (count < 200) {  //Tạo ra 200 bản ghi
-      int userIndex = random.nextInt(numberOfUsers);
-      User user = users.get(userIndex);
-      Post post = new Post(lorem.getTitle(2, 5), lorem.getParagraphs(2, 4)); //Sinh dữ liệu ngẫu nhiên cho Post
-      post.
-      user.addPost(post);
-      postRepo.save(post);
+    postService.generateSampleData();
+  }
+}
+```
+
+3. Bổ xung phương thức sinh dữ liệu giả trong [PostService.java](src/main/java/vn/techmaster/blog/service/PostService.java)
+```java
+@Override
+@Transactional //Phải có dòng này nếu không sẽ báo lỗi  failed-to-lazily-initialize-a-collection-of-role-could-not-initialize-proxy-no-session
+public void generateSampleData() {
+  List<User> users = userRepo.findAll();
+  List<Tag> tags = tagRepo.findAll();
+
+  int numberOfTags = tags.size();
+  int maxTagsPerPost = numberOfTags / 3;
+
+  Lorem lorem = LoremIpsum.getInstance();
+  
+  Random random = new Random();
+  int numberOfUsers = users.size();
+  for (int k = 0; k < 200; k++) {
+    User user = users.get(random.nextInt(numberOfUsers));
+    Post post = new Post(lorem.getTitle(2, 5), lorem.getParagraphs(2, 4));
+    
+    int numberOfComments = random.nextInt(numberOfUsers/2);
+    for (int j = 0; j < numberOfComments; j++) {
+      User commenter = users.get(random.nextInt(numberOfUsers));
+      Comment comment = new Comment(lorem.getParagraphs(1, 1));
+      comment.setUser(commenter);
+      post.addComment(comment);
     }
-    userRepo.flush();
-  }  
+
+    int numberTagsForPost = Math.max(1, random.nextInt(maxTagsPerPost));
+    for (int i = 0; i < numberTagsForPost; i++) {
+      post.addTag(tags.get(random.nextInt(numberOfTags)));
+    }
+    
+    user.addPost(post);
+    postRepo.save(post);
+  }
+  userRepo.flush();
 }
 ```
 

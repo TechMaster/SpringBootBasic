@@ -13,7 +13,10 @@
           <h5 class="card-title" th:text="${post.title}"></h5>
           <h6 class="card-subtitle mb-2 text-muted" th:text="${post.getUser().getFullname()}">Card subtitle</h6>
           <p class="card-text" th:text="${#strings.abbreviate(post.content, 100)}">content</p>
-          <a th:href="@{/post/{id}(id=${post.id})}" class="card-link">See more...</a>
+          <a th:href="@{/post/{id}(id=${post.id})}" class="card-link me-2">See more...</a>
+          <div th:if="${post.comments.size > 0}" style="display:inline">
+            <span class="me-2" th:text="${post.comments.size}"></span><i class="fa fa-commenting-o" aria-hidden="true"></i>
+          </div>
         </div>        
       </div>
     </div>

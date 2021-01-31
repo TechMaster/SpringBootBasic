@@ -28,4 +28,6 @@ public interface IPostService {
   public List<Post> searchPost(String term, int limit, int offset);
 
   public void reindexFullText();
+
+  public void generateSampleData();
 }
