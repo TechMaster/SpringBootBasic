@@ -8,12 +8,13 @@
 4. Rèn luyện kỹ năng trình bày, viết văn bản mô tả ứng dụng.
 5. Rèn luyện kỹ năng làm PowerPoint slide trình bày tại buổi lễ bảo vệ tốt nghiệp.
 
-## Lợi ích khi tham gia Hackathon: 
+## Mục tiêu của Hackathon: 
 1. Trải nghiệm áp lực code khi tham gia phỏng vấn xin việc.
 2. Yêu cầu đề bài bám sát với đồ án tốt nghiệp.
 3. Được chữa bài đầy đủ.
 4. Cơ sở để nhận chứng chỉ tham gia khoá học.
 5. Được cộng 1 điểm trong đồ án tốt nghiệp nếu điểm trung bình 3 lần > 8.
+
 
 ## Các điều kiện chuẩn bị làm đồ án tốt nghiệp
 
