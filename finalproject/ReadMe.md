@@ -1,4 +1,4 @@
-# Quy chuẩn đồ án tốt nghiệp
+# Quy chuẩn đồ án tốt nghiệp và cam kết việc, chế độ tuyển dụng lại
 
 ## Mục tiêu của đồ án tốt nghiệp
 
@@ -136,22 +136,25 @@ Công việc gồm có:
 
 
 Đối với sinh viên không xin được việc sau 60 ngày, có nghĩa sinh viên đó chưa đủ kỹ năng kỹ thuật và kỹ năng mềm, Techmaster sẽ nhận lại đào tạo thêm. Lương thực tập căn bản là 750k/tháng.
+
 Công việc gồm có:
 1. Hoàn thiện kỹ hơn kỹ năng lập trình Spring Boot qua các dự án demo nhỏ.
 2. Cải thiện tiếng Anh và kỹ năng phỏng vấn xin việc.
+3. Hỗ trợ sinh viên các lớp Java làm bài tập và đồ án.s
 
 Techmaster tiếp tục giới thiệu sinh viên vào các công ty đối tác kể từ tháng thứ 2 cho đến khi sinh viên có công việc như ý.
 
-Chế độ làm việc tại Techmaster
+Trong quá trình làm việc tại Techmaster, nếu sinh viên lúc này là nhân viên vi phạm kỷ luật, sẽ nhận được 2 lần nhắc nhở qua email. Vi phạm lần thứ 3 sẽ bị cho nghỉ việc và không bồi hoàn bất kỳ chi phí nào.
+
+### Chế độ làm việc tại Techmaster
 1. Làm việc thứ 2 - thứ 7. Sáng 9:00 - 12:00, Chiều 2:00 - 6:00
 2. Được cấp laptop Dell M4800, 15 inch, Full HD, Intel Core i7, 16GRAM. Làm việc đủ 3 năm, được tặng luôn laptop.
 3. Một năm có 3 chuyến dã ngoại, du lịch.
 4. Thưởng cuối năm theo đóng góp cụ thể
 5. Bảo hiểm y tế
-
-
-
-
+6. Được tham gia miễn phí bất kỳ khoá học nào tại Techmaster
+7. Thù lao trợ giảng 600k, giảng viên chính thức 600K ++ theo số lượng sinh viên. Giảng dạy tại doanh nghiệp 2 triệu VND/ 1 buổi.
+8. Lương trung bình sau 1 năm làm việc > 15 triệu/tháng.
 
 
 
