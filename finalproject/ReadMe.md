@@ -60,7 +60,7 @@ Việc bảo vệ thành công đồ án tốt nghiệp liên quan đến việc
 2. Sinh viên xin được việc thực tập ở một công ty, làm một dự án tại đó, rút gọn lại ý tưởng và chức năng rồi gửi cho giảng viên có xác nhận của trưởng nhóm.
 3. Giảng viên tư vấn một số ý tưởng căn bản, sinh viên triển khai chi tiết rồi gửi lại.
 
-Thời gian làm đồ án chỉ trong 50 ngày kể từ buổi học cuối cùng do đó cần chọn chủ đề vừa sức, giới hạn số chức năng, công nghệ, số lượng màn hình và bảng. 
+Thời gian làm đồ án chỉ trong 40 ngày kể từ buổi học cuối cùng do đó cần chọn chủ đề vừa sức, giới hạn số chức năng, công nghệ, số lượng màn hình và bảng. 
 
 **Gợi ý một số chủ đề**
 - Web site bán hàng. Cần giới hạn chủng loại mặt hàng để dễ tìm giao diện. Ví dụ web site bán quần áo, web site bán đồng hồ, web site bán đồ thể thao
