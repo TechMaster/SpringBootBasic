@@ -8,6 +8,12 @@
 4. Rèn luyện kỹ năng trình bày, viết văn bản mô tả ứng dụng.
 5. Rèn luyện kỹ năng làm PowerPoint slide trình bày tại buổi lễ bảo vệ tốt nghiệp.
 
+## Lợi ích khi tham gia Hackathon: 
+1. Trải nghiệm áp lực code khi tham gia phỏng vấn xin việc.
+2. Yêu cầu đề bài bám sát với đồ án tốt nghiệp.
+3. Được chữa bài đầy đủ.
+4. Cơ sở để nhận chứng chỉ tham gia khoá học.
+5. Được cộng 1 điểm trong đồ án tốt nghiệp nếu điểm trung bình 3 lần > 8.
 
 ## Các điều kiện chuẩn bị làm đồ án tốt nghiệp
 
@@ -24,13 +30,12 @@ Sau buổi học cuối cùng, và sinh viên đáp ứng đủ các điều ki�
 
 Điều kiện để đăng ký làm đồ án tốt nghiệp:
 1. Không nghỉ quá 3 buổi học.
-2. Tham gia tối thiểu 2 trên tổng số 3 buổi hackathon cả sáng - chiều không quan tâm đến điểm số.
+2. Tham gia tối thiểu 2 trên tổng số 3 buổi hackathon cả sáng - chiều.
 3. Làm đủ 70% số bài tập được giao, có điểm trung bình từ 7/10.
 
 Ngoài ra điểm trung bình 3 lần hackathon > 8, sinh viên được cộng 1 điểm vào điểm trung bình đồ án tốt nghiệp.
 
 Việc bảo vệ thành công đồ án tốt nghiệp liên quan đến việc cam kết việc làm cho sinh viên và bồi hoàn học phí trường 60 ngày sau khi đồ án bảo vệ thành công mà sinh viên không xin được việc. Do đó giữa sinh viên và Techmaster sẽ ký cam kết việc làm tại thời điểm sinh viên đăng ký nội dung đồ án tốt nghiệp, không muộn hơn 7 ngày sau buổi học cuối cùng.
-
 
 
 ## Công nghệ và Chủ đề làm đồ án tốt nghiệp
@@ -68,6 +73,86 @@ Thời gian làm đồ án chỉ trong 50 ngày kể từ buổi học cuối c�
 
 ### Đăng ký đề tài, nội dung đồ án bằng văn bản
 Sau khi thảo luận và nhận tư vấn góp ý từ giảng viên, sinh viên điền vào văn bản cam kết việc làm để tiến tới cam kết bằng văn bản.
+
+Nội dung gồm có: 
+- Tên tóm tắt đề tài tốt nghiệp.
+- Mô tả chức năng chính.
+- Công nghệ, kỹ thuật sẽ sử dụng.
+
+## Quá trình làm đồ án
+Hãy chia đồ án thành nhiều bước nhỏ, hoàn thiện dần trong 40 ngày. Mỗi bước cần được hiện thực hoá thành tài liệu ReadMe.md và code để trong các thư mục đánh số 01, 02, 03, 04, 05....
+```
+.
+├── 01OverallDesign
+├── 02Model
+├── 03RepositoryJUnit --> Gửi cho giảng viên review lần 1
+├── 04ControllerService --> Gửi cho giảng viên review lần 2
+├── 05FullTextSearch
+├── 06AdvanceFeatures  --> Gửi cho giảng viên review lần 3
+├── 07Docker
+└── ReadMe.md
+```
+
+Khi xong từng bước, hãy báo cáo qua email, Zalo gửi link git repo cho giảng viên hướng dẫn.
+
+## Bảo vệ đồ án
+Buổi bảo vệ đồ án sẽ có tối thiểu 1 giảng viên Techmaster dạy Spring Boot, và 2 lập trình viên Spring Boot bên hoặc nhà tuyển dụng Spring Boot.
+
+**Đồ án chấm theo các tiêu chí sau đây:**
+1. Mức độ hoàn thiện sản phẩm theo chức năng đề xuất ban đầu
+2. Giao diện có dễ dùng và đẹp không. Nhà tuyển dụng hay bị ấn tượng bởi giao diện
+3. Cấu trúc dự án có tuân thủ theo các bước như hướng dẫn và có văn bản mô tả chi tiết không
+4. Ứng dụng những công nghệ mới, giải pháp hay
+5. Điểm sẽ lấy điểm trung bình của giám khảo độc lập chia trung bình.
+6. Cộng điểm: trung bình 3 lần hackathon > 8.0 cộng 1 điểm, dịch 5 bài + 0.5 điểm
+
+Điểm tốt nghiệp sau khi cộng từ 8.0 trở lên, sinh viên được cấp chứng chỉ tốt nghiệp và cam kết đảm bảo việc làm.
+
+Điểm tốt nghiệp dưới 8.0, sinh viên có thêm thời gian để bổ xung đồ án hoặc dịch bài để nâng điểm 0.5 điểm, sau đó bảo vệ ghép cùng khoá sau. Nếu sinh viên muốn bảo vệ sớm hơn để đi xin việc, Techmaster tổ chức riêng, lệ phí cho một lần bảo vệ riêng là 1.5 triệu VND.
+
+Techmaster sẽ trao bằng tốt nghiệp trong vòng 7 ngày kể từ buổi bảo vệ tốt nghiệp.
+## Quy trình sinh viên đi xin việc và Techmaster giới thiệu việc làm
+
+Trong 60 ngày kể từ ngày được nhận bằng chính thức, sinh viên sẽ đi xin việc. Quy trình xin việc gồm có 3 bên:
+1. Sinh viên
+2. Nhà tuyển dụng
+3. Đại diện Techmaster
+
+Số lượng nhà tuyển dụng cần phải tiếp cận trong 60 ngày tối thiểu 6 công ty.
+Sinh viên cần email trao đổi với nhà tuyển dụng và cc hoặc bcc đại diện Techmaster. 
+Đại diện Techmaster cũng sẽ giới thiệu sinh viên những việc làm phù hợp, kinh nghiệm 6 tháng lập trình.
+
+Đến ngày thứ 45, nếu sinh viên không được bất kỳ công ty nào nhận, sinh viên sẽ được giới thiệu thực tập sinh Java Spring Boot ở một đội dự án.
+
+Kể từ ngày 61, nếu không có công ty hay đội dự án nào chấp nhận sinh viên. Sinh viên sẽ bắt đầu quá trình thực tập có lương tại Techmaster. **Nếu Techmaster không nhận sinh viên, thì Techmaster phải bồi hoàn toàn bộ học phí + 8 triệu VND ngay khi sinh viên nhận được văn bản từ chối tuyển dụng lại từ Techmaster.**
+
+## Thực tập có lương và làm việc với vai trò lập trình viên tại Techmaster
+Không cần chờ đến sau 60 ngày, bất kỳ sinh viên nào có điểm tốt nghiệp sau khi đã cộng từ 8.5 trở lên,làm việc chăm chỉ, nhiệt tình, Techmaster có nguyện vọng làm việc tại Techmaster. Techmaster sẽ nhận lại ngay.
+Mức lương khởi điểm với những bạn này sẽ theo thoả thuận.
+Công việc gồm có:
+1. Tiếp tục nghiên cứu sâu về Spring Boot, xây dựng các ứng dụng mẫu cho sinh viên tham khảo
+2. Tham gia các dự án phần mềm tại Techmaster và công ty khách hàng của Techmaster.
+3. Trợ giảng thù lao 600k/1 buổi 3 tiếng.
+
+
+Đối với sinh viên không xin được việc sau 60 ngày, có nghĩa sinh viên đó chưa đủ kỹ năng kỹ thuật và kỹ năng mềm, Techmaster sẽ nhận lại đào tạo thêm. Lương thực tập căn bản là 750k/tháng.
+Công việc gồm có:
+1. Hoàn thiện kỹ hơn kỹ năng lập trình Spring Boot qua các dự án demo nhỏ.
+2. Cải thiện tiếng Anh và kỹ năng phỏng vấn xin việc.
+
+Techmaster tiếp tục giới thiệu sinh viên vào các công ty đối tác kể từ tháng thứ 2 cho đến khi sinh viên có công việc như ý.
+
+Chế độ làm việc tại Techmaster
+1. Làm việc thứ 2 - thứ 7. Sáng 9:00 - 12:00, Chiều 2:00 - 6:00
+2. Được cấp laptop Dell M4800, 15 inch, Full HD, Intel Core i7, 16GRAM. Làm việc đủ 3 năm, được tặng luôn laptop.
+3. Một năm có 3 chuyến dã ngoại, du lịch.
+4. Thưởng cuối năm theo đóng góp cụ thể
+5. Bảo hiểm y tế
+
+
+
+
+
 
 
 
