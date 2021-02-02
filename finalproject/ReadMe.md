@@ -96,6 +96,8 @@ Hãy chia đồ án thành nhiều bước nhỏ, hoàn thiện dần trong 40 n
 Khi xong từng bước, hãy báo cáo qua email, Zalo gửi link git repo cho giảng viên hướng dẫn.
 
 ## Bảo vệ đồ án
+Nếu sinh viên không tuân thủ quy trình làm đồ án: cụ thể là làm đúng các bước, không viết văn bản mô tả, không báo cáo, hoặc không cải tiến theo hướng dẫn của giảng viên. Giảng viên email nhắc nhở. Nếu sinh viên tiếp tục không hoàn thiện, thì có thể sẽ không được tham gia buổi bảo vệ đồ án lần 1.
+
 Buổi bảo vệ đồ án sẽ có tối thiểu 1 giảng viên Techmaster dạy Spring Boot, và 2 lập trình viên Spring Boot bên hoặc nhà tuyển dụng Spring Boot.
 
 **Đồ án chấm theo các tiêu chí sau đây:**
