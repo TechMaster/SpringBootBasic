@@ -121,11 +121,11 @@ Trong 60 ngày kể từ ngày được nhận bằng chính thức, sinh viên 
 2. Nhà tuyển dụng
 3. Đại diện Techmaster
 
-Số lượng nhà tuyển dụng cần phải tiếp cận trong 60 ngày tối thiểu 6 công ty.
-Sinh viên cần email trao đổi với nhà tuyển dụng và cc hoặc bcc đại diện Techmaster. 
-Đại diện Techmaster cũng sẽ giới thiệu sinh viên những việc làm phù hợp, kinh nghiệm 6 tháng lập trình.
+Số lượng nhà tuyển dụng sinh viên cần phải đến phỏng vấn trong 60 ngày tối thiểu 6 công ty.
+Sinh viên cần email trao đổi với nhà tuyển dụng và cc đại diện Techmaster để nắm được tiến độ đi xin việc.
+Đại diện Techmaster cũng sẽ giới thiệu sinh viên những việc làm phù hợp, kinh nghiệm 6 tháng lập trình tại Hà nội.
 
-Đến ngày thứ 45, nếu sinh viên không được bất kỳ công ty nào nhận, sinh viên sẽ được giới thiệu thực tập sinh Java Spring Boot ở một đội dự án.
+Đến ngày thứ 45, nếu sinh viên không được bất kỳ công ty nào nhận, Techmaster chỉ định sinh viên thực tập lập trình Java tại một đội dự án phù hợp, yêu cầu đầu vào thấp, lương khởi điểm sẽ không cao.
 
 Kể từ ngày 61, nếu không có công ty hay đội dự án nào chấp nhận sinh viên. Sinh viên sẽ bắt đầu quá trình thực tập có lương tại Techmaster. **Nếu Techmaster không nhận sinh viên, thì Techmaster phải bồi hoàn toàn bộ học phí + 8 triệu VND ngay khi sinh viên nhận được văn bản từ chối tuyển dụng lại từ Techmaster.**
 
@@ -158,9 +158,3 @@ Techmaster tiếp tục giới thiệu sinh viên vào các công ty đối tác
 6. Được tham gia miễn phí bất kỳ khoá học nào tại Techmaster.
 7. Thù lao trợ giảng 600k, giảng viên chính thức 600K ++ theo số lượng sinh viên. Giảng dạy tại doanh nghiệp 2 triệu VND/ 1 buổi.
 8. Lương trung bình sau 1 năm làm việc > 15 triệu/tháng.
-
-
-
-
-
-
