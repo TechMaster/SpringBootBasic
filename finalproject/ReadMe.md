@@ -111,7 +111,7 @@ Buổi bảo vệ đồ án sẽ có tối thiểu 1 giảng viên Techmaster d�
 
 Điểm tốt nghiệp sau khi cộng từ 8.0 trở lên, sinh viên được cấp chứng chỉ tốt nghiệp và cam kết đảm bảo việc làm.
 
-Điểm tốt nghiệp dưới 8.0, sinh viên có thêm thời gian để bổ xung đồ án hoặc dịch bài để nâng điểm 0.5 điểm, sau đó bảo vệ ghép cùng khoá sau. Nếu sinh viên muốn bảo vệ sớm hơn để đi xin việc, Techmaster tổ chức riêng, lệ phí cho một lần bảo vệ riêng là 1.5 triệu VND.
+Điểm tốt nghiệp dưới 8.0, sinh viên có thêm thời gian để hoàn thiện đồ án sau đó bảo vệ ghép cùng khoá sau. Nếu sinh viên muốn bảo vệ sớm hơn để đi xin việc, Techmaster tổ chức riêng, lệ phí cho một lần bảo vệ riêng là 1.5 triệu VND.
 
 Techmaster sẽ trao bằng tốt nghiệp trong vòng 7 ngày kể từ buổi bảo vệ tốt nghiệp.
 ## Quy trình sinh viên đi xin việc và Techmaster giới thiệu việc làm
