@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import vn.techmaster.demoupload.entity.Person;
+import vn.techmaster.demoupload.controller.request.PersonRequest;
 import vn.techmaster.demoupload.exception.StorageException;
 import vn.techmaster.demoupload.service.StorageService;
 
@@ -22,18 +22,8 @@ public class UploadController {
     return "index";
   }
 
-  @GetMapping("/success")
-  public String success() {
-    return "success";
-  }
-
-  @GetMapping("/failure")
-  public String failure() {
-    return "failure";
-  }
-
   @PostMapping(value = "/doUpload", consumes = { "multipart/form-data" })
-  public String upload(@ModelAttribute Person person, Model model) {
+  public String upload(@ModelAttribute PersonRequest person, Model model) {
     storageService.uploadFile(person.getPhoto());
     model.addAttribute("name", person.getName());
     model.addAttribute("photo", person.getPhoto().getOriginalFilename());
@@ -43,6 +33,16 @@ public class UploadController {
   @ExceptionHandler(StorageException.class)
   public String handleStorageFileNotFound(StorageException e, Model model) {
     model.addAttribute("errorMessage", e.getMessage());
+    return "failure";
+  }
+
+  @GetMapping("/success")
+  public String success() {
+    return "success";
+  }
+
+  @GetMapping("/failure")
+  public String failure() {
     return "failure";
   }
 }

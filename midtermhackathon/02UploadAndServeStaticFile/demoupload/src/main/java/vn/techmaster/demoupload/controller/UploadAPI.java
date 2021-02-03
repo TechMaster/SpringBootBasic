@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import vn.techmaster.demoupload.entity.Person;
+import vn.techmaster.demoupload.controller.request.PersonRequest;
 import vn.techmaster.demoupload.service.StorageService;
 
 @RestController
@@ -17,7 +17,7 @@ public class UploadAPI {
   private StorageService storageService;
 
   @PostMapping(value = "/upload", consumes = { "multipart/form-data" })
-  public String upload(@ModelAttribute Person person,  Model model) {
+  public String upload(@ModelAttribute PersonRequest person,  Model model) {
     storageService.uploadFile(person.getPhoto());    
     return person.getName() + " : " + person.getEmail();
   }
