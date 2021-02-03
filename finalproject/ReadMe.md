@@ -29,7 +29,7 @@ Sau buổi học cuối cùng, và sinh viên đáp ứng đủ các điều ki�
 **Chứng chỉ tham gia khoá học** sẽ cấp trong vòng 7 ngày khi lớp kết thúc. Sinh viên có thể đi tìm việc ngay lúc này. Techmaster cũng sẽ giới thiệu sinh viên đi phỏng vấn. Có chứng chỉ tham gia khoá học cũng có nghĩa là sinh viên được Techmaster hỗ trợ, tư vấn trong quá trình phỏng vấn, email xác nhận đã học ở Techmaster cùng bảng điểm.
 
 
-Điều kiện để đăng ký làm đồ án tốt nghiệp:
+Điều kiện để đăng ký làm đồ án tốt nghiệp **có cam kết việc làm**
 1. Không nghỉ quá 3 buổi học.
 2. Tham gia tối thiểu 2 trên tổng số 3 buổi hackathon cả sáng - chiều.
 3. Làm đủ 70% số bài tập được giao, có điểm trung bình từ 7/10.
@@ -37,6 +37,14 @@ Sau buổi học cuối cùng, và sinh viên đáp ứng đủ các điều ki�
 Ngoài ra điểm trung bình 3 lần hackathon > 8, sinh viên được cộng 1 điểm vào điểm trung bình đồ án tốt nghiệp.
 
 Việc bảo vệ thành công đồ án tốt nghiệp liên quan đến việc cam kết việc làm cho sinh viên và bồi hoàn học phí trường 60 ngày sau khi đồ án bảo vệ thành công mà sinh viên không xin được việc. Do đó giữa sinh viên và Techmaster sẽ ký cam kết việc làm tại thời điểm sinh viên đăng ký nội dung đồ án tốt nghiệp, không muộn hơn 7 ngày sau buổi học cuối cùng.
+
+### Đặc cách tìm kiếm tài năng lập trình
+Sinh viên không tham gia đủ số buổi học, không tham gia hackathon, không làm đủ bài tập vẫn có thể làm đồ án trong hoàn cảnh đặc cách tìm kiếm tài năng lập trình thực sự. Giả định một sinh viên X rất tài năng, anh ta thấy rằng không cần tuân thủ nhiều quy định nhưng vẫn có thể tạo ra sản phẩm tốt nghiệp xuất sắc. Ngay từ lúc này Techmaster luôn khuyến khích, tìm kiếm những tài năng như vậy và tạo điều kiện tối đa.
+
+1. Sinh viên có thể bắt đầu đăng ký nội dung đề tài tốt nghiệp. Thời gian làm đồ án bắt đầu sớm, nên sinh viên sẽ có nhiều hơn 40 ngày để làm.
+2. Hàng ngày push code lên Github để giảng viên review. Cập nhật trực tiếp tiến độ vào file ReadMe.md
+3. Yêu cầu mức độ hoàn thiện, ý tưởng sản phẩm cũng sẽ cao hơn đồ án làm trong 40 ngày rất nhiều.
+4. Sinh viên được cấp chứng chỉ tốt nghiệp khi điểm chấm đồ án >= 9.0 được hỗ trợ tìm việc làm, nhưng không cam kết.
 
 
 ## Công nghệ và Chủ đề làm đồ án tốt nghiệp
