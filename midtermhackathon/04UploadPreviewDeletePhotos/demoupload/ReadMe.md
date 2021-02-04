@@ -65,7 +65,11 @@ Kết quả nhìn có vẻ khả ổn. Ban đầu thử upload 3 files
 Sau đó xoá bớt 1 hoặc 2 files
 ![](images/cannot_delete_input_files.jpg)
 
-Vấn đề là trường ```<input type="file" id="photos" name="photos" multiple />``` là chỉ đọc, không thể sửa. Do đó không thể dùng JavaScript tác động thay đổi số file đã chọn trong trường này. Hãy xem bài viết này [Removing file from multiple files uploader on button click when using HTML5 file input](https://stackoverflow.com/questions/32062876/removing-file-from-multiple-files-uploader-on-button-click-when-using-html5-file), chạy thử code có vẻ như là xoá được, rất khả thi. Lúc này tôi đã tốn mất 60 phút định nghĩa model, 60 phút vào code thử file upload, nếu tiếp tục sa vào chức năng xịn này chắc chắn sẽ không đủ thời gian hoàn thành hackathon. Do đó tạm để đấy về nhà sẽ cải tiến thêm. Vấn đề chúng ta phải xử lý đủ các trường hợp:
+Vấn đề là trường ```<input type="file" id="photos" name="photos" multiple />``` là chỉ đọc, không thể sửa. Do đó không thể dùng JavaScript tác động thay đổi số file đã chọn trong trường này. Hãy xem bài viết này [Removing file from multiple files uploader on button click when using HTML5 file input](https://stackoverflow.com/questions/32062876/removing-file-from-multiple-files-uploader-on-button-click-when-using-html5-file), chạy thử code có vẻ như là xoá được, rất khả thi. Danh sách file upload muốn sửa đổi được phải tạo ra một mảng riêng rồi dùng kỹ thuật upload bằng AJAX mới được, chứ cách submit form cổ điển không thể xong.
+
+![](images/upload_drop_zone.jpg)
+
+Lúc này tôi đã tốn mất 60 phút định nghĩa model, 60 phút vào code thử file upload, nếu tiếp tục sa vào chức năng xịn này chắc chắn sẽ không đủ thời gian hoàn thành hackathon. Do đó tạm để đấy về nhà sẽ cải tiến thêm. Vấn đề chúng ta phải xử lý đủ các trường hợp:
 
 1. Tạo mới Bug, chọn nhiều file ảnh, xem trước, xoá nếu không hài lòng, rồi submit
 2. Sửa đổi một Bug hiện có, xoá ảnh cũ, upload ảnh mới. Ảnh cũ lưu trên máy chủ web, ảnh mới mới chỉ đang preview trên trình duyệt.
