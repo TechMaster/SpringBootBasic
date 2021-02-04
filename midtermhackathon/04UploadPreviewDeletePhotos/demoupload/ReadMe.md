@@ -76,6 +76,8 @@ Lúc này tôi đã tốn mất 60 phút định nghĩa model, 60 phút vào cod
 1. Tạo mới Bug, chọn nhiều file ảnh, xem trước, xoá nếu không hài lòng, rồi submit
 2. Sửa đổi một Bug hiện có, xoá ảnh cũ, upload ảnh mới. Ảnh cũ lưu trên máy chủ web, ảnh mới mới chỉ đang preview trên trình duyệt.
 
+![](images/uploadux.jpg)
+
 **Để xử lý hoàn hảo chỗ này, trải nghiệm người dùng tốt có thể mất nguyên 2 ngày lập trình tập trung. Vậy đừng động vào nó vội, dùng phương pháp đơn giản nhất, nộp được bài Hackathon đã.**
 
 
@@ -85,3 +87,5 @@ Lúc này tôi đã tốn mất 60 phút định nghĩa model, 60 phút vào cod
 3. [Removing file from multiple files uploader on button click when using HTML5 file input
 ](https://stackoverflow.com/questions/32062876/removing-file-from-multiple-files-uploader-on-button-click-when-using-html5-file)
 4. [Upload file sử dụng AJAX](https://blog.teamtreehouse.com/uploading-files-ajax)
+5. [How to upload Image file using AJAX and jQuery](https://makitweb.com/how-to-upload-image-file-using-ajax-and-jquery/)
+6. [https://github.com/christianbayer/image-uploader](https://github.com/christianbayer/image-uploader) và [https://christianbayer.github.io/image-uploader/](https://christianbayer.github.io/image-uploader/)

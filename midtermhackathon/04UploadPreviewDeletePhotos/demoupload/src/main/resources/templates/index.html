@@ -33,7 +33,8 @@
       if (window.File && window.FileList && window.FileReader) {
         $("#photos").on("change", e => {
           let files = Array.from(e.target.files);
-          files.forEach(f => {
+          console.log(files.length);
+          files.forEach((f, index) => {
             let fileReader = new FileReader();
             fileReader.onload = (e => {
               let file = e.target;
@@ -44,6 +45,8 @@
 
               $(".remove").click(function(){
                 $(this).parent(".pip").remove();
+                files.splice(index, 1);
+                console.log(files.length);
               });
             });
             fileReader.readAsDataURL(f);
