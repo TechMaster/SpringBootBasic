@@ -1,91 +1,188 @@
-# Upload ảnh, xem trước, xoá nếu muốn
+ # Upload ảnh lưu vào CSDL
 
-Ở bài trước, chúng ta đã làm được chức năng multiple uploads. Nhưng trải nghiệm tốt phải là người dùng được xem trước file upload, rồi xoá. Tôi đã đề ra phương án lưu tạm file, rồi dùng session để lưu mảng các file lưu tạm. Cách này chưa phải là tối ưu. Thực ra đây là bài toán rất kinh điển đã có nhiều lời giải rồi. Vậy chỉ cần Google đúng keyword thôi. Lập trình thật là đơn giản phải không các bạn. Đọc xong đề Hackathon, google, tìm ra mã nguồn sẵn có, copy - paste, sửa sửa chút và nộp bài.
+![](images/upload_photo_database.jpg)
 
-Thực tế nó lại không dễ như vậy. Vì hầu hết các bạn đi hackathon, chả biết làm gì trước làm gì sau, hoặc quá mải mê hoản thiện một chức năng quá nhỏ. Vậy để hackathon có kết quả tốt thì phải làm gì?
+ Mải mê lập trình upload ảnh, xem trước ảnh, xoá ảnh mất luôn 4 tiếng. Có nghĩa nếu ngồi Hackathon, lúc này đã 2 giờ chiều. Chỉ còn khoảng 4 tiếng nữa để nộp bài nếu mình không gục vì quá mệt mỏi. Một số bạn trong lớp đã bỏ về. Nghe loáng thoáng có tiếng than rồi chửi thề vì code không chạy. Giảng viên cứ đi loanh quanh hỏi "Có ổn không?". Tất nhiên là không ổn. Ổn thì giờ này cũng xong được 50% yêu cầu rồi.
 
-Hãy lập trình nhiều vào, mỗi ngày 8 tiếng, tự đặt cho mình những bài toán khác nhau rồi tự giải.
+ Tình hình Hackathon cơ bản buổi nào cũng thiếu giờ, áp lực nhiều hơn hẳn khi làm bài tập ở nhà. Nhiều lúc đầu không thể suy nghĩ được gì hết.
 
-Rồi vào việc ! Keyword tìm kiếm của tôi lúc này là "jquery preview delete uploaded image" ra ngay kết quả khá đẹp
+ Khi các bạn phải code trong áp lực có mấy khả năng:
+ 1. Ức chế, chửi sếp giao việc, hoặc chửi giảng viên giao bài khó. Tình hình chỉ xấu thêm.
+ 2. Bỏ cuộc. Chả được điểm nào. Về nhà với tâm trạng chán nản. Đừng làm vậy
+ 3. Gập máy tính lại, ra uống nước, hít một hơi thật dài. Gạt bỏ nỗi âu lo, bực tức, chán nản. Tìm xem có cái chức năng đơn giản.  Để kiếm điểm, cứ ngồi lại đến chiều là có 2 điểm rồi. Giờ đơn giản bớt chức năng, làm tạm một cái form demo cho giảng viên kiếm điểm còn hơn bỏ về không nộp bài.
 
-[Image Upload with preview and Delete option - Javascript / Jquery](https://stackoverflow.com/questions/37205438/image-upload-with-preview-and-delete-option-javascript-jquery)
+Hãy chọn phương án 3. Rồi sau này trong công việc, áp lực luôn phát sinh. Khi không có áp lực, công việc nhàn têng, có nghĩa là ngày bạn sắp phải rời công ty cũng cận kề. Vì ông chủ nào cũng muốn nhân viên của làm việc hết công suất.
 
-![](images/upload_preview_delete.jpg)
 
-## Sửa file [index.html](src/main/resources/templates/index.html)
+Rồi giờ vào chủ đề chính. Bài trước đã demo cách upload nhiều file. Đã preview được ảnh, xoá ảnh preview nhưng không xoá được file trong danh sách upload. Cách hợp lý là sử dụng tạo AJAX request gửi dữ liệu form + files vào POST handler của Spring Boot.
+![](https://github.com/TechMaster/SpringBootBasic/raw/main/midtermhackathon/04UploadPreviewDeletePhotos/demoupload/images/uploadux.jpg)
 
-1. Thêm file [style.css](src/main/resources/static/css/style.css)
-  ```html
-  <head>
-    <title>Uploading file</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
-  </head>
-  ```
-2. Bổ xung id cho 
+Phần này khoai để mấy hôm nữa tôi demo nhé.
+
+Bài này chúng ta lưu dữ liệu form và ảnh vào CSDL
+### 1. Tạo [BugRequest.java](src/main/java/vn/techmaster/demoupload/controller/request/BugRequest.java)
+
+```BugRequest``` sẽ nhận dữ liệu gửi lên từ form. Nó có dạng như sau
+
+```java
+public class BugRequest {
+  private String title; //Tiêu đề bug
+  private Status status; //Trạng thái của Bug
+  public MultipartFile[] photos; //Các ảnh đính kèm
+}
+```
+ Các thuộc tính khác tạm thời bỏ đi cho gọn. Code cần phải chạy được đã. Sau đó đắp sau !
+
+### 2. Đơn giản hoá model [Bug.java](src/main/java/vn/techmaster/demoupload/model/Bug.java)
+Vì tôi đang thiếu thời gian Hackathon, tôi chấp nhận bỏ đi các quan hệ với User, Comment... để làm sao cấu trúc của class thật đơn giản
+```java
+@Entity(name = "bug")
+@Table(name = "bug")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class Bug {
+  @Id @GeneratedValue(strategy = GenerationType.AUTO)
+  private long id;
+
+  @Column(length = 300, nullable = true)
+  private String title;
+
+  @Enumerated(EnumType.ORDINAL)
+  private Status status;  //Trường này thực ra sau khi thử nghiệm lưu ảnh ok thì mới bổ xung đó
+
+  public static final int PHOTO_LIMIT = 3;
+  //Một bug có thể gắn nhiều photo. Nếu muốn giới hạn số photo hãy bổ xung điều kiện trong hàm addPhoto
+  @OneToMany(
+      cascade = CascadeType.ALL,
+      orphanRemoval = true
+  )
+  @JoinColumn(name = "bug_id")
+  private List<Photo> photos = new ArrayList<>();
+  public void addPhoto(Photo photo ) throws BugException{
+    if (photos.size() == PHOTO_LIMIT) {
+      throw new BugException("Số lượng photo cho mỗi bug không được vượt quá " + PHOTO_LIMIT);
+    }
+    photos.add(photo);
+    photo.setBug(this);
+  }
+
+  public void removePhoto(Photo photo) {
+    photos.remove(photo);
+    photo.setBug(null);
+  }
+}
+```
+
+### 3.Tạo [BugRepository.java](src/main/java/vn/techmaster/demoupload/repository/BugRepository.java) và [PhotoRepository.java](src/main/java/vn/techmaster/demoupload/repository/PhotoRepository.java)
+
+Công đoạn này chỉ khai báo thôi, chứ không phải suy nghĩ gì nhiều. Sau bước này cũng đừng viết JUnit test vội, vì thời gian rất gấp gáp. Nếu có lỗi khó debug, khi đó mới cần viết để kiểm tra.
+
+```java
+@Repository
+public interface BugRepository extends JpaRepository<Bug, Long>{
+}
+```
+
+### 4. Tạo [IBugService.java](src/main/java/vn/techmaster/demoupload/service/IBugService.java) và [BugService.java](src/main/java/vn/techmaster/demoupload/service/BugService.java)
+
+Ở ví dụ trước khi upload nhiều file, từ [UploadController.java](src/main/java/vn/techmaster/demoupload/controller/UploadController.java), tôi gọi thẳng đến [StorageService.java](src/main/java/vn/techmaster/demoupload/service/StorageService.java). Nhưng giờ cần phải chỉnh lại, luồng xử lý như sau:
+
+1. Người dùng submit bug gồm text và vài ảnh. Dữ liệu gửi lên được đóng gói vào đối tượng [BugRequest](src/main/java/vn/techmaster/demoupload/controller/request/BugRequest.java)
+2. [UploadController](src/main/java/vn/techmaster/demoupload/controller/UploadController.java) sẽ truyền BugRequest vào dịch vụ [BugService](src/main/java/vn/techmaster/demoupload/service/BugService.java)
+3. BugService sẽ gọi đến [BugRepository](src/main/java/vn/techmaster/demoupload/repository/BugRepository.java) lưu dữ liệu vào CSDL và [StorageService](src/main/java/vn/techmaster/demoupload/service/StorageService.java) lưu file xuống ổ cứng.
+4. Bọc hai tác vụ này trong Transaction để đảm bảo nếu một tác vụ có lỗi, thì tác vụ kia cũng huỷ !
+
+```java
+@Service
+public class BugService implements IBugService {
+  @Autowired StorageService storageService;
+
+  @Autowired BugRepository bugRepository;
+  @Autowired PhotoRepository photoRepository;
+
+  @Override
+  @Transactional(rollbackOn = StorageException.class)
+  public void createNewBug(BugRequest bugRequest) throws BugException {
+    Bug bug = new Bug();
+    bug.setTitle(bugRequest.getTitle());
+    bug.setStatus(bugRequest.getStatus());
+    bugRepository.save(bug);  //Lưu bug để lấy được id của nó
+    long bugId = bug.getId();
+
+    //Lặp qua tất cả các file gửi lên
+    for (MultipartFile file : bugRequest.getPhotos()) {
+      String newFileName = bugId + "-" + file.getOriginalFilename();      
+      storageService.uploadFileSaveNewName(file, newFileName); //Lưu vào ổ cứng với tên mới
+      Photo photo = new Photo(newFileName); 
+      bug.addPhoto(photo); //Gắn entity photo vào bug
+    }
+    bugRepository.flush(); 
+  }  
+}
+```
+
+#### Làm sao để lưu file ảnh không bị trùng nhau?
+
+User X chụp màn hình xuất ra file screen.jpg. User Y cũng xuất ra file screen.jpg, khi upload lên sẽ ghi đè lên file trước đó của User X. Do đó chúng ta phải làm động tác đổi tên file khi upload lên.
+
+Quy cách đặt tên file sau khi lưu vào ổ cứng máy chủ có thể là
+```userId-bugId-originalFileName.jpg```
+
+Trong phần này, tôi bỏ qua Authentication, Authorization nên quy cách đặt tên chỉ còn là
+```bugId-originalFileName.jpg```
+
+```java
+String newFileName = bugId + "-" + file.getOriginalFilename();
+```
+
+### 5. Bổ xung thuộc tính Status
+
+Logic thực tế sẽ phức tạp hơn. Khi người dùng lần đầu tạo Bug, mặc nhiên Bug có trạng thái Status = New. Sau đó Operator xem, sửa, chuyển trạng thái.... Đây chưa phải là lúc lập trình những luồng như vậy. Chạy được CRUD căn bản đã !
+
+Định nghĩa enum [Status.java](src/main/java/vn/techmaster/demoupload/model/Status.java)
+```java
+public enum Status {
+  NEW("New Bug"), 
+  FIXED("Bug is fixed"), 
+  FORWARD("Forward bug to other");
+
+  private final String displayValue;
+
+  private Status(String displayValue) {  //Constructor thôi
+    this.displayValue = displayValue;
+  }
+
+  public String getDisplayValue() {
+    return displayValue;
+  }
+}
+```
+
+Bạn nào chưa hiểu hãy đọc thêm bài này nhé [Working with Enums in Thymeleaf](https://www.baeldung.com/thymeleaf-enums) và [Persisting Enums in JPA](https://www.baeldung.com/jpa-persisting-enums-in-jpa)
+
+Trong class [Bug.java](src/main/java/vn/techmaster/demoupload/model/Bug.java), thuộc tính status được khai báo như sau:
+```java
+@Enumerated(EnumType.ORDINAL)
+private Status status;
+```
+
+Trong file template [index.html](src/main/resources/templates/index.html), select box chọn status được viết thế này.
 ```html
-  <input type="file" id="photos" name="photos" multiple />
+<select name="status">
+  <option th:each="status : ${T(vn.techmaster.demoupload.model.Status).values()}" 
+  th:value="${status}" th:text="${status.displayValue}"></option>
+</select>
 ```
-3. Ở cuối của file html thêm đoạn code JavaScript này
-```javascript
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script>
-      $(document).ready(() => {
-        if (window.File && window.FileList && window.FileReader) {
-          $("#photos").on("change", e => {
-            let files = Array.from(e.target.files);
-            files.forEach(f => {
-              let fileReader = new FileReader();
-              fileReader.onload = (e => {
-                let file = e.target;
-                $("<span class=\"pip\">" +
-                  "<img class=\"imageThumb\" src=\"" + e.target.result + "\" title=\"" + file.name + "\"/>" +
-                  "<br/><span class=\"remove\">Remove image</span>" +
-                  "</span>").insertAfter("#photos");
+### 6. Chạy thử và kiểm tra dữ liệu bằng H2 console
+Bảng Bug
 
-                $(".remove").click(function(){
-                  $(this).parent(".pip").remove();
-                });
-              });
-              fileReader.readAsDataURL(f);
-            });
-
-          });
-        } else {
-          alert("Your browser doesn't support to File API")
-        }
-      });
-    </script>
-```
-
-Kết quả nhìn có vẻ khả ổn. Ban đầu thử upload 3 files
-
-![](images/upload3files.jpg)
-
-Sau đó xoá bớt 1 hoặc 2 files
-
-![](images/cannot_delete_input_files.jpg)
-
-Vấn đề là trường ```<input type="file" id="photos" name="photos" multiple />``` là chỉ đọc, không thể sửa. Do đó không thể dùng JavaScript tác động thay đổi số file đã chọn trong trường này. Hãy xem bài viết này [Removing file from multiple files uploader on button click when using HTML5 file input](https://stackoverflow.com/questions/32062876/removing-file-from-multiple-files-uploader-on-button-click-when-using-html5-file), chạy thử code có vẻ như là xoá được, rất khả thi. Danh sách file upload muốn sửa đổi được phải tạo ra một mảng riêng rồi dùng kỹ thuật upload bằng AJAX mới được, chứ cách submit form cổ điển không thể xong.
-
-![](images/upload_drop_zone.jpg)
-
-Lúc này tôi đã tốn mất 60 phút định nghĩa model, 60 phút vào code thử file upload, nếu tiếp tục sa vào chức năng xịn này chắc chắn sẽ không đủ thời gian hoàn thành hackathon. Do đó tạm để đấy về nhà sẽ cải tiến thêm. Vấn đề chúng ta phải xử lý đủ các trường hợp:
-
-1. Tạo mới Bug, chọn nhiều file ảnh, xem trước, xoá nếu không hài lòng, rồi submit
-2. Sửa đổi một Bug hiện có, xoá ảnh cũ, upload ảnh mới. Ảnh cũ lưu trên máy chủ web, ảnh mới mới chỉ đang preview trên trình duyệt.
-
-![](images/uploadux.jpg)
-
-**Để xử lý hoàn hảo chỗ này, trải nghiệm người dùng tốt có thể mất nguyên 2 ngày lập trình tập trung. Vậy đừng động vào nó vội, dùng phương pháp đơn giản nhất, nộp được bài Hackathon đã.**
+![](images/bug.jpg)
 
 
-## Tham khảo thêm
-1. [https://jsfiddle.net/alexjamesbrown/2nzL9f7g/](https://jsfiddle.net/alexjamesbrown/2nzL9f7g/)
-2. [https://stackoverflow.com/questions/16943605/remove-a-filelist-item-from-a-multiple-inputfile](https://stackoverflow.com/questions/16943605/remove-a-filelist-item-from-a-multiple-inputfile)
-3. [Removing file from multiple files uploader on button click when using HTML5 file input
-](https://stackoverflow.com/questions/32062876/removing-file-from-multiple-files-uploader-on-button-click-when-using-html5-file)
-4. [Upload file sử dụng AJAX](https://blog.teamtreehouse.com/uploading-files-ajax)
-5. [How to upload Image file using AJAX and jQuery](https://makitweb.com/how-to-upload-image-file-using-ajax-and-jquery/)
-6. [https://github.com/christianbayer/image-uploader](https://github.com/christianbayer/image-uploader) và [https://christianbayer.github.io/image-uploader/](https://christianbayer.github.io/image-uploader/)
+Bảng Photo
+![](images/photo.jpg)
+
+Toàn bộ dự án mẫu này, code trong 1 tiếng và 1.5 tiếng viết tuts. Xong được phần này thì bạn có thể bổ xung chức năng User, Comment tham khảo từ chuỗi tutorial [Lập trình MicroBlog](https://github.com/TechMaster/SpringBootBasic/tree/main/jpa/04Hackathon)
+
+Tóm lại để không bị choáng váng khi vào hackathon, hãy xem kỹ đề bài ra trước đó, nghiên cứu công nghệ, và lập trình các ví dụ mẫu nhỏ để tự tin ghép trong lúc lập trình thật. Nếu bạn tích luỹ được khoảng 50 code mẫu chức năng nhỏ thường gặp trong Spring Boot thì bạn có thể tham gia hầu hết các dự án Spring Boot.

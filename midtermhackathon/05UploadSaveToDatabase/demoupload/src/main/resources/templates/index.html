@@ -15,14 +15,14 @@
     <table>
       <tr>
         <td>Name</td>
-        <td><input type="text" th:field="*{title}"/></td>
+        <td><input type="text" th:field="*{title}" /></td>
       </tr>
       <tr>
         <td>Status</td>
         <td><select name="status">
-          <option th:each="status : ${T(vn.techmaster.demoupload.model.Status).values()}" 
-              th:value="${status}" th:text="${status.displayValue}"></option>
-      </select></td>
+            <option th:each="status : ${T(vn.techmaster.demoupload.model.Status).values()}" th:value="${status}"
+              th:text="${status.displayValue}"></option>
+          </select></td>
       </tr>
       <tr>
         <td>select photos</td>
@@ -50,7 +50,7 @@
                 "<br/><span class=\"remove\">Remove image</span>" +
                 "</span>").insertAfter("#photos");
 
-              $(".remove").click(function(){
+              $(".remove").click(function () {
                 $(this).parent(".pip").remove();
                 files.splice(index, 1);
                 console.log(files.length);
