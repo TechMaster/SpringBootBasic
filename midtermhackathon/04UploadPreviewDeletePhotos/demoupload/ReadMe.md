@@ -82,3 +82,6 @@ Lúc này tôi đã tốn mất 60 phút định nghĩa model, 60 phút vào cod
 ## Tham khảo thêm
 1. [https://jsfiddle.net/alexjamesbrown/2nzL9f7g/](https://jsfiddle.net/alexjamesbrown/2nzL9f7g/)
 2. [https://stackoverflow.com/questions/16943605/remove-a-filelist-item-from-a-multiple-inputfile](https://stackoverflow.com/questions/16943605/remove-a-filelist-item-from-a-multiple-inputfile)
+3. [Removing file from multiple files uploader on button click when using HTML5 file input
+](https://stackoverflow.com/questions/32062876/removing-file-from-multiple-files-uploader-on-button-click-when-using-html5-file)
+4. [Upload file sử dụng AJAX](https://blog.teamtreehouse.com/uploading-files-ajax)
