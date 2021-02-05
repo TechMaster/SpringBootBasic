@@ -145,6 +145,7 @@ Công việc gồm có:
 2. Tham gia các dự án phần mềm tại Techmaster và công ty khách hàng của Techmaster.
 3. Trợ giảng thù lao 600k/1 buổi 3 tiếng.
 
+Xem thêm [Công việc tại Techmaster](JobTechmaster.md)
 
 Đối với sinh viên không xin được việc sau 60 ngày, có nghĩa sinh viên đó chưa đủ kỹ năng kỹ thuật và kỹ năng mềm, Techmaster sẽ nhận lại đào tạo thêm. Lương thực tập căn bản là 750k/tháng.
 
@@ -152,6 +153,7 @@ Công việc gồm có:
 1. Hoàn thiện kỹ hơn kỹ năng lập trình Spring Boot qua các dự án demo nhỏ.
 2. Cải thiện tiếng Anh và kỹ năng phỏng vấn xin việc.
 3. Hỗ trợ sinh viên các lớp Java làm bài tập và đồ án.
+4. Trợ giảng để rèn luyện lại kỹ thuật lập trình đã học.
 
 Techmaster tiếp tục giới thiệu sinh viên vào các công ty đối tác kể từ tháng thứ 2 cho đến khi sinh viên có công việc như ý.
 

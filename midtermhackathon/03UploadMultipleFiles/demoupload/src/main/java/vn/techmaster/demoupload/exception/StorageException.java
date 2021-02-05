@@ -1,6 +1,6 @@
 package vn.techmaster.demoupload.exception;
 
-public class StorageException extends RuntimeException {
+public class StorageException extends RuntimeException {  //Unchecked Exception
   private static final long serialVersionUID = 6288365963802085889L;
 
   public StorageException(String message) {

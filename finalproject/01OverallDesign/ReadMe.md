@@ -9,3 +9,12 @@
 Hãy chụp màn hình Balsamiq, và vẽ các diagram mô tả luồng màn hình vào đây. Nhà tuyển dụng hay giảng viên luôn hiểu ngay khi xem hình vẽ minh hoạ.
 
 ![](../../midtermhackathon/mainscreen.jpg)
+
+# Ví dụ mẫu
+
+## Đồ án: Xây dựng web site tuyển dụng việc làm
+
+Tên sinh viên: Nguyễn Văn X
+Ngày sinh: 11/09/1996
+Email: xnguyen@gmail.com
+Di động: xxxxxx
