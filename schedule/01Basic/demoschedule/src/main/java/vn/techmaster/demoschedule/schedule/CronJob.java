@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @EnableScheduling
-@ConditionalOnExpression("true")
+@ConditionalOnExpression("false")
 public class CronJob {
   /*
    second minute hour dayOfMonth month day of week

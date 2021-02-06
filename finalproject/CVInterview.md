@@ -44,3 +44,9 @@ Thông tin dài dòng này để bạn an tâm, giả sử khi phỏng vấn nh�
 
 Thực tế là khi chuyển sang đào tạo Java Spring Boot, các hợp đồng đào tạo đến liên tục, không kịp thở. VinID 2 lớp (30), Smart OSC 1 lớp (8), BIDV 1 lớp (14), Luvina 1 lớp (25), lớp dài hạn 3 lớp (45)...Nhu cầu là có thật, giờ tập trung làm tốt công nghệ mình đã chọn thôi.
 
+
+## 2. Chuẩn bị gì để bắt đầu đi xin việc
+Nếu như người trưởng thành tiền cổ mỗi ngày phải vào rừng săn bắt hái lượm kiếm ăn, thì người trưởng thành hiện đại khi chưa có việc làm luôn phải trăn trở làm thế nào để có việc làm đúng năng lực và lương tốt.
+
+Chuẩn bị gì cho hành trình săn việc đầy thú vị?
+1. Kinh nghiệm lập trình thực tế. Nhiều bạn đã bắt đầu học từ tháng 5/2020, giờ đã là tháng 2/2021, vậy là được 9 tháng. Lớp Spring Boot bắt đầu học đầu tháng 12/2020, như vậy cho đến tháng 3/2021, nếu các bạn đi xin việc, các bạn có khoảng 3-6 tháng kinh nghiệm lập trình tuy thuộc 

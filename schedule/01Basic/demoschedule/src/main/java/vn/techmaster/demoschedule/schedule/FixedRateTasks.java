@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @EnableScheduling
-@ConditionalOnExpression("false")
+@ConditionalOnExpression("true")
 public class FixedRateTasks {
   @Scheduled(fixedRate = 1000)
   public void scheduleFixedRate() throws InterruptedException {
