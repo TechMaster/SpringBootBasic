@@ -34,4 +34,13 @@ Chú ý tìm đến Spring Boot các bạn sẽ thấy nó gần ở cuối bả
 
 Nhưng tại sao Spring Boot chạy chậm nhưng ở thị trường Việt nam số lượng job tuyển dụng lại nhiều đến vậy? Khi bạn chọn Spring Boot bạn đã hình dung công ty bạn vào làm to hay bé, năng động hay ổn định?
 
-**Tôi đi đạp xe một lát, tối nay 11:00 viết nốt nhé.**
+Khi chọn Java Spring Boot để đào tạo đầu năm 2019, tôi hiểu rõ mấy điểm sau:
+1. Java là ngôn ngữ lập trình phổ biến nhất thế giới tại lúc đó. Nay xuống thứ 2 sau Python vì nhu cầu AI, Deep Learning lên quá mạnh.
+2. Java là ngôn ngữ lập trình đầy đủ, kinh điển và dễ học hơn so với C++, RUST, chặt chẽ hơn JavaScript, PHP.
+3. Nhiều tổ chức lớn đã dùng Java trong cả một lộ trình dài, và không thể thay thế. Bản thân Java cũng liên tục phát triển, cải tiến để đáp ứng tình hình thực tế. Nên nó vẫn là ngôn ngữ có sức sống tốt.
+4. Spring Boot có mấy đối thủ là Play Framework, Vaadim, VertX... Nhưng ở Việt nam, đến 80% doanh nghiệp các công ty sử dụng Spring Boot do đó không dại gì mà không chọn Spring Boot. Cá biệt có một số đội dự án ngân hàng sử dụng [Vertx.io](https://vertx.io/) hoặc [Micronaut](https://micronaut.io/) để lập trình. Nhưng nếu bạn đã lập trình vững Spring Boot, mô hình MVC, REST, JPA, hiểu bản chất http request-response, authentication, authorization thì chuyển sang học các framework không quá khó. Vẫn ngôn ngữ Java, vẫn OOP, vẫn interface và các khái niệm công nghệ giống nhau.
+
+Thông tin dài dòng này để bạn an tâm, giả sử khi phỏng vấn nhà tuyển dụng chỉ để chung chung tuyển lập trình viên Java Web. Nhưng khi vào thực tế lại là dự án VertX hay Micronaut, Play Framework thì cứ bình tĩnh học, sẽ học được công nghệ mới cũng rất hay ho.
+
+Thực tế là khi chuyển sang đào tạo Java Spring Boot, các hợp đồng đào tạo đến liên tục, không kịp thở. VinID 2 lớp (30), Smart OSC 1 lớp (8), BIDV 1 lớp (14), Luvina 1 lớp (25), lớp dài hạn 3 lớp (45)...Nhu cầu là có thật, giờ tập trung làm tốt công nghệ mình đã chọn thôi.
+
