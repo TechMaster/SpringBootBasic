@@ -110,6 +110,7 @@ Chúng ta bắt đầu làm quen với WebFlux một cơ chế cho phép Spring 
 ```
 
 Dữ liệu trả về khi truy xuất http://localhost:8080/mono
+
 ![](images/localhost_8080_mono.jpg)
 
 Hãy ấn F5 liên tục để thấy dữ liệu thay đổi
@@ -149,9 +150,11 @@ $(document).ready(() => {
 </script>
 ```
 Và đây là kết quả
+
 ![](images/iot.jpg)
 
 ### Nâng cấp thư viện [chartjs](https://www.chartjs.org/) để vẽ đồ thị biến đổi nhiệt độ và độ ẩm
+
 ![](images/linechart.jpg)
 
 
