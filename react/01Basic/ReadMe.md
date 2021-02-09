@@ -71,6 +71,8 @@ export default class App extends Component {
   }
 }
 ```
+```{this.state.userName}``` sẽ được thay thế bằng giá trị của thuộc tính userName. Hầu hết View Template Engine đều hoạt động giống nhau ở điểm này.
+
 ## 7. Chạy thử
 Gõ lệnh trong terminal
 ```sh
@@ -83,4 +85,7 @@ npm start
 Trình duyệt sẽ tự động được mở và truy cập tới http://localhost:3000
 
 Kết quả như sau:
+
 ![](images/adam_to_do_list.jpg)
+
+Hãy thử thay giá trị của thuộc tính ```userName``` các bạn sẽ thấy trình duyệt tự động cập nhật lại giao diện. Nhìn rất phấn khích.
