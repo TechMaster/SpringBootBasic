@@ -89,3 +89,37 @@ Kết quả như sau:
 ![](images/adam_to_do_list.jpg)
 
 Hãy thử thay giá trị của thuộc tính ```userName``` các bạn sẽ thấy trình duyệt tự động cập nhật lại giao diện. Nhìn rất phấn khích.
+
+## 8. Thay đổi trạng thái của App
+Bổ xung thêm một nút để thay đổi thuộc tính userName, để thấy giao diện tự động vẽ lại (re-render)
+```js
+export default class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      userName: "Adam"
+    }
+  }
+
+  //Bổ xung thêm hàm này để lật qua lật lại 2 giá trị "Adam" và "Bob"
+  changeStateData = () => { 
+    this.setState({ userName: this.state.userName === "Adam" ? "Bob" : "Adam" }) 
+  }
+}
+```
+
+ở hàm  ```render``` bổ xung thêm nút Change hứng sự kiện ```onClick``` thì gọi đến ```changeStateData```
+```js
+render() {
+  return (
+    <div>
+      <h4 className="bg-primary text-white text-center p-2">
+        {this.state.userName}'s To Do List</h4>
+        <button className="btn btn-primary m-2" onClick={ this.changeStateData }>
+          Change
+        </button>
+    </div>
+  )
+}
+```
+![](images/bob_to_do_list.jpg)
