@@ -185,4 +185,9 @@ Bảng Photo
 
 Toàn bộ dự án mẫu này, code trong 1 tiếng và 1.5 tiếng viết tuts. Xong được phần này thì bạn có thể bổ xung chức năng User, Comment tham khảo từ chuỗi tutorial [Lập trình MicroBlog](https://github.com/TechMaster/SpringBootBasic/tree/main/jpa/04Hackathon)
 
+
+### 7. Một số chú ý:
+
+Khác biệt giữa  ```@GeneratedValue(strategy = GenerationType.IDENTITY)``` và ```@GeneratedValue(strategy = GenerationType.AUTO)```
+
 Tóm lại để không bị choáng váng khi vào hackathon, hãy xem kỹ đề bài ra trước đó, nghiên cứu công nghệ, và lập trình các ví dụ mẫu nhỏ để tự tin ghép trong lúc lập trình thật. Nếu bạn tích luỹ được khoảng 50 code mẫu chức năng nhỏ thường gặp trong Spring Boot thì bạn có thể tham gia hầu hết các dự án Spring Boot.
