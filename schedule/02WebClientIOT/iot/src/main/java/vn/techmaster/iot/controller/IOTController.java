@@ -15,12 +15,12 @@ public class IOTController {
   @Autowired private IOTService iotService;
   
   @GetMapping("/iot")
-  public IOTMeasure getIOTMeasure() {
+  public IOTMeasure getIOTMeasure() throws InterruptedException {
     return iotService.getData();
   }
 
   @GetMapping("/mono")
-  public Mono<IOTMeasure> getIOTMeasureMono() {
+  public Mono<IOTMeasure> getIOTMeasureMono() throws InterruptedException {
     return Mono.just(iotService.getData());
   }
   

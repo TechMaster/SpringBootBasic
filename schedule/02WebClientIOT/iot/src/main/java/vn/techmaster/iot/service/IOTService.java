@@ -40,7 +40,8 @@ public class IOTService {
     moisture = measureMoisture();
   }
 
-  public IOTMeasure getData() {
+  public IOTMeasure getData() throws InterruptedException {
+    Thread.sleep(10);
     return new IOTMeasure(temperature, moisture);
   }
 }
