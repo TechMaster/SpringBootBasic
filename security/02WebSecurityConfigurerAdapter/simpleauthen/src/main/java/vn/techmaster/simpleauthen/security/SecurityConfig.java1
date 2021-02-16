@@ -21,10 +21,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
   protected void configure(HttpSecurity http) throws Exception {
     http.httpBasic();
     http.authorizeRequests().anyRequest().authenticated();
-
-   /* http.httpBasic();
-    http.authorizeRequests()
-    .antMatchers("/api/**").hasRole("USER")
-    .antMatchers("/**").permitAll();*/
   }
 }

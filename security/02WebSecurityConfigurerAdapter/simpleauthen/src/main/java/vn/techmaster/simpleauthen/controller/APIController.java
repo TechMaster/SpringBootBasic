@@ -14,6 +14,7 @@ import vn.techmaster.simpleauthen.model.Product;
 @RequestMapping("/api")
 public class APIController {
 
+  //
   @GetMapping("/products")
   public List<Product> getProducts() {
     List<Product> result = new ArrayList<>();
@@ -21,5 +22,17 @@ public class APIController {
     result.add(new Product("Apple Watch", 250));
     result.add(new Product("Eink Book Reader", 350));
     return result;
+  }
+
+  //Only Admin or Operator can see this
+  @GetMapping("/backoffice")
+  public String getSensitiveData() {
+    return "Sensitive Data";
+  }
+
+  //Only Admin can see this
+  @GetMapping("/secret")
+  public String getSecretData() {
+    return "OX-13";
   }
 }

@@ -21,9 +21,13 @@ public class SecurityConfig {
 }
 ```
 
-Trong bài này chúng ta phân quyền truy cập theo đường dẫn:
-- http://localhost:8080/ hay /** sẽ được truy cập thoải mái
-- http://localhost:8080/api/** chỉ có user với role 'USER'
+Trong bài này chúng ta thực hiện:
+1. Tìm hiểu cơ chế authentication http basic
+2. Tạo nhiều user trong ```InMemoryUserDetailsManager```
+3. Sử dụng BCryptPasswordEncoder thay cho NoOpPasswordEncoder
+4. Tiến xa là tuỳ chọn nhiều phương án PasswordEncoder
+5. Phân quyền truy cập theo đường dẫn, customize báo lỗi
+
 
 ## 1. Tạo class SecurityConfig.java mới
 
@@ -256,3 +260,116 @@ Nhìn cũng kinh phết đấy chứ.
 Tuy nhiên trong request của trình duyệt gửi lên server, thì Username/Password vẫn chỉ được encode bởi Base64 thôi. Các bạn chú ý điểm này nhé.
 
 Code phần này ở [SecurityConfig.java4](src/main/java/vn/techmaster/simpleauthen/security/SecurityConfig.java4)
+
+## 5. Phần quyền Roles
+
+Trong phần thực hành này chúng ta sẽ thí nghiệm phân quyền (role). Mỗi một user có thể có 1 hoặc nhiều role.
+
+Định nghĩa Role ở file [Role.java](src/main/java/vn/techmaster/simpleauthen/security/Role.java)
+```java
+public class Role {
+  public static final String ADMIN = "ADMIN";  //Nhớ luôn dùng static final để 
+  public static final String USER = "USER";
+  public static final String OPERATOR = "OPERATOR";
+
+  private Role() {} //tạo private constructor để dập warning
+}
+```
+
+Quy tắc phân quyền truy cập ứng dụng này như sau
+1. ```/api/products```: role USER, OPERATOR, ADMIN được phép truy cập. Anonymous user không được phép
+2. ```/api/backoffice```: role OPERATOR, ADMIN xem được
+3. ```/api/secret```: duy nhất role ADMIN xem được
+4. Các địa chỉ khác user nào cũng xem được
+
+Triển khai bằng code như sau
+
+```java
+@Override
+protected void configure(HttpSecurity http) throws Exception {
+  http.httpBasic();
+  http.authorizeRequests()
+  .antMatchers("/api/products").hasAnyRole(Role.USER, Role.OPERATOR, Role.ADMIN)
+  .antMatchers("/api/backoffice").hasAnyRole(Role.OPERATOR, Role.ADMIN)
+  .antMatchers("/api/secret").hasRole(Role.ADMIN)
+  .antMatchers("/**").permitAll();
+}
+```
+
+Gán role cho user như dưới
+```java
+@Bean
+public InMemoryUserDetailsManager inMemoryUserDetailsManager() {
+  Collection<UserDetails> users = new ArrayList<>();
+  UserBuilder userBuilder = User.builder().passwordEncoder(encoder()::encode);
+  var tom = userBuilder.username("tom@gmail.com").password("123").roles(Role.USER).build();
+  var bob = userBuilder.username("bob@gmail.com").password("123").roles(Role.USER).build();
+  var alice = userBuilder.username("alice@gmail.com").password("123").roles(Role.USER).build();
+
+  var operator = userBuilder.username("operator@gmail.com").password("123").roles(Role.OPERATOR).build();
+  var boss = userBuilder.username("boss@gmail.com").password("123").roles(Role.ADMIN, Role.USER).build();
+
+  users.add(tom);
+  users.add(bob);
+  users.add(alice);
+  users.add(operator);
+  users.add(boss);
+
+  return new InMemoryUserDetailsManager(users);
+}
+```
+
+#### Một vài thay đổi nhỏ trong phần này.
+1. Bỏ
+  ```java
+    @Autowired
+    private PasswordEncoder encoder;
+  ```
+2. Thay
+  ```java
+    UserBuilder userBuilder = User.builder().passwordEncoder(encoder::encode);
+  ```
+  bằng
+
+  ```java
+    UserBuilder userBuilder = User.builder().passwordEncoder(encoder()::encode);
+  ```
+#### Customize trang báo lỗi 403, 404, 500
+1. Vào [application.properties](src/main/resources/application.properties) thêm dòng này để tắt báo lỗi kiểu White Label page
+```
+server.error.whitelabel.enabled=false
+```
+
+2. Thêm ```spring-boot-starter-thymeleaf``` vào [pom.xml](pom.xml), 
+```xml
+<dependency>
+  <groupId>org.springframework.boot</groupId>
+  <artifactId>spring-boot-starter-thymeleaf</artifactId>
+</dependency>
+```
+3. Tạo thư mục [error](src/main/java/vn/techmaster/bookstore/error) trong resources/templates cùng với các file [403.html](src/main/resources/templates/error/403.html), [404.html](target/classes/templates/error/404.html), [500.html](target/classes/templates/error/500.html)
+
+```
+resources
+  ├── static
+  ├── templates
+  │   ├── error
+  │   │   ├── 403.html
+  │   │   ├── 404.html
+  │   │   └── 500.html
+  │   └── index.html
+  └── application.properties
+```
+
+Bạn có thể customize báo lỗi sâu hơn bằng file [ErrorHandler.java](src/main/java/vn/techmaster/simpleauthen/controller/ErrorHandler.java0). Tôi tạm đổi tên ErrorHandler.java thành ErrorHandler.java0 vì chỉ cần cấu hình mặc định.
+
+#### Thử nghiệm
+
+Biên dịch ứng dụng rồi login với các Username khác nhau: tom, bob, alice, operator, boss và truy cập vào các đường dẫn:
+
+- http://localhost:8080/
+- http://localhost:8080/api/products
+- http://localhost:8080/api/backoffice
+- http://localhost:8080/api/secret
+
+
