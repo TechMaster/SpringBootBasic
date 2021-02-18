@@ -5,19 +5,20 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.tomcat.util.security.MD5Encoder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.User.UserBuilder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.*;
+import org.springframework.security.crypto.password.DelegatingPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
 import org.springframework.security.crypto.scrypt.SCryptPasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
@@ -26,12 +27,20 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
   @Autowired
-  private PasswordEncoder encoder;
+  private CustomAuthenProvider authenticationProvider;
+
+  @Override
+  protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+    auth.authenticationProvider(authenticationProvider);
+  }
+
 
   @Override
   protected void configure(HttpSecurity http) throws Exception {
     http.httpBasic();
-    http.authorizeRequests().anyRequest().authenticated();
+    http.authorizeRequests().antMatchers("/api/products").hasAnyRole(Role.USER, Role.OPERATOR, Role.ADMIN)
+        .antMatchers("/api/backoffice").hasAnyRole(Role.OPERATOR, Role.ADMIN).antMatchers("/api/secret")
+        .hasRole(Role.ADMIN).antMatchers("/**").permitAll();
   }
 
   public static PasswordEncoder delegatePasswordEncoder(String encodingType) {
@@ -40,36 +49,34 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     encoders.put("pbkdf2", new Pbkdf2PasswordEncoder());
     encoders.put("scrypt", new SCryptPasswordEncoder());
 
-    //Các cách mã hoá password cũ, thiếu bảo mật
-    encoders.put("ldap", new LdapShaPasswordEncoder());
-    encoders.put("MD4", new Md4PasswordEncoder());
-    encoders.put("MD5", new MessageDigestPasswordEncoder("MD5"));
-    encoders.put("noop", NoOpPasswordEncoder.getInstance());    
-    encoders.put("SHA-1", new MessageDigestPasswordEncoder("SHA-1"));
-    encoders.put("SHA-256", new MessageDigestPasswordEncoder("SHA-256"));
-    encoders.put("sha256", new StandardPasswordEncoder());
-
-    return new DelegatingPasswordEncoder(encodingType, encoders);      
+    return new DelegatingPasswordEncoder(encodingType, encoders);
   }
 
   @Bean
   public PasswordEncoder encoder() {
-      return SecurityConfig.delegatePasswordEncoder("pbkdf2");
+    return SecurityConfig.delegatePasswordEncoder("bcrypt");
   }
 
   @Bean
   public InMemoryUserDetailsManager inMemoryUserDetailsManager() {
     Collection<UserDetails> users = new ArrayList<>();
-    UserBuilder userBuilder = User.builder().passwordEncoder(encoder::encode);
-    var tom = userBuilder.username("tom@gmail.com").password("123").roles("USER").build();
-    var bob = userBuilder.username("bob@gmail.com").password("123").roles("USER").build();
-    var alice = userBuilder.username("alice@gmail.com").password("123").roles("USER").build();
+    UserBuilder userBuilder = User.builder().passwordEncoder(encoder()::encode);
+    var tom = userBuilder.username("tom@gmail.com").password("123").roles(Role.USER).build();
+    var bob = userBuilder.username("bob@gmail.com").password("123").roles(Role.USER).build();
+    var alice = userBuilder.username("alice@gmail.com").password("123").roles(Role.USER).build();
 
-    System.out.println(alice.getPassword());
+    var operator = userBuilder.username("operator@gmail.com").password("123").roles(Role.OPERATOR).build();
+    var boss = userBuilder.username("boss@gmail.com").password("123").roles(Role.ADMIN, Role.USER).build();
 
     users.add(tom);
     users.add(bob);
     users.add(alice);
+    users.add(operator);
+    users.add(boss);
+
     return new InMemoryUserDetailsManager(users);
   }
+
+  
+
 }

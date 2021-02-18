@@ -22,7 +22,7 @@ public class SecurityConfig {
 ```
 
 Trong bài này chúng ta thực hiện:
-1. Tìm hiểu cơ chế authentication http basic
+1. Tìm hiểu cơ chế authentication http basic, khác gì với http.formLogin
 2. Tạo nhiều user trong ```InMemoryUserDetailsManager```
 3. Sử dụng BCryptPasswordEncoder thay cho NoOpPasswordEncoder
 4. Tiến xa là tuỳ chọn nhiều phương án PasswordEncoder
@@ -45,6 +45,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 
 @Configuration
+@EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
   @Override
@@ -64,6 +65,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 Do chúng sử dụng ```http.httpBasic();``` nên khi truy cập, trình duyệt sẽ bật lên dialog yêu cầu đăng nhập mặc định
 ![](images/login.jpg)
+
 
 ## 2. Cấu hình cho nhiều user
 Trong ví dụ này, chúng ta tạo sẵn 3 user: tom, bob, alice.
@@ -119,6 +121,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
   }
 }
 ```
+
+## 3. ```http.httpBasic()``` khác gì với ```http.formLogin()```
+
 Lệnh ```http.httpBasic();``` trong hàm ```configure``` chọn phương thức [basic authentication](https://en.wikipedia.org/wiki/Basic_access_authentication). Trong basic authentication, user name và password luôn được gửi trong header của mỗi request gửi lên server.
 ```java
 @Override
@@ -144,6 +149,20 @@ Giờ thì bạn đã rõ, với phương thức authentication http basic, tổ
 
 Rõ ràng phương thức http basic authentication rất căn bản và dễ dàng bị hack nếu dùng http protocol.
 
+Nếu thay ```http.httpBasic()``` bằng ```http.formLogin()``` thì dialog login của trình duyệt được thay thế bằng
+![](images/Please_sign_in.jpg)
+
+Sự khác biệt giữa ```http.httpBasic()``` và  ```http.formLogin()``` là:
+
+- ```http.httpBasic()``` gửi chuỗi UserName:Password mã hoá Base64 trong header của mỗi request
+- ```http.formLogin()``` post 2 trường giá trị UserName:Password theo phương thức POST và server sẽ cài đặt cookie JSESSIONID. Mỗi lần truy cập, trình duyệt sẽ gửi lại JSESSIONID lên, server kiểm tra
+
+![](images/session_cookie.jpg)
+
+Quản lý cookie. Hãy thử xoá JSESSIONID, rồi refresh lại trang, ứng dụng web sẽ yêu cầu bạn phải đăng nhập lại.
+![](images/session_cookie2.jpg)
+
+### 
 Chú ý: chúng ta có thể thay thế
 ```java
 @Override
@@ -334,6 +353,8 @@ public InMemoryUserDetailsManager inMemoryUserDetailsManager() {
   ```java
     UserBuilder userBuilder = User.builder().passwordEncoder(encoder()::encode);
   ```
+
+Xem chi tiết tại [SecurityConfig.java5](src/main/java/vn/techmaster/simpleauthen/security/SecurityConfig.java5)
 #### Customize trang báo lỗi 403, 404, 500
 1. Vào [application.properties](src/main/resources/application.properties) thêm dòng này để tắt báo lỗi kiểu White Label page
 ```
