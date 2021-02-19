@@ -14,10 +14,10 @@ import org.springframework.stereotype.Component;
 @Component
 public class CustomAuthenProvider implements AuthenticationProvider {
 
-  @Autowired
+  @Autowired  //Phải nối vào InMemoryUserDetailsManager để tìm user theo Username
   private InMemoryUserDetailsManager inMemoryUserDetailsManager;
   
-  @Autowired
+  @Autowired  //Dùng để kiểm tra password gửi lên trong login request với Hashed Password lưu trữ
   private PasswordEncoder encoder;
 
   @Override
@@ -26,8 +26,9 @@ public class CustomAuthenProvider implements AuthenticationProvider {
     String rawPassword = String.valueOf(authentication.getCredentials());
 
     try {
-      UserDetails userDetail = inMemoryUserDetailsManager.loadUserByUsername(username);      
-      if (encoder.matches(rawPassword, userDetail.getPassword())) {
+      UserDetails userDetail = inMemoryUserDetailsManager.loadUserByUsername(username); //Tìm UserDetail theo Username
+      if (encoder.matches(rawPassword, userDetail.getPassword())) { //So sánh password
+      
         return new UsernamePasswordAuthenticationToken (username, userDetail.getPassword(), userDetail.getAuthorities());
       } else {
         return null;
@@ -37,9 +38,9 @@ public class CustomAuthenProvider implements AuthenticationProvider {
     }    
   }
 
-  @Override
+  @Override // return true nếu CustomAuthenProvider hỗ trợ authentication kiểu Username, Password
   public boolean supports(Class<?> authentication) {
-    return UsernamePasswordAuthenticationToken.class .isAssignableFrom(authentication);
+    return UsernamePasswordAuthenticationToken.class.isAssignableFrom(authentication);
   }
   
 }

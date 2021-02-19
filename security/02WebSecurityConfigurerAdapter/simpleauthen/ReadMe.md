@@ -152,15 +152,21 @@ Rõ ràng phương thức http basic authentication rất căn bản và dễ d�
 Nếu thay ```http.httpBasic()``` bằng ```http.formLogin()``` thì dialog login của trình duyệt được thay thế bằng
 ![](images/Please_sign_in.jpg)
 
-Sự khác biệt giữa ```http.httpBasic()``` và  ```http.formLogin()``` là:
+#### Sự khác biệt giữa ```http.httpBasic()``` và  ```http.formLogin()``` là:
 
 - ```http.httpBasic()``` gửi chuỗi UserName:Password mã hoá Base64 trong header của mỗi request
-- ```http.formLogin()``` post 2 trường giá trị UserName:Password theo phương thức POST và server sẽ cài đặt cookie JSESSIONID. Mỗi lần truy cập, trình duyệt sẽ gửi lại JSESSIONID lên, server kiểm tra
+- ```http.formLogin()``` post 2 trường giá trị UserName:Password theo phương thức POST và server sẽ cài đặt cookie JSESSIONID. Mỗi lần truy cập, trình duyệt sẽ gửi lại JSESSIONID trong trường Cookie. Mà trường Cookie cũng nằm trong header của request.
 
 ![](images/session_cookie.jpg)
 
 Quản lý cookie. Hãy thử xoá JSESSIONID, rồi refresh lại trang, ứng dụng web sẽ yêu cầu bạn phải đăng nhập lại.
 ![](images/session_cookie2.jpg)
+
+#### Cách nào bảo mật hơn, ```http.httpBasic()``` hay  ```http.formLogin()``` ?
+
+```http.httpBasic()``` có một lỗ hổng bảo mật to đùng, đó là hacker có thể dịch ngược Username, Password khi trích xuất request header. Còn ```http.formLogin()``` hacker có thể tóm được JSESSIONID nhưng sẽ không biết được Username, Password. Hacker vẫn có thể dùng lại JSESSIONID để tạo request gửi lên server. Nhưng không thể dịch ngược ra được password của người dùng. Do đó ```http.formLogin()``` vẫn bảo mật hơn.
+
+Tốt hơn nữa hãy chuyển từ http sang https để mã hoá toàn bộ request / response gửi qua lại trên đường truyền.
 
 ### 
 Chú ý: chúng ta có thể thay thế
