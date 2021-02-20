@@ -1,9 +1,8 @@
-Ý tưởng
 
 
+## Tham khảo
 
-
-1. Sử dụng cơ sở dữ liệu Sakila [https://github.com/maxandersen/sakila-h2/blob/master/sakila.sql](https://github.com/maxandersen/sakila-h2/blob/master/sakila.sql)
-2. [jOOQ as a SQL builder with code generation](https://www.jooq.org/)
-3. [Hướng dẫn dùng JOOQ Viblo.Asia](https://viblo.asia/p/viet-sql-trong-java-voi-jooq-AQrMJb44M40E)
-4. [https://www.baeldung.com/spring-boot-h2-database](https://www.baeldung.com/spring-boot-h2-database)
+1. [HTTP Methods in Spring RESTful Services](https://www.dariawan.com/tutorials/rest/http-methods-spring-restful-services/)
+2. [Spring Boot RESTful Web Services CRUD Example](https://www.dariawan.com/tutorials/spring/spring-boot-restful-web-services-crud-example/)
+3. [Spring Boot + JPA/Hibernate + PostgreSQL RESTful CRUD API Example](https://www.dariawan.com/tutorials/spring/spring-boot-jpa-hibernate-postgresql-restful-crud-api-example/)
+4. [Documenting Spring Boot REST API with Swagger](https://www.dariawan.com/tutorials/spring/documenting-spring-boot-rest-api-swagger/)
