@@ -81,7 +81,12 @@ public class Authority {
   private Authority() {}
 }
 ```
+
+*Có cách nào khác cách làm này? Có ! bạn cứ dùng thẳng String nhưng code sẽ không clean, và dễ có lỗi.*
 ### 4. Tạo class User tuân thủ interface UserDetails
+*Có cần nhất thiết lúc nào cũng phải tạo class User không?
+
+Câu trả lời là không. Bạn vẫn có thể dùng class User mặc định trong Spring Security. Tuy nhiên nếu cần thêm các thuộc tính mới, phương thức mới cho User thì phải tạo ra một class mới.*
 
 UserDetails là một interface kế thừa interface Serializable
 ```java
@@ -210,9 +215,6 @@ Khi thực hiện tác vụ mà bạn không có quyền thì sẽ nhận đư�
 ![](images/error403.jpg)
 
 Trang báo lỗi 403 được tôi customize [403.html](target/classes/templates/error/403.html)
-
-
-
 
 ## Đọc thêm
 - [Granted Authority Versus Role in Spring Security](https://www.baeldung.com/spring-security-granted-authority-vs-role)
