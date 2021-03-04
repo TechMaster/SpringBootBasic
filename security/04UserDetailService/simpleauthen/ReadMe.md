@@ -8,6 +8,7 @@ Trong bài này, chúng ta sẽ bàn đến UserDetails và UserDetailsManager:
 3. UserDetailsManager mở rộng từ UserDetailsService bổ xung các phương thức: tạo user, sửa đổi, và xoá user. Ví dụ này dùng ```InMemoryUserDetailsManager```
 4. Authority khác với Role như thế nào?
 
+![](images/user_detail_diagram.jpg)
 Phần chức năng tôi bê nguyên ví dụ [crud/08Search/bookstore/](https://github.com/TechMaster/SpringBootBasic/tree/main/crud/08Search/bookstore) đã học trước đây.
 
 ## Thực hành
@@ -22,6 +23,9 @@ Form đăng nhập có sẵn trong Spring Boot
 
 Sau khi người dùng login sẽ liệt kê danh sách quyền được làm. Giao diện cùi bắp chỉ để demo cho trực quan.
 ![](images/home_authority.jpg)
+
+Màn hình liệt kê sách. Người dùng phải có quyền thích hợp mới được xem, tạo, sửa, xoá, tìm kiếm
+![](images/Book_Store.jpg)
 ### 2. Cấu trúc thư mục dự án
 ```
 .
@@ -84,11 +88,11 @@ public class Authority {
 
 *Có cách nào khác cách làm này? Có ! bạn cứ dùng thẳng String nhưng code sẽ không clean, và dễ có lỗi.*
 ### 4. Tạo class User tuân thủ interface UserDetails
-*Có cần nhất thiết lúc nào cũng phải tạo class User không?
 
+*Có cần nhất thiết lúc nào cũng phải tạo class User không?
 Câu trả lời là không. Bạn vẫn có thể dùng class User mặc định trong Spring Security. Tuy nhiên nếu cần thêm các thuộc tính mới, phương thức mới cho User thì phải tạo ra một class mới.*
 
-UserDetails là một interface kế thừa interface Serializable
+```UserDetails``` là một interface kế thừa ```interface Serializable```
 ```java
 public interface UserDetails extends Serializable {
 	Collection<? extends GrantedAuthority> getAuthorities();  //Lấy danh sách các quyền được phép làm
@@ -218,3 +222,6 @@ Trang báo lỗi 403 được tôi customize [403.html](target/classes/templates
 
 ## Đọc thêm
 - [Granted Authority Versus Role in Spring Security](https://www.baeldung.com/spring-security-granted-authority-vs-role)
+- [Spring Boot Security Role-based Authorization Tutorial](https://www.codejava.net/frameworks/spring-boot/spring-boot-security-role-based-authorization-tutorial)
+
+https://www.baeldung.com/role-and-privilege-for-spring-security-registration
