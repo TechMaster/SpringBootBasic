@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="layout :: head(title='Login Success')"></head>
+<body>
+  <div class="container">
+  <h1 th:text="${'Hi ' + login_name}"></h1>
+  <ul th:each="authority : ${authorities}">
+    <li th:text="${authority.getAuthority()}"></li>
+  </ul>
+  <form name="logoutForm" th:action="@{/perform_logout}" method="post" th:hidden="true">
+    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+    <input type="submit" value="Logout" />
+  </form>
+
+  <a href="javascript: logoutForm.submit();" th:if="${login_name != ''}" th:text="${'Log out (' + login_name + ')'}"></a>
+  <a href="#" th:href="@{/login}" th:unless="${login_name != ''}" th:text="Login"></a>
+
+  <br><br>
+  <table class="table w-50">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Link</th>
+        <th scope="col">Required Roles</th>      
+      </tr>
+   </thead>
+    <tr>
+       <td><a href="/admin">Admin page</td>
+      <td>ADMIN can view</td>      
+    </tr>
+    <tr>
+      <td><a href="/user">User page</td>
+      <td>USER can view</td>      
+    </tr>
+    <tr>
+      <td><a href="/editor">Editor page</td>
+      <td>EDITOR, USER can view</td>      
+    </tr>
+    <tr>
+      <td><a href="/author">Author page</td>
+      <td>AUTHOR can view</td>      
+    </tr>
+    <tr>
+      <td><a href="/member">Member page</td>
+      <td>User, Author, Editor, Admin can view</td>      
+    </tr>
+    <tr>
+      <td><a href="/public">Public page</td>
+      <td>Anonymous can view</td>      
+    </tr>
+  </table>
+</div>
+<div th:replace = "layout :: footer"></div>
+</body>
+</html>

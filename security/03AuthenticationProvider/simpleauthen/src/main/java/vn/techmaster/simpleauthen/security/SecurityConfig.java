@@ -38,9 +38,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
   @Override
   protected void configure(HttpSecurity http) throws Exception {
     http.formLogin();
-    http.authorizeRequests().antMatchers("/api/products").hasAnyRole(Role.USER, Role.OPERATOR, Role.ADMIN)
-        .antMatchers("/api/backoffice").hasAnyRole(Role.OPERATOR, Role.ADMIN).antMatchers("/api/secret")
-        .hasRole(Role.ADMIN).antMatchers("/**").permitAll();
+    http.authorizeRequests()
+      .antMatchers("/api/products").hasAnyRole(Role.USER, Role.OPERATOR, Role.ADMIN)
+      .antMatchers("/api/backoffice").hasAnyRole(Role.OPERATOR, Role.ADMIN)
+      .antMatchers("/api/secret").hasRole(Role.ADMIN)
+      .antMatchers("/**").permitAll();
   }
 
   public static PasswordEncoder delegatePasswordEncoder(String encodingType) {

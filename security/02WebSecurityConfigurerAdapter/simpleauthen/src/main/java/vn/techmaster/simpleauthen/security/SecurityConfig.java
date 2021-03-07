@@ -27,8 +27,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
   @Override
   protected void configure(HttpSecurity http) throws Exception {
-    //http.httpBasic();
-    http.formLogin();
+    http.httpBasic();
+    //http.formLogin();
     http.authorizeRequests()
     .antMatchers("/api/products").hasAnyRole(Role.USER, Role.OPERATOR, Role.ADMIN)
     .antMatchers("/api/backoffice").hasAnyRole(Role.OPERATOR, Role.ADMIN)

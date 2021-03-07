@@ -1,0 +1,26 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head th:replace="layout :: head(title='Login')">
+  <body>
+    <div class="d-flex p-4 justify-content-center form_container">
+    <form method="post" th:action="@{/perform_login}">
+      <h2 class="form-signin-heading">Hãy đăng nhập nhé</h2>
+        <div class="form-group">
+          <label for="username">Tên đăng nhập</label>
+          <input type="text" class="form-control" id="username" name="username" required autofocus>
+        </div>
+        <div class="form-group">
+          <label for="password">Mật khẩu</label>
+          <input type="password" class="form-control" id="password" name="password">
+        </div>
+        <div class="form-group form-check">
+          <input type="checkbox" class="form-check-input" id="remember-me" name="remember-me">
+          <label class="form-check-label" for="rememberMe">Tự động đăng nhập</label>
+        </div>
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    <div th:replace = "layout :: footer"></div>
+</div>
+</body></html>

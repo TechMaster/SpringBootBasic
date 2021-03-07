@@ -329,3 +329,61 @@ tuy nhiên vẫn bị lỗi 403. Cần phải bổ xung đầy đủ, thì mới
   .and().csrf().ignoringAntMatchers("/h2-console/**") //https://jessitron.com/2020/06/15/spring-security-for-h2-console/
   .and().headers().frameOptions().sameOrigin()
 ```
+
+### 7. Refactor code thêm user
+
+Code cũ rất là dài. Mỗi lần truyền vào password phải mã hoá.
+```java
+User admin = new User("admin", encoder.encode("123"));
+admin.addRole(roleAdmin);
+userRepository.save(admin);
+
+User bob =  new User("bob", encoder.encode("123"));
+bob.addRole(roleUser);
+userRepository.save(bob);
+
+User alice =  new User("alice", encoder.encode("123"));
+alice.addRole(roleEditor);
+userRepository.save(alice);
+
+User tom =  new User("tom", encoder.encode("123"));
+tom.addRole(roleEditor);  //Một user được gán nhiều Role !
+tom.addRole(roleUser);
+userRepository.save(tom);
+
+User jane =  new User("jane", encoder.encode("123"));
+jane.addRole(roleAuthor);
+userRepository.save(jane);
+```
+
+Code mới bổ xung một phương thức tiện ích tạo User ```createUser```
+```java
+public User createUser(String username, String password, Role ...roles) {
+  User user =  new User(username, encoder.encode(password));  //Phần mã hoá password cho vào đây
+  for (Role role : roles) {
+    user.addRole(role);
+  }
+  return user;
+}
+```
+
+Giờ thì code trong phương thức generateUsersRoles đơn giản hơn rất nhiều.
+```java
+public void generateUsersRoles() {
+  //
+  User admin = createUser("admin", "123", roleAdmin);
+  userRepository.save(admin);
+
+  User bob =  createUser("bob", "123", roleUser);
+  userRepository.save(bob);
+
+  User alice =  createUser("alice", "123", roleEditor);
+  userRepository.save(alice);
+
+  User tom =  createUser("tom", "123", roleUser, roleEditor);
+  userRepository.save(tom);
+
+  User jane =  createUser("jane", "123", roleAuthor);
+  userRepository.save(jane);
+}
+```
