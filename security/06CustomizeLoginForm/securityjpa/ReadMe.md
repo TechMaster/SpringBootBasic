@@ -25,6 +25,7 @@ Sau khi login thành công, người dùng xem được [login_success.html](src
 Nếu login lỗi thì chuyển đến trang này [login_error.html](src/main/resources/templates/login_error.html)
 
 ![](images/login_error.jpg)
+
 Sau vài giây đếm ngược, trang này lại chuyển về màn hình đăng nhập [login.html](src/main/resources/templates/login.html)
 
 Nếu người dùng truy cập vào trang không có quyền, thì nhận báo lỗi [403.html](src/main/resources/templates/error/403.html)
