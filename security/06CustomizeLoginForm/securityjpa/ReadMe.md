@@ -28,9 +28,11 @@ Nếu login lỗi thì chuyển đến trang này [login_error.html](src/main/re
 Sau vài giây đếm ngược, trang này lại chuyển về màn hình đăng nhập [login.html](src/main/resources/templates/login.html)
 
 Nếu người dùng truy cập vào trang không có quyền, thì nhận báo lỗi [403.html](src/main/resources/templates/error/403.html)
+
 ![](images/error_403.jpg)
 
 Còn nếu có quyền truy cập hợp lý thì xem được trang
+
 ![](images/role_editor.jpg)
 
 ## Giải thích một số hàm phần quyền truy cập
@@ -150,6 +152,32 @@ public String showLoginSuccess(Principal principal, Model model) {
 public String showLoginError() {
   return "login_error";
 }
+```
+
+Đoạn code này trong [login_error.html](src/main/resources/templates/login_error.html) sẽ tự động chuyển về đường dẫn /login sau 5 giây.
+```javascript
+<script>
+  // Set the date we're counting down to
+  var countDownDate = new Date().getTime() + 5000;
+
+  // Update the count down every 1 second
+  var x = setInterval(function () {
+    // Get today's date and time
+    var now = new Date().getTime();
+    // Find the distance between now and the count down date
+    var distance = countDownDate - now;
+    var seconds = Math.floor(distance / 1000);
+    // Display the result in the element with id="demo"
+    document.getElementById("demo").innerHTML = seconds + " s";
+
+    // If the count down is finished, redirect to /login form
+    if (distance < 0) {
+      clearInterval(x);
+      document.getElementById("demo").innerHTML = "EXPIRED";
+      window.location.replace("/login");
+    }
+  }, 200);
+</script>
 ```
 
 ### 5. ```.failureHandler(new CustomAuthenFailureHandler())``` xử lý sự kiện login lỗi
