@@ -8,8 +8,8 @@ import vn.techmaster.bookstore.repository.BookDao;
 @Configuration
 public class RepoConfig {
 
-  @Bean
+ /* @Bean
   public BookDao bookDao() {
     return new BookDao();
-  }  
+  }  */
 }
