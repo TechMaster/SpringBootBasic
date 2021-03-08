@@ -56,7 +56,7 @@ Nếu OpenAPI chỉ trích xuất kiểu dữ liệu cho từng trường thì c
 Xem mô tả trong file [BookPOJO.java](src/main/java/vn/techmaster/bookstore/model/BookPOJO.java)
 
 Hãy sử dụng các annotation:
-- ```@NotBlank``: không được rỗng
+- ```@NotBlank```: không được rỗng
 - ```@Size(min = 5, max = 400, message = "Tên sách từ 4 đến 400 ký tự")```: số lượng ký tự min và max. Tham số message dùng để báo lỗi khi dữ liệu phạm quy.
 ```java
 @Data
