@@ -195,3 +195,28 @@ public GroupedOpenApi contactOpenApi() { //Phục vụ cho domain Contact
 Giờ bạn có thể chọn xem nhóm REST API cùng một domain
 
 ![](images/select_api_group.jpg)
+
+## Bonus: HAL Explorer
+
+HAL viết tắt của cụm từ Hypertext Application Language. Nếu chúng ta tạo ra REST API cần có một cơ chế để giúp lập trình viên phía client tìm hiểu, khám phá các phương thức REST API. Để dùng HAL Explorer hãy bổ xung vào [pom.xml](pom.xml)
+```xml
+<dependency>
+  <groupId>org.springframework.data</groupId>
+  <artifactId>spring-data-rest-hal-explorer</artifactId>
+</dependency>
+```
+
+Sau đó truy cập vào địa chỉ này [http://localhost:8080/explorer](http://localhost:8080/explorer)
+
+![](images/HAL_Explorer.jpg)
+
+Lấy danh sách Books
+
+![](images/HAL_Explorer_GetBook.jpg)
+
+Có thể thao tác : Thêm, Sửa, Xoá bản ghi qua giao diện của HAL Explorer
+
+![](images/HAL_Explorer_3Column.jpg)
+
+Thêm mới một bản ghi
+![](images/HAL_Explorer_CreateNewBook.jpg)
