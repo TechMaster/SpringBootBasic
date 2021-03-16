@@ -44,11 +44,11 @@ Ghi lại vào file nguyento.txt những gì đã in ra màn hình console. (1 �
 1. Marc-André ter Stegen - GK
 2. Sergiño Dest - DF
 3. Gerard Piqué - DF
-4. Ronald Araújo - DF
+4. Ronald Araújo - DF
 5. Sergio Busquets - MF
 6. Antoine Griezmann - FW
-7. Miralem Pjanić - MF
-8. Martin Braithwaite - FW
+7. Miralem Pjanić - MF
+8. Martin Braithwaite - FW
 9. Lionel Messi - FW
 10. Ousmane Dembélé - FW
 11. Riqui Puig - MF
