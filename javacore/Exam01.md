@@ -88,7 +88,7 @@ List<Player> buildTeam()
 ```
 
 Hãy làm sao 11 cầu thủ trả về của phương thức buildTeam phải có đủ 1 thủ môn (GK), 4 hậu vệ (DF), 4 trung vệ (MF), 2 tiền đạo (FW). Chú ý có thể chọn ngẫu nhiên. Sau đó in ra màn hình danh sách ra sân như sau:
-
+```
 1 - Marc-André ter Stegen - GK
 
 3 - Gerard Piqué - DF
@@ -103,6 +103,7 @@ Hãy làm sao 11 cầu thủ trả về của phương thức buildTeam phải c
 
 6 - Antoine Griezmann - FW
 9 - Lionel Messi - FW
+```
 
 Sau đó lại đặt câu hỏi "Do you want to see another option? Type Y or N"
 
