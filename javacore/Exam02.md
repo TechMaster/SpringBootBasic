@@ -27,6 +27,6 @@ Mảng ngay sau khi nhập sẽ là
 4. Nhập vào một số X trong khoảng từ -10 đến 10
 5. Hãy liệt kê tất cả các cặp 2 số trong mảng có tổng gần với số X nhất.
 
-**Hướng dẫn các làm bài này:**
+  **Hướng dẫn các làm bài này:**
 - Hãy viết thành các phương thức, mỗi phương thức chỉ tập trung làm một việc, tham số hoá chứ không nên dùng biến toàn cục. Quy tắc Clean Code
 - Có thể tạo sẵn một mảng khoảng 10 phần tử để kiểm tra khi chạy cho dễ dàng.
