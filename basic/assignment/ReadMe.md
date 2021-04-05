@@ -39,6 +39,7 @@ Thuộc tính của annotaion
    - Retention: runtime
    - Target: method
    - Method: value() trả về kiểu int với default là 0.
+   
 Tạo class HelloWord với một method sayHello() (In ra dòng sau: "Hello custom annotation") sử dụng annotation trên
 Tạo class Test với phương thức main
    - Tạo một instance HelloWord
