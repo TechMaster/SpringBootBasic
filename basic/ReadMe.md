@@ -6,5 +6,6 @@
 - [Bài 4](04readproperty/bookstore): Đọc thông tin cấu hình từ application.properties hoặc application.yml
 - [Bài 5](05bookcollection/bookstore): Làm quen với Thymeleaf, trả về một số tựa sách
 - [Bài 6](06bookwithcss/bookstore): Trang trí bài số 5 bằng CSS
+- [Bài 7](07didemo/di-demo): Java code for DI pattern demo
 - [Bài tập](homework): có 2 bài tập tình huống và rất nhiều câu hỏi ôn tập khi đi phỏng vấn thế nào cũng sẽ hỏi
 - [Slide PDF](slides): hãy xem kỹ những PowerPoint slide. Trên lớp đôi khi giảng viên không đủ thời gian trình bày hết từng trang một
