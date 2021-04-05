@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home page</title>
+</head>
+<body>
+  <h1 th:text="${'Hi ' + login_name}"></h1>
+  <ul th:each="authority : ${authorities}">
+    <li th:text="${authority.getAuthority()}"></li>
+  </ul>
+  <a href="#" th:href="@{/logout}" th:if="${login_name != ''}" th:text="${'Log out (' + login_name + ')'}"></a>
+  <a href="#" th:href="@{/login}" th:unless="${login_name != ''}" th:text="Login"></a>
+
+  <br><br>
+  <table border="1">
+    <tr>
+      <th>User name</th>
+      <th>Password</th>
+      <th>Roles</th>
+      <th>link</th>
+    </tr>
+    <tr>
+      <td>admin</td>
+      <td>123</td>
+      <td>ADMIN</td>
+      <td><a href="/admin">Admin page</td>
+    </tr>
+    <tr>
+      <td>bob</td>
+      <td>123</td>
+      <td>USER</td>
+      <td><a href="/user">User page</td>
+    </tr>
+    <tr>
+      <td>tom</td>
+      <td>123</td>
+      <td>EDITOR, USER</td>
+      <td><a href="/editor">Editor page</td>
+    </tr>
+    <tr>
+      <td>jane</td>
+      <td>123</td>
+      <td>AUTHOR</td>
+      <td><a href="/author">Author page</td>
+    </tr>
+  </table>
+
+</body>
+</html>

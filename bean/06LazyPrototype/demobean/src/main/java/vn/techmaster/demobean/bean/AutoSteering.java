@@ -9,3 +9,13 @@ public class AutoSteering implements Steering {
     return "Auto steering";
   }  
 }
+
+@Component
+public class BeanA { }
+
+@Component
+public class BeanB { }
+
+@Component
+@DependsOn(value = {"beanA","beanB"})
+public class BeanC { }

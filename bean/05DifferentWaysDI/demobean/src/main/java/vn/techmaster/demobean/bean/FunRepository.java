@@ -7,8 +7,11 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public class FunRepository {
-  @Autowired
-  public FunRepository(@Value("${engineType}") String engineType) {
+ /* public FunRepository(@Value("${engineType}") String engineType) {
     System.out.println("FunRepository :" + engineType);
-  }  
+  }  */
+  @Autowired
+  public FunRepository(Car car) {
+    System.out.println(car);
+  } 
 }

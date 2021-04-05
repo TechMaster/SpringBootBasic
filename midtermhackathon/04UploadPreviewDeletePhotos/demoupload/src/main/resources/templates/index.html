@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Uploading file</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  <h1>Report a bug</h1>
+
+  <form action="/doUpload" method="post" enctype="multipart/form-data">
+    <table>
+      <tr>
+        <td>Name</td>
+        <td><input type="text" name="name" /></td>
+      </tr>
+      <tr>
+        <td>select photos</td>
+        <td><input type="file" id="photos" name="photos" multiple /></td>
+      </tr>
+      <tr>
+        <td><input type="submit" value="Submit" /></td>
+      </tr>
+    </table>
+  </form>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script>
+    $(document).ready(() => {
+      if (window.File && window.FileList && window.FileReader) {
+        $("#photos").on("change", e => {
+          let files = Array.from(e.target.files);
+          console.log(files.length);
+          files.forEach((f, index) => {
+            let fileReader = new FileReader();
+            fileReader.onload = (e => {
+              let file = e.target;
+              $("<span class=\"pip\">" +
+                "<img class=\"imageThumb\" src=\"" + e.target.result + "\" title=\"" + file.name + "\"/>" +
+                "<br/><span class=\"remove\">Remove image</span>" +
+                "</span>").insertAfter("#photos");
+
+              $(".remove").click(function(){
+                $(this).parent(".pip").remove();
+                files.splice(index, 1);
+                console.log(files.length);
+              });
+            });
+            fileReader.readAsDataURL(f);
+          });
+
+        });
+      } else {
+        alert("Your browser doesn't support to File API")
+      }
+    });
+  </script>
+</body>
+
+</html>

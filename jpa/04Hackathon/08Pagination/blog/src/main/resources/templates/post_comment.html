@@ -9,9 +9,8 @@
     <menu th:replace="layout_post :: menu"> </menu>
 
     <h3 th:text="${post.title}"></h3>
-    <em th:text="${#temporals.format(post.lastUpdate, 'dd-MMM-yyyy')}"></em>
+    <em class="me-2" th:text="${#temporals.format(post.lastUpdate, 'dd-MMM-yyyy')}"></em>
     <em>
-      <span>Tags: </span>
       <a class="me-2" th:each="tag : ${tags}" th:href="${'/tag/' + tag.id}" th:text="${tag.name}">tag link</a>
     </em>
     <p th:text="${post.content}" class="mt-2"></p>

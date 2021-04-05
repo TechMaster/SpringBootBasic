@@ -3,7 +3,6 @@ package vn.techmaster.demoupload.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -17,7 +16,7 @@ import vn.techmaster.demoupload.service.StorageService;
 public class UploadController {
   @Autowired
   private StorageService storageService;
-  
+
   @GetMapping("/")
   public String home() {
     return "index";
@@ -34,16 +33,12 @@ public class UploadController {
   }
 
   @PostMapping(value = "/doUpload", consumes = { "multipart/form-data" })
-  public String upload(@ModelAttribute Person person, ModelMap modelMap, Model model) {
-
-    modelMap.addAttribute("person",person);
-
+  public String upload(@ModelAttribute Person person, Model model) {
     storageService.uploadFile(person.getPhoto());
-    model.addAttribute("name", person.getName());   
+    model.addAttribute("name", person.getName());
     model.addAttribute("photo", person.getPhoto().getOriginalFilename());
     return "success";
   }
-
 
   @ExceptionHandler(StorageException.class)
   public String handleStorageFileNotFound(StorageException e, Model model) {

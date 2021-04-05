@@ -2,9 +2,11 @@ package vn.techmaster.blog.service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 
 import org.hibernate.CacheMode;
 import org.hibernate.search.mapper.orm.Search;
@@ -13,7 +15,6 @@ import org.hibernate.search.mapper.orm.session.SearchSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import vn.techmaster.blog.DTO.PostMapper;
@@ -26,6 +27,9 @@ import vn.techmaster.blog.model.User;
 import vn.techmaster.blog.repository.PostRepository;
 import vn.techmaster.blog.repository.TagRepository;
 import vn.techmaster.blog.repository.UserRepository;
+
+import com.thedeanda.lorem.Lorem;
+import com.thedeanda.lorem.LoremIpsum;
 
 @Service
 public class PostService implements IPostService {
@@ -69,8 +73,8 @@ public class PostService implements IPostService {
   }
 
   @Override
-  public List<Post> getAllPostsByUserID(long user_id) {
-    return postRepo.findByUserId(user_id);
+  public List<Post> getAllPostsByUserID(long userId) {
+    return postRepo.findByUserId(userId);
   }
 
   @Override
@@ -99,9 +103,9 @@ public class PostService implements IPostService {
   }
 
   @Override
-  public void addComment(CommentRequest commentRequest, long user_id) throws PostException {
+  public void addComment(CommentRequest commentRequest, long userId) throws PostException {
     Optional<Post> oPost = postRepo.findById(commentRequest.getPost_id());
-    Optional<User> oUser = userRepo.findById(user_id);
+    Optional<User> oUser = userRepo.findById(userId);
     if (oPost.isPresent() && oUser.isPresent()) {
       Post post = oPost.get();
       Comment comment = new Comment(commentRequest.getContent());
@@ -135,5 +139,41 @@ public class PostService implements IPostService {
     .threadsToLoadObjects(5)
     .cacheMode(CacheMode.IGNORE);
     indexer.start();    
+  }
+
+  @Override
+  @Transactional
+  public void generateSampleData() {
+    List<User> users = userRepo.findAll();
+    List<Tag> tags = tagRepo.findAll();
+
+    int numberOfTags = tags.size();
+    int maxTagsPerPost = numberOfTags / 3;
+
+    Lorem lorem = LoremIpsum.getInstance();
+    
+    Random random = new Random();
+    int numberOfUsers = users.size();
+   for (int k = 0; k < 200; k++) {
+      User user = users.get(random.nextInt(numberOfUsers));
+      Post post = new Post(lorem.getTitle(2, 5), lorem.getParagraphs(2, 4));
+      
+      int numberOfComments = random.nextInt(numberOfUsers/2);
+      for (int j = 0; j < numberOfComments; j++) {
+        User commenter = users.get(random.nextInt(numberOfUsers));
+        Comment comment = new Comment(lorem.getParagraphs(1, 1));
+        comment.setUser(commenter);
+        post.addComment(comment);
+      }
+
+      int numberTagsForPost = Math.max(1, random.nextInt(maxTagsPerPost));
+      for (int i = 0; i < numberTagsForPost; i++) {
+        post.addTag(tags.get(random.nextInt(numberOfTags)));
+      }
+     
+      user.addPost(post);
+      postRepo.save(post);
+    }
+    userRepo.flush();
   }
 }

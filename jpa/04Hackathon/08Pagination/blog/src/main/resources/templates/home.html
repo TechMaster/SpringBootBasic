@@ -13,17 +13,16 @@
           <h5 class="card-title" th:text="${post.title}"></h5>
           <h6 class="card-subtitle mb-2 text-muted" th:text="${post.getUser().getFullname()}">Card subtitle</h6>
           <p class="card-text" th:text="${#strings.abbreviate(post.content, 100)}">content</p>
-          <a th:href="@{/post/{id}(id=${post.id})}" class="card-link">See more...</a>
+          <a th:href="@{/post/{id}(id=${post.id})}" class="card-link me-2">See more...</a>
+          <div th:if="${post.comments.size > 0}" style="display:inline">
+            <span class="me-2" th:text="${post.comments.size}"></span><i class="fa fa-commenting-o" aria-hidden="true"></i>
+          </div>
         </div>        
       </div>
     </div>
-    <nav aria-label="Page navigation example">
+    <nav>
       <ul class="pagination">
-        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item"><a class="page-link" href="#">Next</a></li>
+        <li class="page-item" th:each="paging : ${pagings}" th:classappend="${paging.active}"><a class="page-link" th:href="${'/' + paging.index}" th:text="${paging.title}"></a></li>       
       </ul>
     </nav>
   </div>

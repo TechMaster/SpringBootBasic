@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="layout :: head(title='Custom Login and Logout page')"></head>
+<body>
+  <div class="container">
+    <h1>Custom Login and Logout page</h1>
+    <a href="#" th:href="@{/login}" th:text="Login"></a>
+    <br><br>
+    <table class="table w-50">
+      <thead class="thead-dark">
+        <tr>
+          <th>User name</th>
+          <th>Password</th>
+          <th>Roles</th>
+        </tr>
+      </thead>
+      <tr>
+        <td>admin</td>
+        <td>123</td>
+        <td>ADMIN</td>
+      </tr>
+      <tr>
+        <td>bob</td>
+        <td>123</td>
+        <td>USER</td>
+      </tr>
+      <tr>
+        <td>tom</td>
+        <td>123</td>
+        <td>EDITOR, USER</td>
+      </tr>
+      <tr>
+        <td>jane</td>
+        <td>123</td>
+        <td>AUTHOR</td>
+      </tr>
+    </table>
+    <br>
+    <a href="/public">Bạn không cần login vẫn có thể xem được trang này</a>
+  </div>
+  <div th:replace = "layout :: footer"></div>
+</body>
+
+</html>

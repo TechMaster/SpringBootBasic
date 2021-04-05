@@ -4,3 +4,8 @@ insert into users (id, fullname, email, password) values (3, 'Tom', 'tom@gmail.c
 insert into users (id, fullname, email, password) values (4, 'Jane', 'jane@gmail.com', 'abc');
 insert into users (id, fullname, email, password) values (5, 'Long', 'long@gmail.com', 'abc');
 insert into users (id, fullname, email, password) values (6, 'Duy', 'duy@gmail.com', 'abc');
+insert into users (id, fullname, email, password) values (7, 'Trump', 'trump@gmail.com', 'abc');
+insert into users (id, fullname, email, password) values (8, 'Nick', 'nick@gmail.com', 'abc');
+insert into users (id, fullname, email, password) values (9, 'Cuong', 'cuong@gmail.com', 'abc');
+insert into users (id, fullname, email, password) values (10, 'Van', 'van@gmail.com', 'abc');
+insert into users (id, fullname, email, password) values (11, 'Bach', 'bach@gmail.com', 'abc');

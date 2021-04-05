@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IOT</title>
+</head>
+
+<body>
+  <h1>IOT Monitoring</h1>
+  <table>
+    <tr>
+      <td>Temperature</td>
+      <td><span id="temperature"></span></td>
+    </tr>
+    <tr>
+      <td>Moisture</td>
+      <td><span id="moisture"></span></td>
+    </tr>
+  </table>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script>
+    $(document).ready(() => {
+      setInterval(() => {
+        $.get("http://localhost:8080/mono", (data, status) => {
+          if (status == "success") {
+            $("#temperature").text(data.temperature);
+            $("#moisture").text(data.moisture);
+          }
+        });
+      }, 1000);
+    });
+  </script>
+</body>
+
+</html>

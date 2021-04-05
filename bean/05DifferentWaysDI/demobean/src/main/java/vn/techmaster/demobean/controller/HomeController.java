@@ -16,7 +16,7 @@ public class HomeController {
   Car car; //Lấy bean có tên là car
 
   @Autowired
-  FunRepository funRepo;
+  private FunRepository funRepo;
 
 
   @ResponseBody

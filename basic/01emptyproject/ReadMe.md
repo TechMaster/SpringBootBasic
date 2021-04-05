@@ -3,6 +3,7 @@
 Hãy để ý đến file pom.xml
 
 bạn đang dùng JDK phiên bản nào thì cần chỉnh sửa thông số ```java.version``` cho phù hợp
+
 ```xml
 <properties>
   <java.version>15</java.version>
@@ -10,10 +11,12 @@ bạn đang dùng JDK phiên bản nào thì cần chỉnh sửa thông số ```
 ```
 
 Dự án này dùng 4 dependecies:
+
 1. spring-boot-starter-web
 2. spring-boot-devtools: hỗ trợ Live Reload
 3. Lombok dùng để định nghĩa class ngắn gọn hơn cách truyền thống
 4. spring-boot-starter-test: mặc định lúc nào cũng có để kiểm thử tự động
+
 ```xml
 <dependencies>
   <dependency>
@@ -40,6 +43,7 @@ Dự án này dùng 4 dependecies:
 ```
 
 ## Cấu trúc dự án chính
+
 ```
 ├── src
 │   ├── main

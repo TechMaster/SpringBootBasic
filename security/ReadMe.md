@@ -10,4 +10,10 @@
 6. [The Registration API becomes RESTful](https://www.baeldung.com/registration-restful-api)
 7. [Spring Security – Reset Your Password](https://www.baeldung.com/spring-security-registration-i-forgot-my-password)
 8. [Registration – Password Strength and Rules](https://www.baeldung.com/registration-password-strength-and-rules)
-9. [Updating your Password](https://www.baeldung.com/updating-your-password/)s
+9. [Updating your Password](https://www.baeldung.com/updating-your-password/)
+
+
+https://www.baeldung.com/registration-with-spring-mvc-and-spring-security
+
+
+https://hellokoding.com/registration-and-login-example-with-spring-security-spring-boot-spring-data-jpa-hsql-jsp/

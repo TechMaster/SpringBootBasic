@@ -1,0 +1,58 @@
+package vn.techmaster.simpleauthen.security;
+
+import java.util.ArrayList;
+import java.util.Collection;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+
+@Configuration
+@EnableWebSecurity
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+  @Override
+  protected void configure(HttpSecurity http) throws Exception {
+    http.httpBasic(); // Có thể thay bằng   http.formLogin();
+    http.authorizeRequests().anyRequest().authenticated();
+  }
+
+  @Bean
+  public PasswordEncoder encoder() {
+    return NoOpPasswordEncoder.getInstance(); 
+  }
+  
+/*
+  @Override
+  protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+      auth.userDetailsService(inMemoryUserDetailsManager())
+      .passwordEncoder((NoOpPasswordEncoder.getInstance()));
+  }*/
+
+  @Bean
+  public InMemoryUserDetailsManager inMemoryUserDetailsManager() {
+    Collection<UserDetails> users = new ArrayList<>();
+
+    var tom = User.withUsername("tom@gmail.com").password("123").
+    authorities("read").build();
+
+    var bob = User.withUsername("bob@gmail.com").password("123").
+    authorities("read").build();
+
+    var alice = User.withUsername("alice@gmail.com").password("123").
+    authorities("read").build();
+
+    users.add(tom);
+    users.add(bob);
+    users.add(alice);
+    return new InMemoryUserDetailsManager(users);
+  }
+
+}

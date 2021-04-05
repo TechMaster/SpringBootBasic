@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Uploading file</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+  <h1>Uploading file</h1>
+
+  <form action="/doUpload" method="post" enctype="multipart/form-data">
+    <table>
+      <tr>
+        <td>Name</td>
+        <td><input type="text" name="name" /></td>
+      </tr>
+      <tr>
+        <td>Email</td>
+        <td><input type="text" name="email" /></td>
+      </tr>
+      <tr>
+        <td>Select a photo</td>
+        <td><input type="file" name="photo" /></td>
+      </tr>
+      <tr>
+        <td><input type="submit" value="Submit" /></td>
+      </tr>
+    </table>
+  </form>
+</body>
+
+</html>

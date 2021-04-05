@@ -5,26 +5,26 @@
    - Hạn chế file upload
    - Cấu hình thư mục lưu file upload lên
 2. Upload file với RestController
-3. Demo tổng hợp - App quản lý file trên server<br>
-a. Chức năng của app
-   - Show thư mục root (quản lý file upload, chia ra 2 thư mục con cho user thường và admin)
-   - Liệt kê file và folder thuộc trực tiếp folder đang làm việc
-   - Upload fle vào folder đang làm việc
-   - Xóa file/folder
-   - Tạo folder con
-   - Download file<br>
-b. Các bước thực hiện
-   - Cấu hình thư mục gốc lưu file upload trên server + hạn chế kích thước file
-   - Phân quyền với spring security và sử dụng thư mục riêng chỉ cho admin truy cập
-   - Viết HomeController để show home page lên UI (thymeleaf) 
-   - Viết FileRestController để cung cấp các api làm việc với file, viết các file service để xử lý business
+3. Demo tổng hợp - App quản lý file trên server  
+- Chức năng của app  
+    - Show thư mục root (quản lý file upload, chia ra 2 thư mục con cho user thường và admin)
+     - Liệt kê file và folder thuộc trực tiếp folder đang làm việc
+    - Upload fle vào folder đang làm việc
+    - Xóa file/folder
+     - Tạo folder con
+     - Download file  
+- Các bước thực hiện
+     - Cấu hình thư mục gốc lưu file upload trên server + hạn chế kích thước file
+    - Phân quyền với spring security và sử dụng thư mục riêng chỉ cho admin truy cập
+    - Viết HomeController để show home page lên UI (thymeleaf) 
+    - Viết FileRestController để cung cấp các api làm việc với file, viết các file service để xử lý business
    - Thiết kế giao diện với thymeleaf, css, js
    - Viết các function trong js để call rest api, sau đó update lại home page
-4. Các kỹ thuật cần dùng
-a. Làm việc với Java (tài liệu dịch đi kèm)
-b. Làm việc với Multipart file trong Spring
+4. Các kỹ thuật cần dùng<br>
+a. Làm việc với Java (tài liệu dịch đi kèm)  
+b. Làm việc với Multipart file trong Spring  
 - Upload file:
--- Làm việc với Rest Controller (tham khảo đến FileRestController trong project)
+	- Làm việc với Rest Controller (tham khảo đến FileRestController trong project)
 ```sh
 	@PostMapping("/api/files/" + FileService.DIR_NAME)
 	public ResponseEntity<List<FileInfo>> postFile(@RequestParam MultipartFile[] files, HttpServletRequest request) {
@@ -40,8 +40,8 @@ b. Làm việc với Multipart file trong Spring
 		}
 	}
 ```
-Kiểu trả về tùy mục đích để viết, có thể chỉ đơn giản là message với result để thể hiện kết quả. Ở đây sử dụng FileInfo là 1 class với các thuộc tính đơn giản của file để hiển thị.Response trả về sẽ có body là dạng json chứa 1 list các fileinfo chứa thông tin các file được upload lên server.
-Argument khai báo của method: @RequestParam MultipartFile[] files. Khi khai báo như thế này, param "files" được gửi từ client sẽ được spring tự động đọc vào biến files. Lưu ý là spring support gửi nhiều file 1 lúc, nên ở đây dùng MultipartFile array (tương ứng với thuộc tính multiple <input type="file" name="files" multiple/>) (Xem project demo-form-upload để hiểu rõ hơn về upload 1 file và upload nhiều file)
+Kiểu trả về tùy mục đích để viết, có thể chỉ đơn giản là message với result để thể hiện kết quả. Ở đây sử dụng FileInfo là 1 class với các thuộc tính đơn giản của file để hiển thị.Response trả về sẽ có body là dạng json chứa 1 list các fileinfo chứa thông tin các file được upload lên server.  
+Argument khai báo của method: @RequestParam MultipartFile[] files. Khi khai báo như thế này, param "files" được gửi từ client sẽ được spring tự động đọc vào biến files. Lưu ý là spring support gửi nhiều file 1 lúc, nên ở đây dùng MultipartFile array (tương ứng với thuộc tính multiple <input type="file" name="files" multiple/>) (Xem project demo-form-upload để hiểu rõ hơn về upload 1 file và upload nhiều file)  
 Khi đã lấy được file gửi từ client, việc làm gì với file này sẽ do tùy từng bài toán. Ví dụ ở đây sẽ lưu file này vào thư mục chỉ định trong storage trên server (tham khảo đến FileServiceImpl trong project)
 ```sh
 	public List<FileInfo> saveAll(String rootDirName, String dirPath, MultipartFile[] mpFiles) {
@@ -135,9 +135,11 @@ $.ajax({
 			$('#upload-form').children('div').children('input')[0].value = "";
 		}).fail(function(xhr, status, error) {
 ```
+
 được dùng để xử lý request bất đồng bộ: trong done() function sẽ xử lý dữ liệu json trả về từ server (FileRestController), trong fail() function sẽ xử lý error nếu nhận được error từ phía server.
 
---Làm việc với Spring MVC form upload (project demo-form-upload)
+-
+	-  Làm việc với Spring MVC form upload (project demo-form-upload)  
 Ở project này, làm việc với @Controller và Spring MVC để upload file theo 2 hình thức: upload 1 file và upload nhiều file từ form (submit form của html).
 ```sh
     @PostMapping("/uploadFile")
@@ -188,6 +190,42 @@ Phía fileService sẽ copy nội dung file upload sang 1 file mới tạo trong
 ```sh
 Files.copy(file.getInputStream(), copyLocation, StandardCopyOption.REPLACE_EXISTING);
 ```
+
+-
+	-  Hạn chế kích thước file
+Khai báo trong application.properties các thuộc tinh sau để hạn chế kích thước file upload
+```sh
+spring.servlet.multipart.max-file-size=5MB
+spring.servlet.multipart.max-request-size=20MB
+```
+max-file-size là giới hạn kích cỡ của file được upload, còn max-request-size giới hạn kích cỡ của request được gửi đi  
+Khi file được chọn từ client có kích cỡ hơn 5MB, thì spring sẽ trả ra exception. Để xử lý exception này và trả về những thông tin mình mong muốn, thì dùng 1 kỹ thuật quản lý exception hay sử dụng trong spring là @ControllerAdvice (@RestControllerAdvice) và @ExceptionHandler(MaxUploadSizeExceededException.class)  
+ @ControllerAdvice: đánh dấu controller này là một global controller, nghĩa là nó xử lý chung cho tất cả các controller khác.  
+ @ExceptionHandler: Được sử dụng để bắt các exception bắn ra từ tất cả các method khác ở trong Controller mà có class được khai báo trong cú pháp của nó
+```sh
+@ControllerAdvice
+public class FileManagerControllerAdvice {
+	@ExceptionHandler(MaxUploadSizeExceededException.class)
+	public ResponseEntity<?> handleFileSizeLimitExceeded(MaxUploadSizeExceededException exc) {
+	    return new ResponseEntity<>(exc.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+}
+
+```
+method handleFileSizeLimitExceeded sẽ bắt exception có class là MaxUploadSizeExceededException mà bắn ra từ các controller khác
+Ngoài ra trong FileRestController các bạn cũng sẽ thấy có sử dụng:
+```sh
+	@ExceptionHandler(FileManagerFileNotFoundException.class)
+	public ResponseEntity<?> handleFileManagerFileNotFoundException(FileManagerFileNotFoundException exc) {
+		return new ResponseEntity<>(exc.getMessage(), HttpStatus.NOT_FOUND);
+	}
+
+	@ExceptionHandler(FileManagerException.class)
+	public ResponseEntity<?> handleFileManagerException(FileManagerException exc) {
+		return new ResponseEntity<>(exc.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+```
+Lúc này handleFileManagerFileNotFoundException method sẽ bắt các FileManagerFileNotFoundException mà bắn ra từ các method khác trong FileRestController class.
 
 - Đọc nội dung file và download file từ server
 Một cách đơn giản để trả về nội dung file cho việc download hoặc view là trả về đối tượng Resource của spring như trong ví dụ dưới đây

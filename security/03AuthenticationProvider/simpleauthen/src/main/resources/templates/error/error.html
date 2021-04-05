@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Có lỗi</title>
+</head>
+
+<body>
+  <h1>Tình hình rất là căng. Có một lỗi xảy ra</h1>
+  <table>
+    <tr>
+      <td>Date</td>
+      <td th:text="${timestamp}" />
+    </tr>
+    <tr>
+      <td>Path</td>
+      <td th:text="${path}" />
+    </tr>
+    <tr>
+      <td>Error</td>
+      <td th:text="${error}" />
+    </tr>
+    <tr>
+      <td>Status</td>
+      <td th:text="${status}" />
+    </tr>
+    <tr>
+      <td>Message</td>
+      <td th:text="${message}" />
+    </tr>
+    <tr>
+      <td>Exception</td>
+      <td th:text="${exception}" />
+    </tr>
+    <tr>
+      <td>Trace</td>
+      <td>
+        <pre th:text="${trace}" />
+      </td>
+    </tr>
+  </table>
+</body>
+
+</html>

@@ -151,7 +151,15 @@ public class BookDao extends Dao<Book> {
   }
 }
 ```
-### 5. Tạo cấu hình để biến BookDao thành một Bean
+
+### 5. Đánh dấu BookDao là một @Repository
+```java
+@Repository
+public class BookDao extends Dao<Book> {
+}
+```
+
+### 6. Tạo cấu hình để biến BookDao thành một Bean
 Tạo thư mục [config](src/main/java/vn/techmaster/bookstore/config)
 
 Tạo [class RepoConfig](src/main/java/vn/techmaster/bookstore/config/RepoConfig.java)
@@ -165,6 +173,8 @@ public class RepoConfig {
   }  
 }
 ```
+
+
 
 ### 6. Tạo BookController
 Tạo thư mục [controller](src/main/java/vn/techmaster/bookstore/controller), sau đó tạo [BookController.java](src/main/java/vn/techmaster/bookstore/controller/BookController.java)
