@@ -39,8 +39,8 @@ Xem [FunRepository.java](src/main/java/vn/techmaster/demobean/bean/FunRepository
 @Repository
 public class FunRepository {
   @Autowired
-  public FunRepository(@Value("${engineType}") String engineType) {
-    System.out.println("FunRepository :" + engineType);
+  public FunRepository(Car car) {
+    System.out.println(car);
   }  
 }
 ```
