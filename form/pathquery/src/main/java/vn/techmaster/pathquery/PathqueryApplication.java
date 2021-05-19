@@ -9,5 +9,4 @@ public class PathqueryApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(PathqueryApplication.class, args);
 	}
-
 }
