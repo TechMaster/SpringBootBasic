@@ -1,0 +1,35 @@
+Bài tập Spring boot rest crud api validation openapi
+
+1. Mục đích: Tạo api rest crud cho Employee, sử dụng validation và exception hanlder, sau đó dùng openapi để tạo document. Database dùng h2
+2. Mô tả các bước làm
+	_ Tạo Employee Entity, ứng với table EMPLOYEE, có 5 trường: 
+		+ id (long)
+		+ firstName (String, not null, ít nhất 2 kí tự)
+		+ lastName (String, not null, ít nhất 2 kí tự)
+		+ emailId (String, not blank, kiểu email)
+		+ passportNumber (String, not null, ít nhất 2 kí tự)
+		
+	_ Tạo repository interface EmployeeRepository extends JpaRepository
+	_ Tạo service
+	_ Tạo controller
+		+ các method get post put delete.
+		+ Trong phương thức get, cho phép người dùng tìm kiếm theo emailId 
+			.) Sử dụng @RequestParam 
+			.) emailId có thể truyền vào hoặc khống. 
+				-- Nếu không truyền vào thì findAll
+				-- Nếu truyền vào thì findByEmailId (repository.findByEmailId)
+		+ Validate object Employee gửi lên từ request khi post và put
+		+ Trường hợp ko tìm thấy resource, hãy throw ra ResourceNotFoundException (xem phần dưới)
+	_ Tạo cơ chế quản lý exception
+		+ Tạo class ResourceNotFoundException extends  RuntimeException, sử dụng annotation @ResponseStatus(value = HttpStatus.NOT_FOUND)
+		+ Tạo class ErrorDetail để mô tả eror, với 3 field: java.util.Date errorTime, String message, String detail
+		+ Tạo class GlobalExceptionHandler extends ResponseEntityExceptionHandler, sử dụng annotation @ControllerAdvice (Xem slide)
+			.) Tạo method để handle ResourceNotFoundException, sử dụng annotation @ExceptionHandler
+				-- Tên method: handleResourceNotFound
+				-- Param: ResourceNotFoundException  và WebRequest
+				-- Kiểu trả về: ResponseEntity<?> (? là 1 kiểu generic type trong java, có nghĩa là kiểu nào cũng được) (https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/http/ResponseEntity.html)
+				-- Trả về: ResponseEntity có body là 1 object ErrorDetail (giờ hiện tại khi xảy ra lỗi, meesage của Exception được bắt, detail lấy từ request description), http status là not found
+			.) Tạo method handleGlobalException để handle Exception nói chung (làm giống như method trên), http status trả về là internal server error
+			.) Override method handleMethodArgumentNotValid để xử lý trường hợp validate có lỗi
+				-- Trả về ResponseEntity có body là 1 object ErrorDetail (giờ hiện tại khi xảy ra lỗi, meesage là "Validation Failed", detail lấy từ exception.getBindingResult().toString()), http status là bad request
+	_ Tạo api document sử dụng openapi (swagger)
