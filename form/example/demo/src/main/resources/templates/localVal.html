@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <title>Variable</title>
+</head>
+<body>
+    <h1>Variable: flower, iter</h1>
+    <table border="1">
+        <tr>
+            <th>No</th>
+            <th>Flower Name</th>
+        </tr>
+        
+        <!--
+             Local Variable: flower
+             Local Variable: iter (Iterator).
+           -->
+        <tr th:each="flower, iter : ${flowers}">
+            <td th:utext="${iter.count}">No</td>
+            <td th:utext="${flower}">Flower Name</td>
+        </tr>
+    </table>
+</body>
+</html>

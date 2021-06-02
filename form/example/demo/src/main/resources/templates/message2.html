@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Messsage 2</title>
+  
+</head>
+<body>
+<h1 th:text="#{h1.message}"></h1>
+<p th:utext="#{home.welcome.dynamic(${userName}, ${country})}"></p>
+<p>Today is: <span th:text="${todayDate}">13 february 2011</span>.</p> 
+<span th:text="${session.userName}">Vietnam</span>.<br>
+<span th:text="${#httpSession.getAttribute('userName')}">Vietnam</span>.<br>
+<span th:text="${#locale.country}">Vietnam</span>.<br>
+
+<span th:text="${#calendars.format(today,'dd MMMM yyyy')}">13 May 2011</span>
+
+
+</body>
+</html>

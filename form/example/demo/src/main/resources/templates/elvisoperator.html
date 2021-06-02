@@ -1,0 +1,16 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <title>Variable</title>
+</head>
+<body>
+    <div>
+        <p>Name: <span th:text="${session.user.firstName}">Sebastian</span>.</p>
+        <p>Surname: <span th:text="${session.user.lastName}">Pepper</span>.</p>
+        <p>Nationality: <span th:text="${session.user.nationality}">Saturn</span>.</p>
+        <p>Nationality: <span th:text="${session.user.isSingle} ? 'Single' : 'Married' ">Single</span>.</p>
+      </div>
+      
+</body>
+</html>

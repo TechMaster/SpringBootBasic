@@ -15,27 +15,26 @@ import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 
 @Configuration
 public class WebConfig implements WebMvcConfigurer   {
-@Autowired
-@Bean
-@Description("Spring Message Resolver")
-public ResourceBundleMessageSource messageSource() {
+    @Bean
+    @Description("Spring Message Resolver")
+    public ResourceBundleMessageSource messageSource() {
     ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
-    messageSource.setBasename("messages");
-    return messageSource;
-}
-@Bean
-public LocaleResolver localeResolver() {
-    SessionLocaleResolver slr = new SessionLocaleResolver();
-    slr.setDefaultLocale(Locale.US);
-    return slr;
-}
+        messageSource.setBasename("messages");
+        return messageSource;
+    }
+    @Bean
+    public LocaleResolver localeResolver() {
+        SessionLocaleResolver slr = new SessionLocaleResolver();
+        slr.setDefaultLocale(Locale.CANADA);
+        return slr;
+    }
 
-@Bean
-public LocaleChangeInterceptor localeChangeInterceptor() {
-    LocaleChangeInterceptor lci = new LocaleChangeInterceptor();
-    lci.setParamName("lang");
-    return lci;
-}
+    @Bean
+    public LocaleChangeInterceptor localeChangeInterceptor() {
+        LocaleChangeInterceptor lci = new LocaleChangeInterceptor();
+        lci.setParamName("lang");
+        return lci;
+    }
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
