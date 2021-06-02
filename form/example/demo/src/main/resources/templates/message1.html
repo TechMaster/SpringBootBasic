@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Messsage 1</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js">
+  </script>
+  <script type="text/javascript">
+  $(document).ready(function() {
+      $("#locales").change(function () {
+          var selectedOption = $('#locales').val();
+          if (selectedOption != ''){
+              window.location.replace('message1?lang=' + selectedOption);
+          }
+      });
+  });
+  </script>
+</head>
+<body>
+<h1>Message 1 Example</h1>
+<p th:utext="#{home.welcome}">Welcome to our grocery store!</p>
+
+<span th:text="#{lang.change}"></span>:
+<select id="locales">
+    <option value=""></option>
+    <option value="en" th:text="#{lang.eng}"></option>
+    <option value="fr" th:text="#{lang.fr}"></option>
+</select>
+</body>
+</html>
