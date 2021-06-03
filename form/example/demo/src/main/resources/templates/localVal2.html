@@ -10,10 +10,12 @@
     <div th:with="flower0 = ${flowers[0]}">
     
        <h4>${flower0}</h4>
-       <span th:utext="${flower0}"></span>
+       <span th:utext="|In scope, value is ${flower0}|"></span>
+        <!-- Literal substitutions, tương đương với <span th:utext="'In scope, value is ' + ${flower0}"></span>-->
     
     </div>
-    <span th:utext="'Out of scope, value is ' + ${flower0}"></span>
+    <span th:utext="|Out of scope, value is ${flower0 == nul ? 'empty' : flower0}|"></span>
+    <!-- Literal substitutions, conditional expression (biểu thức so sánh) với springEL ${flower0 == null ? 'empty' : flower0} -->
     
     <!-- Local variable: flower1, flower2 -->
     <div th:with="flower1 = ${flowers[1]}, flower2 = ${flowers[2]}">

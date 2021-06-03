@@ -8,8 +8,11 @@
     <div>
         <p>Name: <span th:text="${session.user.firstName}">Sebastian</span>.</p>
         <p>Surname: <span th:text="${session.user.lastName}">Pepper</span>.</p>
-        <p>Nationality: <span th:text="${session.user.nationality}">Saturn</span>.</p>
-        <p>Nationality: <span th:text="${session.user.isSingle} ? 'Single' : 'Married' ">Single</span>.</p>
+        
+        <!-- Toán tử elvis, gán giá trị mặc định khi biến có giá trị null -->
+        <p>Nationality: <span th:text="${session.user.nationality} ?: 'UNKNOWN'">US</span>.</p>
+
+        <p>Marital status: <span th:text="${session.user.isSingle}? 'Single' : 'Married'"></span>.</p>
       </div>
       
 </body>

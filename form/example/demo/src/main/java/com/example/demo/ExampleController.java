@@ -65,7 +65,7 @@ public class ExampleController {
 
     @GetMapping("/elvisoperator")
     public String elvisoperator(HttpSession httpSession) {
-        httpSession.setAttribute("user", new User("Thinh", "Tran", "Vietnam"));
+        httpSession.setAttribute("user", new User("Thinh", "Tran", null));
         return "elvisoperator";
     }
 }

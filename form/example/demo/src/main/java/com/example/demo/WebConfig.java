@@ -17,6 +17,7 @@ import org.springframework.web.servlet.i18n.SessionLocaleResolver;
 public class WebConfig implements WebMvcConfigurer   {
     @Bean
     @Description("Spring Message Resolver")
+    // Có thể thay thế Bean này bằng property: spring.messages.basename=messages trong application.properties
     public ResourceBundleMessageSource messageSource() {
     ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
         messageSource.setBasename("messages");
