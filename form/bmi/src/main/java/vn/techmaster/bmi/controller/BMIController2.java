@@ -20,10 +20,10 @@ public class BMIController2 {
   }
 
   @PostMapping()
-  public String handleBMIForm(@ModelAttribute BMIRequest request, BindingResult bindingResult, Model model) {
+  public String handleBMIForm(@ModelAttribute("bmiRequest") BMIRequest request, BindingResult bindingResult, Model model) {
     if (! bindingResult.hasErrors()) {      
       BMIResult bmiResult = calculateBMI(request);
-      model.addAttribute("bmiRequest", request); 
+      //model.addAttribute("bmiRequest", request); 
       model.addAttribute("bmiResult", bmiResult);
     }
     return "bmi2";

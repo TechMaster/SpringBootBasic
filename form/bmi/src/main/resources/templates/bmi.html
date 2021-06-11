@@ -4,20 +4,40 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BMI Calculator</title>
+  <style>
+    .error {
+        color: red;
+    }
+</style>
 </head>
 <body>
+  <!-- Sử dụng thẻ <nav> trong layout.html với khai báo th:fragment="header" để thay thế cho tag <nav> (th:replace) ở dưới đây-->
   <nav th:replace="layout :: header"></nav>
   <br>
   <h1>BMI not refactored</h1>
   <form action="#" th:action="@{/bmi}" th:object="${bmiRequest}" method="post">
-    <input type="text" placeholder="Your name" th:field="*{name}"/><br><br>
-    <input type="text" placeholder="Your email" th:field="*{email}"/><br><br>
-    <input type="text" placeholder="Your height" th:field="*{height}"/> (m)<br><br>
-    <input type="text" placeholder="Your weight" th:field="*{weight}"/> (kg)<br><br>
-    <button type="submit">Calculate BMI</button>
+    <fieldset>
+      <legend>Personal Information</legend>
+      <input type="text" placeholder="Your name" th:field="*{name}"/><br><br>
+      <input type="text" placeholder="Your email" th:field="*{email}"/><br><br>
+      <div>
+        <input type="text" placeholder="Your height" th:field="*{height}"/> (m)
+        <span th:each="err : ${#fields.errors('weight')}" th:text="${err}" class="error" />
+        <br><br>
+      </div>
+      <div>
+        <input type="text" placeholder="Your weight" th:field="*{weight}"/> (kg)
+        <span th:each="err : ${#fields.errors('weight')}" th:text="${err}" class="error" />
+        <br><br>
+      </div>
+      <button type="submit">Calculate BMI</button>
+  </fieldset>
   </form>
   <br>
   <div>
+    <!-- th:text="${bmiResult?.bmiIndex}" tương đương với 
+      th:if="${bmiResult} != null" th:text="${bmiResult.bmiIndex}"
+      hoặc th:if="${bmiResult != null}" th:text="${bmiResult.bmiIndex}" -->
     BMI Index : <strong th:text="${bmiResult?.bmiIndex}"></strong><br>
     Phân loại: <strong th:text="${bmiResult?.category}"></strong>
   </div>

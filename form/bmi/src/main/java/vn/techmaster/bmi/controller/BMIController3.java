@@ -27,13 +27,13 @@ public class BMIController3 {
   }
 
   @PostMapping()
-  public String handleBMIForm(@ModelAttribute BMIRequest request, BindingResult bindingResult, Model model) {
+  public String handleBMIForm(@ModelAttribute("bmiRequest") BMIRequest request, BindingResult bindingResult, Model model) {
     if (! bindingResult.hasErrors()) {
       /* Chuyển cả logic tính BMI sang bean HealthService. Với cách này, chúng ta có thể phục vụ cả Web Form
       và cả REST API
       */
       BMIResult bmiResult = healthService.calculateBMI(request);
-      model.addAttribute("bmiRequest", request); 
+      //model.addAttribute("bmiRequest", request); 
       model.addAttribute("bmiResult", bmiResult);
     }
     return "bmi2";
