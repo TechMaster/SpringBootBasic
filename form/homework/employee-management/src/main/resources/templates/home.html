@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Management</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+        <!--Xem huong dan o day https://getbootstrap.com/docs/5.0/getting-started/introduction/-->
+        <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js"></script>
+        <!--Tim icon o day: https://fontawesome.com/v5.15/icons-->
+
+</head>
+
+<body>
+    <div class="container my-2">
+        <div class="card">
+            <div class="card-body">
+                <p th:if="${successMsg}" th:text="${successMsg}" class="alert alert-success"></p>
+                <p th:if="${ex}" th:text="${ex}" class="alert alert-warning"></p>
+                <p><a href="/employee/add" class="btn btn-primary"><i class="fas fa-user-plus"></i>Add employee</a>
+                </p>
+                <table class="table table-striped">
+                    <thead class="thead-light">
+                        <tr>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Email</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr th:each="employee : ${employees}" th:object="${employee}">
+                            <td th:text="*{firstName}"></td>
+                            <td th:text="*{lastName}"></td>
+                            <td th:text="*{emailId}"></td>
+                            <td><a th:href="@{/employee/edit/{id}(id=*{id})}" class="btn"><i
+                                        class="fas fa-user-edit"></i></a></td>
+                            <td><a th:href="@{/employee/delete/{id}(id=*{id})}" class="btn"><i
+                                        class="fas fa-user-times ml-2"></i></a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

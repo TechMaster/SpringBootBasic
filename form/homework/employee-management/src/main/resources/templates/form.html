@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${title}"></title>
+    <link th:href="@{/style/style.css}" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <!--Xem huong dan o day https://getbootstrap.com/docs/5.0/getting-started/introduction/-->
+    <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js"></script>
+    <!--Tim icon o day: https://fontawesome.com/v5.15/icons-->
+</head>
+
+<body>
+    <div class="container my-4">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a th:href="@{/employee}">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page" th:text="${title}"></li>
+            </ol>
+        </nav>
+        <h1 th:text="${title}"></h1>
+        <div class="card">
+            <div class="card-body">
+                <div class="col-md-10">
+                    <form action="#" th:action="@{/employee/save}" th:object="${employee}" novalidate="novalidate"
+                        method="POST">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <input type="hidden" th:field="*{id}">
+                                <label for="firstName">First Name</label>
+                            </div>
+                            <div class="col-md-4">
+                                <input th:errorclass="error" type="text" placeholder="Dương" name="firstName"
+                                    th:field="*{firstName}" class="form-control">
+                            </div>
+                            <div class="col-md-6">
+                                <span th:if="${#fields.hasErrors('firstName')}" th:errorclass="error" th:errors="*{firstName}"></span>
+                        </div>
+                        <div class="col-md-2">
+                            <label for="lastName">Last Name</label>
+                        </div>
+                        <div class="col-md-4">
+                            <input th:errorclass="error" type="text"  placeholder="Bùi" name="lastName" th:field="*{lastName}" class="form-control">
+                        </div>
+                        <div class="col-md-6">
+                            <span th:if="${#fields.hasErrors('lastName')}" th:errorclass="error" th:errors="*{lastName}"></span>
+                        </div>
+                        <div class="col-md-2">
+                            <label for="emailId">Email</label>
+                        </div>
+                        <div class="col-md-4">
+                            <input th:errorclass="error" type="email"  placeholder="email@domain.com" name="emailId" th:field="*{emailId}" class="form-control">
+                        </div>
+                        <div class="col-md-6">
+                            <span th:if="${#fields.hasErrors('emailId')}" th:errorclass="error" th:errors="*{emailId}"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="submit" class="btn btn-primary" value=" Submit ">
+                        </div>
+                        <input type="hidden" th:attr="name='title'" th:value="${title}">
+                    </div>
+                </form>
+            </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
