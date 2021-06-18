@@ -1,4 +1,4 @@
-Update tu bai lam cua ban Duong
+Update tu bai lam cua ban Duong. Noi dung bai tap: Xem file bai tap form-crud empployee.docx
 
 ![alt](images/employeeHome.png)
 
