@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8" />
+
+
+    <title>My Template</title>
+
+    <link rel="stylesheet" type="text/css" th:href="@{/main.css}" />
+    <link rel="stylesheet" type="text/css" th:href="@{/secondary.css}" />
+
+    <script type="text/javascript" th:src="@{/main.js}"></script>
+    <script type="text/javascript" th:src="@{/secondary.js}"></script>
+
+</head>
+
+<body>
+
+    <!-- Script in body -->
+    <!--<script type="text/javascript" th:src="@{/script-in-body.js}"></script>-->
+
+    <ul th:fragment="my-fragment1">
+        <li><a th:href="@{/}">Home</a></li>
+        <li><a th:href="@{/products}">Products</a></li>
+        <li><a th:href="@{/about}">About</a></li>
+    </ul>
+
+
+
+    <ul th:fragment="my-fragment2">
+        <li><a th:href="@{/admin/products}">Product Management</a></li>
+        <li><a th:href="@{/admin/orders}">Order Management</a></li>
+    </ul>
+
+
+    <div id="my-id1">
+
+        Element DIV with id = 'my-id1'
+
+    </div>
+
+
+    <aside>
+        <div>This is a sidebar</div>
+    </aside>
+
+    <p class="my-class">Element P with class (my-class)</p>
+
+    <p>Element P without class</p>
+
+    <p class="my-class">Element P with class (my-class)</p>
+
+    <div th:fragment="person (firstName, lastName)" class="box">
+            <p>First Name: <span th:utext="${firstName}"></span></p>
+            <p>Last Name: <span th:utext="${lastName}"></span></p>
+            <p>Full Name: <span th:utext="${firstName} + ' '+ ${lastName}"></span></p>
+    </div>
+    <!-- Fragment with implicit parameters. -->
+    <div th:fragment="greeting" class="box">
+            <p>Hello
+                   <span th:utext="${title}"></span>
+                   <span th:utext="${name} ?: 'There'"></span>
+                </p>
+    </div>
+
+    <div th:fragment="employee (firstName, lastName)" class="box"
+         th:assert= "${!#strings.isEmpty(firstName)}, ${!#strings.isEmpty(lastName)}"></div>
+          
+        <p>First Name: <span th:utext="${firstName}"></span></p>
+        <p>Last Name: <span th:utext="${lastName}"></span></p>
+        <p>Full Name: <span th:utext="${firstName} + ' '+ ${lastName}"></span></p>
+         
+    </div>
+    
+
+    <footer th:fragment="copyright">techmaster.vn</footer>
+</body>
+
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8" />
+    <th:block th:insert="~{fragments/my-template :: link}"></th:block>
+    <th:block th:insert="~{fragments/my-template :: head/script}"></th:block>
+</head>
+
+<body>
+    <h1>My Page</h1>
+
+    <p>Some Content of My Page</p>
+    <div th:insert="~{fragments/my-template :: my-fragment1}"></div>
+    <div th:insert="~{fragments/my-template :: #my-id1}"></div>
+    <div th:insert="~{fragments/my-template :: p.my-class}"></div>
+
+    <div th:replace="~{fragments/my-template :: person('Huong', 'techmaster')}"></div>
+
+    <div th:replace="~{fragments/my-template :: person(firstName='Man', lastName='techmaster')}"></div>
+
+    <div th:replace="~{fragments/my-template :: person(${user.firstName}, ${user.lastName})}"></div>
+
+    <div th:replace="~{fragments/my-template :: copyright}"></div>
+
+    <div th:replace="~{fragments/my-template :: greeting(title='Mr.', name = 'Tom') }"></div>   
+         
+    <div th:replace="~{fragments/my-template :: greeting }"></div> 
+    
+    <div th:replace="~{fragments/my-template :: employee('', '')}"></div> 
+
+</body>
+
+</html>
