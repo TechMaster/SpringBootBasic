@@ -34,6 +34,7 @@ public class CarRepositoryTests {
   public void findByModelTest() {
     String model = "E-350 Super Duty";
     List<Car> cars = carRepository.findByModel(model);
+    cars.forEach(System.out::println);
     assertThat(cars.get(0).getModel()).isEqualTo(model);    
   }
 
@@ -46,6 +47,7 @@ public class CarRepositoryTests {
   @Test
   public void findByOrderByYearAscTest() {
     List<Car> cars = carRepository.findByOrderByYearAsc();
+    cars.forEach(System.out::println);
     assertThat(cars).isSortedAccordingTo(Comparator.comparing(Car::getYear));
   }
 
@@ -65,6 +67,7 @@ public class CarRepositoryTests {
   @Test
   public void listCarIn2009Test() {
     List<Car> cars = carRepository.listCarIn2009();
+    cars.forEach(System.out::println);
     assertThat(cars).extracting("year").containsOnly(2009);
   }
 

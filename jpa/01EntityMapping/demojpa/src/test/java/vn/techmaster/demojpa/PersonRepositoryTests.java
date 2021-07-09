@@ -41,6 +41,8 @@ class PersonRepositoryTests {
 	void groupPeopleByCity() {
 		Map<String, List<Person>> result = personRepo.groupPeopleByCity();
 		result.keySet().forEach(System.out::println);
+		System.out.println("Country map: country-List of Persion");
+		result.entrySet().forEach(System.out::println);
 		assertThat(result).containsKeys("London", "Wellington", "Buenos Aires", "Stockholm");
 		
 	}
@@ -49,7 +51,7 @@ class PersonRepositoryTests {
 	void groupPeopleByOrderCity() {
 		Map<String, List<Person>> result = personRepo.groupPeopleByOrderCity();
 		result.keySet().forEach(System.out::println);
-		//result.get("Hanoi").forEach(System.out::println);
+		result.get("Hanoi").forEach(System.out::println);
 		var keys = List.copyOf(result.keySet());
 		assertThat(keys).isSorted();		
 	}

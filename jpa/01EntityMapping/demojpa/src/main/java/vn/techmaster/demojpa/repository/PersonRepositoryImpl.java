@@ -69,6 +69,8 @@ public class PersonRepositoryImpl implements PersonRepositoryCustom {
     TypedQuery<CityJobCount> typedQuery = em.createQuery(query, CityJobCount.class);
 
     List<CityJobCount> cityJobCountSorted = typedQuery.getResultList();
+    System.out.println("After query ");
+    cityJobCountSorted.forEach(System.out::println);
     String city = "";
     long maxcount = 0;
     List<JobCount> jobList = new ArrayList<>();
@@ -76,6 +78,7 @@ public class PersonRepositoryImpl implements PersonRepositoryCustom {
 
     for (var cityJobCount : cityJobCountSorted) {
       if (!city.equals(cityJobCount.getCity())) {
+        result.put(city, jobList);
         city = cityJobCount.getCity();
         jobList = new ArrayList<>();
         maxcount = cityJobCount.getCount();
@@ -83,9 +86,9 @@ public class PersonRepositoryImpl implements PersonRepositoryCustom {
       } else { // city đang lặp lại
         if (maxcount == cityJobCount.getCount()) {
           jobList.add(new JobCount(cityJobCount.getJob(), maxcount));
-        } else {
-          result.put(city, jobList);
-        }
+        }// else {
+          //result.put(city, jobList);
+        //}
       }
     }
 

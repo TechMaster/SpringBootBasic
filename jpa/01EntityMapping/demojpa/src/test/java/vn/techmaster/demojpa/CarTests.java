@@ -20,7 +20,7 @@ import vn.techmaster.demojpa.model.mapping.Car;
 @Sql({"/car.sql"})
 public class CarTests {
   @Autowired
-  private EntityManager tem;  
+  private EntityManager tem;
   /* TestEntityManager chỉ là một subset của EntityManager nó không có chức năng Query
   Thực tế EntityManager có nhiều chức năng Query
   */
